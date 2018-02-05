@@ -1,0 +1,15 @@
+{
+  "version": "1",
+  "success": true,
+  "data": {
+    "object": "transaction_request",
+    "type": "receive",
+    "id": "8eb0160e-1c96-481a-88e1-899399cc84dc",
+    "minted_token_id": "861020af-17b6-49ee-a0cb-661a4d2d1f95",
+    "amount": 1337,
+    "provider_user_id": "6082319c-4e74-4a5d-ab87-e0934ba1368d",
+    "balance_id": "3b7f1c68-e3bd-4f8f-9916-4af19be95d00",
+    "correlation_id": "89bd5aff-27f3-48bc-8d87-0adfd065fcbe",
+    "service_endpoint": "https://example.com/transaction-request.consume",
+  }
+}
