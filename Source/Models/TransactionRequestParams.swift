@@ -7,26 +7,38 @@
 //
 
 /// Represents a structure used to generate a transaction request
-public struct TransactionRequestParams: Parametrable {
+public struct TransactionRequestParams {
 
     public let type: TransactionRequestType
     public let mintedTokenId: String
     public let amount: Double?
-    public let providerUserId: String
-    public let balanceId: String?
-    public let correlationId: String
+    public let address: String?
+    public let correlationId: String?
+
+}
+
+extension TransactionRequestParams: Parametrable {
 
     private enum CodingKeys: String, CodingKey {
         case type
         case mintedTokenId = "minted_token_id"
         case amount
-        case providerUserId = "provider_user_id"
-        case balanceId = "balance_id"
+        case address
         case correlationId = "correlation_id"
     }
 
     func encodedPayload() -> Data? {
         return try? JSONEncoder().encode(self)
+    }
+
+    // Custom encoding as we need to encode amount event if nil
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(type, forKey: .type)
+        try container.encode(mintedTokenId, forKey: .mintedTokenId)
+        try container.encode(amount, forKey: .amount)
+        try container.encode(address, forKey: .address)
+        try container.encode(correlationId, forKey: .correlationId)
     }
 
 }

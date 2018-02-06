@@ -56,6 +56,8 @@
 		03939D8E202866E400F65F20 /* EncodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03939D8D202866E400F65F20 /* EncodeTests.swift */; };
 		03939D9020286B9E00F65F20 /* TransactionRequestFixtureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03939D8F20286B9E00F65F20 /* TransactionRequestFixtureTests.swift */; };
 		03939D922029672F00F65F20 /* OMGRequestTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03939D912029672F00F65F20 /* OMGRequestTest.swift */; };
+		03939D9620298E2A00F65F20 /* QRCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03939D9520298E2A00F65F20 /* QRCode.swift */; };
+		03939D982029954100F65F20 /* QRCodeTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03939D972029954100F65F20 /* QRCodeTest.swift */; };
 		03A5E8191F8E14570009D5E0 /* ClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A5E8181F8E14570009D5E0 /* ClientTests.swift */; };
 		03A5E81B1F8E2C4C0009D5E0 /* DummyObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A5E81A1F8E2C4C0009D5E0 /* DummyObject.swift */; };
 		03BCCCB31F8B311600F604DB /* OmiseGO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03BCCCA91F8B311600F604DB /* OmiseGO.framework */; };
@@ -118,6 +120,8 @@
 		03939D8D202866E400F65F20 /* EncodeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncodeTests.swift; sourceTree = "<group>"; };
 		03939D8F20286B9E00F65F20 /* TransactionRequestFixtureTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionRequestFixtureTests.swift; sourceTree = "<group>"; };
 		03939D912029672F00F65F20 /* OMGRequestTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OMGRequestTest.swift; sourceTree = "<group>"; };
+		03939D9520298E2A00F65F20 /* QRCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCode.swift; sourceTree = "<group>"; };
+		03939D972029954100F65F20 /* QRCodeTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeTest.swift; sourceTree = "<group>"; };
 		03A5E8181F8E14570009D5E0 /* ClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientTests.swift; sourceTree = "<group>"; };
 		03A5E81A1F8E2C4C0009D5E0 /* DummyObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummyObject.swift; sourceTree = "<group>"; };
 		03BCCCA91F8B311600F604DB /* OmiseGO.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = OmiseGO.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -249,6 +253,7 @@
 			isa = PBXGroup;
 			children = (
 				037032BB1FBBE7A300DBCDDD /* Tool.swift */,
+				03939D9520298E2A00F65F20 /* QRCode.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -281,6 +286,7 @@
 				03C2C0781FB93E5200B794AC /* DecodeTests.swift */,
 				03939D8D202866E400F65F20 /* EncodeTests.swift */,
 				03939D912029672F00F65F20 /* OMGRequestTest.swift */,
+				03939D972029954100F65F20 /* QRCodeTest.swift */,
 				03BCCCB91F8B311600F604DB /* Info.plist */,
 				031443001F8CAA68003DD5BE /* Models */,
 			);
@@ -460,6 +466,7 @@
 				037032B81FBBE6B100DBCDDD /* OMGRequest.swift in Sources */,
 				037032A91FBBE6B100DBCDDD /* Address.swift in Sources */,
 				037032AA1FBBE6B100DBCDDD /* User.swift in Sources */,
+				03939D9620298E2A00F65F20 /* QRCode.swift in Sources */,
 				037032AB1FBBE6B100DBCDDD /* Balance.swift in Sources */,
 				037032AD1FBBE6B100DBCDDD /* Object.swift in Sources */,
 				037032B61FBBE6B100DBCDDD /* OmiseGOError.swift in Sources */,
@@ -474,6 +481,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				03939D9020286B9E00F65F20 /* TransactionRequestFixtureTests.swift in Sources */,
+				03939D982029954100F65F20 /* QRCodeTest.swift in Sources */,
 				03939D8E202866E400F65F20 /* EncodeTests.swift in Sources */,
 				0345BE251F96FD9C00B4CA16 /* UserLiveTests.swift in Sources */,
 				031443021F8CAD56003DD5BE /* ResponseFixtureTest.swift in Sources */,
