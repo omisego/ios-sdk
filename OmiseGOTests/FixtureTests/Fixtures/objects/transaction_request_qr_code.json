@@ -1,0 +1,7 @@
+{
+  "ty": "receive",
+  "id": "8eb0160e-1c96-481a-88e1-899399cc84dc",
+  "mtid": "861020af-17b6-49ee-a0cb-661a4d2d1f95",
+  "am": 1337,
+  "se": "https://example.com/transaction-request.consume",
+}

@@ -50,6 +50,7 @@ class OMGRequestTest: XCTestCase {
             XCTAssertEqual(urlRequest.allHTTPHeaderFields!["Authorization"], try client.encodedAuthorizationHeader())
             XCTAssertEqual(urlRequest.allHTTPHeaderFields!["Accept"], client.acceptHeader())
             XCTAssertEqual(urlRequest.allHTTPHeaderFields!["Content-Type"], client.contentTypeHeader())
+            XCTAssertEqual(urlRequest.httpBody, nil)
         } catch let error {
             XCTFail(error.localizedDescription)
         }

@@ -8,8 +8,8 @@
     "minted_token_id": "861020af-17b6-49ee-a0cb-661a4d2d1f95",
     "amount": 1337,
     "provider_user_id": "6082319c-4e74-4a5d-ab87-e0934ba1368d",
-    "balance_id": "3b7f1c68-e3bd-4f8f-9916-4af19be95d00",
-    "correlation_id": "89bd5aff-27f3-48bc-8d87-0adfd065fcbe",
+    "address": "3b7f1c68-e3bd-4f8f-9916-4af19be95d00",
     "service_endpoint": "https://example.com/transaction-request.consume",
+    "correlation_id": "31009545-db10-4287-82f4-afb46d9741d8"
   }
 }
