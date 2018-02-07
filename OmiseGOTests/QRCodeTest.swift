@@ -25,16 +25,8 @@ class QRCodeTest: XCTestCase {
         let inputText = "Test data"
         let data = inputText.data(using: .isoLatin1)!
         if let qrCode = QRCode.generateQRCode(fromData: data, outputSize: CGSize(width: 200, height: 200)) {
-            let detector: CIDetector = CIDetector(ofType: CIDetectorTypeQRCode,
-                                                  context: nil,
-                                                  options: [CIDetectorAccuracy: CIDetectorAccuracyHigh])!
-            let features = detector.features(in: CIImage(image: qrCode)!)
-            var result: String = ""
-            //swiftlint:disable:next force_cast
-            for feature in features as! [CIQRCodeFeature] {
-                result += feature.messageString ?? ""
-            }
-            XCTAssertEqual(result, inputText)
+            let decodedText = QRTestHelper.readQRCode(fromImage: qrCode)
+            XCTAssertEqual(decodedText, inputText)
         } else {
             XCTFail("Failed to generate the qrCode")
         }

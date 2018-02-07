@@ -15,13 +15,13 @@ class EncodeTests: XCTestCase {
         do {
             let transactionRequestParams =
                 TransactionRequestParams(type: .receive,
-                                         mintedTokenId: "861020af-17b6-49ee-a0cb-661a4d2d1f95",
+                                         mintedTokenId: "BTC:861020af-17b6-49ee-a0cb-661a4d2d1f95",
                                          amount: nil,
                                          address: "3b7f1c68-e3bd-4f8f-9916-4af19be95d00",
                                          correlationId: "31009545-db10-4287-82f4-afb46d9741d8")
             let encodedData = try JSONEncoder().encode(transactionRequestParams)
             //swiftlint:disable:next line_length
-            XCTAssertEqual(String(data: encodedData, encoding: .utf8)!, "{\"amount\":null,\"correlation_id\":\"31009545-db10-4287-82f4-afb46d9741d8\",\"minted_token_id\":\"861020af-17b6-49ee-a0cb-661a4d2d1f95\",\"type\":\"receive\",\"address\":\"3b7f1c68-e3bd-4f8f-9916-4af19be95d00\"}")
+            XCTAssertEqual(String(data: encodedData, encoding: .utf8)!, "{\"amount\":null,\"correlation_id\":\"31009545-db10-4287-82f4-afb46d9741d8\",\"token_id\":\"BTC:861020af-17b6-49ee-a0cb-661a4d2d1f95\",\"type\":\"receive\",\"address\":\"3b7f1c68-e3bd-4f8f-9916-4af19be95d00\"}")
         } catch let thrownError {
             XCTFail(thrownError.localizedDescription)
         }
@@ -31,33 +31,13 @@ class EncodeTests: XCTestCase {
         do {
             let transactionRequestParams =
                 TransactionRequestParams(type: .receive,
-                                         mintedTokenId: "861020af-17b6-49ee-a0cb-661a4d2d1f95",
+                                         mintedTokenId: "BTC:861020af-17b6-49ee-a0cb-661a4d2d1f95",
                                          amount: 1337,
                                          address: "3b7f1c68-e3bd-4f8f-9916-4af19be95d00",
                                          correlationId: "31009545-db10-4287-82f4-afb46d9741d8")
             let encodedData = try JSONEncoder().encode(transactionRequestParams)
             //swiftlint:disable:next line_length
-            XCTAssertEqual(String(data: encodedData, encoding: .utf8)!, "{\"amount\":1337,\"correlation_id\":\"31009545-db10-4287-82f4-afb46d9741d8\",\"minted_token_id\":\"861020af-17b6-49ee-a0cb-661a4d2d1f95\",\"type\":\"receive\",\"address\":\"3b7f1c68-e3bd-4f8f-9916-4af19be95d00\"}")
-        } catch let thrownError {
-            XCTFail(thrownError.localizedDescription)
-        }
-    }
-
-    func testTransactionRequestEncodingForQRCode() {
-        do {
-            let transactionRequest = TransactionRequest(id: "0a8a4a98-794b-419e-b92d-514e83657e75",
-                                                        type: .receive,
-                                                        mintedTokenId: "5ee328ec-b9e2-46a5-88bb-c8b15ea6b3c1",
-                                                        amount: 1337,
-                                                        providerUserId: "60efde50-c0a2-4dc3-952d-4ef9501df37e",
-                                                        address: "3bfe0ff7-f43e-4ac6-bdf9-c4a290c40d0d",
-                                                        correlationId: "31009545-db10-4287-82f4-afb46d9741d8",
-                                                        serviceEndpoint: "https://example.com/test")
-            let encoder = JSONEncoder()
-            encoder.userInfo[TransactionRequest.isQRCodeEncoding] = true
-            let encodedData = try encoder.encode(transactionRequest)
-            //swiftlint:disable:next line_length
-            XCTAssertEqual(String(data: encodedData, encoding: .utf8)!, "{\"am\":1337,\"id\":\"0a8a4a98-794b-419e-b92d-514e83657e75\",\"ty\":\"receive\",\"mtid\":\"5ee328ec-b9e2-46a5-88bb-c8b15ea6b3c1\",\"se\":\"https:\\/\\/example.com\\/test\"}")
+            XCTAssertEqual(String(data: encodedData, encoding: .utf8)!, "{\"amount\":1337,\"correlation_id\":\"31009545-db10-4287-82f4-afb46d9741d8\",\"token_id\":\"BTC:861020af-17b6-49ee-a0cb-661a4d2d1f95\",\"type\":\"receive\",\"address\":\"3b7f1c68-e3bd-4f8f-9916-4af19be95d00\"}")
         } catch let thrownError {
             XCTFail(thrownError.localizedDescription)
         }
@@ -67,15 +47,14 @@ class EncodeTests: XCTestCase {
         do {
             let transactionRequest = TransactionRequest(id: "0a8a4a98-794b-419e-b92d-514e83657e75",
                                                         type: .receive,
-                                                        mintedTokenId: "5ee328ec-b9e2-46a5-88bb-c8b15ea6b3c1",
+                                                        mintedTokenId: "BTC:5ee328ec-b9e2-46a5-88bb-c8b15ea6b3c1",
                                                         amount: 1337,
-                                                        providerUserId: "60efde50-c0a2-4dc3-952d-4ef9501df37e",
                                                         address: "3bfe0ff7-f43e-4ac6-bdf9-c4a290c40d0d",
                                                         correlationId: "31009545-db10-4287-82f4-afb46d9741d8",
                                                         serviceEndpoint: "https://example.com/test")
             let encodedData = try JSONEncoder().encode(transactionRequest)
             //swiftlint:disable:next line_length
-            XCTAssertEqual(String(data: encodedData, encoding: .utf8)!, "{\"amount\":1337,\"address\":\"3bfe0ff7-f43e-4ac6-bdf9-c4a290c40d0d\",\"service_endpoint\":\"https:\\/\\/example.com\\/test\",\"id\":\"0a8a4a98-794b-419e-b92d-514e83657e75\",\"minted_token_id\":\"5ee328ec-b9e2-46a5-88bb-c8b15ea6b3c1\",\"type\":\"receive\",\"provider_user_id\":\"60efde50-c0a2-4dc3-952d-4ef9501df37e\"}")
+            XCTAssertEqual(String(data: encodedData, encoding: .utf8)!, "{\"amount\":1337,\"id\":\"0a8a4a98-794b-419e-b92d-514e83657e75\",\"token_id\":\"BTC:5ee328ec-b9e2-46a5-88bb-c8b15ea6b3c1\",\"type\":\"receive\",\"service_endpoint\":\"https:\\/\\/example.com\\/test\",\"address\":\"3bfe0ff7-f43e-4ac6-bdf9-c4a290c40d0d\"}")
         } catch let thrownError {
             XCTFail(thrownError.localizedDescription)
         }

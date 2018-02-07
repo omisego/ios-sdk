@@ -21,7 +21,7 @@ extension TransactionRequestParams: Parametrable {
 
     private enum CodingKeys: String, CodingKey {
         case type
-        case mintedTokenId = "minted_token_id"
+        case mintedTokenId = "token_id"
         case amount
         case address
         case correlationId = "correlation_id"
