@@ -28,7 +28,7 @@ class TransactionRequestFixtureTests: FixtureTestCase {
                 XCTAssertEqual(transactionRequest.mintedTokenId, "BTC:861020af-17b6-49ee-a0cb-661a4d2d1f95")
                 XCTAssertEqual(transactionRequest.amount, 1337)
                 XCTAssertEqual(transactionRequest.address, "3b7f1c68-e3bd-4f8f-9916-4af19be95d00")
-                XCTAssertEqual(transactionRequest.serviceEndpoint, "https://example.com/transaction-request.consume")
+                XCTAssertEqual(transactionRequest.consumeURL, "https://example.com/transaction-request.consume")
                 XCTAssertEqual(transactionRequest.correlationId, "31009545-db10-4287-82f4-afb46d9741d8")
             case .fail(error: let error):
                 XCTFail("\(error)")

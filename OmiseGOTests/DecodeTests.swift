@@ -206,7 +206,7 @@ class DecodeTests: XCTestCase {
             XCTAssertEqual(decodedData.amount, 1337)
             XCTAssertEqual(decodedData.address, "3b7f1c68-e3bd-4f8f-9916-4af19be95d00")
             XCTAssertEqual(decodedData.correlationId, "31009545-db10-4287-82f4-afb46d9741d8")
-            XCTAssertEqual(decodedData.serviceEndpoint, "https://example.com/transaction-request.consume")
+            XCTAssertEqual(decodedData.consumeURL, "https://example.com/transaction-request.consume")
         } catch let thrownError {
             XCTFail(thrownError.localizedDescription)
         }

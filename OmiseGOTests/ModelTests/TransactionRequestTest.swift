@@ -18,7 +18,7 @@ class TransactionRequestTest: XCTestCase {
                                                     amount: nil,
                                                     address: "1927dd11-8d05-42f8-8528-867d51c756c2",
                                                     correlationId: "31009545-db10-4287-82f4-afb46d9741d8",
-                                                    serviceEndpoint: "https://example.com/test")
+                                                    consumeURL: "https://example.com/test")
         if let qrImage = transactionRequest.qrImage() {
             let decodedText = QRTestHelper.readQRCode(fromImage: qrImage)
             XCTAssertEqual(decodedText, transactionRequest.id)
@@ -34,21 +34,21 @@ class TransactionRequestTest: XCTestCase {
                                                      amount: nil,
                                                      address: "",
                                                      correlationId: "",
-                                                     serviceEndpoint: "")
+                                                     consumeURL: "")
         let transactionRequest2 = TransactionRequest(id: "1",
                                                      type: .receive,
                                                      mintedTokenId: "",
                                                      amount: nil,
                                                      address: "",
                                                      correlationId: "",
-                                                     serviceEndpoint: "")
+                                                     consumeURL: "")
         let transactionRequest3 = TransactionRequest(id: "2",
                                                      type: .receive,
                                                      mintedTokenId: "",
                                                      amount: nil,
                                                      address: "",
                                                      correlationId: "",
-                                                     serviceEndpoint: "")
+                                                     consumeURL: "")
         XCTAssertEqual(transactionRequest1, transactionRequest2)
         XCTAssertNotEqual(transactionRequest1, transactionRequest3)
     }
@@ -60,14 +60,14 @@ class TransactionRequestTest: XCTestCase {
                                                      amount: nil,
                                                      address: "",
                                                      correlationId: "",
-                                                     serviceEndpoint: "")
+                                                     consumeURL: "")
         let transactionRequest2 = TransactionRequest(id: "1",
                                                      type: .receive,
                                                      mintedTokenId: "",
                                                      amount: nil,
                                                      address: "",
                                                      correlationId: "",
-                                                     serviceEndpoint: "")
+                                                     consumeURL: "")
         let set: Set<TransactionRequest> = [transactionRequest1, transactionRequest2]
         XCTAssertEqual(transactionRequest1.hashValue, "1".hashValue)
         XCTAssertEqual(set.count, 1)
