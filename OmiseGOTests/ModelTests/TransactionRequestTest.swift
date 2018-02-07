@@ -12,15 +12,19 @@ import XCTest
 class TransactionRequestTest: XCTestCase {
 
     func testQRCodeImage() {
-        let transactionRequest = TransactionRequest(id: "1",
+        let transactionRequest = TransactionRequest(id: "39dbf582-dc4b-41c4-8373-2e0f4359c7ef",
                                                     type: .receive,
-                                                    mintedTokenId: "9e3d1fc4-5899-4297-9a62-a9f524d5ca27",
+                                                    mintedTokenId: "BTC:9e3d1fc4-5899-4297-9a62-a9f524d5ca27",
                                                     amount: nil,
-                                                    providerUserId: "2242a469-68ab-4aa8-afd6-cdb6bd853ba0",
                                                     address: "1927dd11-8d05-42f8-8528-867d51c756c2",
                                                     correlationId: "31009545-db10-4287-82f4-afb46d9741d8",
                                                     serviceEndpoint: "https://example.com/test")
-        XCTAssertNotNil(transactionRequest.qrImage())
+        if let qrImage = transactionRequest.qrImage() {
+            let decodedText = QRTestHelper.readQRCode(fromImage: qrImage)
+            XCTAssertEqual(decodedText, transactionRequest.id)
+        } else {
+            XCTFail("QR image should not be nil")
+        }
     }
 
     func testEquatable() {
@@ -28,7 +32,6 @@ class TransactionRequestTest: XCTestCase {
                                                      type: .receive,
                                                      mintedTokenId: "",
                                                      amount: nil,
-                                                     providerUserId: "",
                                                      address: "",
                                                      correlationId: "",
                                                      serviceEndpoint: "")
@@ -36,7 +39,6 @@ class TransactionRequestTest: XCTestCase {
                                                      type: .receive,
                                                      mintedTokenId: "",
                                                      amount: nil,
-                                                     providerUserId: "",
                                                      address: "",
                                                      correlationId: "",
                                                      serviceEndpoint: "")
@@ -44,7 +46,6 @@ class TransactionRequestTest: XCTestCase {
                                                      type: .receive,
                                                      mintedTokenId: "",
                                                      amount: nil,
-                                                     providerUserId: "",
                                                      address: "",
                                                      correlationId: "",
                                                      serviceEndpoint: "")
@@ -57,7 +58,6 @@ class TransactionRequestTest: XCTestCase {
                                                      type: .receive,
                                                      mintedTokenId: "",
                                                      amount: nil,
-                                                     providerUserId: "",
                                                      address: "",
                                                      correlationId: "",
                                                      serviceEndpoint: "")
@@ -65,7 +65,6 @@ class TransactionRequestTest: XCTestCase {
                                                      type: .receive,
                                                      mintedTokenId: "",
                                                      amount: nil,
-                                                     providerUserId: "",
                                                      address: "",
                                                      correlationId: "",
                                                      serviceEndpoint: "")

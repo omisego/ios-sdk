@@ -197,32 +197,13 @@ class DecodeTests: XCTestCase {
         }
     }
 
-    func testTransactionRequestQRCodeDecoding() {
-        do {
-            let jsonData = try self.jsonData(withFileName: "transaction_request_qr_code")
-            let decoder = JSONDecoder()
-            decoder.userInfo[TransactionRequest.isQRCodeEncoding] = true
-            let decodedData = try decoder.decode(TransactionRequest.self, from: jsonData)
-            XCTAssertEqual(decodedData.id, "8eb0160e-1c96-481a-88e1-899399cc84dc")
-            XCTAssertEqual(decodedData.mintedTokenId, "861020af-17b6-49ee-a0cb-661a4d2d1f95")
-            XCTAssertEqual(decodedData.amount, 1337)
-            XCTAssertEqual(decodedData.providerUserId, nil)
-            XCTAssertEqual(decodedData.address, nil)
-            XCTAssertEqual(decodedData.correlationId, nil)
-            XCTAssertEqual(decodedData.serviceEndpoint, "https://example.com/transaction-request.consume")
-        } catch let thrownError {
-            XCTFail(thrownError.localizedDescription)
-        }
-    }
-
     func testTransactionRequestStandardDecoding() {
         do {
             let jsonData = try self.jsonData(withFileName: "transaction_request")
             let decodedData = try JSONDecoder().decode(TransactionRequest.self, from: jsonData)
             XCTAssertEqual(decodedData.id, "8eb0160e-1c96-481a-88e1-899399cc84dc")
-            XCTAssertEqual(decodedData.mintedTokenId, "861020af-17b6-49ee-a0cb-661a4d2d1f95")
+            XCTAssertEqual(decodedData.mintedTokenId, "BTC:861020af-17b6-49ee-a0cb-661a4d2d1f95")
             XCTAssertEqual(decodedData.amount, 1337)
-            XCTAssertEqual(decodedData.providerUserId, "6082319c-4e74-4a5d-ab87-e0934ba1368d")
             XCTAssertEqual(decodedData.address, "3b7f1c68-e3bd-4f8f-9916-4af19be95d00")
             XCTAssertEqual(decodedData.correlationId, "31009545-db10-4287-82f4-afb46d9741d8")
             XCTAssertEqual(decodedData.serviceEndpoint, "https://example.com/transaction-request.consume")

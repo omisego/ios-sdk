@@ -15,7 +15,7 @@ class TransactionRequestFixtureTests: FixtureTestCase {
         let expectation =
             self.expectation(description: "Generate a transaction request corresponding to the params provided")
         let params = TransactionRequestParams(type: .receive,
-                                              mintedTokenId: "861020af-17b6-49ee-a0cb-661a4d2d1f95",
+                                              mintedTokenId: "BTC:861020af-17b6-49ee-a0cb-661a4d2d1f95",
                                               amount: 1337,
                                               address: "3b7f1c68-e3bd-4f8f-9916-4af19be95d00",
                                               correlationId: "31009545-db10-4287-82f4-afb46d9741d8")
@@ -25,9 +25,8 @@ class TransactionRequestFixtureTests: FixtureTestCase {
             switch result {
             case .success(data: let transactionRequest):
                 XCTAssertEqual(transactionRequest.id, "8eb0160e-1c96-481a-88e1-899399cc84dc")
-                XCTAssertEqual(transactionRequest.mintedTokenId, "861020af-17b6-49ee-a0cb-661a4d2d1f95")
+                XCTAssertEqual(transactionRequest.mintedTokenId, "BTC:861020af-17b6-49ee-a0cb-661a4d2d1f95")
                 XCTAssertEqual(transactionRequest.amount, 1337)
-                XCTAssertEqual(transactionRequest.providerUserId, "6082319c-4e74-4a5d-ab87-e0934ba1368d")
                 XCTAssertEqual(transactionRequest.address, "3b7f1c68-e3bd-4f8f-9916-4af19be95d00")
                 XCTAssertEqual(transactionRequest.serviceEndpoint, "https://example.com/transaction-request.consume")
                 XCTAssertEqual(transactionRequest.correlationId, "31009545-db10-4287-82f4-afb46d9741d8")
