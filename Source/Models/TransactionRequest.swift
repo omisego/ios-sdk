@@ -21,7 +21,7 @@ public struct TransactionRequest {
     public let amount: Double?
     public let address: String?
     public let correlationId: String?
-    public let serviceEndpoint: String
+    public let consumeURL: String
 }
 
 extension TransactionRequest: Codable {
@@ -33,7 +33,7 @@ extension TransactionRequest: Codable {
         case amount
         case address
         case correlationId = "correlation_id"
-        case serviceEndpoint = "service_endpoint"
+        case consumeURL = "consume_url"
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -43,7 +43,7 @@ extension TransactionRequest: Codable {
         try container.encode(mintedTokenId, forKey: .mintedTokenId)
         try container.encode(amount, forKey: .amount)
         try container.encode(address, forKey: .address)
-        try container.encode(serviceEndpoint, forKey: .serviceEndpoint)
+        try container.encode(consumeURL, forKey: .consumeURL)
     }
 
     public init(from decoder: Decoder) throws {
@@ -54,7 +54,7 @@ extension TransactionRequest: Codable {
         amount = try container.decode(Double.self, forKey: .amount)
         address = try container.decode(String.self, forKey: .address)
         correlationId = try container.decode(String.self, forKey: .correlationId)
-        serviceEndpoint = try container.decode(String.self, forKey: .serviceEndpoint)
+        consumeURL = try container.decode(String.self, forKey: .consumeURL)
     }
 
 }
