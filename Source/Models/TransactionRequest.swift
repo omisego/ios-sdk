@@ -12,8 +12,14 @@ public enum TransactionRequestType: String, Codable {
     case receive
 }
 
+public enum TransactionRequestStatus: String, Codable {
+    case pending
+    case confirmed
+    case cancelled
+}
+
 /// Represents a transaction request
-public struct TransactionRequest {
+public struct TransactionRequest: Codable {
 
     public let id: String
     public let type: TransactionRequestType
@@ -21,9 +27,7 @@ public struct TransactionRequest {
     public let amount: Double?
     public let address: String?
     public let correlationId: String?
-}
-
-extension TransactionRequest: Codable {
+    public let status: TransactionRequestStatus
 
     private enum CodingKeys: String, CodingKey {
         case id
@@ -32,6 +36,7 @@ extension TransactionRequest: Codable {
         case amount
         case address
         case correlationId = "correlation_id"
+        case status
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -41,16 +46,7 @@ extension TransactionRequest: Codable {
         try container.encode(mintedTokenId, forKey: .mintedTokenId)
         try container.encode(amount, forKey: .amount)
         try container.encode(address, forKey: .address)
-    }
-
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        id = try container.decode(String.self, forKey: .id)
-        type = try container.decode(TransactionRequestType.self, forKey: .type)
-        mintedTokenId = try container.decode(String.self, forKey: .mintedTokenId)
-        amount = try container.decode(Double.self, forKey: .amount)
-        address = try container.decode(String.self, forKey: .address)
-        correlationId = try container.decode(String.self, forKey: .correlationId)
+        try container.encode(status, forKey: .status)
     }
 
 }

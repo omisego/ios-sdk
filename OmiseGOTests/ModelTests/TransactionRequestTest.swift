@@ -17,7 +17,8 @@ class TransactionRequestTest: XCTestCase {
                                                     mintedTokenId: "BTC:9e3d1fc4-5899-4297-9a62-a9f524d5ca27",
                                                     amount: nil,
                                                     address: "1927dd11-8d05-42f8-8528-867d51c756c2",
-                                                    correlationId: "31009545-db10-4287-82f4-afb46d9741d8")
+                                                    correlationId: "31009545-db10-4287-82f4-afb46d9741d8",
+                                                    status: .pending)
         if let qrImage = transactionRequest.qrImage() {
             let decodedText = QRTestHelper.readQRCode(fromImage: qrImage)
             XCTAssertEqual(decodedText, transactionRequest.id)
@@ -32,19 +33,22 @@ class TransactionRequestTest: XCTestCase {
                                                      mintedTokenId: "",
                                                      amount: nil,
                                                      address: "",
-                                                     correlationId: "")
+                                                     correlationId: "",
+                                                     status: .pending)
         let transactionRequest2 = TransactionRequest(id: "1",
                                                      type: .receive,
                                                      mintedTokenId: "",
                                                      amount: nil,
                                                      address: "",
-                                                     correlationId: "")
+                                                     correlationId: "",
+                                                     status: .pending)
         let transactionRequest3 = TransactionRequest(id: "2",
                                                      type: .receive,
                                                      mintedTokenId: "",
                                                      amount: nil,
                                                      address: "",
-                                                     correlationId: "")
+                                                     correlationId: "",
+                                                     status: .pending)
         XCTAssertEqual(transactionRequest1, transactionRequest2)
         XCTAssertNotEqual(transactionRequest1, transactionRequest3)
     }
@@ -55,13 +59,15 @@ class TransactionRequestTest: XCTestCase {
                                                      mintedTokenId: "",
                                                      amount: nil,
                                                      address: "",
-                                                     correlationId: "")
+                                                     correlationId: "",
+                                                     status: .pending)
         let transactionRequest2 = TransactionRequest(id: "1",
                                                      type: .receive,
                                                      mintedTokenId: "",
                                                      amount: nil,
                                                      address: "",
-                                                     correlationId: "")
+                                                     correlationId: "",
+                                                     status: .pending)
         let set: Set<TransactionRequest> = [transactionRequest1, transactionRequest2]
         XCTAssertEqual(transactionRequest1.hashValue, "1".hashValue)
         XCTAssertEqual(set.count, 1)
