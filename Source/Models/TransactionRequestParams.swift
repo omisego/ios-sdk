@@ -5,9 +5,10 @@
 //  Created by Mederic Petit on 5/2/2561 BE.
 //  Copyright © 2561 OmiseGO. All rights reserved.
 //
+// swiftlint:disable identifier_name
 
 /// Represents a structure used to generate a transaction request
-public struct TransactionRequestParams {
+public struct TransactionRequestCreateParams {
 
     public let type: TransactionRequestType
     public let mintedTokenId: String
@@ -15,9 +16,17 @@ public struct TransactionRequestParams {
     public let address: String?
     public let correlationId: String?
 
+    public init(type: TransactionRequestType, mintedTokenId: String, amount: Double?, address: String?, correlationId: String?) {
+        self.type = type
+        self.mintedTokenId = mintedTokenId
+        self.amount = amount
+        self.address = address
+        self.correlationId = correlationId
+    }
+
 }
 
-extension TransactionRequestParams: Parametrable {
+extension TransactionRequestCreateParams: Parametrable {
 
     private enum CodingKeys: String, CodingKey {
         case type
@@ -39,6 +48,17 @@ extension TransactionRequestParams: Parametrable {
         try container.encode(amount, forKey: .amount)
         try container.encode(address, forKey: .address)
         try container.encode(correlationId, forKey: .correlationId)
+    }
+
+}
+
+/// Represents a structure used to retrieve a transaction request from its id
+public struct TransactionRequestGetParams: Parametrable {
+
+    public let id: String
+
+    func encodedPayload() -> Data? {
+        return try? JSONEncoder().encode(self)
     }
 
 }

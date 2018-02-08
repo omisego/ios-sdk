@@ -8,7 +8,7 @@
 // swiftlint:disable identifier_name
 
 public enum TransactionRequestType: String, Codable {
-    case send
+//    case send
     case receive
 }
 
@@ -72,11 +72,30 @@ extension TransactionRequest: Retrievable {
     ///   - callback: The closure called when the request is completed
     /// - Returns: An optional cancellable request.
     public static func generateTransactionRequest(using client: OMGClient,
-                                                  params: TransactionRequestParams,
+                                                  params: TransactionRequestCreateParams,
                                                   callback: @escaping TransactionRequest.RetrieveRequestCallback)
         -> TransactionRequest.RetrieveRequest? {
             return self.retrieve(using: client,
                                  endpoint: .transactionRequestCreate(params: params),
+                                 callback: callback)
+    }
+
+    @discardableResult
+    /// Retreive a transaction request from its id
+    ///
+    /// - Parameters:
+    ///   - client: An API client.
+    ///             This client need to be initialized with a OMGConfiguration struct before being used.
+    ///   - id: The id of the TransactionRequest to be retrived.
+    ///   - callback: The closure called when the request is completed
+    /// - Returns: An optional cancellable request.
+    public static func retrieveTransactionRequest(using client: OMGClient,
+                                                  id: String,
+                                                  callback: @escaping TransactionRequest.RetrieveRequestCallback)
+        -> TransactionRequest.RetrieveRequest? {
+            let params = TransactionRequestGetParams(id: id)
+            return self.retrieve(using: client,
+                                 endpoint: .transactionRequestGet(params: params),
                                  callback: callback)
     }
 

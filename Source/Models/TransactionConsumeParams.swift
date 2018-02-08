@@ -12,12 +12,14 @@ public struct TransactionConsumeParams {
     public let transactionRequestId: String
     public let amount: Double
     public let address: String?
+    public let idempotencyToken: String
 
-    init?(transactionRequest: TransactionRequest, amount: Double? = nil) {
-        guard let amount = (transactionRequest.amount != nil ? transactionRequest.amount : amount) else { return nil }
+    init?(transactionRequest: TransactionRequest, amount: Double? = nil, idempotencyToken: String) {
+        guard let amount = (amount != nil ? amount : transactionRequest.amount) else { return nil }
         self.transactionRequestId = transactionRequest.id
         self.amount = amount
         self.address = transactionRequest.address
+        self.idempotencyToken = idempotencyToken
     }
 
 }
