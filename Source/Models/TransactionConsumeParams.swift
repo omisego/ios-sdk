@@ -13,13 +13,18 @@ public struct TransactionConsumeParams {
     public let amount: Double
     public let address: String?
     public let idempotencyToken: String
+    public let metadata: [String: Any]
 
-    init?(transactionRequest: TransactionRequest, amount: Double? = nil, idempotencyToken: String) {
+    init?(transactionRequest: TransactionRequest,
+          amount: Double? = nil,
+          idempotencyToken: String,
+          metadata: [String: Any]) {
         guard let amount = (amount != nil ? amount : transactionRequest.amount) else { return nil }
         self.transactionRequestId = transactionRequest.id
         self.amount = amount
         self.address = transactionRequest.address
         self.idempotencyToken = idempotencyToken
+        self.metadata = metadata
     }
 
 }
@@ -30,6 +35,7 @@ extension TransactionConsumeParams: Parametrable {
         case transactionRequestId = "transaction_request_id"
         case amount
         case address
+        case metadata
     }
 
     func encodedPayload() -> Data? {
@@ -41,6 +47,7 @@ extension TransactionConsumeParams: Parametrable {
         try container.encode(transactionRequestId, forKey: .transactionRequestId)
         try container.encode(amount, forKey: .amount)
         try container.encode(address, forKey: .address)
+        try container.encode(metadata, forKey: .metadata)
     }
 
 }

@@ -19,7 +19,9 @@ class TransactionConsumeParamsTest: XCTestCase {
                                                     address: "3bfe0ff7-f43e-4ac6-bdf9-c4a290c40d0d",
                                                     correlationId: "31009545-db10-4287-82f4-afb46d9741d8",
                                                     status: .pending)
-        XCTAssertNotNil(TransactionConsumeParams(transactionRequest: transactionRequest, idempotencyToken: "123"))
+        XCTAssertNotNil(TransactionConsumeParams(transactionRequest: transactionRequest,
+                                                 idempotencyToken: "123",
+                                                 metadata: [:]))
     }
 
     func testFailInitWhenGivenNotGivenAnAmount() {
@@ -30,7 +32,9 @@ class TransactionConsumeParamsTest: XCTestCase {
                                                     address: "3bfe0ff7-f43e-4ac6-bdf9-c4a290c40d0d",
                                                     correlationId: "31009545-db10-4287-82f4-afb46d9741d8",
                                                     status: .pending)
-        XCTAssertNil(TransactionConsumeParams(transactionRequest: transactionRequest, idempotencyToken: "123"))
+        XCTAssertNil(TransactionConsumeParams(transactionRequest: transactionRequest,
+                                              idempotencyToken: "123",
+                                              metadata: [:]))
     }
 
     func testAmountIsTakenFromParamsIfTransactionRequestAmountIsNull() {
@@ -43,7 +47,8 @@ class TransactionConsumeParamsTest: XCTestCase {
                                                     status: .pending)
         let params = TransactionConsumeParams(transactionRequest: transactionRequest,
                                               amount: 3000,
-                                              idempotencyToken: "123")!
+                                              idempotencyToken: "123",
+                                              metadata: [:])!
         XCTAssertEqual(params.amount, 3000)
     }
 
@@ -57,7 +62,8 @@ class TransactionConsumeParamsTest: XCTestCase {
                                                     status: .pending)
         let params = TransactionConsumeParams(transactionRequest: transactionRequest,
                                               amount: 3000,
-                                              idempotencyToken: "123")!
+                                              idempotencyToken: "123",
+                                              metadata: [:])!
         XCTAssertEqual(params.amount, 3000)
     }
 

@@ -1,5 +1,5 @@
 //
-//  QRCodeTest.swift
+//  QRGeneratorTest.swift
 //  OmiseGOTests
 //
 //  Created by Mederic Petit on 6/2/2561 BE.
@@ -9,7 +9,7 @@
 import XCTest
 @testable import OmiseGO
 
-class QRCodeTest: XCTestCase {
+class QRGeneratorTest: XCTestCase {
 
     func testImageSize() {
         let data = "Test data".data(using: .isoLatin1)!

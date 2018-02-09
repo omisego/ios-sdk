@@ -16,7 +16,11 @@ public struct TransactionRequestCreateParams {
     public let address: String?
     public let correlationId: String?
 
-    public init(type: TransactionRequestType, mintedTokenId: String, amount: Double?, address: String?, correlationId: String?) {
+    public init(type: TransactionRequestType,
+                mintedTokenId: String,
+                amount: Double?,
+                address: String?,
+                correlationId: String?) {
         self.type = type
         self.mintedTokenId = mintedTokenId
         self.amount = amount

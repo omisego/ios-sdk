@@ -11,6 +11,34 @@ import XCTest
 
 class EncodeTests: XCTestCase {
 
+    func testMetadaEncoding() {
+        let metadata: [String: Any] = ["a_string": "some_string",
+                                       "an_integer": 1,
+                                       "a_bool": true,
+                                       "a_double": 12.34,
+                                       "an_object": ["a_key": "a_value",
+                                                     "a_nested_object": ["a_nested_key": "a_nested_value"]],
+                                       "an_array": ["value_1", "value_2"]]
+        let metadataDummy = MetadataDummy(metadata: metadata)
+        guard let encodedData = metadataDummy.encodedPayload() else {
+            XCTFail("Could not encode metadata")
+            return
+        }
+        let jsonString = String(data: encodedData, encoding: .utf8)!
+        //swiftlint:disable:next line_length
+        XCTAssertEqual(jsonString, "{\"metadata\":{\"a_bool\":true,\"an_integer\":1,\"an_array\":[\"value_1\",\"value_2\"],\"a_double\":12.34,\"an_object\":{\"a_nested_object\":{\"a_nested_key\":\"a_nested_value\"},\"a_key\":\"a_value\"},\"a_string\":\"some_string\"}}")
+    }
+
+    func testMetadaNullEncoding() {
+        let metadataDummy = MetadataDummy(metadata: nil)
+        guard let encodedData = metadataDummy.encodedPayload() else {
+            XCTFail("Could not encode metadata")
+            return
+        }
+        let jsonString = String(data: encodedData, encoding: .utf8)!
+        XCTAssertEqual(jsonString, "{\"metadata\":{}}")
+    }
+
     func testTransactionRequestCreateParamsEncodingWithoutAmount() {
         do {
             let transactionRequestParams =
@@ -82,10 +110,11 @@ class EncodeTests: XCTestCase {
                                                         correlationId: "31009545-db10-4287-82f4-afb46d9741d8",
                                                         status: .pending)
             let transactionConsumeParams = TransactionConsumeParams(transactionRequest: transactionRequest,
-                                                                    idempotencyToken: "123")
+                                                                    idempotencyToken: "123",
+                                                                    metadata: [:])
             let encodedData = try JSONEncoder().encode(transactionConsumeParams)
             //swiftlint:disable:next line_length
-            XCTAssertEqual(String(data: encodedData, encoding: .utf8)!, "{\"amount\":1337,\"address\":\"3bfe0ff7-f43e-4ac6-bdf9-c4a290c40d0d\",\"transaction_request_id\":\"0a8a4a98-794b-419e-b92d-514e83657e75\"}")
+            XCTAssertEqual(String(data: encodedData, encoding: .utf8)!, "{\"amount\":1337,\"transaction_request_id\":\"0a8a4a98-794b-419e-b92d-514e83657e75\",\"metadata\":{},\"address\":\"3bfe0ff7-f43e-4ac6-bdf9-c4a290c40d0d\"}")
         } catch let thrownError {
             XCTFail(thrownError.localizedDescription)
         }

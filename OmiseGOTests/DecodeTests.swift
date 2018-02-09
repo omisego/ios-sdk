@@ -9,20 +9,6 @@
 import XCTest
 @testable import OmiseGO
 
-struct MetadataDummy: Decodable {
-
-    let metadata: [String: Any]
-
-    private enum CodingKeys: String, CodingKey {
-        case metadata
-    }
-
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        do {metadata = try container.decode([String: Any].self, forKey: .metadata)} catch {metadata = [:]}
-    }
-}
-
 class DecodeTests: XCTestCase {
 
     func jsonData(withFileName name: String) throws -> Data {
@@ -37,7 +23,10 @@ class DecodeTests: XCTestCase {
         do {
             let jsonData = try self.jsonData(withFileName: "metadata")
             let decodedData =  try JSONDecoder().decode(MetadataDummy.self, from: jsonData)
-            let metadata = decodedData.metadata
+            guard let metadata = decodedData.metadata else {
+                XCTFail("Failed to decode metadata")
+                return
+            }
             XCTAssertEqual(metadata["a_string"] as? String, "some_string")
             XCTAssertEqual(metadata["an_integer"] as? Int, 1)
             XCTAssertEqual(metadata["a_bool"] as? Bool, true)
@@ -68,7 +57,7 @@ class DecodeTests: XCTestCase {
         do {
             let jsonData = try self.jsonData(withFileName: "metadata_null")
             let decodedData =  try JSONDecoder().decode(MetadataDummy.self, from: jsonData)
-            XCTAssertEqual(decodedData.metadata.count, 0)
+            XCTAssertEqual(decodedData.metadata!.count, 0)
         } catch let thrownError {
             XCTFail(thrownError.localizedDescription)
         }

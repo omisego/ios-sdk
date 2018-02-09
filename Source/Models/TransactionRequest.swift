@@ -99,24 +99,6 @@ extension TransactionRequest: Retrievable {
                                  callback: callback)
     }
 
-    @discardableResult
-    /// Consume a transaction request from the given TransactionConsumeParams object
-    ///
-    /// - Parameters:
-    ///   - client: An API client.
-    ///             This client need to be initialized with a OMGConfiguration struct before being used.
-    ///   - params: The TransactionConsumeParams object describing the transaction request to be consumed.
-    ///   - callback: The closure called when the request is completed
-    /// - Returns: An optional cancellable request.
-    public static func consumeTransactionRequest(using client: OMGClient,
-                                                 params: TransactionConsumeParams,
-                                                 callback: @escaping TransactionRequest.RetrieveRequestCallback)
-        -> TransactionRequest.RetrieveRequest? {
-            return self.retrieve(using: client,
-                                 endpoint: .transactionRequestConsume(params: params),
-                                 callback: callback)
-    }
-
 }
 
 extension TransactionRequest: Hashable {
