@@ -15,6 +15,19 @@ class OMGRequestTest: XCTestCase {
                                                                apiKey: "123",
                                                                authenticationToken: "123"))
 
+    let validTransactionConsumeParams =
+        TransactionConsumeParams(transactionRequest:
+            TransactionRequest(id: "1",
+                               type: .receive,
+                               mintedTokenId: "",
+                               amount: 1,
+                               address: nil,
+                               correlationId: nil,
+                               status: .confirmed),
+                                 amount: nil,
+                                 idempotencyToken: "123",
+                                 metadata: [:])!
+
     func testBuildRequestWithParams() {
         let dummyObject = DummyTestObject(object: "object")
         let request: OMGRequest<DummyTestObject> =
@@ -31,6 +44,20 @@ class OMGRequestTest: XCTestCase {
             XCTAssertEqual(urlRequest.allHTTPHeaderFields!["Accept"], client.acceptHeader())
             XCTAssertEqual(urlRequest.allHTTPHeaderFields!["Content-Type"], client.contentTypeHeader())
             XCTAssertEqual(urlRequest.httpBody!, dummyObject.encodedPayload()!)
+        } catch let error {
+            XCTFail(error.localizedDescription)
+        }
+    }
+
+    func testBuildRequestWithAdditionalHeaderFromParams() {
+        let request: OMGRequest<DummyTestObject> =
+            OMGRequest(client: self.client,
+                       endpoint: .transactionRequestConsume(params: self.validTransactionConsumeParams),
+                       callback: nil)
+        do {
+            let urlRequest: URLRequest = try request.buildURLRequest()!
+            XCTAssertEqual(urlRequest.allHTTPHeaderFields!["Idempotency-Token"],
+                           self.validTransactionConsumeParams.idempotencyToken)
         } catch let error {
             XCTFail(error.localizedDescription)
         }

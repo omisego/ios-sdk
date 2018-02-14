@@ -21,6 +21,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		030F573620341A2600F54296 /* APIEndpointTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030F573520341A2600F54296 /* APIEndpointTest.swift */; };
 		0313D6D720317696003E99BA /* QRReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0313D6D120317695003E99BA /* QRReader.swift */; };
 		0313D6D820317696003E99BA /* QRScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0313D6D220317695003E99BA /* QRScannerView.swift */; };
 		0313D6D920317696003E99BA /* QRScannerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0313D6D320317695003E99BA /* QRScannerViewModel.swift */; };
@@ -101,6 +102,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		030F573520341A2600F54296 /* APIEndpointTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEndpointTest.swift; sourceTree = "<group>"; };
 		0313D6D120317695003E99BA /* QRReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRReader.swift; sourceTree = "<group>"; };
 		0313D6D220317695003E99BA /* QRScannerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRScannerView.swift; sourceTree = "<group>"; };
 		0313D6D320317695003E99BA /* QRScannerViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRScannerViewModel.swift; sourceTree = "<group>"; };
@@ -360,6 +362,7 @@
 				03C2C0781FB93E5200B794AC /* DecodeTests.swift */,
 				03939D8D202866E400F65F20 /* EncodeTests.swift */,
 				03939D912029672F00F65F20 /* OMGRequestTest.swift */,
+				030F573520341A2600F54296 /* APIEndpointTest.swift */,
 				03BCCCB91F8B311600F604DB /* Info.plist */,
 				031443001F8CAA68003DD5BE /* Models */,
 			);
@@ -590,6 +593,7 @@
 				03F84C6A1FC28D5E00F21C7B /* UserTests.swift in Sources */,
 				031863FD1F8F678300D13862 /* SettingFixtureTests.swift in Sources */,
 				03F84C681FC2886700F21C7B /* BalanceTests.swift in Sources */,
+				030F573620341A2600F54296 /* APIEndpointTest.swift in Sources */,
 				03CEF4BF1FB012FB009B8CEB /* FixtureClient.swift in Sources */,
 				033522321FB5A7D800BCBD11 /* SettingLiveTests.swift in Sources */,
 				03939D922029672F00F65F20 /* OMGRequestTest.swift in Sources */,
