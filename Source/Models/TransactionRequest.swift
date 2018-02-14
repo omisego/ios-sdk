@@ -53,7 +53,7 @@ public struct TransactionRequest: Codable {
 
 extension TransactionRequest {
 
-    func qrImage(withSize size: CGSize = CGSize(width: 200, height: 200)) -> UIImage? {
+    public func qrImage(withSize size: CGSize = CGSize(width: 200, height: 200)) -> UIImage? {
         guard let data = self.id.data(using: .isoLatin1) else { return nil }
         return QRCode.generateQRCode(fromData: data, outputSize: size)
     }
