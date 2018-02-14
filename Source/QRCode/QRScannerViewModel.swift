@@ -46,7 +46,7 @@ class QRScannerViewModel: QRScannerViewModelProtocol {
     func loadTransactionRequest(withId id: String) {
         // prevent from loading multiple time the same id
         guard !self.loadedIds.contains(id) else { return }
-        if #available(iOSApplicationExtension 10.0, *) {
+        if #available(iOS 10.0, *) {
             let generator = UIImpactFeedbackGenerator(style: .heavy)
             generator.impactOccurred()
         }
