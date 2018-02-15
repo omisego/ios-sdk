@@ -21,6 +21,7 @@ public class QRScannerViewController: UIViewController {
     lazy var loadingView: QRScannerLoadingView = {
         let loadingView = QRScannerLoadingView()
         loadingView.translatesAutoresizingMaskIntoConstraints = false
+        loadingView.isUserInteractionEnabled = false
         return loadingView
     }()
 
