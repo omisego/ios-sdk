@@ -21,6 +21,7 @@ class TransactionConsumeParamsTest: XCTestCase {
                                                     status: .pending)
         XCTAssertNotNil(TransactionConsumeParams(transactionRequest: transactionRequest,
                                                  idempotencyToken: "123",
+                                                 correlationId: nil,
                                                  metadata: [:]))
     }
 
@@ -34,6 +35,7 @@ class TransactionConsumeParamsTest: XCTestCase {
                                                     status: .pending)
         XCTAssertNil(TransactionConsumeParams(transactionRequest: transactionRequest,
                                               idempotencyToken: "123",
+                                              correlationId: nil,
                                               metadata: [:]))
     }
 
@@ -48,6 +50,7 @@ class TransactionConsumeParamsTest: XCTestCase {
         let params = TransactionConsumeParams(transactionRequest: transactionRequest,
                                               amount: 3000,
                                               idempotencyToken: "123",
+                                              correlationId: nil,
                                               metadata: [:])!
         XCTAssertEqual(params.amount, 3000)
     }
@@ -63,6 +66,7 @@ class TransactionConsumeParamsTest: XCTestCase {
         let params = TransactionConsumeParams(transactionRequest: transactionRequest,
                                               amount: 3000,
                                               idempotencyToken: "123",
+                                              correlationId: nil,
                                               metadata: [:])!
         XCTAssertEqual(params.amount, 3000)
     }

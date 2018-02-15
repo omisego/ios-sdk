@@ -26,6 +26,7 @@ class OMGRequestTest: XCTestCase {
                                status: .confirmed),
                                  amount: nil,
                                  idempotencyToken: "123",
+                                 correlationId: nil,
                                  metadata: [:])!
 
     func testBuildRequestWithParams() {

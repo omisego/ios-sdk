@@ -22,6 +22,7 @@ class APIEndpointTest: XCTestCase {
                                status: .confirmed),
                                  amount: nil,
                                  idempotencyToken: "123",
+                                 correlationId: nil,
                                  metadata: [:])!
     let validTransactionCreateParams =
         TransactionRequestCreateParams(type: .receive,

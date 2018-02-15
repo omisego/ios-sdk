@@ -23,6 +23,7 @@ class TransactionConsumeFixtureTests: FixtureTestCase {
                                                     status: .pending)
         let params = TransactionConsumeParams(transactionRequest: transactionRequest,
                                               idempotencyToken: "123",
+                                              correlationId: nil,
                                               metadata: [:])!
         let request =
             TransactionConsume.consumeTransactionRequest(using: self.testCustomClient, params: params) { (result) in

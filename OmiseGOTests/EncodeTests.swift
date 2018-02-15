@@ -111,10 +111,11 @@ class EncodeTests: XCTestCase {
                                                         status: .pending)
             let transactionConsumeParams = TransactionConsumeParams(transactionRequest: transactionRequest,
                                                                     idempotencyToken: "123",
+                                                                    correlationId: "321",
                                                                     metadata: [:])
             let encodedData = try JSONEncoder().encode(transactionConsumeParams)
             //swiftlint:disable:next line_length
-            XCTAssertEqual(String(data: encodedData, encoding: .utf8)!, "{\"amount\":1337,\"transaction_request_id\":\"0a8a4a98-794b-419e-b92d-514e83657e75\",\"metadata\":{},\"address\":\"3bfe0ff7-f43e-4ac6-bdf9-c4a290c40d0d\"}")
+            XCTAssertEqual(String(data: encodedData, encoding: .utf8)!, "{\"amount\":1337,\"transaction_request_id\":\"0a8a4a98-794b-419e-b92d-514e83657e75\",\"metadata\":{},\"correlation_id\":\"321\",\"address\":\"3bfe0ff7-f43e-4ac6-bdf9-c4a290c40d0d\"}")
         } catch let thrownError {
             XCTFail(thrownError.localizedDescription)
         }
