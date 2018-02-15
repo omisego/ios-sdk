@@ -18,7 +18,7 @@ public struct TransactionConsume: Decodable {
     public let id: String
     public let status: TransactionConsumeStatus
     public let amount: Double
-    public let mintedTokenId: String
+    public let mintedToken: MintedToken
     public let correlationId: String?
     public let idempotencyToken: String
     public let transferId: String
@@ -30,7 +30,7 @@ public struct TransactionConsume: Decodable {
         case id
         case status
         case amount
-        case mintedTokenId = "token_id"
+        case mintedToken = "minted_token"
         case correlationId = "correlation_id"
         case idempotencyToken = "idempotency_token"
         case transferId = "transfer_id"

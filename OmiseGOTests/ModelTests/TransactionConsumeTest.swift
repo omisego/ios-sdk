@@ -11,11 +11,13 @@ import XCTest
 
 class TransactionConsumeTest: XCTestCase {
 
+    let mintedToken = MintedToken(id: "", symbol: "", name: "", subUnitToUnit: 1)
+
     func testEquatable() {
         let transactionConsume1 = TransactionConsume(id: "1",
                                                      status: .confirmed,
                                                      amount: 1,
-                                                     mintedTokenId: "",
+                                                     mintedToken: mintedToken,
                                                      correlationId: "",
                                                      idempotencyToken: "",
                                                      transferId: "",
@@ -25,7 +27,7 @@ class TransactionConsumeTest: XCTestCase {
         let transactionConsume2 = TransactionConsume(id: "1",
                                                      status: .confirmed,
                                                      amount: 1,
-                                                     mintedTokenId: "",
+                                                     mintedToken: mintedToken,
                                                      correlationId: "",
                                                      idempotencyToken: "",
                                                      transferId: "",
@@ -35,7 +37,7 @@ class TransactionConsumeTest: XCTestCase {
         let transactionConsume3 = TransactionConsume(id: "2",
                                                      status: .confirmed,
                                                      amount: 1,
-                                                     mintedTokenId: "",
+                                                     mintedToken: mintedToken,
                                                      correlationId: "",
                                                      idempotencyToken: "",
                                                      transferId: "",
@@ -50,7 +52,7 @@ class TransactionConsumeTest: XCTestCase {
         let transactionConsume1 = TransactionConsume(id: "1",
                                                      status: .confirmed,
                                                      amount: 1,
-                                                     mintedTokenId: "",
+                                                     mintedToken: mintedToken,
                                                      correlationId: "",
                                                      idempotencyToken: "",
                                                      transferId: "",
@@ -60,7 +62,7 @@ class TransactionConsumeTest: XCTestCase {
         let transactionConsume2 = TransactionConsume(id: "1",
                                                      status: .confirmed,
                                                      amount: 1,
-                                                     mintedTokenId: "",
+                                                     mintedToken: mintedToken,
                                                      correlationId: "",
                                                      idempotencyToken: "",
                                                      transferId: "",
