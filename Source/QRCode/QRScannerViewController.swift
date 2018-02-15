@@ -10,8 +10,8 @@ import UIKit
 
 public protocol QRScannerViewControllerDelegate: class {
     func scannerDidCancel(scanner: QRScannerViewController)
-    func scannerDidDecode(transactionRequest: TransactionRequest)
-    func scannerDidFailToDecode(withError error: OmiseGOError)
+    func scannerDidDecode(scanner: QRScannerViewController, transactionRequest: TransactionRequest)
+    func scannerDidFailToDecode(scanner: QRScannerViewController, withError error: OmiseGOError)
 }
 
 public class QRScannerViewController: UIViewController {
@@ -52,10 +52,10 @@ public class QRScannerViewController: UIViewController {
             self.toggleLoadingOverlay(show: isLoading)
         }
         self.viewModel.onGetTransactionRequest = { (transactionRequest) in
-            self.delegate?.scannerDidDecode(transactionRequest: transactionRequest)
+            self.delegate?.scannerDidDecode(scanner: self, transactionRequest: transactionRequest)
         }
         self.viewModel.onError = { (error) in
-            self.delegate?.scannerDidFailToDecode(withError: error)
+            self.delegate?.scannerDidFailToDecode(scanner: self, withError: error)
         }
     }
 

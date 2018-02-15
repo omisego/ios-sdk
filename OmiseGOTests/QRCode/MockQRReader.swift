@@ -35,12 +35,12 @@ class MockQRVCDelegate: QRScannerViewControllerDelegate {
         self.asyncExpectation?.fulfill()
     }
 
-    func scannerDidDecode(transactionRequest: TransactionRequest) {
+    func scannerDidDecode(scanner: QRScannerViewController, transactionRequest: TransactionRequest) {
         self.transactionRequest = transactionRequest
         self.asyncExpectation?.fulfill()
     }
 
-    func scannerDidFailToDecode(withError error: OmiseGOError) {
+    func scannerDidFailToDecode(scanner: QRScannerViewController, withError error: OmiseGOError) {
         self.error = error
         self.asyncExpectation?.fulfill()
     }
