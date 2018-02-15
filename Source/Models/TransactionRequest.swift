@@ -13,9 +13,8 @@ public enum TransactionRequestType: String, Codable {
 }
 
 public enum TransactionRequestStatus: String, Codable {
-    case pending
-    case confirmed
-    case cancelled
+    case valid
+    case expired
 }
 
 /// Represents a transaction request

@@ -10,7 +10,7 @@
 public enum TransactionConsumeStatus: String, Decodable {
     case pending
     case confirmed
-    case cancelled
+    case failed
 }
 
 public struct TransactionConsume: Decodable {

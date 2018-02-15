@@ -91,10 +91,10 @@ class EncodeTests: XCTestCase {
                                                         amount: 1337,
                                                         address: "3bfe0ff7-f43e-4ac6-bdf9-c4a290c40d0d",
                                                         correlationId: "31009545-db10-4287-82f4-afb46d9741d8",
-                                                        status: .pending)
+                                                        status: .valid)
             let encodedData = try JSONEncoder().encode(transactionRequest)
             //swiftlint:disable:next line_length
-            XCTAssertEqual(String(data: encodedData, encoding: .utf8)!, "{\"amount\":1337,\"id\":\"0a8a4a98-794b-419e-b92d-514e83657e75\",\"status\":\"pending\",\"token_id\":\"BTC:5ee328ec-b9e2-46a5-88bb-c8b15ea6b3c1\",\"type\":\"receive\",\"address\":\"3bfe0ff7-f43e-4ac6-bdf9-c4a290c40d0d\"}")
+            XCTAssertEqual(String(data: encodedData, encoding: .utf8)!, "{\"amount\":1337,\"id\":\"0a8a4a98-794b-419e-b92d-514e83657e75\",\"status\":\"valid\",\"token_id\":\"BTC:5ee328ec-b9e2-46a5-88bb-c8b15ea6b3c1\",\"type\":\"receive\",\"address\":\"3bfe0ff7-f43e-4ac6-bdf9-c4a290c40d0d\"}")
         } catch let thrownError {
             XCTFail(thrownError.localizedDescription)
         }
@@ -108,7 +108,7 @@ class EncodeTests: XCTestCase {
                                                         amount: 1337,
                                                         address: "3bfe0ff7-f43e-4ac6-bdf9-c4a290c40d0d",
                                                         correlationId: "31009545-db10-4287-82f4-afb46d9741d8",
-                                                        status: .pending)
+                                                        status: .valid)
             let transactionConsumeParams = TransactionConsumeParams(transactionRequest: transactionRequest,
                                                                     address: "456",
                                                                     idempotencyToken: "123",

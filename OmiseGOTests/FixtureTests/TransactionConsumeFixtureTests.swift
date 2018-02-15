@@ -20,7 +20,7 @@ class TransactionConsumeFixtureTests: FixtureTestCase {
                                                     amount: 1337,
                                                     address: "3bfe0ff7-f43e-4ac6-bdf9-c4a290c40d0d",
                                                     correlationId: "31009545-db10-4287-82f4-afb46d9741d8",
-                                                    status: .pending)
+                                                    status: .valid)
         let params = TransactionConsumeParams(transactionRequest: transactionRequest,
                                               address: nil,
                                               idempotencyToken: "123",

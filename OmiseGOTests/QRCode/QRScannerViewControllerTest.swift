@@ -47,7 +47,7 @@ class QRScannerViewControllerTest: FixtureTestCase {
                                           mintedTokenId: "",
                                           amount: nil, address: "",
                                           correlationId: "",
-                                          status: .pending)
+                                          status: .valid)
         self.mockViewModel.onGetTransactionRequest?(mockedTR)
         XCTAssertEqual(self.mockDelegate.transactionRequest, mockedTR)
     }
