@@ -15,10 +15,10 @@ public struct TransactionConsumeParams {
     public let idempotencyToken: String
     public let metadata: [String: Any]
 
-    init?(transactionRequest: TransactionRequest,
-          amount: Double? = nil,
-          idempotencyToken: String,
-          metadata: [String: Any]) {
+    public init?(transactionRequest: TransactionRequest,
+                 amount: Double? = nil,
+                 idempotencyToken: String,
+                 metadata: [String: Any]) {
         guard let amount = (amount != nil ? amount : transactionRequest.amount) else { return nil }
         self.transactionRequestId = transactionRequest.id
         self.amount = amount
