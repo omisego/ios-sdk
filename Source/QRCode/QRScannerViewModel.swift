@@ -34,7 +34,9 @@ class QRScannerViewModel: QRScannerViewModelProtocol {
 
     private lazy var reader: QRReader = {
         QRReader(onFindClosure: { [weak self] (value) in
-            self?.loadTransactionRequest(withId: value)
+            DispatchQueue.main.async {
+                self?.loadTransactionRequest(withId: value)
+            }
         })
     }()
     private let client: OMGClient
