@@ -20,6 +20,7 @@ class TransactionConsumeParamsTest: XCTestCase {
                                                     correlationId: "31009545-db10-4287-82f4-afb46d9741d8",
                                                     status: .pending)
         XCTAssertNotNil(TransactionConsumeParams(transactionRequest: transactionRequest,
+                                                 address: nil,
                                                  idempotencyToken: "123",
                                                  correlationId: nil,
                                                  metadata: [:]))
@@ -34,6 +35,7 @@ class TransactionConsumeParamsTest: XCTestCase {
                                                     correlationId: "31009545-db10-4287-82f4-afb46d9741d8",
                                                     status: .pending)
         XCTAssertNil(TransactionConsumeParams(transactionRequest: transactionRequest,
+                                              address: nil,
                                               idempotencyToken: "123",
                                               correlationId: nil,
                                               metadata: [:]))
@@ -48,6 +50,7 @@ class TransactionConsumeParamsTest: XCTestCase {
                                                     correlationId: "31009545-db10-4287-82f4-afb46d9741d8",
                                                     status: .pending)
         let params = TransactionConsumeParams(transactionRequest: transactionRequest,
+                                              address: nil,
                                               amount: 3000,
                                               idempotencyToken: "123",
                                               correlationId: nil,
@@ -64,6 +67,7 @@ class TransactionConsumeParamsTest: XCTestCase {
                                                     correlationId: "31009545-db10-4287-82f4-afb46d9741d8",
                                                     status: .pending)
         let params = TransactionConsumeParams(transactionRequest: transactionRequest,
+                                              address: nil,
                                               amount: 3000,
                                               idempotencyToken: "123",
                                               correlationId: nil,

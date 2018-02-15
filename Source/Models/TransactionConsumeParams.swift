@@ -17,6 +17,7 @@ public struct TransactionConsumeParams {
     public let metadata: [String: Any]
 
     public init?(transactionRequest: TransactionRequest,
+                 address: String?,
                  amount: Double? = nil,
                  idempotencyToken: String,
                  correlationId: String?,
@@ -24,7 +25,7 @@ public struct TransactionConsumeParams {
         guard let amount = (amount != nil ? amount : transactionRequest.amount) else { return nil }
         self.transactionRequestId = transactionRequest.id
         self.amount = amount
-        self.address = transactionRequest.address
+        self.address = address
         self.idempotencyToken = idempotencyToken
         self.correlationId = correlationId
         self.metadata = metadata

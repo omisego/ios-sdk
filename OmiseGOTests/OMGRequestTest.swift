@@ -24,6 +24,7 @@ class OMGRequestTest: XCTestCase {
                                address: nil,
                                correlationId: nil,
                                status: .confirmed),
+                                 address: nil,
                                  amount: nil,
                                  idempotencyToken: "123",
                                  correlationId: nil,
