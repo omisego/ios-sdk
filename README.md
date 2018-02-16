@@ -154,7 +154,11 @@ Typically these actions should be done through the generation and scan of QR cod
 To generate a new transaction request you can call:
 
 ```swift
-let params = TransactionRequestCreateParams(type: .receive, mintedTokenId: "a_token_id", amount: 13.37, address: "receiver_address", correlationId: "correlation_id")
+let params = TransactionRequestCreateParams(type: .receive,
+                                            mintedTokenId: "a_token_id",
+                                            amount: 13.37,
+                                            address: "receiver_address",
+                                            correlationId: "correlation_id")
 TransactionRequest.generateTransactionRequest(using: client, params: params) { (transactionRequestResult) in
     switch transactionRequestResult {
     case .success(data: let transactionRequest):
@@ -215,7 +219,12 @@ You should use this `transactionRequest` to generate a `TransactionConsumeParams
 #### Consumption
 
 ```swift
-guard let params = TransactionConsumeParams(transactionRequest: transactionRequest, address: nil, amount: nil, idempotencyToken: self.idemPotencyToken, correlationId: nil, metadata: [:]) else { return }
+guard let params = TransactionConsumeParams(transactionRequest: transactionRequest,
+                                            address: nil, 
+                                            amount: nil, 
+                                            idempotencyToken: self.idemPotencyToken, 
+                                            correlationId: nil, 
+                                            metadata: [:]) else { return }
 TransactionConsume.consumeTransactionRequest(using: client, params: params) { (transactionConsumeResult) in
     switch transactionConsumeResult {
     case .success(data: let transactionConsume):
