@@ -186,7 +186,7 @@ class DecodeTests: XCTestCase {
         }
     }
 
-    func testTransactionRequestStandardDecoding() {
+    func testTransactionRequestDecoding() {
         do {
             let jsonData = try self.jsonData(withFileName: "transaction_request")
             let decodedData = try JSONDecoder().decode(TransactionRequest.self, from: jsonData)
@@ -195,6 +195,29 @@ class DecodeTests: XCTestCase {
             XCTAssertEqual(decodedData.amount, 1337)
             XCTAssertEqual(decodedData.address, "3b7f1c68-e3bd-4f8f-9916-4af19be95d00")
             XCTAssertEqual(decodedData.correlationId, "31009545-db10-4287-82f4-afb46d9741d8")
+        } catch let thrownError {
+            XCTFail(thrownError.localizedDescription)
+        }
+    }
+
+    func testTransactionConsumeDecoding() {
+        do {
+            let jsonData = try self.jsonData(withFileName: "transaction_consume")
+            let decodedData = try JSONDecoder().decode(TransactionConsume.self, from: jsonData)
+            XCTAssertEqual(decodedData.id, "8eb0160e-1c96-481a-88e1-899399cc84dc")
+            XCTAssertEqual(decodedData.status, .confirmed)
+            XCTAssertEqual(decodedData.amount, 1337)
+            let mintedToken = decodedData.mintedToken
+            XCTAssertEqual(mintedToken.id, "MNT:123")
+            XCTAssertEqual(mintedToken.symbol, "MNT")
+            XCTAssertEqual(mintedToken.name, "Mint")
+            XCTAssertEqual(mintedToken.subUnitToUnit, 100000)
+            XCTAssertEqual(decodedData.correlationId, "31009545-db10-4287-82f4-afb46d9741d8")
+            XCTAssertEqual(decodedData.idempotencyToken, "31009545-db10-4287-82f4-afb46d9741d8")
+            XCTAssertEqual(decodedData.transferId, "6ca40f34-6eaa-43e1-b2e1-a94ff3660988")
+            XCTAssertEqual(decodedData.userId, "6f56efa1-caf9-4348-8e0f-f5af283f17ee")
+            XCTAssertEqual(decodedData.transactionRequestId, "907056a4-fc2d-47cb-af19-5e73aade7ece")
+            XCTAssertEqual(decodedData.address, "3b7f1c68-e3bd-4f8f-9916-4af19be95d00")
         } catch let thrownError {
             XCTFail(thrownError.localizedDescription)
         }
