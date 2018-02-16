@@ -7,12 +7,18 @@
 //
 // swiftlint:disable identifier_name
 
+/// The status of a transaction consumption
+///
+/// - pending: The transaction consumption is pending validation
+/// - confirmed: The transaction was consumed
+/// - failed: The transaction failed to be consumed
 public enum TransactionConsumeStatus: String, Decodable {
     case pending
     case confirmed
     case failed
 }
 
+/// Represents a transaction consumption
 public struct TransactionConsume: Decodable {
 
     public let id: String

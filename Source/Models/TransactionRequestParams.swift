@@ -10,10 +10,17 @@
 /// Represents a structure used to generate a transaction request
 public struct TransactionRequestCreateParams {
 
+    /// The type of transaction to be generated
     public let type: TransactionRequestType
+    /// The id of the desired token
     public let mintedTokenId: String
+    /// The amount of token to receive.
+    /// This amount can be either inputted when generating or consuming a transaction request.
     public let amount: Double?
+    /// The address specifying where the transaction should be sent to.
+    /// If not specified, the current user's primary address will be used.
     public let address: String?
+    /// An id that can uniquely identify a transaction. Typically an order id from a provider.
     public let correlationId: String?
 
     public init(type: TransactionRequestType,

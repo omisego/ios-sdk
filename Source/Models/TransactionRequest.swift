@@ -7,11 +7,17 @@
 //
 // swiftlint:disable identifier_name
 
+/// The different types of request that can be generated
+///
+/// - receive: The initiator wants to receive a specified token
 public enum TransactionRequestType: String, Codable {
-//    case send
     case receive
 }
 
+/// The status of the transaction request
+///
+/// - valid: The transaction request is valid and ready to be consumed
+/// - expired: The transaction request is expired and can't be consumed
 public enum TransactionRequestStatus: String, Codable {
     case valid
     case expired
@@ -52,6 +58,10 @@ public struct TransactionRequest: Codable {
 
 extension TransactionRequest {
 
+    /// Generates an QR image containing the encded transaction request id
+    ///
+    /// - Parameter size: the desired image size
+    /// - Returns: A QR image if the transaction request was successfuly encoded, nil otherwise.
     public func qrImage(withSize size: CGSize = CGSize(width: 200, height: 200)) -> UIImage? {
         guard let data = self.id.data(using: .isoLatin1) else { return nil }
         return QRCode.generateQRCode(fromData: data, outputSize: size)
@@ -67,7 +77,7 @@ extension TransactionRequest: Retrievable {
     /// - Parameters:
     ///   - client: An API client.
     ///             This client need to be initialized with a OMGConfiguration struct before being used.
-    ///   - params: The TransactionRequestParams object describing the transaction request to be made.
+    ///   - params: The TransactionRequestCreateParams object describing the transaction request to be made.
     ///   - callback: The closure called when the request is completed
     /// - Returns: An optional cancellable request.
     public static func generateTransactionRequest(using client: OMGClient,

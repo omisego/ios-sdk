@@ -8,15 +8,33 @@
 
 import UIKit
 
+/// The delegate that will receive events from the QRScannerViewController
 public protocol QRScannerViewControllerDelegate: class {
+
+    /// Called when the user tap on the cancel button.
+    /// Note that the view controller is not automatically dismissed when the user tap on cancel.
+    ///
+    /// - Parameter scanner: The QR scanner view controller
     func scannerDidCancel(scanner: QRScannerViewController)
+    /// Called when a QR code was successfuly decoded to a TransactionRequest object
+    ///
+    /// - Parameters:
+    ///   - scanner: The QR scanner view controller
+    ///   - transactionRequest: The transaction request decoded by the scanner
     func scannerDidDecode(scanner: QRScannerViewController, transactionRequest: TransactionRequest)
+    /// Called when a QR code has been scanned but the scanner was not able to decode it as a TransactionRequest
+    /// The QR code may be invalid or a network error occured
+    ///
+    /// - Parameters:
+    ///   - scanner: The QR scanner view controller
+    ///   - error: The error returned by the scanner
     func scannerDidFailToDecode(scanner: QRScannerViewController, withError error: OmiseGOError)
 }
 
+/// The view controller managing the scanner
 public class QRScannerViewController: UIViewController {
 
-    public weak var delegate: QRScannerViewControllerDelegate?
+    weak var delegate: QRScannerViewControllerDelegate?
     var viewModel: QRScannerViewModelProtocol!
     lazy var loadingView: QRScannerLoadingView = {
         let loadingView = QRScannerLoadingView()
@@ -40,6 +58,14 @@ public class QRScannerViewController: UIViewController {
         self.setupUIWithCancelButtonTitle(cancelButtonTitle)
     }
 
+    /// Initialize the QR code scanner. You should always use this method to initialize it.
+    ///
+    /// - Parameters:
+    ///   - delegate: The delegate that will receive the events from the scanner
+    ///   - client: An API client.
+    ///             This client need to be initialized with a OMGConfiguration struct before being used.
+    ///   - cancelButtonTitle: The title of the cancel button
+    /// - Returns: An optional cancellable request.
     public convenience init?(delegate: QRScannerViewControllerDelegate, client: OMGClient, cancelButtonTitle: String) {
         self.init(delegate: delegate,
                   client: client,
