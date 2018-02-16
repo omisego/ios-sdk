@@ -11,27 +11,9 @@ import XCTest
 
 class APIEndpointTest: XCTestCase {
 
-    let validTransactionConsumeParams =
-        TransactionConsumeParams(transactionRequest:
-            TransactionRequest(id: "1",
-                               type: .receive,
-                               mintedTokenId: "",
-                               amount: 1,
-                               address: nil,
-                               correlationId: nil,
-                               status: .valid),
-                                 address: nil,
-                                 amount: nil,
-                                 idempotencyToken: "123",
-                                 correlationId: nil,
-                                 metadata: [:])!
-    let validTransactionCreateParams =
-        TransactionRequestCreateParams(type: .receive,
-                                       mintedTokenId: "",
-                                       amount: 1,
-                                       address: nil,
-                                       correlationId: nil)
-    let validTransactionGetParams = TransactionRequestGetParams(id: "123")
+    let validTransactionConsumeParams = StubGenerator.transactionConsumeParams()
+    let validTransactionCreateParams = StubGenerator.transactionRequestCreateParams()
+    let validTransactionGetParams = StubGenerator.transactionRequestGetParams()
 
     func testPath() {
         XCTAssertEqual(APIEndpoint.getCurrentUser.path, "/me.get")

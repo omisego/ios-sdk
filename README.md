@@ -174,13 +174,13 @@ Where `params` is a `TransactionRequestCreateParams` struct constructed using:
 
 `mintedTokenId`: The id of the desired token.
 
-`amount`: (optional) The amount of token to receive. This amount can be either inputed when generating or consuming a transaction request.
+`amount`: (optional) The amount of token to receive. This amount can be either inputted when generating or consuming a transaction request.
 
-`address`: (optional) The address on which to receive the transaction. If not specified, the main address will be used.
+`address`: (optional) The address specifying where the transaction should be sent to. If not specified, the current user's primary address will be used.
 
 `correlationId`: (optional) An id that can uniquely identify a transaction. Typically an order id from a provider.
 
-A `TransactionRequest` object is passed to the success callback, you can get it's QR code representation using `transactionRequest.qrImage()`.
+A `TransactionRequest` object is passed to the success callback, you can get its QR code representation using `transactionRequest.qrImage()`.
 
 #### Scanning
 
@@ -220,10 +220,10 @@ You should use this `transactionRequest` to generate a `TransactionConsumeParams
 
 ```swift
 guard let params = TransactionConsumeParams(transactionRequest: transactionRequest,
-                                            address: nil, 
-                                            amount: nil, 
-                                            idempotencyToken: self.idemPotencyToken, 
-                                            correlationId: nil, 
+                                            address: nil,
+                                            amount: nil,
+                                            idempotencyToken: self.idemPotencyToken,
+                                            correlationId: nil,
                                             metadata: [:]) else { return }
 TransactionConsume.consumeTransactionRequest(using: client, params: params) { (transactionConsumeResult) in
     switch transactionConsumeResult {
@@ -239,12 +239,12 @@ Where `params` is a `TransactionConsumeParams` struct constructed using:
 
 `transactionRequest`: The transactionRequest obtained from the QR scanner.
 
-`address`: (optional) The address from which to take the funds. If not specified, the main address will be used.
+`address`: (optional) The address from which to take the funds. If not specified, the current user's primary address will be used.
 
-`amount`: (optional) The amount of token to send. This amount can be either inputed when generating or consuming a transaction request.
+`amount`: (optional) The amount of token to send. This amount can be either inputted when generating or consuming a transaction request.
 > Note that if the amount was not specified in the transaction request it needs to be specified here, otherwise the init will fail.
 
-`idempotencyToken`: The idem potency token used to ensure that the transaction will be executed one time only on the server. If the network call fails, you should reuse the same `idempotencyToken` when retrying the request.
+`idempotencyToken`: The idempotency token used to ensure that the transaction will be executed one time only on the server. If the network call fails, you should reuse the same `idempotencyToken` when retrying the request.
 
 `correlationId`: (optional) An id that can uniquely identify a transaction. Typically an order id from a provider.
 

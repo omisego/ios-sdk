@@ -34,6 +34,7 @@
 		031443021F8CAD56003DD5BE /* ResponseFixtureTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031443011F8CAD56003DD5BE /* ResponseFixtureTest.swift */; };
 		031863FD1F8F678300D13862 /* SettingFixtureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031863FC1F8F678300D13862 /* SettingFixtureTests.swift */; };
 		031BB1101F9861AD0095468F /* FixtureTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031BB10E1F9861AD0095468F /* FixtureTestCase.swift */; };
+		0334869E2036C7EC0013B37A /* StubGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0334869D2036C7EC0013B37A /* StubGenerator.swift */; };
 		033522301FB5A5BF00BCBD11 /* AddressLiveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0335222F1FB5A5BF00BCBD11 /* AddressLiveTests.swift */; };
 		033522321FB5A7D800BCBD11 /* SettingLiveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033522311FB5A7D800BCBD11 /* SettingLiveTests.swift */; };
 		0345BE251F96FD9C00B4CA16 /* UserLiveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0345BE241F96FD9C00B4CA16 /* UserLiveTests.swift */; };
@@ -115,6 +116,7 @@
 		031443011F8CAD56003DD5BE /* ResponseFixtureTest.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = ResponseFixtureTest.swift; sourceTree = "<group>"; tabWidth = 4; };
 		031863FC1F8F678300D13862 /* SettingFixtureTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingFixtureTests.swift; sourceTree = "<group>"; };
 		031BB10E1F9861AD0095468F /* FixtureTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixtureTestCase.swift; sourceTree = "<group>"; };
+		0334869D2036C7EC0013B37A /* StubGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubGenerator.swift; sourceTree = "<group>"; };
 		0335222F1FB5A5BF00BCBD11 /* AddressLiveTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressLiveTests.swift; sourceTree = "<group>"; };
 		033522311FB5A7D800BCBD11 /* SettingLiveTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingLiveTests.swift; sourceTree = "<group>"; };
 		0345BE241F96FD9C00B4CA16 /* UserLiveTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLiveTests.swift; sourceTree = "<group>"; };
@@ -328,6 +330,7 @@
 			children = (
 				038CB3E4202AE93900E40715 /* QRTestHelper.swift */,
 				03FE64482032960200345281 /* MetadataDummy.swift */,
+				0334869D2036C7EC0013B37A /* StubGenerator.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -590,6 +593,7 @@
 				03F84C6C1FC292AD00F21C7B /* MintedTokenTests.swift in Sources */,
 				033522301FB5A5BF00BCBD11 /* AddressLiveTests.swift in Sources */,
 				03FE644E2032AA7400345281 /* TransactionConsumeFixtureTests.swift in Sources */,
+				0334869E2036C7EC0013B37A /* StubGenerator.swift in Sources */,
 				03F84C6A1FC28D5E00F21C7B /* UserTests.swift in Sources */,
 				031863FD1F8F678300D13862 /* SettingFixtureTests.swift in Sources */,
 				03F84C681FC2886700F21C7B /* BalanceTests.swift in Sources */,
