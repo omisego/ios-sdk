@@ -8,7 +8,7 @@ Pod::Spec.new do |s|
   s.authors = { 'OmiseGO team' => 'omg@omise.co' }
   s.source = { :git => 'git@github.com:omisego/ios-sdk.git', :tag => s.version }
 
-  s.platform = :ios, '10.0'
+  s.platform = :ios, '9.0'
 
   s.source_files = 'Source/**/*.swift'
 end
