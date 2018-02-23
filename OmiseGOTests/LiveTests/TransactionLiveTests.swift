@@ -17,7 +17,7 @@ class TransactionLiveTests: LiveTestCase {
             page: 1,
             perPage: 10,
             searchTerm: nil,
-            searchTerms: [.from: "123"],
+            searchTerms: nil,
             sortBy: .createdAt,
             sortDirection: .descending)
         let params = TransactionListParams(paginationParams: paginationParams, address: nil)
