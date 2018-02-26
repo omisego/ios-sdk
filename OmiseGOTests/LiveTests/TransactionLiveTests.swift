@@ -21,7 +21,7 @@ class TransactionLiveTests: LiveTestCase {
             sortBy: .createdAt,
             sortDirection: .descending)
         let params = TransactionListParams(paginationParams: paginationParams, address: nil)
-        let request = Transaction.get(
+        let request = Transaction.list(
             using: self.testClient,
             params: params) { (result) in
                 defer { expectation.fulfill() }

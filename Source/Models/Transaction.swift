@@ -54,9 +54,9 @@ extension Transaction: PaginatedListable {
     ///   - params: The TransactionListParams object to use to scope the results
     ///   - callback: The closure called when the request is completed
     /// - Returns: An optional cancellable request.
-    public static func get(using client: OMGClient,
-                           params: TransactionListParams,
-                           callback: @escaping Transaction.ListRequestCallback) -> Transaction.ListRequest? {
+    public static func list(using client: OMGClient,
+                            params: TransactionListParams,
+                            callback: @escaping Transaction.ListRequestCallback) -> Transaction.ListRequest? {
         return self.list(using: client, endpoint: .getTransactions(params: params), callback: callback)
     }
 

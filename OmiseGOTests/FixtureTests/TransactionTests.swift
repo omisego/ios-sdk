@@ -23,7 +23,7 @@ class TransactionTests: FixtureTestCase {
         let params = TransactionListParams(paginationParams: paginationParams, address: nil)
 
         let request =
-            Transaction.get(using: self.testCustomClient, params: params) { (result) in
+            Transaction.list(using: self.testCustomClient, params: params) { (result) in
                 defer { expectation.fulfill() }
                 switch result {
                 case .success(data: let paginatedList):
