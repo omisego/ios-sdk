@@ -6,7 +6,7 @@
 //  Copyright © 2018 OmiseGO. All rights reserved.
 //
 
-@testable import OmiseGO
+import OmiseGO
 
 struct SortableDummy: Paginable {
 
