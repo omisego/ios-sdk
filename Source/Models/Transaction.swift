@@ -64,17 +64,14 @@ extension Transaction: PaginatedListable {
 
 extension Transaction: Paginable {
 
-    public typealias SearchableFields = SearchableField
-    public typealias SortableFields = SortableField
-
-    public enum SearchableField: String, KeyEncodable {
+    public enum SearchableFields: String, KeyEncodable {
         case id
         case status
         case from
         case to
     }
 
-    public enum SortableField: String, KeyEncodable {
+    public enum SortableFields: String, KeyEncodable {
         case id
         case status
         case from

@@ -15,6 +15,11 @@ public struct TransactionListParams {
     /// An optional address owned by the current user
     public let address: String?
 
+    public init(paginationParams: PaginationParams<Transaction>, address: String?) {
+        self.paginationParams = paginationParams
+        self.address = address
+    }
+
 }
 
 extension TransactionListParams: Parametrable {

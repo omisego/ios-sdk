@@ -16,7 +16,7 @@ public struct OMGJSONListResponse<Item: Decodable>: Decodable {
 /// A struct representing a list response containing a data array of items and a pagination object.
 public struct OMGJSONPaginatedListResponse<Item: Decodable>: Decodable {
 
-    let data: [Item]
-    let pagination: Pagination
+    public let data: [Item]
+    public let pagination: Pagination
 
 }

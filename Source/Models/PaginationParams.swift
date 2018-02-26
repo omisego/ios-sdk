@@ -36,6 +36,20 @@ public struct PaginationParams<T: Paginable> {
     public let sortBy: T.SortableFields
     public let sortDirection: SortDirection
 
+    public init(page: Int,
+                perPage: Int,
+                searchTerm: String?,
+                searchTerms: [T.SearchableFields: Any]?,
+                sortBy: T.SortableFields,
+                sortDirection: SortDirection) {
+        self.page = page
+        self.perPage = perPage
+        self.searchTerm = searchTerm
+        self.searchTerms = searchTerms
+        self.sortBy = sortBy
+        self.sortDirection = sortDirection
+    }
+
 }
 
 extension PaginationParams: Parametrable {
