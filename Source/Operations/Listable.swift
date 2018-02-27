@@ -28,7 +28,7 @@ public extension Listable where Self: Decodable {
     }
 }
 
-/// Represents an object that can be retrived in a paginated collection
+/// Represents an object that can be retrieved in a paginated collection
 public protocol PaginatedListable {}
 
 public extension PaginatedListable where Self: Decodable {
