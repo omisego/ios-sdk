@@ -3,7 +3,7 @@
 //  OmiseGOTests
 //
 //  Created by Mederic Petit on 13/2/2018 BE.
-//  Copyright © 2018 OmiseGO. All rights reserved.
+//  Copyright © 2017-2018 Omise Go Ptd. Ltd. All rights reserved.
 //
 
 import UIKit
