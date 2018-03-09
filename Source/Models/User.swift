@@ -7,7 +7,7 @@
 //
 
 /// Represents the current user
-public struct User {
+public struct User: Listenable {
 
     /// The uniq identifier on the wallet server side
     public let id: String
@@ -17,8 +17,11 @@ public struct User {
     public let username: String
     /// Any additional metadata that need to be stored as a dictionary
     public let metadata: [String: Any]
+    /// The socket URL from where to receive from
+    public let webSocketURL: String
 
 }
+
 
 extension User: Decodable {
 
@@ -27,6 +30,7 @@ extension User: Decodable {
         case providerUserId = "provider_user_id"
         case username
         case metadata
+        case webSocketURL = "web_socket_url"
     }
 
     public init(from decoder: Decoder) throws {
@@ -35,6 +39,7 @@ extension User: Decodable {
         providerUserId = try container.decode(String.self, forKey: .providerUserId)
         username = try container.decode(String.self, forKey: .username)
         do {metadata = try container.decode([String: Any].self, forKey: .metadata)} catch {metadata = [:]}
+        webSocketURL = try container.decode(String.self, forKey: .webSocketURL)
     }
 
 }

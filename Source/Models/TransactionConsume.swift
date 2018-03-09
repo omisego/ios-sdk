@@ -18,7 +18,7 @@ public enum TransactionConsumeStatus: String, Decodable {
 }
 
 /// Represents a transaction consumption
-public struct TransactionConsume: Decodable {
+public struct TransactionConsume: Listenable, Decodable {
 
     public let id: String
     public let status: TransactionConsumeStatus
@@ -30,6 +30,7 @@ public struct TransactionConsume: Decodable {
     public let userId: String
     public let transactionRequestId: String
     public let address: String
+    public let webSocketURL: String
 
     private enum CodingKeys: String, CodingKey {
         case id
@@ -42,6 +43,7 @@ public struct TransactionConsume: Decodable {
         case userId = "user_id"
         case transactionRequestId = "transaction_request_id"
         case address
+        case webSocketURL = "web_socket_url"
     }
 
 }

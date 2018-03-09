@@ -11,5 +11,7 @@ Pod::Spec.new do |s|
   s.platform = :ios, '9.0'
   s.swift_version = '4.0'
 
+  s.dependency 'Starscream', '~> 3.0.2'
+
   s.source_files = 'Source/**/*.swift'
 end

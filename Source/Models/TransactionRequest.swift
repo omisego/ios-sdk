@@ -23,7 +23,7 @@ public enum TransactionRequestStatus: String, Decodable {
 }
 
 /// Represents a transaction request
-public struct TransactionRequest: Decodable {
+public struct TransactionRequest: Listenable, Decodable {
 
     public let id: String
     public let type: TransactionRequestType
@@ -32,6 +32,7 @@ public struct TransactionRequest: Decodable {
     public let address: String?
     public let correlationId: String?
     public let status: TransactionRequestStatus
+    public let webSocketURL: String
 
     private enum CodingKeys: String, CodingKey {
         case id
@@ -41,6 +42,7 @@ public struct TransactionRequest: Decodable {
         case address
         case correlationId = "correlation_id"
         case status
+        case webSocketURL = "web_socket_url"
     }
 
 }
