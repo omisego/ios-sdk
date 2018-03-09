@@ -2,7 +2,7 @@
 //  DecodeTests.swift
 //  OmiseGOTests
 //
-//  Created by Mederic Petit on 13/11/2017 BE.
+//  Created by Mederic Petit on 13/11/2017.
 //  Copyright © 2017-2018 Omise Go Ptd. Ltd. All rights reserved.
 //
 

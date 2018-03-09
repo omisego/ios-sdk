@@ -2,7 +2,7 @@
 //  EncodeTests.swift
 //  OmiseGOTests
 //
-//  Created by Mederic Petit on 5/2/2018 BE.
+//  Created by Mederic Petit on 5/2/2018.
 //  Copyright © 2017-2018 Omise Go Ptd. Ltd. All rights reserved.
 //
 

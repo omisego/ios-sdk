@@ -2,7 +2,7 @@
 //  FixtureClient.swift
 //  OmiseGOTests
 //
-//  Created by Mederic Petit on 10/10/2017 BE.
+//  Created by Mederic Petit on 10/10/2017.
 //  Copyright © 2017-2018 Omise Go Ptd. Ltd. All rights reserved.
 //
 
