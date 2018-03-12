@@ -40,11 +40,13 @@
 		0345BE251F96FD9C00B4CA16 /* UserLiveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0345BE241F96FD9C00B4CA16 /* UserLiveTests.swift */; };
 		0345BE271F96FDC400B4CA16 /* LiveTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0345BE261F96FDC400B4CA16 /* LiveTestCase.swift */; };
 		0345BE291F96FE8C00B4CA16 /* ResponseLiveTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0345BE281F96FE8C00B4CA16 /* ResponseLiveTest.swift */; };
+		034BAC112057DDB7005E0CD3 /* SocketObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034BAC102057DDB7005E0CD3 /* SocketObject.swift */; };
 		034FA0441FA31C930033B8D1 /* LogoutFixtureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034FA0431FA31C930033B8D1 /* LogoutFixtureTests.swift */; };
 		0355969920453069000E38DA /* TransactionSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0355969820453069000E38DA /* TransactionSource.swift */; };
 		0355969B2045315F000E38DA /* TransactionExchange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0355969A2045315F000E38DA /* TransactionExchange.swift */; };
 		0365DE832028508900F7B42E /* TransactionRequestParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0365DE822028508900F7B42E /* TransactionRequestParams.swift */; };
 		0365DE8520285FE700F7B42E /* TransactionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0365DE8420285FE700F7B42E /* TransactionRequest.swift */; };
+		0365F4F120565011000DA61A /* Listenable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0365F4F020565011000DA61A /* Listenable.swift */; };
 		037032A51FBBE6B100DBCDDD /* OmiseGO.h in Headers */ = {isa = PBXBuildFile; fileRef = 0370328D1FBBE6B100DBCDDD /* OmiseGO.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		037032A61FBBE6B100DBCDDD /* OMGJSONResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0370328F1FBBE6B100DBCDDD /* OMGJSONResponse.swift */; };
 		037032A71FBBE6B100DBCDDD /* OMGJSONListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037032901FBBE6B100DBCDDD /* OMGJSONListResponse.swift */; };
@@ -67,7 +69,12 @@
 		0370519E2040756F009FD899 /* secret.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0370519D2040756F009FD899 /* secret.plist */; };
 		037051A020407D4A009FD899 /* TransactionRequestLiveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0370519F20407D4A009FD899 /* TransactionRequestLiveTests.swift */; };
 		0377EB70205228730036A9D6 /* SocketHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0377EB6F205228730036A9D6 /* SocketHandler.swift */; };
-		0377EB7220522A070036A9D6 /* SocketObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0377EB7120522A070036A9D6 /* SocketObject.swift */; };
+		0377EBAE20564E7A0036A9D6 /* Socket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0377EBAB20564E7A0036A9D6 /* Socket.swift */; };
+		0377EBAF20564E7A0036A9D6 /* SocketMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0377EBAC20564E7A0036A9D6 /* SocketMessage.swift */; };
+		0377EBB020564E7A0036A9D6 /* SocketChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0377EBAD20564E7A0036A9D6 /* SocketChannel.swift */; };
+		0377EBB220564ECF0036A9D6 /* SocketPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0377EBB120564ECF0036A9D6 /* SocketPayload.swift */; };
+		037BAA99205F64CC004A3952 /* SocketDispatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037BAA98205F64CC004A3952 /* SocketDispatcher.swift */; };
+		037BAA9B205F701F004A3952 /* RequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037BAA9A205F701E004A3952 /* RequestBuilder.swift */; };
 		038A42561F8DE786001A00E0 /* UserFixtureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038A42551F8DE786001A00E0 /* UserFixtureTests.swift */; };
 		038CB3E5202AE93900E40715 /* QRTestHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038CB3E4202AE93900E40715 /* QRTestHelper.swift */; };
 		038CB3E7202AF81900E40715 /* TransactionConsumeParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038CB3E6202AF81900E40715 /* TransactionConsumeParams.swift */; };
@@ -91,7 +98,6 @@
 		03BEACB32031833F003A3B0D /* MockQRReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03BEACB22031833F003A3B0D /* MockQRReader.swift */; };
 		03BEACB5203185E1003A3B0D /* QRScannerViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03BEACB4203185E1003A3B0D /* QRScannerViewControllerTest.swift */; };
 		03BEACB72031A046003A3B0D /* QRScannerViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03BEACB62031A046003A3B0D /* QRScannerViewModelTest.swift */; };
-		03C0D450205111F50051F28E /* SocketWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C0D44F205111F50051F28E /* SocketWrapper.swift */; };
 		03C2C0791FB93E5200B794AC /* DecodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C2C0781FB93E5200B794AC /* DecodeTests.swift */; };
 		03C2C07D1FB97F9C00B794AC /* RequestFixtureTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C2C07C1FB97F9C00B794AC /* RequestFixtureTest.swift */; };
 		03CEF4BF1FB012FB009B8CEB /* FixtureClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CEF4BE1FB012FB009B8CEB /* FixtureClient.swift */; };
@@ -148,11 +154,13 @@
 		0345BE241F96FD9C00B4CA16 /* UserLiveTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLiveTests.swift; sourceTree = "<group>"; };
 		0345BE261F96FDC400B4CA16 /* LiveTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LiveTestCase.swift; path = ../LiveTestCase.swift; sourceTree = "<group>"; };
 		0345BE281F96FE8C00B4CA16 /* ResponseLiveTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseLiveTest.swift; sourceTree = "<group>"; };
+		034BAC102057DDB7005E0CD3 /* SocketObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketObject.swift; sourceTree = "<group>"; };
 		034FA0431FA31C930033B8D1 /* LogoutFixtureTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutFixtureTests.swift; sourceTree = "<group>"; };
 		0355969820453069000E38DA /* TransactionSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionSource.swift; sourceTree = "<group>"; };
 		0355969A2045315F000E38DA /* TransactionExchange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionExchange.swift; sourceTree = "<group>"; };
 		0365DE822028508900F7B42E /* TransactionRequestParams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionRequestParams.swift; sourceTree = "<group>"; };
 		0365DE8420285FE700F7B42E /* TransactionRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionRequest.swift; sourceTree = "<group>"; };
+		0365F4F020565011000DA61A /* Listenable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Listenable.swift; sourceTree = "<group>"; };
 		0370328D1FBBE6B100DBCDDD /* OmiseGO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OmiseGO.h; sourceTree = "<group>"; };
 		0370328F1FBBE6B100DBCDDD /* OMGJSONResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OMGJSONResponse.swift; sourceTree = "<group>"; };
 		037032901FBBE6B100DBCDDD /* OMGJSONListResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OMGJSONListResponse.swift; sourceTree = "<group>"; };
@@ -176,7 +184,12 @@
 		0370519D2040756F009FD899 /* secret.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = secret.plist; sourceTree = "<group>"; };
 		0370519F20407D4A009FD899 /* TransactionRequestLiveTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionRequestLiveTests.swift; sourceTree = "<group>"; };
 		0377EB6F205228730036A9D6 /* SocketHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketHandler.swift; sourceTree = "<group>"; };
-		0377EB7120522A070036A9D6 /* SocketObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketObject.swift; sourceTree = "<group>"; };
+		0377EBAB20564E7A0036A9D6 /* Socket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Socket.swift; sourceTree = "<group>"; };
+		0377EBAC20564E7A0036A9D6 /* SocketMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketMessage.swift; sourceTree = "<group>"; };
+		0377EBAD20564E7A0036A9D6 /* SocketChannel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketChannel.swift; sourceTree = "<group>"; };
+		0377EBB120564ECF0036A9D6 /* SocketPayload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketPayload.swift; sourceTree = "<group>"; };
+		037BAA98205F64CC004A3952 /* SocketDispatcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketDispatcher.swift; sourceTree = "<group>"; };
+		037BAA9A205F701E004A3952 /* RequestBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestBuilder.swift; sourceTree = "<group>"; };
 		038A42551F8DE786001A00E0 /* UserFixtureTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFixtureTests.swift; sourceTree = "<group>"; };
 		038CB3E4202AE93900E40715 /* QRTestHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRTestHelper.swift; sourceTree = "<group>"; };
 		038CB3E6202AF81900E40715 /* TransactionConsumeParams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionConsumeParams.swift; sourceTree = "<group>"; };
@@ -202,7 +215,6 @@
 		03BEACB22031833F003A3B0D /* MockQRReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockQRReader.swift; sourceTree = "<group>"; };
 		03BEACB4203185E1003A3B0D /* QRScannerViewControllerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRScannerViewControllerTest.swift; sourceTree = "<group>"; };
 		03BEACB62031A046003A3B0D /* QRScannerViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRScannerViewModelTest.swift; sourceTree = "<group>"; };
-		03C0D44F205111F50051F28E /* SocketWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketWrapper.swift; sourceTree = "<group>"; };
 		03C2C0781FB93E5200B794AC /* DecodeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecodeTests.swift; sourceTree = "<group>"; };
 		03C2C07C1FB97F9C00B794AC /* RequestFixtureTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestFixtureTest.swift; sourceTree = "<group>"; };
 		03CEF4BE1FB012FB009B8CEB /* FixtureClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FixtureClient.swift; sourceTree = "<group>"; };
@@ -368,6 +380,7 @@
 			children = (
 				037032991FBBE6B100DBCDDD /* Retrievable.swift */,
 				0370329A1FBBE6B100DBCDDD /* Listable.swift */,
+				0365F4F020565011000DA61A /* Listenable.swift */,
 			);
 			path = Operations;
 			sourceTree = "<group>";
@@ -381,6 +394,7 @@
 				037032A01FBBE6B100DBCDDD /* APIEndpoint.swift */,
 				037032A11FBBE6B100DBCDDD /* OmiseGOError.swift */,
 				037032A31FBBE6B100DBCDDD /* OMGRequest.swift */,
+				037BAA9A205F701E004A3952 /* RequestBuilder.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -453,9 +467,13 @@
 		03C0D44E205111940051F28E /* Websocket */ = {
 			isa = PBXGroup;
 			children = (
-				03C0D44F205111F50051F28E /* SocketWrapper.swift */,
 				0377EB6F205228730036A9D6 /* SocketHandler.swift */,
-				0377EB7120522A070036A9D6 /* SocketObject.swift */,
+				0377EBAB20564E7A0036A9D6 /* Socket.swift */,
+				0377EBAD20564E7A0036A9D6 /* SocketChannel.swift */,
+				0377EBAC20564E7A0036A9D6 /* SocketMessage.swift */,
+				0377EBB120564ECF0036A9D6 /* SocketPayload.swift */,
+				034BAC102057DDB7005E0CD3 /* SocketObject.swift */,
+				037BAA98205F64CC004A3952 /* SocketDispatcher.swift */,
 			);
 			path = Websocket;
 			sourceTree = "<group>";
@@ -736,10 +754,11 @@
 				0313D6DE203176AC003E99BA /* QRGenerator.swift in Sources */,
 				037032A71FBBE6B100DBCDDD /* OMGJSONListResponse.swift in Sources */,
 				037032AC1FBBE6B100DBCDDD /* Reponse.swift in Sources */,
+				0377EBAF20564E7A0036A9D6 /* SocketMessage.swift in Sources */,
 				039DA975203FA94100CCC56A /* PaginationParams.swift in Sources */,
 				0365DE832028508900F7B42E /* TransactionRequestParams.swift in Sources */,
+				037BAA9B205F701F004A3952 /* RequestBuilder.swift in Sources */,
 				0313D6D820317696003E99BA /* QRScannerView.swift in Sources */,
-				0377EB7220522A070036A9D6 /* SocketObject.swift in Sources */,
 				037032A61FBBE6B100DBCDDD /* OMGJSONResponse.swift in Sources */,
 				037032BC1FBBE7A300DBCDDD /* Tool.swift in Sources */,
 				038CB3E7202AF81900E40715 /* TransactionConsumeParams.swift in Sources */,
@@ -752,6 +771,7 @@
 				039DA973203FA72800CCC56A /* Transaction.swift in Sources */,
 				0313D6DB20317696003E99BA /* QRScannerLoadingView.swift in Sources */,
 				037032B31FBBE6B100DBCDDD /* OMGClient.swift in Sources */,
+				0377EBAE20564E7A0036A9D6 /* Socket.swift in Sources */,
 				039DA979203FB53F00CCC56A /* Pagination.swift in Sources */,
 				0365DE8520285FE700F7B42E /* TransactionRequest.swift in Sources */,
 				037032B81FBBE6B100DBCDDD /* OMGRequest.swift in Sources */,
@@ -764,10 +784,14 @@
 				037032B61FBBE6B100DBCDDD /* OmiseGOError.swift in Sources */,
 				037032A81FBBE6B100DBCDDD /* Setting.swift in Sources */,
 				037032AE1FBBE6B100DBCDDD /* MintedToken.swift in Sources */,
+				0365F4F120565011000DA61A /* Listenable.swift in Sources */,
+				0377EBB020564E7A0036A9D6 /* SocketChannel.swift in Sources */,
 				039DA977203FAB0600CCC56A /* TransactionListParams.swift in Sources */,
-				03C0D450205111F50051F28E /* SocketWrapper.swift in Sources */,
+				034BAC112057DDB7005E0CD3 /* SocketObject.swift in Sources */,
+				0377EBB220564ECF0036A9D6 /* SocketPayload.swift in Sources */,
 				0377EB70205228730036A9D6 /* SocketHandler.swift in Sources */,
 				037032B21FBBE6B100DBCDDD /* APIError.swift in Sources */,
+				037BAA99205F64CC004A3952 /* SocketDispatcher.swift in Sources */,
 				03FE644C2032A8FE00345281 /* TransactionConsume.swift in Sources */,
 				0313D6DA20317696003E99BA /* QRScannerOverlayView.swift in Sources */,
 			);
@@ -906,7 +930,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -960,7 +984,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -986,7 +1010,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = "$(SRCROOT)/Source/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = co.omisego.OmiseGO;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
@@ -1014,7 +1038,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = "$(SRCROOT)/Source/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = co.omisego.OmiseGO;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";

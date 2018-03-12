@@ -6,8 +6,12 @@
 //  Copyright © 2017-2018 Omise Go Pte. Ltd. All rights reserved.
 //
 
-protocol Parametrable: Encodable {
-    func encodedPayload() -> Data?
+protocol Parametrable: Encodable {}
+
+extension Parametrable {
+    func encodedPayload() throws -> Data {
+        return try serialize(self)
+    }
 }
 
 /// Represents an HTTP task.

@@ -35,8 +35,4 @@ extension TransactionListParams: Parametrable {
         try paginationParams.encode(to: encoder)
     }
 
-    func encodedPayload() -> Data? {
-        return try? JSONEncoder().encode(self)
-    }
-
 }

@@ -29,7 +29,7 @@ public class OMGRequest<ResultType: Decodable> {
     }
 
     func start() throws -> Self {
-        guard let urlRequest = try buildURLRequest() else {
+        guard let urlRequest = try RequestBuilder(client: self.client).buildHTTPURLRequest(withEndpoint: self.endpoint) else {
             throw OmiseGOError.configuration(message: "Invalid request")
         }
         let dataTask = client.session.dataTask(with: urlRequest, completionHandler: didComplete)
@@ -75,35 +75,6 @@ public class OMGRequest<ResultType: Decodable> {
     fileprivate func performCallback(_ result: Response<ResultType>) {
         guard let cb = callback else { return }
         OperationQueue.main.addOperation({ cb(result) })
-    }
-
-    func buildURLRequest() throws -> URLRequest? {
-        guard let requestURL = endpoint.makeURL(withBaseURL: self.client.config.baseURL) else {
-            throw OmiseGOError.configuration(message: "Invalid request")
-        }
-
-        let auth = try client.encodedAuthorizationHeader()
-
-        var request = URLRequest(url: requestURL)
-        request.httpMethod = "POST"
-        request.cachePolicy = .useProtocolCachePolicy
-        request.timeoutInterval = 6.0
-        request.addValue(auth, forHTTPHeaderField: "Authorization")
-        request.addValue(client.acceptHeader(), forHTTPHeaderField: "Accept")
-        request.addValue(client.contentTypeHeader(), forHTTPHeaderField: "Content-Type")
-        endpoint.additionalHeaders?.forEach({ (key, value) in
-            request.addValue(value, forHTTPHeaderField: key)
-        })
-
-        switch endpoint.task {
-        case .requestPlain: break
-        case .requestParameters(let parameters):
-            if let payload: Data = parameters.encodedPayload() {
-                request.httpBody = payload
-                request.addValue(String(payload.count), forHTTPHeaderField: "Content-Length")
-            }
-        }
-        return request
     }
 
 }

@@ -12,6 +12,8 @@ public struct OMGConfiguration {
     /// The current SDK version
     public let apiVersion: String = "1"
 
+    // The url for the websocket connection
+    public let websocketsBaseUrl: String
     /// The base URL of the wallet server
     public let baseURL: String
     /// The API key provided by OmiseGO
@@ -19,7 +21,8 @@ public struct OMGConfiguration {
     /// The authentication token of the current user
     public var authenticationToken: String?
 
-    public init(baseURL: String, apiKey: String, authenticationToken: String) {
+    public init(websocketsBaseUrl: String, baseURL: String, apiKey: String, authenticationToken: String) {
+        self.websocketsBaseUrl = websocketsBaseUrl
         self.baseURL = baseURL
         self.apiKey = apiKey
         self.authenticationToken = authenticationToken

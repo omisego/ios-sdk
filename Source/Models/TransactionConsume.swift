@@ -26,11 +26,11 @@ public struct TransactionConsume: Listenable, Decodable {
     public let mintedToken: MintedToken
     public let correlationId: String?
     public let idempotencyToken: String
-    public let transactionId: String
+    public let transactionId: String?
     public let userId: String
     public let transactionRequestId: String
     public let address: String
-    public let webSocketURL: String
+    public let socketTopic: String
 
     private enum CodingKeys: String, CodingKey {
         case id
@@ -43,7 +43,7 @@ public struct TransactionConsume: Listenable, Decodable {
         case userId = "user_id"
         case transactionRequestId = "transaction_request_id"
         case address
-        case webSocketURL = "web_socket_url"
+        case socketTopic = "socket_topic"
     }
 
 }
@@ -76,10 +76,8 @@ extension TransactionConsume: Hashable {
         return self.id.hashValue
     }
 
-}
+    public static func == (lhs: TransactionConsume, rhs: TransactionConsume) -> Bool {
+        return lhs.id == rhs.id
+    }
 
-// MARK: Equatable
-
-public func == (lhs: TransactionConsume, rhs: TransactionConsume) -> Bool {
-    return lhs.id == rhs.id
 }

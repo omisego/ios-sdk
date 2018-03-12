@@ -103,10 +103,8 @@ extension Transaction: Hashable {
         return self.id.hashValue
     }
 
-}
+    public static func == (lhs: Transaction, rhs: Transaction) -> Bool {
+        return lhs.id == rhs.id
+    }
 
-// MARK: Equatable
-
-public func == (lhs: Transaction, rhs: Transaction) -> Bool {
-    return lhs.id == rhs.id
 }

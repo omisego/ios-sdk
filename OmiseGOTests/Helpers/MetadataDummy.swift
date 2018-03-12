@@ -75,8 +75,5 @@ struct MetadataDummy: Decodable, Parametrable {
         try container.encodeIfPresent(unavailableMetadata, forKey: .unavailableMetadata)
         try container.encodeIfPresent(unavailableMetadataArray, forKey: .unavailableMetadataArray)
     }
-
-    func encodedPayload() -> Data? {
-        return try? JSONEncoder().encode(self)
-    }
+    
 }

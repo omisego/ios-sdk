@@ -27,7 +27,7 @@ The [OmiseGO](https://omisego.network) iOS SDK allows developers to easily inter
 
 # Requirements
 
-- iOS 9.0+
+- iOS 10.0+
 - Xcode 9+
 - Swift 4.0
 

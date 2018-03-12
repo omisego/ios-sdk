@@ -46,10 +46,6 @@ extension TransactionRequestCreateParams: Parametrable {
         case correlationId = "correlation_id"
     }
 
-    func encodedPayload() -> Data? {
-        return try? JSONEncoder().encode(self)
-    }
-
     // Custom encoding as we need to encode amount event if nil
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
@@ -66,9 +62,5 @@ extension TransactionRequestCreateParams: Parametrable {
 struct TransactionRequestGetParams: Parametrable {
 
     let id: String
-
-    func encodedPayload() -> Data? {
-        return try? JSONEncoder().encode(self)
-    }
 
 }

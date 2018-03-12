@@ -18,10 +18,9 @@ public struct User: Listenable {
     /// Any additional metadata that need to be stored as a dictionary
     public let metadata: [String: Any]
     /// The socket URL from where to receive from
-    public let webSocketURL: String
+    public let socketTopic: String
 
 }
-
 
 extension User: Decodable {
 
@@ -30,7 +29,7 @@ extension User: Decodable {
         case providerUserId = "provider_user_id"
         case username
         case metadata
-        case webSocketURL = "web_socket_url"
+        case socketTopic = "socket_topic"
     }
 
     public init(from decoder: Decoder) throws {
@@ -39,7 +38,7 @@ extension User: Decodable {
         providerUserId = try container.decode(String.self, forKey: .providerUserId)
         username = try container.decode(String.self, forKey: .username)
         do {metadata = try container.decode([String: Any].self, forKey: .metadata)} catch {metadata = [:]}
-        webSocketURL = try container.decode(String.self, forKey: .webSocketURL)
+        socketTopic = try container.decode(String.self, forKey: .socketTopic)
     }
 
 }
@@ -67,10 +66,8 @@ extension User: Hashable {
         return self.id.hashValue
     }
 
-}
+    public static func == (lhs: User, rhs: User) -> Bool {
+        return lhs.id == rhs.id
+    }
 
-// MARK: Equatable
-
-public func == (lhs: User, rhs: User) -> Bool {
-    return lhs.id == rhs.id
 }

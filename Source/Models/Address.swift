@@ -63,10 +63,8 @@ extension Address: Hashable {
         return self.address.hashValue
     }
 
-}
+    public static func == (lhs: Address, rhs: Address) -> Bool {
+        return lhs.address == rhs.address
+    }
 
-// MARK: Equatable
-
-public func == (lhs: Address, rhs: Address) -> Bool {
-    return lhs.address == rhs.address
 }

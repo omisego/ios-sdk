@@ -15,6 +15,12 @@ public class OMGClient {
     var session: URLSession!
     var config: OMGConfiguration
 
+    lazy var socketManager: Socket = {
+        let request = try? RequestBuilder(client: self).buildWebsocketRequest()
+        assert(request != nil, "Invalid websocket url")
+        return Socket(request: request!)
+    }()
+
     /// Initialize a client using a configuration object
     ///
     /// - Parameter config: The configuration object

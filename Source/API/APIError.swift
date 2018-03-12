@@ -41,7 +41,6 @@ extension APIError: Error {}
 extension APIError: Decodable {
 
     private enum CodingKeys: String, CodingKey {
-        case object
         case code
         case description
     }
@@ -67,6 +66,7 @@ public enum APIErrorCode: Decodable {
     case accessTokenNotFound
     case accessTokenExpired
     case missingIdempotencyToken
+    case websocketError
     case other(String)
 
     //swiftlint:disable:next cyclomatic_complexity
@@ -92,6 +92,8 @@ public enum APIErrorCode: Decodable {
             self = .accessTokenExpired
         case "client:no_idempotency_token_provided":
             self = .missingIdempotencyToken
+        case "websocket:connect_error":
+            self = .websocketError
         case let code:
             self = .other(code)
         }
@@ -123,6 +125,8 @@ public enum APIErrorCode: Decodable {
             return "user:access_token_expired"
         case .missingIdempotencyToken:
             return "client:no_idempotency_token_provided"
+        case .websocketError:
+            return "websocket:connect_error"
         case .other(let code):
             return code
         }
@@ -135,10 +139,8 @@ extension APIErrorCode: Hashable {
         return self.code.hashValue
     }
 
-}
+    public static func == (lhs: APIErrorCode, rhs: APIErrorCode) -> Bool {
+        return lhs.code == rhs.code
+    }
 
-// MARK: Equatable
-
-public func == (lhs: APIErrorCode, rhs: APIErrorCode) -> Bool {
-    return lhs.code == rhs.code
 }

@@ -32,7 +32,7 @@ public struct TransactionRequest: Listenable, Decodable {
     public let address: String?
     public let correlationId: String?
     public let status: TransactionRequestStatus
-    public let webSocketURL: String
+    public let socketTopic: String
 
     private enum CodingKeys: String, CodingKey {
         case id
@@ -42,7 +42,7 @@ public struct TransactionRequest: Listenable, Decodable {
         case address
         case correlationId = "correlation_id"
         case status
-        case webSocketURL = "web_socket_url"
+        case socketTopic = "socket_topic"
     }
 
 }
@@ -107,10 +107,8 @@ extension TransactionRequest: Hashable {
         return self.id.hashValue
     }
 
-}
+    public static func == (lhs: TransactionRequest, rhs: TransactionRequest) -> Bool {
+        return lhs.id == rhs.id
+    }
 
-// MARK: Equatable
-
-public func == (lhs: TransactionRequest, rhs: TransactionRequest) -> Bool {
-    return lhs.id == rhs.id
 }

@@ -6,54 +6,35 @@
 //
 
 public protocol Listenable {
-    var webSocketURL: String { get }
-    func stopListening()
+    var socketTopic: String { get }
 }
 
 public extension Listenable {
-    public func stopListening() {
-        SocketWrapper.shared.disconnectSocket(withURL: self.webSocketURL)
+    public func stopListening(withClient client: OMGClient) {
+        client.socketManager.leaveChannel(withTopic: self.socketTopic)
     }
 }
 
 public extension Listenable where Self == User {
 
-    public func startListeningEvents(withHandler handler: UserEventHandler) {
-        SocketWrapper.shared.connect(toURL: URL(string: webSocketURL)!,
-                                     handler: handler,
-                                     onDecode: { handler.didReceive($0)})
+    public func startListeningEvents(withClient client: OMGClient, handler: UserEventHandler) {
+        client.socketManager.join(withTopic: self.socketTopic, dispatcher: SocketDispatcher.user(handler: handler))
     }
-}
 
+}
 
 public extension Listenable where Self == TransactionRequest {
 
-    public func startListeningEvents(withHandler handler: TransactionRequestEventHandler) {
-        SocketWrapper.shared.connect(toURL: URL(string: webSocketURL)!,
-                                     handler: handler,
-                                     onDecode: { webSocketObject in
-                                        switch webSocketObject.event {
-                                        case .transactionConsumptionRequest(object: let transactionConsume):
-                                            handler.didReceiveTransactionConsumeRequest(transactionConsume)
-                                        default: break
-                                        }
-        })
+    public func startListeningEvents(withClient client: OMGClient, handler: TransactionRequestEventHandler) {
+        client.socketManager.join(withTopic: self.socketTopic, dispatcher: SocketDispatcher.transactionRequest(handler: handler))
     }
 
 }
 
 public extension Listenable where Self == TransactionConsume {
 
-    public func startListeningEvents(withHandler handler: TransactionConsumeEventHandler) {
-        SocketWrapper.shared.connect(toURL: URL(string: webSocketURL)!,
-                                     handler: handler,
-                                     onDecode: { webSocketObject in
-                                        switch webSocketObject.event {
-                                        case .transactionConsumptionRequest(object: let transactionConsume):
-                                            handler.didReceiveTransactionConsumeConfirmation(transactionConsume)
-                                        default: break
-                                        }
-        })
+    public func startListeningEvents(withClient client: OMGClient, handler: TransactionConsumeEventHandler) {
+        client.socketManager.join(withTopic: self.socketTopic, dispatcher: SocketDispatcher.transactionConsume(handler: handler))
     }
 
 }
