@@ -505,7 +505,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0900;
 				LastUpgradeCheck = 0910;
-				ORGANIZATIONNAME = "Omise Go Ptd. Ltd.";
+				ORGANIZATIONNAME = "Omise Go Pte. Ltd.";
 				TargetAttributes = {
 					035149D61F95F2570056E530 = {
 						CreatedOnToolsVersion = 9.0;
