@@ -31,10 +31,10 @@ public extension Listenable where Self == TransactionRequest {
 
 }
 
-public extension Listenable where Self == TransactionConsume {
+public extension Listenable where Self == TransactionConsumption {
 
-    public func startListeningEvents(withClient client: OMGClient, handler: TransactionConsumeEventHandler) {
-        client.socketManager.join(withTopic: self.socketTopic, dispatcher: SocketDispatcher.transactionConsume(handler: handler))
+    public func startListeningEvents(withClient client: OMGClient, handler: TransactionConsumptionEventHandler) {
+        client.socketManager.join(withTopic: self.socketTopic, dispatcher: SocketDispatcher.transactionConsumption(handler: handler))
     }
 
 }

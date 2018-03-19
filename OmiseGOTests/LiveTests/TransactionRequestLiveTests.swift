@@ -65,7 +65,7 @@ class TransactionRequestLiveTests: LiveTestCase {
         let idempotencyToken = UUID().uuidString
         let consumeCorrelationId = UUID().uuidString
         let consumeExpectation = self.expectation(description: "Consume transaction request")
-        let transactionConsumeParams = TransactionConsumeParams(
+        let transactionConsumptionParams = TransactionConsumptionParams(
             transactionRequest: transactionRequest,
             address: nil,
             mintedTokenId: nil,
@@ -73,19 +73,19 @@ class TransactionRequestLiveTests: LiveTestCase {
             idempotencyToken: idempotencyToken,
             correlationId: consumeCorrelationId,
             metadata: [:])
-        let consumeRequest = TransactionConsume.consumeTransactionRequest(
+        let consumeRequest = TransactionConsumption.consumeTransactionRequest(
             using: self.testClient,
-            params: transactionConsumeParams!) { (result) in
+            params: transactionConsumptionParams!) { (result) in
                 defer { consumeExpectation.fulfill() }
                 switch result {
-                case .success(data: let transactionConsume):
-                    let mintedToken = transactionConsume.mintedToken
+                case .success(data: let transactionConsumption):
+                    let mintedToken = transactionConsumption.mintedToken
                     XCTAssertEqual(mintedToken.id, self.validMintedTokenId)
-                    XCTAssertEqual(transactionConsume.amount, 1)
-                    XCTAssertEqual(transactionConsume.correlationId, consumeCorrelationId)
-                    XCTAssertEqual(transactionConsume.idempotencyToken, idempotencyToken)
-                    XCTAssertEqual(transactionConsume.transactionRequestId, transactionRequest.id)
-                    XCTAssertEqual(transactionConsume.status, .confirmed)
+                    XCTAssertEqual(transactionConsumption.amount, 1)
+                    XCTAssertEqual(transactionConsumption.correlationId, consumeCorrelationId)
+                    XCTAssertEqual(transactionConsumption.idempotencyToken, idempotencyToken)
+                    XCTAssertEqual(transactionConsumption.transactionRequestId, transactionRequest.id)
+                    XCTAssertEqual(transactionConsumption.status, .confirmed)
                 case .fail(error: let error):
                     XCTFail("\(error)")
                 }

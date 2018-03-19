@@ -289,10 +289,10 @@ class DecodeTests: XCTestCase {
         }
     }
 
-    func testTransactionConsumeDecoding() {
+    func testTransactionConsumptionDecoding() {
         do {
-            let jsonData = try self.jsonData(withFileName: "transaction_consume")
-            let decodedData = try self.jsonDecoder.decode(TransactionConsume.self, from: jsonData)
+            let jsonData = try self.jsonData(withFileName: "transaction_consumption")
+            let decodedData = try self.jsonDecoder.decode(TransactionConsumption.self, from: jsonData)
             XCTAssertEqual(decodedData.id, "8eb0160e-1c96-481a-88e1-899399cc84dc")
             XCTAssertEqual(decodedData.status, .confirmed)
             XCTAssertEqual(decodedData.amount, 1337)

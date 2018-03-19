@@ -7,12 +7,12 @@
 //
 
 public enum WebsocketObject {
-    case transactionConsumption(object: TransactionConsume)
+    case transactionConsumption(object: TransactionConsumption)
 }
 
 enum GenericObjectEnum {
 
-    case transactionConsumption(object: TransactionConsume)
+    case transactionConsumption(object: TransactionConsumption)
     case error(error: OmiseGOError)
     case other(object: [String: Any])
 
@@ -25,7 +25,7 @@ enum GenericObjectEnum {
         case "error":
             self = .error(error: try OmiseGOError.api(apiError: APIError(from: decoder)))
         case "transaction_request_consumption":
-            self = .transactionConsumption(object: try TransactionConsume(from: decoder))
+            self = .transactionConsumption(object: try TransactionConsumption(from: decoder))
         default: return nil
         }
     }

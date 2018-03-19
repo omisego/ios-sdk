@@ -13,13 +13,13 @@ public protocol EventHandler {
 }
 
 public protocol UserEventHandler: EventHandler {
-    func didReceive(_ object: WebsocketObject, forEvent event: SocketEventReceive)
+    func didReceive(_ object: WebsocketObject, forEvent event: SocketEvent)
 }
 
 public protocol TransactionRequestEventHandler: EventHandler {
-    func didReceiveTransactionConsumeRequest(_ transactionConsume: TransactionConsume)
+    func didReceiveTransactionConsumptionRequest(_ transactionConsumption: TransactionConsumption, forEvent event: SocketEvent)
 }
 
-public protocol TransactionConsumeEventHandler: EventHandler {
-    func didReceiveTransactionConsumeConfirmation(_ transactionConsume: TransactionConsume)
+public protocol TransactionConsumptionEventHandler: EventHandler {
+    func didReceiveTransactionConsumptionConfirmation(_ transactionConsumption: TransactionConsumption, forEvent event: SocketEvent)
 }

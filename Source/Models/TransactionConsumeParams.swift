@@ -1,5 +1,5 @@
 //
-//  TransactionConsumeParams.swift
+//  TransactionConsumptionParams.swift
 //  OmiseGO
 //
 //  Created by Mederic Petit on 7/2/2018.
@@ -7,7 +7,7 @@
 //
 
 /// Represents a structure used to consume a transaction request
-public struct TransactionConsumeParams {
+public struct TransactionConsumptionParams {
 
     public let transactionRequestId: String
     public let amount: Double
@@ -36,7 +36,7 @@ public struct TransactionConsumeParams {
 
 }
 
-extension TransactionConsumeParams: Parametrable {
+extension TransactionConsumptionParams: Parametrable {
 
     private enum CodingKeys: String, CodingKey {
         case transactionRequestId = "transaction_request_id"

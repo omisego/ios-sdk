@@ -30,7 +30,7 @@ enum APIEndpoint {
     case getTransactions(params: TransactionListParams)
     case transactionRequestCreate(params: TransactionRequestCreateParams)
     case transactionRequestGet(params: TransactionRequestGetParams)
-    case transactionRequestConsume(params: TransactionConsumeParams)
+    case transactionRequestConsume(params: TransactionConsumptionParams)
     case logout
     case custom(path: String, task: Task)
 

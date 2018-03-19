@@ -203,7 +203,7 @@ class EncodeTests: XCTestCase {
         }
     }
 
-    func testTransactionConsumeParamsEncoding() {
+    func testTransactionConsumptionParamsEncoding() {
         do {
             let transactionRequest = TransactionRequest(
                 id: "0a8a4a98-794b-419e-b92d-514e83657e75",
@@ -213,14 +213,14 @@ class EncodeTests: XCTestCase {
                 address: "3bfe0ff7-f43e-4ac6-bdf9-c4a290c40d0d",
                 correlationId: "31009545-db10-4287-82f4-afb46d9741d8",
                 status: .valid)
-            let transactionConsumeParams = TransactionConsumeParams(transactionRequest: transactionRequest,
+            let transactionConsumptionParams = TransactionConsumptionParams(transactionRequest: transactionRequest,
                                                                     address: "456",
                                                                     mintedTokenId: "BTC:123",
                                                                     idempotencyToken: "123",
                                                                     correlationId: "321",
                                                                     metadata: [:])
-            let encodedData = try JSONEncoder().encode(transactionConsumeParams)
-            let encodedPayload = transactionConsumeParams!.encodedPayload()
+            let encodedData = try JSONEncoder().encode(transactionConsumptionParams)
+            let encodedPayload = transactionConsumptionParams!.encodedPayload()
             XCTAssertEqual(encodedData, encodedPayload)
             XCTAssertEqual(String(data: encodedData, encoding: .utf8)!, """
                 {

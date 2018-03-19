@@ -1,5 +1,5 @@
 //
-//  TransactionConsumeFixtureTests.swift
+//  TransactionConsumptionFixtureTests.swift
 //  OmiseGOTests
 //
 //  Created by Mederic Petit on 13/2/2018.
@@ -9,7 +9,7 @@
 import XCTest
 import OmiseGO
 
-class TransactionConsumeFixtureTests: FixtureTestCase {
+class TransactionConsumptionFixtureTests: FixtureTestCase {
 
     func testConsumeTransactionRequest() {
         let expectation =
@@ -22,7 +22,7 @@ class TransactionConsumeFixtureTests: FixtureTestCase {
                 address: "3bfe0ff7-f43e-4ac6-bdf9-c4a290c40d0d",
                 correlationId: "31009545-db10-4287-82f4-afb46d9741d8",
                 status: .valid)
-        let params = TransactionConsumeParams(
+        let params = TransactionConsumptionParams(
                 transactionRequest: transactionRequest,
                 address: nil,
                 mintedTokenId: nil,
@@ -30,24 +30,24 @@ class TransactionConsumeFixtureTests: FixtureTestCase {
                 correlationId: nil,
                 metadata: [:])!
         let request =
-            TransactionConsume.consumeTransactionRequest(using: self.testCustomClient, params: params) { (result) in
+            TransactionConsumption.consumeTransactionRequest(using: self.testCustomClient, params: params) { (result) in
                 defer { expectation.fulfill() }
                 switch result {
-                case .success(data: let transactionConsume):
-                    XCTAssertEqual(transactionConsume.id, "8eb0160e-1c96-481a-88e1-899399cc84dc")
-                    let mintedToken = transactionConsume.mintedToken
+                case .success(data: let transactionConsumption):
+                    XCTAssertEqual(transactionConsumption.id, "8eb0160e-1c96-481a-88e1-899399cc84dc")
+                    let mintedToken = transactionConsumption.mintedToken
                     XCTAssertEqual(mintedToken.id, "BTC:123")
                     XCTAssertEqual(mintedToken.symbol, "BTC")
                     XCTAssertEqual(mintedToken.name, "Bitcoin")
                     XCTAssertEqual(mintedToken.subUnitToUnit, 100000)
-                    XCTAssertEqual(transactionConsume.amount, 1337)
-                    XCTAssertEqual(transactionConsume.address, "3b7f1c68-e3bd-4f8f-9916-4af19be95d00")
-                    XCTAssertEqual(transactionConsume.correlationId, "31009545-db10-4287-82f4-afb46d9741d8")
-                    XCTAssertEqual(transactionConsume.idempotencyToken, "31009545-db10-4287-82f4-afb46d9741d8")
-                    XCTAssertEqual(transactionConsume.transactionId, "6ca40f34-6eaa-43e1-b2e1-a94ff3660988")
-                    XCTAssertEqual(transactionConsume.userId, "6f56efa1-caf9-4348-8e0f-f5af283f17ee")
-                    XCTAssertEqual(transactionConsume.transactionRequestId, "907056a4-fc2d-47cb-af19-5e73aade7ece")
-                    XCTAssertEqual(transactionConsume.status, .confirmed)
+                    XCTAssertEqual(transactionConsumption.amount, 1337)
+                    XCTAssertEqual(transactionConsumption.address, "3b7f1c68-e3bd-4f8f-9916-4af19be95d00")
+                    XCTAssertEqual(transactionConsumption.correlationId, "31009545-db10-4287-82f4-afb46d9741d8")
+                    XCTAssertEqual(transactionConsumption.idempotencyToken, "31009545-db10-4287-82f4-afb46d9741d8")
+                    XCTAssertEqual(transactionConsumption.transactionId, "6ca40f34-6eaa-43e1-b2e1-a94ff3660988")
+                    XCTAssertEqual(transactionConsumption.userId, "6f56efa1-caf9-4348-8e0f-f5af283f17ee")
+                    XCTAssertEqual(transactionConsumption.transactionRequestId, "907056a4-fc2d-47cb-af19-5e73aade7ece")
+                    XCTAssertEqual(transactionConsumption.status, .confirmed)
                 case .fail(error: let error):
                     XCTFail("\(error)")
                 }

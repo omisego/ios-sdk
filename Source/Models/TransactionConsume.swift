@@ -1,5 +1,5 @@
 //
-//  TransactionConsume.swift
+//  TransactionConsumption.swift
 //  OmiseGOTests
 //
 //  Created by Mederic Petit on 13/2/2018.
@@ -11,17 +11,17 @@
 /// - pending: The transaction consumption is pending validation
 /// - confirmed: The transaction was consumed
 /// - failed: The transaction failed to be consumed
-public enum TransactionConsumeStatus: String, Decodable {
+public enum TransactionConsumptionStatus: String, Decodable {
     case pending
     case confirmed
     case failed
 }
 
 /// Represents a transaction consumption
-public struct TransactionConsume: Listenable, Decodable {
+public struct TransactionConsumption: Listenable, Decodable {
 
     public let id: String
-    public let status: TransactionConsumeStatus
+    public let status: TransactionConsumptionStatus
     public let amount: Double
     public let mintedToken: MintedToken
     public let correlationId: String?
@@ -48,21 +48,21 @@ public struct TransactionConsume: Listenable, Decodable {
 
 }
 
-extension TransactionConsume: Retrievable {
+extension TransactionConsumption: Retrievable {
 
     @discardableResult
-    /// Consume a transaction request from the given TransactionConsumeParams object
+    /// Consume a transaction request from the given TransactionConsumptionParams object
     ///
     /// - Parameters:
     ///   - client: An API client.
     ///             This client need to be initialized with a OMGConfiguration struct before being used.
-    ///   - params: The TransactionConsumeParams object describing the transaction request to be consumed.
+    ///   - params: The TransactionConsumptionParams object describing the transaction request to be consumed.
     ///   - callback: The closure called when the request is completed
     /// - Returns: An optional cancellable request.
     public static func consumeTransactionRequest(using client: OMGClient,
-                                                 params: TransactionConsumeParams,
-                                                 callback: @escaping TransactionConsume.RetrieveRequestCallback)
-        -> TransactionConsume.RetrieveRequest? {
+                                                 params: TransactionConsumptionParams,
+                                                 callback: @escaping TransactionConsumption.RetrieveRequestCallback)
+        -> TransactionConsumption.RetrieveRequest? {
             return self.retrieve(using: client,
                                  endpoint: .transactionRequestConsume(params: params),
                                  callback: callback)
@@ -70,13 +70,13 @@ extension TransactionConsume: Retrievable {
 
 }
 
-extension TransactionConsume: Hashable {
+extension TransactionConsumption: Hashable {
 
     public var hashValue: Int {
         return self.id.hashValue
     }
 
-    public static func == (lhs: TransactionConsume, rhs: TransactionConsume) -> Bool {
+    public static func == (lhs: TransactionConsumption, rhs: TransactionConsumption) -> Bool {
         return lhs.id == rhs.id
     }
 

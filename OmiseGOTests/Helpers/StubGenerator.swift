@@ -71,9 +71,9 @@ class StubGenerator {
             return Setting(mintedTokens: mintedTokens ?? v.mintedTokens)
     }
 
-    class func transactionConsume(
+    class func transactionConsumption(
         id: String? = nil,
-        status: TransactionConsumeStatus? = nil,
+        status: TransactionConsumptionStatus? = nil,
         amount: Double? = nil,
         mintedToken: MintedToken? = nil,
         correlationId: String? = nil,
@@ -82,9 +82,9 @@ class StubGenerator {
         userId: String? = nil,
         transactionRequestId: String? = nil,
         address: String? = nil)
-        -> TransactionConsume {
-            let v: TransactionConsume = self.stub(forResource: "transaction_consume")
-            return TransactionConsume(id: id ?? v.id,
+        -> TransactionConsumption {
+            let v: TransactionConsumption = self.stub(forResource: "transaction_consumption")
+            return TransactionConsumption(id: id ?? v.id,
                                       status: status ?? v.status,
                                       amount: amount ?? v.amount,
                                       mintedToken: mintedToken ?? v.mintedToken,
@@ -120,7 +120,7 @@ class StubGenerator {
 
     class func transaction(
         id: String? = nil,
-        status: TransactionConsumeStatus? = nil,
+        status: TransactionConsumptionStatus? = nil,
         from: TransactionSource? = nil,
         to: TransactionSource? = nil,
         exchange: TransactionExchange? = nil,
@@ -194,15 +194,15 @@ class StubGenerator {
             return TransactionRequestGetParams(id: id!)
     }
 
-    class func transactionConsumeParams(
+    class func transactionConsumptionParams(
         transactionRequest: TransactionRequest? = StubGenerator.stub(forResource: "transaction_request"),
         address: String? = "3b7f1c68-e3bd-4f8f-9916-4af19be95d00",
         mintedTokenId: String? = "BTC:861020af-17b6-49ee-a0cb-661a4d2d1f95",
         amount: Double? = 1337,
         idempotencyToken: String? = "7a0ad55f-2084-4457-b871-1413142cde84",
         correlationId: String? = "45a5bce3-4e9d-4244-b3a9-64b7a4c5bdc4",
-        metadata: [String: Any]? = [:]) -> TransactionConsumeParams {
-            return TransactionConsumeParams(
+        metadata: [String: Any]? = [:]) -> TransactionConsumptionParams {
+            return TransactionConsumptionParams(
                 transactionRequest: transactionRequest!,
                 address: address!,
                 mintedTokenId: mintedTokenId!,

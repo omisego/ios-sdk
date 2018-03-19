@@ -21,7 +21,7 @@ public enum TransactionStatus: String, Decodable {
 public struct Transaction {
 
     public let id: String
-    public let status: TransactionConsumeStatus
+    public let status: TransactionConsumptionStatus
     public let from: TransactionSource
     public let to: TransactionSource
     public let exchange: TransactionExchange
@@ -47,7 +47,7 @@ extension Transaction: Decodable {
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decode(String.self, forKey: .id)
-        status = try container.decode(TransactionConsumeStatus.self, forKey: .status)
+        status = try container.decode(TransactionConsumptionStatus.self, forKey: .status)
         from = try container.decode(TransactionSource.self, forKey: .from)
         to = try container.decode(TransactionSource.self, forKey: .to)
         exchange = try container.decode(TransactionExchange.self, forKey: .exchange)

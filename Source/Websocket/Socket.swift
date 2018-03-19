@@ -16,7 +16,7 @@ enum SocketEventSend: String, Encodable {
     case close = "phx_close"
 }
 
-public enum SocketEventReceive: String, Decodable {
+public enum SocketEvent: String, Decodable {
     case reply = "phx_reply"
     case transactionRequestConfirmation = "transaction_request_confirmation"
     case transactionRequestConsumptionChange = "transaction_request_consumption_change"
@@ -174,14 +174,17 @@ extension Socket: SocketSendable {
 extension Socket: WebSocketDelegate {
 
     func websocketDidConnect(socket: WebSocketClient) {
+        omiseGOInfo("websockets did connect")
         self.startHeartbeatTimer()
     }
 
     func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {
+        omiseGOInfo("websockets did disconnect, with error: \(error?.localizedDescription ?? "no error")")
         self.handleReconnect()
     }
 
     func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
+        omiseGOInfo("websockets did receive: \(text)")
         guard let data = text.data(using: .utf8), let payload: SocketPayloadReceive = try? deserializeData(data) else { return }
         var message: SocketMessage!
         if let ref = payload.ref, let waitingForResponse = self.awaitingResponse[ref] {

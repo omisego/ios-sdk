@@ -1,5 +1,5 @@
 //
-//  TransactionConsumeParamsTest.swift
+//  TransactionConsumptionParamsTest.swift
 //  OmiseGOTests
 //
 //  Created by Mederic Petit on 7/2/2018.
@@ -9,12 +9,12 @@
 import XCTest
 @testable import OmiseGO
 
-class TransactionConsumeParamsTest: XCTestCase {
+class TransactionConsumptionParamsTest: XCTestCase {
 
     func testInitCorrectlyWhenGivenAnAmountFromATransactionRequest() {
 
         let transactionRequest = StubGenerator.transactionRequest(amount: 1337)
-        XCTAssertNotNil(TransactionConsumeParams(transactionRequest: transactionRequest,
+        XCTAssertNotNil(TransactionConsumptionParams(transactionRequest: transactionRequest,
                                                  address: nil,
                                                  mintedTokenId: nil,
                                                  idempotencyToken: "123",
@@ -30,7 +30,7 @@ class TransactionConsumeParamsTest: XCTestCase {
                                                     address: "3bfe0ff7-f43e-4ac6-bdf9-c4a290c40d0d",
                                                     correlationId: "31009545-db10-4287-82f4-afb46d9741d8",
                                                     status: .valid)
-        XCTAssertNil(TransactionConsumeParams(transactionRequest: transactionRequest,
+        XCTAssertNil(TransactionConsumptionParams(transactionRequest: transactionRequest,
                                               address: nil,
                                               mintedTokenId: nil,
                                               idempotencyToken: "123",
@@ -46,7 +46,7 @@ class TransactionConsumeParamsTest: XCTestCase {
                                                     address: "3bfe0ff7-f43e-4ac6-bdf9-c4a290c40d0d",
                                                     correlationId: "31009545-db10-4287-82f4-afb46d9741d8",
                                                     status: .valid)
-        let params = TransactionConsumeParams(transactionRequest: transactionRequest,
+        let params = TransactionConsumptionParams(transactionRequest: transactionRequest,
                                               address: nil,
                                               mintedTokenId: nil,
                                               amount: 3000,
@@ -58,7 +58,7 @@ class TransactionConsumeParamsTest: XCTestCase {
 
     func testAmountIsTakenFromAmountParamFirst() {
         let transactionRequest = StubGenerator.transactionRequest(amount: 1337)
-        let params = TransactionConsumeParams(transactionRequest: transactionRequest,
+        let params = TransactionConsumptionParams(transactionRequest: transactionRequest,
                                               address: nil,
                                               mintedTokenId: nil,
                                               amount: 3000,

@@ -308,21 +308,21 @@ func scannerDidFailToDecode(scanner: QRScannerViewController, withError error: O
 
 When the scanner successfully decodes a transaction request it will call its delegate method `scannerDidDecode(scanner: QRScannerViewController, transactionRequest: TransactionRequest)`.
 
-You should use this `transactionRequest` to generate a `TransactionConsumeParams` in order to consume the request.
+You should use this `transactionRequest` to generate a `TransactionConsumptionParams` in order to consume the request.
 
 #### Consumption
 
 ```swift
-guard let params = TransactionConsumeParams(transactionRequest: transactionRequest,
+guard let params = TransactionConsumptionParams(transactionRequest: transactionRequest,
                                             address: nil,
                                             mintedTokenId: nil,
                                             amount: nil,
                                             idempotencyToken: self.idemPotencyToken,
                                             correlationId: nil,
                                             metadata: [:]) else { return }
-TransactionConsume.consumeTransactionRequest(using: client, params: params) { (transactionConsumeResult) in
-    switch transactionConsumeResult {
-    case .success(data: let transactionConsume):
+TransactionConsumption.consumeTransactionRequest(using: client, params: params) { (transactionConsumptionResult) in
+    switch transactionConsumptionResult {
+    case .success(data: let transactionConsumption):
         // Handle success
     case .fail(error: let error):
         // Handle error
@@ -330,7 +330,7 @@ TransactionConsume.consumeTransactionRequest(using: client, params: params) { (t
 }
 ```
 
-Where `params` is a `TransactionConsumeParams` struct constructed using:
+Where `params` is a `TransactionConsumptionParams` struct constructed using:
 
 - `transactionRequest`: The transactionRequest obtained from the QR scanner.
 - `address`: (optional) The address from which to take the funds. If not specified, the current user's primary address will be used.

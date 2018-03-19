@@ -1,5 +1,5 @@
 //
-//  TransactionConsumeTest.swift
+//  TransactionConsumptionTest.swift
 //  OmiseGOTests
 //
 //  Created by Mederic Petit on 13/2/2018.
@@ -9,21 +9,21 @@
 import XCTest
 import OmiseGO
 
-class TransactionConsumeTest: XCTestCase {
+class TransactionConsumptionTest: XCTestCase {
 
     func testEquatable() {
-        let transactionConsume1 = StubGenerator.transactionConsume(id: "1")
-        let transactionConsume2 = StubGenerator.transactionConsume(id: "1")
-        let transactionConsume3 = StubGenerator.transactionConsume(id: "2")
-        XCTAssertEqual(transactionConsume1, transactionConsume2)
-        XCTAssertNotEqual(transactionConsume1, transactionConsume3)
+        let transactionConsumption1 = StubGenerator.transactionConsumption(id: "1")
+        let transactionConsumption2 = StubGenerator.transactionConsumption(id: "1")
+        let transactionConsumption3 = StubGenerator.transactionConsumption(id: "2")
+        XCTAssertEqual(transactionConsumption1, transactionConsumption2)
+        XCTAssertNotEqual(transactionConsumption1, transactionConsumption3)
     }
 
     func testHashable() {
-        let transactionConsume1 = StubGenerator.transactionConsume(id: "1")
-        let transactionConsume2 = StubGenerator.transactionConsume(id: "1")
-        let set: Set<TransactionConsume> = [transactionConsume1, transactionConsume2]
-        XCTAssertEqual(transactionConsume1.hashValue, "1".hashValue)
+        let transactionConsumption1 = StubGenerator.transactionConsumption(id: "1")
+        let transactionConsumption2 = StubGenerator.transactionConsumption(id: "1")
+        let set: Set<TransactionConsumption> = [transactionConsumption1, transactionConsumption2]
+        XCTAssertEqual(transactionConsumption1.hashValue, "1".hashValue)
         XCTAssertEqual(set.count, 1)
     }
 

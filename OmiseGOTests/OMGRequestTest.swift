@@ -15,7 +15,7 @@ class OMGRequestTest: XCTestCase {
                                                                apiKey: "123",
                                                                authenticationToken: "123"))
 
-    let validTransactionConsumeParams = StubGenerator.transactionConsumeParams()
+    let validTransactionConsumptionParams = StubGenerator.transactionConsumptionParams()
 
     func testBuildRequestWithParams() {
         let dummyObject = DummyTestObject(object: "object")
@@ -41,12 +41,12 @@ class OMGRequestTest: XCTestCase {
     func testBuildRequestWithAdditionalHeaderFromParams() {
         let request: OMGRequest<DummyTestObject> =
             OMGRequest(client: self.client,
-                       endpoint: .transactionRequestConsume(params: self.validTransactionConsumeParams),
+                       endpoint: .transactionRequestConsume(params: self.validTransactionConsumptionParams),
                        callback: nil)
         do {
             let urlRequest: URLRequest = try request.buildURLRequest()!
             XCTAssertEqual(urlRequest.allHTTPHeaderFields!["Idempotency-Token"],
-                           self.validTransactionConsumeParams.idempotencyToken)
+                           self.validTransactionConsumptionParams.idempotencyToken)
         } catch let error {
             XCTFail(error.localizedDescription)
         }

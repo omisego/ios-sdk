@@ -10,6 +10,10 @@ func omiseGOWarn(_ message: String) {
     print("[omiseGO] WARN: \(message)")
 }
 
+func omiseGOInfo(_ message: String) {
+    print("[omiseGO] INFO: \(message)")
+}
+
 func deserializeData<ObjectType: Decodable>(_ data: Data) throws -> ObjectType {
     let jsonDecoder = JSONDecoder()
     jsonDecoder.dateDecodingStrategy = .custom({return try dateDecodingStrategy(decoder: $0)})

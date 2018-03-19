@@ -44,7 +44,7 @@ extension SocketPayloadSend: Parametrable {
 struct SocketPayloadReceive: Decodable {
 
     let topic: String
-    let event: SocketEventReceive
+    let event: SocketEvent
     let ref: String?
     let data: GenericObject
     let version: String

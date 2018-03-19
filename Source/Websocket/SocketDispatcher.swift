@@ -10,16 +10,15 @@ enum SocketDispatcher {
 
     case user(handler: UserEventHandler)
     case transactionRequest(handler: TransactionRequestEventHandler)
-    case transactionConsume(handler: TransactionConsumeEventHandler)
+    case transactionConsumption(handler: TransactionConsumptionEventHandler)
 
     var commonHandler: EventHandler {
         switch self {
         case .user(let handler): return handler
         case .transactionRequest(let handler): return handler
-        case .transactionConsume(let handler): return handler
+        case .transactionConsumption(let handler): return handler
         }
     }
-
 
     func dispatchJoin() {
         self.commonHandler.didStartListening()
@@ -33,15 +32,18 @@ enum SocketDispatcher {
         self.commonHandler.didReceiveError(error)
     }
 
-    func dispatch(_ payload: GenericObjectEnum, event: SocketEventReceive) {
+    func dispatch(_ payload: GenericObjectEnum, event: SocketEvent) {
         switch self {
-        case .user(let handler): self.handleUserEvents(withHandler: handler, payload: payload, event: event)
-        case .transactionRequest(let handler): self.handleTransactionRequestEvents(withHandler: handler, payload: payload)
-        case .transactionConsume(let handler): self.handleTransactionConsumeEvents(withHandler: handler, payload: payload)
+        case .user(let handler):
+            self.handleUserEvents(withHandler: handler, payload: payload, event: event)
+        case .transactionRequest(let handler):
+            self.handleTransactionRequestEvents(withHandler: handler, payload: payload, event: event)
+        case .transactionConsumption(let handler):
+            self.handleTransactionConsumptionEvents(withHandler: handler, payload: payload, event: event)
         }
     }
 
-    private func handleUserEvents(withHandler handler: UserEventHandler, payload: GenericObjectEnum, event: SocketEventReceive) {
+    private func handleUserEvents(withHandler handler: UserEventHandler, payload: GenericObjectEnum, event: SocketEvent) {
         switch payload {
         case .transactionConsumption(object: let object):
             handler.didReceive(.transactionConsumption(object: object), forEvent: event)
@@ -51,20 +53,24 @@ enum SocketDispatcher {
         }
     }
 
-    private func handleTransactionRequestEvents(withHandler handler: TransactionRequestEventHandler, payload: GenericObjectEnum) {
+    private func handleTransactionRequestEvents(withHandler handler: TransactionRequestEventHandler,
+                                                payload: GenericObjectEnum,
+                                                event: SocketEvent) {
         switch payload {
-        case .transactionConsumption(object: let transactionConsume):
-            handler.didReceiveTransactionConsumeRequest(transactionConsume)
+        case .transactionConsumption(object: let transactionConsumption):
+            handler.didReceiveTransactionConsumptionRequest(transactionConsumption, forEvent: event)
         case .error(error: let error):
             self.dispatchError(error)
         default: break
         }
     }
 
-    private func handleTransactionConsumeEvents(withHandler handler: TransactionConsumeEventHandler, payload: GenericObjectEnum) {
+    private func handleTransactionConsumptionEvents(withHandler handler: TransactionConsumptionEventHandler,
+                                                    payload: GenericObjectEnum,
+                                                    event: SocketEvent) {
         switch payload {
-        case .transactionConsumption(object: let transactionConsume):
-            handler.didReceiveTransactionConsumeConfirmation(transactionConsume)
+        case .transactionConsumption(object: let transactionConsumption):
+            handler.didReceiveTransactionConsumptionConfirmation(transactionConsumption, forEvent: event)
         case .error(error: let error):
             self.dispatchError(error)
         default: break
