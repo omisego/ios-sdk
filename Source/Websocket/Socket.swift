@@ -8,56 +8,24 @@
 
 import Starscream
 
-enum SocketEventSend: String, Encodable {
-    case heartbeat = "heartbeat"
-    case join = "phx_join"
-    case leave = "phx_leave"
-    case error = "phx_error"
-    case close = "phx_close"
-}
+public class Socket {
 
-public enum SocketEvent: String, Decodable {
-    case reply = "phx_reply"
-    case transactionRequestConfirmation = "transaction_request_confirmation"
-    case transactionRequestConsumptionChange = "transaction_request_consumption_change"
-}
-
-class Socket {
-
-    var awaitingResponse: [String: SocketMessage] = [:]
-    var channels: [String: SocketChannel] = [:]
-
-    var sendBuffer: [SocketMessage] = []
-
-    var sendBufferTimer: Timer?
-    let flushDelay = 1.0
-
-    var heartbeatTimer: Timer?
-    let heartbeatDelay = 10.0
-
-    var reconnectTimer: Timer?
-    let reconnectDelay = 5.0
-
-    var messageReference: UInt64 = UInt64.min
-    var shouldBeConnected: Bool = false
-
+    private var awaitingResponse: [String: SocketMessage] = [:]
+    private var channels: [String: SocketChannel] = [:]
+    private var sendBuffer: [SocketMessage] = []
+    private var sendBufferTimer: Timer?
+    private let flushDelay = 1.0
+    private var heartbeatTimer: Timer?
+    private let heartbeatDelay = 10.0
+    private var reconnectTimer: Timer?
+    private let reconnectDelay = 5.0
+    private var messageReference: UInt64 = UInt64.min
+    private var shouldBeConnected: Bool = false
     private let webSocket: WebSocket
+    public weak var connectionDelegate: SocketConnectionDelegate?
 
     init(request: URLRequest) {
         self.webSocket = WebSocket(request: request)
-    }
-
-    func connect() {
-        self.shouldBeConnected = true
-        resetBufferTimer()
-        self.webSocket.delegate = self
-        self.webSocket.connect()
-    }
-
-    func disconnect() {
-        self.shouldBeConnected = false
-        self.webSocket.delegate = nil
-        self.webSocket.disconnect()
     }
 
     func leaveChannel(withTopic topic: String) {
@@ -72,8 +40,21 @@ class Socket {
         self.joinChannel(channel)
     }
 
+    private func connect() {
+        self.shouldBeConnected = true
+        resetBufferTimer()
+        self.webSocket.delegate = self
+        self.webSocket.connect()
+    }
+
+    private func disconnect() {
+        self.shouldBeConnected = false
+        self.webSocket.delegate = nil
+        self.webSocket.disconnect()
+    }
+
     @discardableResult
-    func send(message: SocketMessage) -> SocketMessage {
+    private func send(message: SocketMessage) -> SocketMessage {
         guard self.webSocket.isConnected else {
             if message.dataSent!.event != .heartbeat {
                 // Don't queue heartbeat
@@ -173,17 +154,28 @@ extension Socket: SocketSendable {
 
 extension Socket: WebSocketDelegate {
 
-    func websocketDidConnect(socket: WebSocketClient) {
-        omiseGOInfo("websockets did connect")
+    public func websocketDidConnect(socket: WebSocketClient) {
+        self.connectionDelegate?.didConnect()
         self.startHeartbeatTimer()
     }
 
-    func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {
-        omiseGOInfo("websockets did disconnect, with error: \(error?.localizedDescription ?? "no error")")
+    public func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {
+        if let wsError: WSError  = error as? WSError {
+            guard wsError.code != 403 else {
+                self.connectionDelegate?.didDisconnect(.socketError(message: "Authorization error"))
+                return
+            }
+            self.connectionDelegate?.didDisconnect(.socketError(message: wsError.message))
+        }
+        if let error = error {
+            self.connectionDelegate?.didDisconnect(.other(error: error))
+        } else {
+            self.connectionDelegate?.didDisconnect(nil)
+        }
         self.handleReconnect()
     }
 
-    func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
+    public func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
         omiseGOInfo("websockets did receive: \(text)")
         guard let data = text.data(using: .utf8), let payload: SocketPayloadReceive = try? deserializeData(data) else { return }
         var message: SocketMessage!
@@ -197,6 +189,6 @@ extension Socket: WebSocketDelegate {
         self.dispatch(message: message)
     }
 
-    func websocketDidReceiveData(socket: WebSocketClient, data: Data) { /* no-op */ }
+    public func websocketDidReceiveData(socket: WebSocketClient, data: Data) { /* no-op */ }
 
 }

@@ -8,11 +8,11 @@
 
 enum SocketDispatcher {
 
-    case user(handler: UserEventHandler)
-    case transactionRequest(handler: TransactionRequestEventHandler)
-    case transactionConsumption(handler: TransactionConsumptionEventHandler)
+    case user(handler: UserEventDelegate)
+    case transactionRequest(handler: TransactionRequestEventDelegate)
+    case transactionConsumption(handler: TransactionConsumptionEventDelegate)
 
-    var commonHandler: EventHandler {
+    var commonHandler: EventDelegate {
         switch self {
         case .user(let handler): return handler
         case .transactionRequest(let handler): return handler
@@ -43,7 +43,7 @@ enum SocketDispatcher {
         }
     }
 
-    private func handleUserEvents(withHandler handler: UserEventHandler, payload: GenericObjectEnum, event: SocketEvent) {
+    private func handleUserEvents(withHandler handler: UserEventDelegate, payload: GenericObjectEnum, event: SocketEvent) {
         switch payload {
         case .transactionConsumption(object: let object):
             handler.didReceive(.transactionConsumption(object: object), forEvent: event)
@@ -53,7 +53,7 @@ enum SocketDispatcher {
         }
     }
 
-    private func handleTransactionRequestEvents(withHandler handler: TransactionRequestEventHandler,
+    private func handleTransactionRequestEvents(withHandler handler: TransactionRequestEventDelegate,
                                                 payload: GenericObjectEnum,
                                                 event: SocketEvent) {
         switch payload {
@@ -65,7 +65,7 @@ enum SocketDispatcher {
         }
     }
 
-    private func handleTransactionConsumptionEvents(withHandler handler: TransactionConsumptionEventHandler,
+    private func handleTransactionConsumptionEvents(withHandler handler: TransactionConsumptionEventDelegate,
                                                     payload: GenericObjectEnum,
                                                     event: SocketEvent) {
         switch payload {

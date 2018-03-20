@@ -6,6 +6,34 @@
 //  Copyright © 2018 Omise Go Pte. Ltd. All rights reserved.
 //
 
+struct GenericObject {
+
+    let object: GenericObjectEnum
+
+}
+
+extension GenericObject: Codable {
+
+    private enum CodingKeys: String, CodingKey {
+        case objectType = "object"
+    }
+
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        let objectType: String? = try container.decodeIfPresent(String.self, forKey: .objectType)
+        guard let decodedObject = try GenericObjectEnum(objectType: objectType, decoder: decoder) else {
+            throw OmiseGOError.socketError(message: "Unknown object type")
+        }
+        self.object = decodedObject
+    }
+
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.unkeyedContainer()
+        try container.encode(object)
+    }
+
+}
+
 public enum WebsocketObject {
     case transactionConsumption(object: TransactionConsumption)
 }
@@ -40,34 +68,6 @@ extension GenericObjectEnum: Encodable {
             try container.encodeJSONDictionary(object)
         default: try container.encodeJSONDictionary([:])
         }
-    }
-
-}
-
-struct GenericObject {
-
-    let object: GenericObjectEnum
-
-}
-
-extension GenericObject: Codable {
-
-    private enum CodingKeys: String, CodingKey {
-        case objectType = "object"
-    }
-
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        let objectType: String? = try container.decodeIfPresent(String.self, forKey: .objectType)
-        guard let decodedObject = try GenericObjectEnum(objectType: objectType, decoder: decoder) else {
-            throw OmiseGOError.socketError(message: "Unknown object type")
-        }
-        self.object = decodedObject
-    }
-
-    func encode(to encoder: Encoder) throws {
-        var container = encoder.unkeyedContainer()
-        try container.encode(object)
     }
 
 }

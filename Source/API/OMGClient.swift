@@ -15,8 +15,12 @@ public class OMGClient {
     var session: URLSession!
     var config: OMGConfiguration
 
-    lazy var socketManager: Socket = {
-        let request = try? RequestBuilder(client: self).buildWebsocketRequest()
+    /// The websocket object managing the channels and connection.
+    /// You can observe its connection events using a SocketConnectionDelegate
+    /// This is a lazy initialized object that will use authentication provided in the OMGConfiguration object.
+    /// If the authentication token provided appears to be invalid, you should initialize a new OMGClient.
+    public lazy var websocket: Socket = {
+        let request = try? RequestBuilder(requestParameters: RequestParameters(config: self.config)).buildWebsocketRequest()
         assert(request != nil, "Invalid websocket url")
         return Socket(request: request!)
     }()
@@ -53,27 +57,6 @@ public class OMGClient {
 
     func performCallback(_ callback: @escaping () -> Void) {
         OperationQueue.main.addOperation(callback)
-    }
-
-    func encodedAuthorizationHeader() throws -> String {
-        guard let authenticationToken = self.config.authenticationToken else {
-            throw OmiseGOError.configuration(message: "Please provide an authentication token before using the SDK")
-        }
-        let keys = "\(self.config.apiKey):\(authenticationToken)"
-        let data = keys.data(using: .utf8, allowLossyConversion: false)
-        guard let encodedKey = data?.base64EncodedString() else {
-            throw OmiseGOError.configuration(message: "bad API key or authentication token (encoding failed.)")
-        }
-
-        return "\(authScheme) \(encodedKey)"
-    }
-
-    func contentTypeHeader() -> String {
-        return "application/vnd.omisego.v\(self.config.apiVersion)+json; charset=utf-8"
-    }
-
-    func acceptHeader() -> String {
-        return "application/vnd.omisego.v\(self.config.apiVersion)+json"
     }
 
 }

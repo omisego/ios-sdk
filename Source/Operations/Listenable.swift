@@ -11,30 +11,30 @@ public protocol Listenable {
 
 public extension Listenable {
     public func stopListening(withClient client: OMGClient) {
-        client.socketManager.leaveChannel(withTopic: self.socketTopic)
+        client.websocket.leaveChannel(withTopic: self.socketTopic)
     }
 }
 
 public extension Listenable where Self == User {
 
-    public func startListeningEvents(withClient client: OMGClient, handler: UserEventHandler) {
-        client.socketManager.join(withTopic: self.socketTopic, dispatcher: SocketDispatcher.user(handler: handler))
+    public func startListeningEvents(withClient client: OMGClient, eventDelegate: UserEventDelegate) {
+        client.websocket.join(withTopic: self.socketTopic, dispatcher: SocketDispatcher.user(handler: eventDelegate))
     }
 
 }
 
 public extension Listenable where Self == TransactionRequest {
 
-    public func startListeningEvents(withClient client: OMGClient, handler: TransactionRequestEventHandler) {
-        client.socketManager.join(withTopic: self.socketTopic, dispatcher: SocketDispatcher.transactionRequest(handler: handler))
+    public func startListeningEvents(withClient client: OMGClient, eventDelegate: TransactionRequestEventDelegate) {
+        client.websocket.join(withTopic: self.socketTopic, dispatcher: SocketDispatcher.transactionRequest(handler: eventDelegate))
     }
 
 }
 
 public extension Listenable where Self == TransactionConsumption {
 
-    public func startListeningEvents(withClient client: OMGClient, handler: TransactionConsumptionEventHandler) {
-        client.socketManager.join(withTopic: self.socketTopic, dispatcher: SocketDispatcher.transactionConsumption(handler: handler))
+    public func startListeningEvents(withClient client: OMGClient, eventDelegate: TransactionConsumptionEventDelegate) {
+        client.websocket.join(withTopic: self.socketTopic, dispatcher: SocketDispatcher.transactionConsumption(handler: eventDelegate))
     }
 
 }

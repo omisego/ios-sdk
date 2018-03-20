@@ -9,14 +9,14 @@ import UIKit
 
 class RequestBuilder {
 
-    private let client: OMGClient
+    private let requestParameters: RequestParameters
 
-    init(client: OMGClient) {
-        self.client = client
+    init(requestParameters: RequestParameters) {
+        self.requestParameters = requestParameters
     }
 
     func buildHTTPURLRequest(withEndpoint endpoint: APIEndpoint) throws -> URLRequest? {
-        guard let requestURL = endpoint.makeURL(withBaseURL: client.config.baseURL) else {
+        guard let requestURL = endpoint.makeURL(withBaseURL: self.requestParameters.baseHTTPURL()) else {
             throw OmiseGOError.configuration(message: "Invalid request")
         }
         var request = URLRequest(url: requestURL)
@@ -39,7 +39,7 @@ class RequestBuilder {
     }
 
     func buildWebsocketRequest() throws -> URLRequest {
-        let requestURL = URL(string: client.config.websocketsBaseUrl)!
+        let requestURL = URL(string: self.requestParameters.baseSocketURL())!
         var request = URLRequest(url: requestURL)
         request.timeoutInterval = 6.0
         try self.addRequiredHeaders(toRequest: &request)
@@ -47,10 +47,10 @@ class RequestBuilder {
     }
 
     private func addRequiredHeaders(toRequest request: inout URLRequest) throws {
-        let auth = try self.client.encodedAuthorizationHeader()
+        let auth = try self.requestParameters.encodedAuthorizationHeader()
         request.addValue(auth, forHTTPHeaderField: "Authorization")
-        request.addValue(self.client.acceptHeader(), forHTTPHeaderField: "Accept")
-        request.addValue(self.client.contentTypeHeader(), forHTTPHeaderField: "Content-Type")
+        request.addValue(self.requestParameters.acceptHeader(), forHTTPHeaderField: "Accept")
+        request.addValue(self.requestParameters.contentTypeHeader(), forHTTPHeaderField: "Content-Type")
     }
 
 }

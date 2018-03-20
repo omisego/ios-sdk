@@ -10,9 +10,7 @@ protocol SocketSendable: class {
     func send(topic: String, event: SocketEventSend) -> SocketMessage
 }
 
-class SocketChannel {
-
-    typealias Payload = [String: Any]
+struct SocketChannel {
 
     let topic: String
     private let dispatcher: SocketDispatcher?
