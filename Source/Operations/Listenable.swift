@@ -5,11 +5,15 @@
 //  Created by Mederic Petit on 9/3/18.
 //
 
+/// Represents an object that can be listened with websockets
 public protocol Listenable {
     var socketTopic: String { get }
 }
 
 public extension Listenable {
+    /// Stop listening for events
+    ///
+    /// - Parameter client: The client used when starting to listen
     public func stopListening(withClient client: OMGClient) {
         client.websocket.leaveChannel(withTopic: self.socketTopic)
     }
@@ -17,7 +21,12 @@ public extension Listenable {
 
 public extension Listenable where Self == User {
 
-    public func startListeningEvents(withClient client: OMGClient, eventDelegate: UserEventDelegate) {
+    /// Opens a websocket connection with the server and starts to listen for any event regarding the current user
+    ///
+    /// - Parameters:
+    ///   - client: The correctly initialized client to use for the websocket connection
+    ///   - eventDelegate: The delegate that will receive events
+    public func startListeningEvents(withClient client: OMGClient, eventDelegate: UserEventDelegate?) {
         client.websocket.join(withTopic: self.socketTopic, dispatcher: SocketDispatcher.user(handler: eventDelegate))
     }
 
@@ -25,7 +34,13 @@ public extension Listenable where Self == User {
 
 public extension Listenable where Self == TransactionRequest {
 
-    public func startListeningEvents(withClient client: OMGClient, eventDelegate: TransactionRequestEventDelegate) {
+    /// Opens a websocket connection with the server and starts to listen for events happening on this transaction request
+    /// Typically, this should be used to listen for consumption request made on the request
+    ///
+    /// - Parameters:
+    ///   - client: The correctly initialized client to use for the websocket connection
+    ///   - eventDelegate: The delegate that will receive events
+    public func startListeningEvents(withClient client: OMGClient, eventDelegate: TransactionRequestEventDelegate?) {
         client.websocket.join(withTopic: self.socketTopic, dispatcher: SocketDispatcher.transactionRequest(handler: eventDelegate))
     }
 
@@ -33,7 +48,13 @@ public extension Listenable where Self == TransactionRequest {
 
 public extension Listenable where Self == TransactionConsumption {
 
-    public func startListeningEvents(withClient client: OMGClient, eventDelegate: TransactionConsumptionEventDelegate) {
+    /// Opens a websocket connection with the server and starts to listen for events happening on this transaction consumption
+    /// Typically, this should be used to listen for consumption confirmation
+    ///
+    /// - Parameters:
+    ///   - client: The correctly initialized client to use for the websocket connection
+    ///   - eventDelegate: The delegate that will receive events
+    public func startListeningEvents(withClient client: OMGClient, eventDelegate: TransactionConsumptionEventDelegate?) {
         client.websocket.join(withTopic: self.socketTopic, dispatcher: SocketDispatcher.transactionConsumption(handler: eventDelegate))
     }
 

@@ -20,13 +20,21 @@ public enum TransactionStatus: String, Decodable {
 /// Represents a transaction
 public struct Transaction {
 
+    /// The unique identifier of the transaction
     public let id: String
+    /// The status of the transaction (pending, confirmed or failed)
     public let status: TransactionConsumptionStatus
+    /// The source reprensenting the source of the funds
     public let from: TransactionSource
+    /// The source representing the destination of the funds
     public let to: TransactionSource
+    /// Contains info of the exchange made during the transaction (if any)
     public let exchange: TransactionExchange
+    /// Additional metadata for the consumption
     public let metadata: [String: Any]
+    /// The creation date of the transaction
     public let createdAt: Date
+    /// The update date of the transaction
     public let updatedAt: Date
 
 }

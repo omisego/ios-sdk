@@ -8,9 +8,11 @@
 
 /// The different types of request that can be generated
 ///
-/// - receive: The initiator wants to receive a specified token
+/// - receive: The requester wants to receive an amount of token
+/// - send: The requester wants to send an amount of token
 public enum TransactionRequestType: String, Codable {
     case receive
+    case send
 }
 
 /// The status of the transaction request
@@ -25,14 +27,39 @@ public enum TransactionRequestStatus: String, Decodable {
 /// Represents a transaction request
 public struct TransactionRequest: Listenable, Decodable {
 
+    /// The unique identifier of the request
     public let id: String
+    /// The type of the request (send of receive)
     public let type: TransactionRequestType
+    /// The minted token for the request
+    /// In the case of a type "send", this will be the token taken from the requester
+    /// In the case of a type "receive" this will be the token received by the requester
     public let mintedToken: MintedToken
+    /// The amount of minted token to use for the transaction (down to subunit to unit)
+    /// This amount needs to be either specified by the requester or the consumer
     public let amount: Double?
+    /// The address from which to send or receive the minted tokens
     public let address: String?
+    /// An id that can uniquely identify a transaction. Typically an order id from a provider.
     public let correlationId: String?
+    /// The status of the request (valid or expired)
     public let status: TransactionRequestStatus
+    /// The topic which can be listened in order to receive events regarding this request
     public let socketTopic: String
+    /// A boolean indicating if the request needs a confirmation from the requester before being proceeded
+    public let confirmable: Bool
+    /// The maximum number of time that this request can be consumed
+    public let maxConsumptions: Int?
+    /// The amount of time in milisecond during which a consumption is valid
+    public let consumptionLifetime: Int?
+    /// The date when the request will expire and not be consumable anymore
+    public let expirationDate: Date?
+    /// The date when the request expired
+    public let expiredAt: Date?
+    /// Allow or not the consumer to override the amount specified in the request
+    public let allowAmountOverride: Bool
+    /// Additional metadata for the request
+    public let metadata: [String: Any]
 
     private enum CodingKeys: String, CodingKey {
         case id
@@ -43,6 +70,32 @@ public struct TransactionRequest: Listenable, Decodable {
         case correlationId = "correlation_id"
         case status
         case socketTopic = "socket_topic"
+        case confirmable
+        case maxConsumptions = "max_consumtions"
+        case consumptionLifetime = "consumption_lifetime"
+        case expirationDate = "expiration_date"
+        case expiredAt = "expired_at"
+        case allowAmountOverride = "allow_amount_override"
+        case metadata
+    }
+
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        id = try container.decode(String.self, forKey: .id)
+        type = try container.decode(TransactionRequestType.self, forKey: .type)
+        mintedToken = try container.decode(MintedToken.self, forKey: .mintedToken)
+        amount = try container.decode(Double.self, forKey: .amount)
+        address = try container.decode(String.self, forKey: .address)
+        correlationId = try container.decode(String.self, forKey: .correlationId)
+        status = try container.decode(TransactionRequestStatus.self, forKey: .status)
+        socketTopic = try container.decode(String.self, forKey: .socketTopic)
+        confirmable = try container.decode(Bool.self, forKey: .confirmable)
+        maxConsumptions = try container.decode(Int.self, forKey: .maxConsumptions)
+        consumptionLifetime = try container.decode(Int.self, forKey: .consumptionLifetime)
+        expirationDate = try container.decode(Date.self, forKey: .expirationDate)
+        expiredAt = try container.decode(Date.self, forKey: .expiredAt)
+        allowAmountOverride = try container.decode(Bool.self, forKey: .allowAmountOverride)
+        metadata = try container.decode([String: Any].self, forKey: .metadata)
     }
 
 }
