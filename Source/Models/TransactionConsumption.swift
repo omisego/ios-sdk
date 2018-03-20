@@ -116,6 +116,19 @@ extension TransactionConsumption: Retrievable {
                                  callback: callback)
     }
 
+    /// Confirms the transaction consumption
+    ///
+    /// - Parameters:
+    ///   - client: An API client.
+    ///             This client need to be initialized with a OMGConfiguration struct before being used.
+    ///   - callback: The closure called when the request is completed
+    /// - Returns: An optional cancellable request.
+    public func confirm(using client: OMGClient,
+                        callback: @escaping TransactionConsumption.RetrieveRequestCallback)
+        -> TransactionConsumption.RetrieveRequest? {
+            return self.retrieve(using: client, endpoint: .transactionConsumptionConfirmation, callback: callback)
+    }
+
 }
 
 extension TransactionConsumption: Hashable {

@@ -19,4 +19,11 @@ public extension Retrievable where Self: Decodable {
                                   callback: @escaping RetrieveRequestCallback) -> RetrieveRequest? {
         return client.request(toEndpoint: endpoint, callback: callback)
     }
+
+    @discardableResult
+    internal func retrieve(using client: OMGClient,
+                           endpoint: APIEndpoint,
+                           callback: @escaping RetrieveRequestCallback) -> RetrieveRequest? {
+        return client.request(toEndpoint: endpoint, callback: callback)
+    }
 }

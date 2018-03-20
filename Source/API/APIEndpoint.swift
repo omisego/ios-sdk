@@ -31,6 +31,7 @@ enum APIEndpoint {
     case transactionRequestCreate(params: TransactionRequestCreateParams)
     case transactionRequestGet(params: TransactionRequestGetParams)
     case transactionRequestConsume(params: TransactionConsumptionParams)
+    case transactionConsumptionConfirmation
     case logout
     case custom(path: String, task: Task)
 
@@ -50,6 +51,8 @@ enum APIEndpoint {
             return "/me.get_transaction_request"
         case .transactionRequestConsume:
             return "/me.consume_transaction_request"
+        case .transactionConsumptionConfirmation:
+            return "/me.confirm_transaction_reqeust_consumption"
         case .logout:
             return "/logout"
         case .custom(let path, _):
@@ -59,7 +62,7 @@ enum APIEndpoint {
 
     var task: Task {
         switch self {
-        case .getCurrentUser, .getAddresses, .getSettings, .logout: // Send no parameters
+        case .getCurrentUser, .getAddresses, .getSettings, .logout, .transactionConsumptionConfirmation: // Send no parameters
             return .requestPlain
         case .transactionRequestCreate(params: let params):
             return .requestParameters(parameters: params)
