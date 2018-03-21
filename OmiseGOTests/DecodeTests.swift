@@ -199,6 +199,7 @@ class DecodeTests: XCTestCase {
             XCTAssertEqual(decodedData.id, "cec34607-0761-4a59-8357-18963e42a1aa")
             XCTAssertEqual(decodedData.providerUserId, "wijf-fbancomw-dqwjudb")
             XCTAssertEqual(decodedData.username, "john.doe@example.com")
+            XCTAssertEqual(decodedData.socketTopic, "user:cec34607-0761-4a59-8357-18963e42a1aa")
         } catch let thrownError {
             XCTFail(thrownError.localizedDescription)
         }
@@ -284,6 +285,16 @@ class DecodeTests: XCTestCase {
             XCTAssertEqual(decodedData.amount, 1337)
             XCTAssertEqual(decodedData.address, "3b7f1c68-e3bd-4f8f-9916-4af19be95d00")
             XCTAssertEqual(decodedData.correlationId, "31009545-db10-4287-82f4-afb46d9741d8")
+            XCTAssertEqual(decodedData.status, .valid)
+            XCTAssertEqual(decodedData.socketTopic, "transaction_request:8eb0160e-1c96-481a-88e1-899399cc84dc")
+            XCTAssertTrue(decodedData.confirmable)
+            XCTAssertEqual(decodedData.maxConsumptions, 1)
+            XCTAssertEqual(decodedData.consumptionLifetime, 1000)
+            XCTAssertEqual(decodedData.expirationDate, "2019-01-01T00:00:00Z".toDate(withFormat: "yyyy-MM-dd'T'HH:mm:ssZ"))
+            XCTAssertEqual(decodedData.expirationReason, "Expired")
+            XCTAssertEqual(decodedData.expiredAt, "2019-01-01T00:00:00Z".toDate(withFormat: "yyyy-MM-dd'T'HH:mm:ssZ"))
+            XCTAssertTrue(decodedData.allowAmountOverride)
+            XCTAssertTrue(decodedData.metadata.isEmpty)
         } catch let thrownError {
             XCTFail(thrownError.localizedDescription)
         }
@@ -297,7 +308,7 @@ class DecodeTests: XCTestCase {
             XCTAssertEqual(decodedData.status, .confirmed)
             XCTAssertEqual(decodedData.amount, 1337)
             let mintedToken = decodedData.mintedToken
-            XCTAssertEqual(mintedToken.id, "BTC:123")
+            XCTAssertEqual(mintedToken.id, "BTC:861020af-17b6-49ee-a0cb-661a4d2d1f95")
             XCTAssertEqual(mintedToken.symbol, "BTC")
             XCTAssertEqual(mintedToken.name, "Bitcoin")
             XCTAssertEqual(mintedToken.subUnitToUnit, 100000)
@@ -305,8 +316,16 @@ class DecodeTests: XCTestCase {
             XCTAssertEqual(decodedData.idempotencyToken, "31009545-db10-4287-82f4-afb46d9741d8")
             XCTAssertEqual(decodedData.transactionId, "6ca40f34-6eaa-43e1-b2e1-a94ff3660988")
             XCTAssertEqual(decodedData.userId, "6f56efa1-caf9-4348-8e0f-f5af283f17ee")
+            XCTAssertNil(decodedData.accountId)
             XCTAssertEqual(decodedData.transactionRequestId, "907056a4-fc2d-47cb-af19-5e73aade7ece")
+            let transactionRequest = decodedData.transactionRequest
+            XCTAssertEqual(transactionRequest.id, "907056a4-fc2d-47cb-af19-5e73aade7ece")
             XCTAssertEqual(decodedData.address, "3b7f1c68-e3bd-4f8f-9916-4af19be95d00")
+            XCTAssertEqual(decodedData.socketTopic, "transaction_consumption:8eb0160e-1c96-481a-88e1-899399cc84dc")
+            XCTAssertEqual(decodedData.finalizedAt, "2018-01-01T00:00:00Z".toDate(withFormat: "yyyy-MM-dd'T'HH:mm:ssZ"))
+            XCTAssertEqual(decodedData.expirationDate, "2019-01-01T00:00:00Z".toDate(withFormat: "yyyy-MM-dd'T'HH:mm:ssZ"))
+            XCTAssertTrue(decodedData.approved)
+            XCTAssertTrue(decodedData.metadata.isEmpty)
         } catch let thrownError {
             XCTFail(thrownError.localizedDescription)
         }
@@ -334,8 +353,8 @@ class DecodeTests: XCTestCase {
             let exchange = decodedData.exchange
             XCTAssertEqual(exchange.rate, 1)
             XCTAssertEqual(decodedData.status, .confirmed)
-            XCTAssertEqual(decodedData.createdAt, try! "2018-01-01T00:00:00Z".toDate())
-            XCTAssertEqual(decodedData.updatedAt, try! "2018-01-01T10:00:00Z".toDate())
+            XCTAssertEqual(decodedData.createdAt, "2018-01-01T00:00:00Z".toDate(withFormat: "yyyy-MM-dd'T'HH:mm:ssZ"))
+            XCTAssertEqual(decodedData.updatedAt, "2018-01-01T10:00:00Z".toDate(withFormat: "yyyy-MM-dd'T'HH:mm:ssZ"))
             XCTAssertEqual(decodedData.metadata.count, 0)
         } catch let thrownError {
             XCTFail(thrownError.localizedDescription)

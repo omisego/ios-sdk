@@ -19,6 +19,15 @@ extension String {
 
 class EncodeTests: XCTestCase {
 
+    var encoder: JSONEncoder!
+
+    override func setUp() {
+        super.setUp()
+        let jsonEncoder = JSONEncoder()
+        jsonEncoder.dateEncodingStrategy = .custom({return try dateEncodingStrategy(date: $0, encoder: $1)})
+        self.encoder = jsonEncoder
+    }
+
     func testMetadaEncoding() {
         let metadata: [String: Any] = ["a_string": "some_string",
                                        "an_integer": 1,
@@ -103,7 +112,7 @@ class EncodeTests: XCTestCase {
                                           unavailableMetadata: nil,
                                           unavailableMetadataArray: nil)
         do {
-            _ = try JSONEncoder().encode(metadataDummy)
+            _ = try self.encoder.encode(metadataDummy)
         } catch let error as EncodingError {
             switch error {
             case .invalidValue(let value, let context):
@@ -126,7 +135,7 @@ class EncodeTests: XCTestCase {
                                           unavailableMetadata: nil,
                                           unavailableMetadataArray: nil)
         do {
-            _ = try JSONEncoder().encode(metadataDummy)
+            _ = try self.encoder.encode(metadataDummy)
         } catch let error as EncodingError {
             switch error {
             case .invalidValue(let value, let context):
@@ -153,16 +162,22 @@ class EncodeTests: XCTestCase {
                                                expirationDate: Date(timeIntervalSince1970: 0),
                                                allowAmountOverride: true,
                                                metadata: [:])!
-            let encodedData = try JSONEncoder().encode(transactionRequestParams)
+            let encodedData = try self.encoder.encode(transactionRequestParams)
             let encodedPayload = try! transactionRequestParams.encodedPayload()
             XCTAssertEqual(encodedData, encodedPayload)
             XCTAssertEqual(String(data: encodedData, encoding: .utf8)!, """
                 {
                     "amount":null,
                     "correlation_id":"31009545-db10-4287-82f4-afb46d9741d8",
-                    "token_id":"BTC:861020af-17b6-49ee-a0cb-661a4d2d1f95",
+                    "address":"3b7f1c68-e3bd-4f8f-9916-4af19be95d00",
+                    "metadata":{},
+                    "confirmable":true,
+                    "consumption_lifetime":1000,
+                    "expiration_date":"1970-01-01T07:00:00+07:00",
                     "type":"receive",
-                    "address":"3b7f1c68-e3bd-4f8f-9916-4af19be95d00"
+                    "token_id":"BTC:861020af-17b6-49ee-a0cb-661a4d2d1f95",
+                    "max_consumtions":1,
+                    "allow_amount_override":true
                 }
             """.uglifiedEncodedString())
         } catch let thrownError {
@@ -184,14 +199,20 @@ class EncodeTests: XCTestCase {
                                                expirationDate: Date(timeIntervalSince1970: 0),
                                                allowAmountOverride: false,
                                                metadata: [:])!
-            let encodedData = try JSONEncoder().encode(transactionRequestParams)
+            let encodedData = try self.encoder.encode(transactionRequestParams)
             XCTAssertEqual(String(data: encodedData, encoding: .utf8)!, """
                 {
                     "amount":1337,
                     "correlation_id":"31009545-db10-4287-82f4-afb46d9741d8",
-                    "token_id":"BTC:861020af-17b6-49ee-a0cb-661a4d2d1f95",
+                    "address":"3b7f1c68-e3bd-4f8f-9916-4af19be95d00",
+                    "metadata":{},
+                    "confirmable":true,
+                    "consumption_lifetime":1000,
+                    "expiration_date":"1970-01-01T07:00:00+07:00",
                     "type":"receive",
-                    "address":"3b7f1c68-e3bd-4f8f-9916-4af19be95d00"
+                    "token_id":"BTC:861020af-17b6-49ee-a0cb-661a4d2d1f95",
+                    "max_consumtions":1,
+                    "allow_amount_override":false
                 }
             """.uglifiedEncodedString())
         } catch let thrownError {
@@ -203,7 +224,7 @@ class EncodeTests: XCTestCase {
         do {
             let transactionRequestParams =
                 TransactionRequestGetParams(id: "0a8a4a98-794b-419e-b92d-514e83657e75")
-            let encodedData = try JSONEncoder().encode(transactionRequestParams)
+            let encodedData = try self.encoder.encode(transactionRequestParams)
             let encodedPayload = try! transactionRequestParams.encodedPayload()
             XCTAssertEqual(encodedData, encodedPayload)
             XCTAssertEqual(String(data: encodedData,
@@ -240,7 +261,7 @@ class EncodeTests: XCTestCase {
                                                                             correlationId: "321",
                                                                             expirationDate: Date(timeIntervalSince1970: 0),
                                                                             metadata: [:])
-            let encodedData = try JSONEncoder().encode(transactionConsumptionParams)
+            let encodedData = try self.encoder.encode(transactionConsumptionParams)
             let encodedPayload = try! transactionConsumptionParams!.encodedPayload()
             XCTAssertEqual(encodedData, encodedPayload)
             XCTAssertEqual(String(data: encodedData, encoding: .utf8)!, """
@@ -267,7 +288,7 @@ class EncodeTests: XCTestCase {
                 searchTerms: nil,
                 sortBy: .aSortableAttribute,
                 sortDirection: .ascending)
-            let encodedData = try JSONEncoder().encode(paginationParams)
+            let encodedData = try self.encoder.encode(paginationParams)
             let encodedPayload = try! paginationParams.encodedPayload()
             XCTAssertEqual(encodedData, encodedPayload)
             XCTAssertEqual(String(data: encodedData, encoding: .utf8)!, """
@@ -293,7 +314,7 @@ class EncodeTests: XCTestCase {
                 searchTerms: [.aSearchableAttribute: "test"],
                 sortBy: .aSortableAttribute,
                 sortDirection: .ascending)
-            let encodedData = try JSONEncoder().encode(paginationParams)
+            let encodedData = try self.encoder.encode(paginationParams)
             XCTAssertEqual(String(data: encodedData, encoding: .utf8)!, """
                 {
                     "per_page":20,
@@ -317,7 +338,7 @@ class EncodeTests: XCTestCase {
                 searchTerms: nil,
                 sortBy: .aSortableAttribute,
                 sortDirection: .ascending)
-            let encodedData = try JSONEncoder().encode(paginationParams)
+            let encodedData = try self.encoder.encode(paginationParams)
             XCTAssertEqual(String(data: encodedData, encoding: .utf8)!, """
                 {
                     "per_page":20,
@@ -339,7 +360,7 @@ class EncodeTests: XCTestCase {
                     sortBy: .createdAt,
                     sortDirection: .descending),
                 address: "123")
-            let encodedData = try JSONEncoder().encode(transactionParams)
+            let encodedData = try self.encoder.encode(transactionParams)
             let encodedPayload = try! transactionParams.encodedPayload()
             XCTAssertEqual(encodedData, encodedPayload)
             XCTAssertEqual(String(data: encodedData, encoding: .utf8)!, """
