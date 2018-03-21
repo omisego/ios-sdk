@@ -49,5 +49,4 @@ class RequestParametersTests: XCTestCase {
         XCTAssertEqual(self.requestParameters.acceptHeader(), "application/vnd.omisego.v\(self.config.apiVersion)+json")
     }
 
-    
 }

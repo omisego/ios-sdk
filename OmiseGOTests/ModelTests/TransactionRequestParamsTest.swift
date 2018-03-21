@@ -42,7 +42,7 @@ class TransactionRequestParamsTest: XCTestCase {
                                            metadata: [:])
         XCTAssertNotNil(transactionRequestParams)
     }
-    
+
     func testFailsToInitWithoutAmountAndWithoutAllowingAmountOverride() {
         let transactionRequestParams =
             TransactionRequestCreateParams(type: .receive,
@@ -58,5 +58,5 @@ class TransactionRequestParamsTest: XCTestCase {
                                            metadata: [:])
         XCTAssertNil(transactionRequestParams)
     }
-    
+
 }

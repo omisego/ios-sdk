@@ -16,13 +16,13 @@ class RequestBuilderTests: XCTestCase {
                                   apiKey: "123",
                                   authenticationToken: "123")
     var requestBuilder: RequestBuilder!
-    
+
     override func setUp() {
         super.setUp()
         let requestParam = RequestParameters(config: self.config)
         self.requestBuilder = RequestBuilder(requestParameters: requestParam)
     }
-    
+
     func buildHttpRequestWithParams() {
         let dummyObject = DummyTestObject(object: "object")
         let endpoint = APIEndpoint.custom(path: "/test",
@@ -87,5 +87,5 @@ class RequestBuilderTests: XCTestCase {
             XCTFail(error.localizedDescription)
         }
     }
-    
+
 }

@@ -75,5 +75,5 @@ struct MetadataDummy: Decodable, Parametrable {
         try container.encodeIfPresent(unavailableMetadata, forKey: .unavailableMetadata)
         try container.encodeIfPresent(unavailableMetadataArray, forKey: .unavailableMetadataArray)
     }
-    
+
 }
