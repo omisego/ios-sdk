@@ -1,5 +1,5 @@
 {
-  "object": "transaction_request_consumption",
+  "object": "transaction_consumption",
   "id": "8eb0160e-1c96-481a-88e1-899399cc84dc",
   "status": "confirmed",
   "amount": 1337,

@@ -52,7 +52,7 @@ enum GenericObjectEnum {
         switch objectType {
         case "error":
             self = .error(error: try OmiseGOError.api(apiError: APIError(from: decoder)))
-        case "transaction_request_consumption":
+        case "transaction_consumption":
             self = .transactionConsumption(object: try TransactionConsumption(from: decoder))
         default: return nil
         }
