@@ -79,7 +79,7 @@ extension TransactionRequest: Decodable {
         case status
         case socketTopic = "socket_topic"
         case confirmable
-        case maxConsumptions = "max_consumtions"
+        case maxConsumptions = "max_consumptions"
         case consumptionLifetime = "consumption_lifetime"
         case expirationDate = "expiration_date"
         case expirationReason = "expiration_reason"
@@ -93,17 +93,17 @@ extension TransactionRequest: Decodable {
         id = try container.decode(String.self, forKey: .id)
         type = try container.decode(TransactionRequestType.self, forKey: .type)
         mintedToken = try container.decode(MintedToken.self, forKey: .mintedToken)
-        amount = try container.decode(Double.self, forKey: .amount)
-        address = try container.decode(String.self, forKey: .address)
-        correlationId = try container.decode(String.self, forKey: .correlationId)
+        amount = try container.decodeIfPresent(Double.self, forKey: .amount)
+        address = try container.decodeIfPresent(String.self, forKey: .address)
+        correlationId = try container.decodeIfPresent(String.self, forKey: .correlationId)
         status = try container.decode(TransactionRequestStatus.self, forKey: .status)
         socketTopic = try container.decode(String.self, forKey: .socketTopic)
         confirmable = try container.decode(Bool.self, forKey: .confirmable)
-        maxConsumptions = try container.decode(Int.self, forKey: .maxConsumptions)
-        consumptionLifetime = try container.decode(Int.self, forKey: .consumptionLifetime)
-        expirationDate = try container.decode(Date.self, forKey: .expirationDate)
-        expirationReason = try container.decode(String.self, forKey: .expirationReason)
-        expiredAt = try container.decode(Date.self, forKey: .expiredAt)
+        maxConsumptions = try container.decodeIfPresent(Int.self, forKey: .maxConsumptions)
+        consumptionLifetime = try container.decodeIfPresent(Int.self, forKey: .consumptionLifetime)
+        expirationDate = try container.decodeIfPresent(Date.self, forKey: .expirationDate)
+        expirationReason = try container.decodeIfPresent(String.self, forKey: .expirationReason)
+        expiredAt = try container.decodeIfPresent(Date.self, forKey: .expiredAt)
         allowAmountOverride = try container.decode(Bool.self, forKey: .allowAmountOverride)
         metadata = try container.decode([String: Any].self, forKey: .metadata)
     }
