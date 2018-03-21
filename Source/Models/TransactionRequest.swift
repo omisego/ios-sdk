@@ -54,6 +54,8 @@ public struct TransactionRequest: Listenable, Decodable {
     public let consumptionLifetime: Int?
     /// The date when the request will expire and not be consumable anymore
     public let expirationDate: Date?
+    /// The reason why the request expired
+    public let expirationReason: String?
     /// The date when the request expired
     public let expiredAt: Date?
     /// Allow or not the consumer to override the amount specified in the request
@@ -74,6 +76,7 @@ public struct TransactionRequest: Listenable, Decodable {
         case maxConsumptions = "max_consumtions"
         case consumptionLifetime = "consumption_lifetime"
         case expirationDate = "expiration_date"
+        case expirationReason = "expiration_reason"
         case expiredAt = "expired_at"
         case allowAmountOverride = "allow_amount_override"
         case metadata
@@ -93,6 +96,7 @@ public struct TransactionRequest: Listenable, Decodable {
         maxConsumptions = try container.decode(Int.self, forKey: .maxConsumptions)
         consumptionLifetime = try container.decode(Int.self, forKey: .consumptionLifetime)
         expirationDate = try container.decode(Date.self, forKey: .expirationDate)
+        expirationReason = try container.decode(String.self, forKey: .expirationReason)
         expiredAt = try container.decode(Date.self, forKey: .expiredAt)
         allowAmountOverride = try container.decode(Bool.self, forKey: .allowAmountOverride)
         metadata = try container.decode([String: Any].self, forKey: .metadata)
