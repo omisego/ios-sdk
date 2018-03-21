@@ -16,6 +16,6 @@ enum SocketEventSend: String, Encodable {
 
 public enum SocketEvent: String, Decodable {
     case reply = "phx_reply"
-    case transactionRequestConfirmation = "transaction_request_confirmation"
-    case transactionRequestConsumptionChange = "transaction_request_consumption_change"
+    case transactionConsumptionRequest = "transaction_consumption_request"
+    case transactionConsumptionConfirmation = "transaction_consumption_confirmation"
 }
