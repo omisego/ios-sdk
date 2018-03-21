@@ -18,7 +18,7 @@ public enum TransactionConsumptionStatus: String, Decodable {
 }
 
 /// Represents a transaction consumption
-public struct TransactionConsumption: Listenable, Decodable {
+public struct TransactionConsumption {
 
     /// The unique identifier of the consumption
     public let id: String
@@ -56,6 +56,12 @@ public struct TransactionConsumption: Listenable, Decodable {
     public let approved: Bool
     /// Additional metadata for the consumption
     public let metadata: [String: Any]
+
+}
+
+extension TransactionConsumption: Listenable {}
+
+extension TransactionConsumption: Decodable {
 
     private enum CodingKeys: String, CodingKey {
         case id

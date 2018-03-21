@@ -25,7 +25,7 @@ public enum TransactionRequestStatus: String, Decodable {
 }
 
 /// Represents a transaction request
-public struct TransactionRequest: Listenable, Decodable {
+public struct TransactionRequest {
 
     /// The unique identifier of the request
     public let id: String
@@ -62,6 +62,12 @@ public struct TransactionRequest: Listenable, Decodable {
     public let allowAmountOverride: Bool
     /// Additional metadata for the request
     public let metadata: [String: Any]
+
+}
+
+extension TransactionRequest: Listenable {}
+
+extension TransactionRequest: Decodable {
 
     private enum CodingKeys: String, CodingKey {
         case id

@@ -29,11 +29,8 @@ public class OMGRequest<ResultType: Decodable> {
     }
 
     func start() throws -> Self {
-        guard let urlRequest =
-            try RequestBuilder.init(requestParameters: RequestParameters(config: self.client.config))
-                .buildHTTPURLRequest(withEndpoint: self.endpoint) else {
-                    throw OmiseGOError.configuration(message: "Invalid request")
-        }
+        let urlRequest = try RequestBuilder.init(requestParameters: RequestParameters(config: self.client.config))
+            .buildHTTPURLRequest(withEndpoint: self.endpoint)
         let dataTask = client.session.dataTask(with: urlRequest, completionHandler: didComplete)
         self.task = dataTask
         dataTask.resume()

@@ -334,8 +334,8 @@ class DecodeTests: XCTestCase {
             let exchange = decodedData.exchange
             XCTAssertEqual(exchange.rate, 1)
             XCTAssertEqual(decodedData.status, .confirmed)
-            XCTAssertEqual(decodedData.createdAt, "2018-01-01T00:00:00Z".toDate())
-            XCTAssertEqual(decodedData.updatedAt, "2018-01-01T10:00:00Z".toDate())
+            XCTAssertEqual(decodedData.createdAt, try! "2018-01-01T00:00:00Z".toDate())
+            XCTAssertEqual(decodedData.updatedAt, try! "2018-01-01T10:00:00Z".toDate())
             XCTAssertEqual(decodedData.metadata.count, 0)
         } catch let thrownError {
             XCTFail(thrownError.localizedDescription)

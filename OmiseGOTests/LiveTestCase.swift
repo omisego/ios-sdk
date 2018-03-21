@@ -12,16 +12,19 @@ import OmiseGO
 
 class LiveTestCase: XCTestCase {
 
-    private static let BASE_URL = "OMG_BASE_URL"
+    private static let OMG_BASE_URL = "OMG_BASE_URL"
+    private static let OMG_WEBSOCKET_URL = "OMG_WEBSOCKET_URL"
     private static let OMG_API_KEY = "OMG_API_KEY"
     private static let OMG_AUTHENTICATION_TOKEN = "OMG_AUTHENTICATION_TOKEN"
     private static let OMG_MINTED_TOKEN_ID = "OMG_MINTED_TOKEN_ID"
 
+    var validWebsocketURL: String = ""
     var validBaseURL: String = ""
     var validAPIKey: String = ""
     var validAuthenticationToken: String = ""
     var validMintedTokenId: String = ""
 
+    let invalidWebsocketURL = "an invalid websocket url"
     let invalidBaseURL = "an invalid base url"
     let invalidAPIKey = "an invalid api key"
     let invalidAuthenticationToken = "an invalid authentication token"
@@ -42,7 +45,8 @@ class LiveTestCase: XCTestCase {
     var testClient: OMGClient!
 
     private func validConfig() -> OMGConfiguration {
-        return OMGConfiguration(baseURL: validBaseURL,
+        return OMGConfiguration(websocketsBaseUrl: validWebsocketURL,
+                                baseURL: validBaseURL,
                                 apiKey: validAPIKey,
                                 authenticationToken: validAuthenticationToken)
     }
@@ -50,6 +54,7 @@ class LiveTestCase: XCTestCase {
     func areKeysValid() -> Bool {
         return
             self.validBaseURL != ""
+            && self.validWebsocketURL != ""
             && self.validAPIKey != ""
             && self.validAuthenticationToken != ""
             && self.validMintedTokenId != ""
@@ -69,10 +74,15 @@ class LiveTestCase: XCTestCase {
     private func loadEnvKeys() {
         let plistSecrets = self.loadSecretPlistFile()
         self.validBaseURL =
-            plistSecrets?[LiveTestCase.BASE_URL] != nil &&
-            plistSecrets![LiveTestCase.BASE_URL] != "" ?
-            plistSecrets![LiveTestCase.BASE_URL]! :
-            ProcessInfo.processInfo.environment[LiveTestCase.BASE_URL]!
+            plistSecrets?[LiveTestCase.OMG_BASE_URL] != nil &&
+            plistSecrets![LiveTestCase.OMG_BASE_URL] != "" ?
+            plistSecrets![LiveTestCase.OMG_BASE_URL]! :
+            ProcessInfo.processInfo.environment[LiveTestCase.OMG_BASE_URL]!
+        self.validWebsocketURL =
+            plistSecrets?[LiveTestCase.OMG_WEBSOCKET_URL] != nil &&
+            plistSecrets![LiveTestCase.OMG_WEBSOCKET_URL] != "" ?
+            plistSecrets![LiveTestCase.OMG_WEBSOCKET_URL]! :
+            ProcessInfo.processInfo.environment[LiveTestCase.OMG_WEBSOCKET_URL]!
         self.validAPIKey =
             plistSecrets?[LiveTestCase.OMG_API_KEY] != nil &&
             plistSecrets![LiveTestCase.OMG_API_KEY] != "" ?

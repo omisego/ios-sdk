@@ -9,7 +9,7 @@
 @testable import OmiseGO
 
 class StubGenerator {
-
+    
     private class func stub<T: Decodable>(forResource resource: String) -> T {
         let bundle = Bundle(for: StubGenerator.self)
         let directoryURL = bundle.url(forResource: "Fixtures/objects", withExtension: nil)!
@@ -20,7 +20,7 @@ class StubGenerator {
         decoder.dateDecodingStrategy = .custom({return try dateDecodingStrategy(decoder: $0)})
         return try! decoder.decode(T.self, from: data)
     }
-
+    
     class func address(address: String? = nil,
                        balances: [Balance]? = nil)
         -> Address {
@@ -30,7 +30,7 @@ class StubGenerator {
                 balances: [self.balance()]
             )
     }
-
+    
     class func balance(mintedToken: MintedToken? = nil,
                        amount: Double? = nil)
         -> Balance {
@@ -39,20 +39,20 @@ class StubGenerator {
                 mintedToken: mintedToken ?? v.mintedToken,
                 amount: amount ?? v.amount)
     }
-
+    
     class func metadata(
         metadata: [String: Any]? = nil,
         metadataArray: [Any]? = nil)
         -> MetadataDummy {
             let v: MetadataDummy = self.stub(forResource: "metadata")
-                return MetadataDummy(metadata: metadata ?? v.metadata!,
-                                     metadataArray: metadataArray ?? v.metadataArray!,
-                                     optionalMetadata: nil,
-                                     optionalMetadataArray: nil,
-                                     unavailableMetadata: nil,
-                                     unavailableMetadataArray: nil)
+            return MetadataDummy(metadata: metadata ?? v.metadata!,
+                                 metadataArray: metadataArray ?? v.metadataArray!,
+                                 optionalMetadata: nil,
+                                 optionalMetadataArray: nil,
+                                 unavailableMetadata: nil,
+                                 unavailableMetadataArray: nil)
     }
-
+    
     class func mintedToken(id: String? = nil,
                            symbol: String? = nil,
                            name: String? = nil,
@@ -64,13 +64,13 @@ class StubGenerator {
                                name: name ?? v.name,
                                subUnitToUnit: subUnitToUnit ?? v.subUnitToUnit)
     }
-
+    
     class func settings(mintedTokens: [MintedToken]? = nil)
         -> Setting {
             let v: Setting = self.stub(forResource: "setting")
             return Setting(mintedTokens: mintedTokens ?? v.mintedTokens)
     }
-
+    
     class func transactionConsumption(
         id: String? = nil,
         status: TransactionConsumptionStatus? = nil,
@@ -80,23 +80,37 @@ class StubGenerator {
         idempotencyToken: String? = nil,
         transactionId: String? = nil,
         userId: String? = nil,
+        accountId: String? = nil,
         transactionRequestId: String? = nil,
-        address: String? = nil)
+        transactionRequest: TransactionRequest? = nil,
+        address: String? = nil,
+        socketTopic: String? = nil,
+        finalizedAt: Date? = nil,
+        expirationDate: Date? = nil,
+        approved: Bool? = nil,
+        metadata: [String: Any]? = nil)
         -> TransactionConsumption {
             let v: TransactionConsumption = self.stub(forResource: "transaction_consumption")
             return TransactionConsumption(id: id ?? v.id,
-                                      status: status ?? v.status,
-                                      amount: amount ?? v.amount,
-                                      mintedToken: mintedToken ?? v.mintedToken,
-                                      correlationId: correlationId ?? v.correlationId,
-                                      idempotencyToken: idempotencyToken ?? v.idempotencyToken,
-                                      transactionId: transactionId ?? v.transactionId,
-                                      userId: userId ?? v.userId,
-                                      transactionRequestId: transactionRequestId ?? v.transactionRequestId,
-                                      address: address ?? v.address)
-
+                                          status: status ?? v.status,
+                                          amount: amount ?? v.amount,
+                                          mintedToken: mintedToken ?? v.mintedToken,
+                                          correlationId: correlationId ?? v.correlationId,
+                                          idempotencyToken: idempotencyToken ?? v.idempotencyToken,
+                                          transactionId: transactionId ?? v.transactionId,
+                                          userId: userId ?? v.userId,
+                                          accountId: accountId ?? v.accountId,
+                                          transactionRequestId: transactionRequestId ?? v.transactionRequestId,
+                                          transactionRequest: transactionRequest ?? v.transactionRequest,
+                                          address: address ?? v.address,
+                                          socketTopic: socketTopic ?? v.socketTopic,
+                                          finalizedAt: finalizedAt ?? v.finalizedAt,
+                                          expirationDate: expirationDate ?? v.expirationDate,
+                                          approved: approved ?? v.approved,
+                                          metadata: metadata ?? v.metadata)
+            
     }
-
+    
     class func transactionRequest(
         id: String? = nil,
         type: TransactionRequestType? = nil,
@@ -104,7 +118,16 @@ class StubGenerator {
         amount: Double? = nil,
         address: String? = nil,
         correlationId: String? = nil,
-        status: TransactionRequestStatus? = nil)
+        status: TransactionRequestStatus? = nil,
+        socketTopic: String? = nil,
+        confirmable: Bool? = nil,
+        maxConsumptions: Int? = nil,
+        consumptionLifetime: Int? = nil,
+        expirationDate: Date? = nil,
+        expirationReason: String? = nil,
+        expiredAt: Date? = nil,
+        allowAmountOverride: Bool? = nil,
+        metadata: [String: Any]? = nil)
         -> TransactionRequest {
             let v: TransactionRequest = self.stub(forResource: "transaction_request")
             return TransactionRequest(
@@ -114,10 +137,19 @@ class StubGenerator {
                 amount: amount ?? v.amount,
                 address: address ?? v.address,
                 correlationId: correlationId ?? v.correlationId,
-                status: status ?? v.status
+                status: status ?? v.status,
+                socketTopic: socketTopic ?? v.socketTopic,
+                confirmable: confirmable ?? v.confirmable,
+                maxConsumptions: maxConsumptions ?? v.maxConsumptions,
+                consumptionLifetime: consumptionLifetime ?? v.consumptionLifetime,
+                expirationDate: expirationDate ?? v.expirationDate,
+                expirationReason: expirationReason ?? v.expirationReason,
+                expiredAt: expiredAt ?? v.expiredAt,
+                allowAmountOverride: allowAmountOverride ?? v.allowAmountOverride,
+                metadata: metadata ?? v.metadata
             )
     }
-
+    
     class func transaction(
         id: String? = nil,
         status: TransactionConsumptionStatus? = nil,
@@ -139,7 +171,7 @@ class StubGenerator {
                 createdAt: createdAt ?? v.createdAt,
                 updatedAt: updatedAt ?? v.updatedAt)
     }
-
+    
     class func transactionSource(
         address: String? = nil,
         amount: Double? = nil,
@@ -149,16 +181,16 @@ class StubGenerator {
             return TransactionSource(address: address ?? v.address,
                                      amount: amount ?? v.amount,
                                      mintedToken: mintedToken ?? v.mintedToken)
-
+            
     }
-
+    
     class func transactionExchange(
         rate: Double? = nil)
         -> TransactionExchange {
             let v: TransactionExchange = self.stub(forResource: "transaction_exchange")
             return TransactionExchange(rate: rate ?? v.rate)
     }
-
+    
     class func pagination(
         perPage: Int? = nil,
         currentPage: Int? = nil,
@@ -171,63 +203,79 @@ class StubGenerator {
                               isFirstPage: isFirstPage ?? v.isFirstPage,
                               isLastPage: isLastPage ?? v.isLastPage)
     }
-
+    
     class func transactionRequestCreateParams(
-        type: TransactionRequestType? = .receive,
-        mintedTokenId: String? = "BTC:861020af-17b6-49ee-a0cb-661a4d2d1f95",
+        type: TransactionRequestType = .receive,
+        mintedTokenId: String = "BTC:861020af-17b6-49ee-a0cb-661a4d2d1f95",
         amount: Double? = 1337,
         address: String? = "3b7f1c68-e3bd-4f8f-9916-4af19be95d00",
-        correlationId: String? = "31009545-db10-4287-82f4-afb46d9741d8")
+        correlationId: String? = "31009545-db10-4287-82f4-afb46d9741d8",
+        confirmable: Bool = true,
+        maxConsumptions: Int? = 1,
+        consumptionLifetime: Int? = 1000,
+        expirationDate: Date? = Date(timeIntervalSince1970: 0),
+        allowAmountOverride: Bool = true,
+        metadata: [String: Any] = [:])
         -> TransactionRequestCreateParams {
             return TransactionRequestCreateParams(
-                type: type!,
-                mintedTokenId: mintedTokenId!,
-                amount: amount!,
-                address: address!,
-                correlationId: correlationId!
-            )
+                type: type,
+                mintedTokenId: mintedTokenId,
+                amount: amount,
+                address: address,
+                correlationId: correlationId,
+                confirmable: confirmable,
+                maxConsumptions: maxConsumptions,
+                consumptionLifetime: consumptionLifetime,
+                expirationDate: expirationDate,
+                allowAmountOverride: allowAmountOverride,
+                metadata: metadata
+                )!
     }
-
+    
     class func transactionRequestGetParams(
         id: String? = "0a8a4a98-794b-419e-b92d-514e83657e75")
         -> TransactionRequestGetParams {
             return TransactionRequestGetParams(id: id!)
     }
-
+    
     class func transactionConsumptionParams(
-        transactionRequest: TransactionRequest? = StubGenerator.stub(forResource: "transaction_request"),
+        transactionRequest: TransactionRequest = StubGenerator.stub(forResource: "transaction_request"),
         address: String? = "3b7f1c68-e3bd-4f8f-9916-4af19be95d00",
         mintedTokenId: String? = "BTC:861020af-17b6-49ee-a0cb-661a4d2d1f95",
         amount: Double? = 1337,
-        idempotencyToken: String? = "7a0ad55f-2084-4457-b871-1413142cde84",
+        idempotencyToken: String = "7a0ad55f-2084-4457-b871-1413142cde84",
         correlationId: String? = "45a5bce3-4e9d-4244-b3a9-64b7a4c5bdc4",
-        metadata: [String: Any]? = [:]) -> TransactionConsumptionParams {
-            return TransactionConsumptionParams(
-                transactionRequest: transactionRequest!,
-                address: address!,
-                mintedTokenId: mintedTokenId!,
-                amount: amount!,
-                idempotencyToken: idempotencyToken!,
-                correlationId: correlationId!,
-                metadata: metadata!
+        expirationDate: Date? = Date(timeIntervalSince1970: 0),
+        metadata: [String: Any] = [:]) -> TransactionConsumptionParams {
+        return TransactionConsumptionParams(
+            transactionRequest: transactionRequest,
+            address: address,
+            mintedTokenId: mintedTokenId,
+            amount: amount,
+            idempotencyToken: idempotencyToken,
+            correlationId: correlationId,
+            expirationDate: expirationDate,
+            metadata: metadata
             )!
     }
-
+    
     class func user(
         id: String? = nil,
         providerUserId: String? = nil,
         username: String? = nil,
-        metadata: [String: Any]? = nil)
+        metadata: [String: Any]? = nil,
+        socketTopic: String? = nil)
         -> User {
             let v: User = self.stub(forResource: "user")
             return User(
                 id: id ?? v.id,
                 providerUserId: providerUserId ?? v.providerUserId,
                 username: username ?? v.username,
-                metadata: metadata ?? v.metadata
+                metadata: metadata ?? v.metadata,
+                socketTopic: socketTopic ?? v.socketTopic
             )
     }
-
+    
     class func paginationParams<T: Paginable>(
         page: Int? = 1,
         perPage: Int? = 20,
@@ -243,7 +291,7 @@ class StubGenerator {
                                     sortBy: sortBy,
                                     sortDirection: sortDirection!)
     }
-
+    
     class func transactionListParams(
         paginationParams: PaginationParams<Transaction>? = StubGenerator.paginationParams(sortBy: .id),
         address: String? = nil)
@@ -251,5 +299,5 @@ class StubGenerator {
             return TransactionListParams(paginationParams: paginationParams!,
                                          address: address)
     }
-
+    
 }

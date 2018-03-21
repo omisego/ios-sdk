@@ -18,7 +18,13 @@ class TransactionRequestLiveTests: LiveTestCase {
             mintedTokenId: self.validMintedTokenId,
             amount: 1,
             address: nil,
-            correlationId: creationCorrelationId)
+            correlationId: creationCorrelationId,
+            confirmable: true,
+            maxConsumptions: 1,
+            consumptionLifetime: nil,
+            expirationDate: nil,
+            allowAmountOverride: true,
+            metadata: [:])!
         var transactionRequestResult: TransactionRequest?
         let generateRequest = TransactionRequest.generateTransactionRequest(
             using: self.testClient,
@@ -72,6 +78,7 @@ class TransactionRequestLiveTests: LiveTestCase {
             amount: nil,
             idempotencyToken: idempotencyToken,
             correlationId: consumeCorrelationId,
+            expirationDate: nil,
             metadata: [:])
         let consumeRequest = TransactionConsumption.consumeTransactionRequest(
             using: self.testClient,

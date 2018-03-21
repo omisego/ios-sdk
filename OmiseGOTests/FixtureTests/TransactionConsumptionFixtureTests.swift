@@ -28,6 +28,7 @@ class TransactionConsumptionFixtureTests: FixtureTestCase {
                 mintedTokenId: nil,
                 idempotencyToken: "123",
                 correlationId: nil,
+                expirationDate: nil,
                 metadata: [:])!
         let request =
             TransactionConsumption.consumeTransactionRequest(using: self.testCustomClient, params: params) { (result) in
