@@ -42,6 +42,8 @@ public struct TransactionConsumption: Listenable, Decodable {
     public let accountId: String?
     /// The id of the transaction request to be consumed
     public let transactionRequestId: String
+    /// The transaction request to be consumed
+    public let transactionRequest: TransactionRequest
     /// The address used for the consumption
     public let address: String
     /// The topic which can be listened in order to receive events regarding this consumption
@@ -66,6 +68,7 @@ public struct TransactionConsumption: Listenable, Decodable {
         case userId = "user_id"
         case accountId = "account_id"
         case transactionRequestId = "transaction_request_id"
+        case transactionRequest = "transaction_request"
         case address
         case socketTopic = "socket_topic"
         case finalizedAt = "finalized_at"
@@ -86,6 +89,7 @@ public struct TransactionConsumption: Listenable, Decodable {
         userId = try container.decode(String.self, forKey: .userId)
         accountId = try container.decode(String.self, forKey: .accountId)
         transactionRequestId = try container.decode(String.self, forKey: .transactionRequestId)
+        transactionRequest = try container.decode(TransactionRequest.self, forKey: .transactionRequest)
         address = try container.decode(String.self, forKey: .address)
         socketTopic = try container.decode(String.self, forKey: .socketTopic)
         finalizedAt = try container.decode(Date.self, forKey: .finalizedAt)
