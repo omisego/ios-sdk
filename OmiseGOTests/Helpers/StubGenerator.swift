@@ -10,12 +10,16 @@
 
 class StubGenerator {
 
-    private class func stub<T: Decodable>(forResource resource: String) -> T {
+    class func fileContent(forResource resource: String) -> Data {
         let bundle = Bundle(for: StubGenerator.self)
         let directoryURL = bundle.url(forResource: "Fixtures/objects", withExtension: nil)!
         let filePath = (resource as NSString).appendingPathExtension("json")! as String
         let fixtureFileURL = directoryURL.appendingPathComponent(filePath)
-        let data = try! Data(contentsOf: fixtureFileURL)
+        return try! Data(contentsOf: fixtureFileURL)
+    }
+
+    private class func stub<T: Decodable>(forResource resource: String) -> T {
+        let data = self.fileContent(forResource: resource)
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = .custom({return try dateDecodingStrategy(decoder: $0)})
         return try! decoder.decode(T.self, from: data)
@@ -296,6 +300,22 @@ class StubGenerator {
         -> TransactionListParams {
             return TransactionListParams(paginationParams: paginationParams!,
                                          address: address)
+    }
+
+    class func socketPayloadReceive(
+        topic: String? = nil,
+        event: SocketEvent? = nil,
+        ref: String? = nil,
+        data: GenericObject? = nil,
+        version: String? = nil,
+        success: Bool? = nil)-> SocketPayloadReceive {
+        let v: SocketPayloadReceive = self.stub(forResource: "socket_response")
+        return SocketPayloadReceive(topic: topic ?? v.topic,
+                                    event: event ?? v.event,
+                                    ref: ref ?? v.ref,
+                                    data: data ?? v.data,
+                                    version: version ?? v.version,
+                                    success: success ?? v.success)
     }
 
 }

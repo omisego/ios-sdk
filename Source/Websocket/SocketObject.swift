@@ -12,7 +12,7 @@ struct GenericObject {
 
 }
 
-extension GenericObject: Codable {
+extension GenericObject: Decodable {
 
     private enum CodingKeys: String, CodingKey {
         case objectType = "object"
@@ -25,11 +25,6 @@ extension GenericObject: Codable {
             throw OmiseGOError.socketError(message: "Unknown object type")
         }
         self.object = decodedObject
-    }
-
-    func encode(to encoder: Encoder) throws {
-        var container = encoder.unkeyedContainer()
-        try container.encode(object)
     }
 
 }
@@ -54,20 +49,7 @@ enum GenericObjectEnum {
             self = .error(error: try OmiseGOError.api(apiError: APIError(from: decoder)))
         case "transaction_consumption":
             self = .transactionConsumption(object: try TransactionConsumption(from: decoder))
-        default: return nil
+        default: self = .error(error: OmiseGOError.socketError(message: "Invalid payload"))
         }
     }
-}
-
-extension GenericObjectEnum: Encodable {
-
-    public func encode(to encoder: Encoder) throws {
-        var container = encoder.unkeyedContainer()
-        switch self {
-        case .other(object: let object):
-            try container.encodeJSONDictionary(object)
-        default: try container.encodeJSONDictionary([:])
-        }
-    }
-
 }

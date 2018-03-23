@@ -378,4 +378,23 @@ class EncodeTests: XCTestCase {
         }
     }
 
+    func testSocketPayloadSendEncoding() {
+        do {
+            let socketPayload = SocketPayloadSend(topic: "a_topic", event: .join, ref: "1", data: ["a_key": "a_value"])
+            let encodedData = try self.encoder.encode(socketPayload)
+            let encodedPayload = try! socketPayload.encodedPayload()
+            XCTAssertEqual(encodedData, encodedPayload)
+            XCTAssertEqual(String(data: encodedData, encoding: .utf8)!, """
+                {
+                    "data":{"a_key":"a_value"},
+                    "topic":"a_topic",
+                    "event":"phx_join",
+                    "ref":"1"
+                }
+            """.uglifiedEncodedString())
+        } catch let thrownError {
+            XCTFail(thrownError.localizedDescription)
+        }
+    }
+
 }

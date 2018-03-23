@@ -21,11 +21,15 @@ public class Socket {
     private let reconnectDelay = 5.0
     private var messageReference: UInt64 = UInt64.min
     private var shouldBeConnected: Bool = false
-    private let webSocket: WebSocket
+    private let webSocket: WebSocketClient
     public weak var connectionDelegate: SocketConnectionDelegate?
 
-    init(request: URLRequest) {
-        self.webSocket = WebSocket(request: request)
+    convenience init(request: URLRequest) {
+        self.init(webSocket: WebSocket(request: request))
+    }
+
+    init(webSocket: WebSocketClient) {
+        self.webSocket = webSocket
     }
 
     func leaveChannel(withTopic topic: String) {

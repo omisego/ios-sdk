@@ -400,4 +400,58 @@ class DecodeTests: XCTestCase {
         }
     }
 
+    func testSocketPayloadWithTransactionConsumptionDecoding() {
+        do {
+            let jsonData = try self.jsonData(withFileName: "socket_response")
+            let decodedData = try self.jsonDecoder.decode(SocketPayloadReceive.self, from: jsonData)
+            XCTAssertEqual(decodedData.event, SocketEvent.other(event: "an_event"))
+            XCTAssertEqual(decodedData.topic, "a_topic")
+            XCTAssertEqual(decodedData.ref, "1")
+            XCTAssertEqual(decodedData.version, "1")
+            XCTAssertEqual(decodedData.success, true)
+            switch decodedData.data.object {
+            case .transactionConsumption(object: let transactionConsumption): XCTAssertNotNil(transactionConsumption)
+            default: XCTFail("Unexpected data")
+            }
+        } catch let thrownError {
+            XCTFail(thrownError.localizedDescription)
+        }
+    }
+
+    func testSocketPayloadWithErrorDecoding() {
+        do {
+            let jsonData = try self.jsonData(withFileName: "socket_response_failure")
+            let decodedData = try self.jsonDecoder.decode(SocketPayloadReceive.self, from: jsonData)
+            XCTAssertEqual(decodedData.event, SocketEvent.other(event: "an_event"))
+            XCTAssertEqual(decodedData.topic, "a_topic")
+            XCTAssertEqual(decodedData.ref, "1")
+            XCTAssertEqual(decodedData.version, "1")
+            XCTAssertEqual(decodedData.success, false)
+            switch decodedData.data.object {
+            case .error(error: let error): XCTAssertNotNil(error)
+            default: XCTFail("Unexpected data")
+            }
+        } catch let thrownError {
+            XCTFail(thrownError.localizedDescription)
+        }
+    }
+
+    func testSocketPayloadWithUnknownObjectDecoding() {
+        do {
+            let jsonData = try self.jsonData(withFileName: "socket_response_unknown_object")
+            let decodedData = try self.jsonDecoder.decode(SocketPayloadReceive.self, from: jsonData)
+            XCTAssertEqual(decodedData.event, SocketEvent.other(event: "an_event"))
+            XCTAssertEqual(decodedData.topic, "a_topic")
+            XCTAssertEqual(decodedData.ref, "1")
+            XCTAssertEqual(decodedData.version, "1")
+            XCTAssertEqual(decodedData.success, true)
+            switch decodedData.data.object {
+            case .error(error: let error): XCTAssertEqual(error.message, "socket error: Invalid payload")
+            default: XCTFail("Unexpected data")
+            }
+        } catch let thrownError {
+            XCTFail(thrownError.localizedDescription)
+        }
+    }
+
 }
