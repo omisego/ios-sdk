@@ -16,7 +16,7 @@ class RequestBuilder {
     }
 
     func buildHTTPURLRequest(withEndpoint endpoint: APIEndpoint) throws -> URLRequest {
-        guard let requestURL = endpoint.makeURL(withBaseURL: self.requestParameters.baseHTTPURL()) else {
+        guard let requestURL = endpoint.makeURL(withBaseURL: self.requestParameters.baseURL()) else {
             throw OmiseGOError.configuration(message: "Invalid request")
         }
         var request = URLRequest(url: requestURL)
@@ -39,7 +39,7 @@ class RequestBuilder {
     }
 
     func buildWebsocketRequest() throws -> URLRequest {
-        let requestURL = URL(string: self.requestParameters.baseSocketURL())!
+        let requestURL = URL(string: self.requestParameters.baseURL())!
         var request = URLRequest(url: requestURL)
         request.timeoutInterval = 6.0
         try self.addRequiredHeaders(toRequest: &request)

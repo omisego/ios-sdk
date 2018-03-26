@@ -11,10 +11,9 @@ import XCTest
 
 class OMGRequestTest: XCTestCase {
 
-    let client: OMGClient = OMGClient(config: OMGConfiguration(websocketsBaseUrl: "ws://example.com",
-                                                               baseURL: "https://example.com",
-                                                               apiKey: "123",
-                                                               authenticationToken: "123"))
+    let client: OMGHTTPClient = OMGHTTPClient(config: OMGConfiguration(baseURL: "https://example.com",
+                                                                       apiKey: "123",
+                                                                       authenticationToken: "123"))
 
     func testStartRequest() {
         let request: OMGRequest<DummyTestObject> =

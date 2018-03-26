@@ -38,9 +38,9 @@ class QRScannerViewModel: QRScannerViewModelProtocol {
             }
         })
     }()
-    private let client: OMGClient
+    private let client: OMGHTTPClient
 
-    init(client: OMGClient) {
+    init(client: OMGHTTPClient) {
         self.client = client
     }
 

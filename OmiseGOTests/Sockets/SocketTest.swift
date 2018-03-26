@@ -12,72 +12,72 @@ import Starscream
 
 class SocketTest: XCTestCase {
 
-    var client: FixtureWebsocketClient!
-    var socket: Socket!
+    var websocket: FixtureWebsocketClient!
+    var socketClient: OMGSocketClient!
     
     override func setUp() {
         super.setUp()
-        self.client = FixtureWebsocketClient()
-        self.socket = Socket(webSocket: self.client)
+        self.websocket = FixtureWebsocketClient()
+        self.socketClient = OMGSocketClient(websocketClient: self.websocket)
     }
 
     func testJoinChannelWritesJoinData() {
-        XCTAssertNil(self.client.didWriteData)
-        self.socket.join(withTopic: "a_topic", dispatcher: nil)
-        XCTAssertNotNil(self.client.didWriteData)
+        XCTAssertNil(self.websocket.didWriteData)
+        self.socketClient.joinChannel(withTopic: "a_topic", dispatcher: nil)
+        XCTAssertNotNil(self.websocket.didWriteData)
     }
 
     func testConnectIfNotConnectedWhenJoiningChannel() {
-        XCTAssertFalse(self.client.isConnected)
-        self.socket.join(withTopic: "a_topic", dispatcher: nil)
-        XCTAssertTrue(self.client.isConnected)
+        XCTAssertFalse(self.websocket.isConnected)
+        self.socketClient.joinChannel(withTopic: "a_topic", dispatcher: nil)
+        XCTAssertTrue(self.websocket.isConnected)
     }
 
     func testDoesNotJoinSameChannelTwice() {
-        XCTAssertNil(self.client.didWriteData)
-        self.socket.join(withTopic: "a_topic", dispatcher: nil)
-        XCTAssertNotNil(self.client.didWriteData)
-        self.client.didWriteData = nil
-        self.socket.join(withTopic: "a_topic", dispatcher: nil)
-        XCTAssertNil(self.client.didWriteData)
+        XCTAssertNil(self.websocket.didWriteData)
+        self.socketClient.joinChannel(withTopic: "a_topic", dispatcher: nil)
+        XCTAssertNotNil(self.websocket.didWriteData)
+        self.websocket.didWriteData = nil
+        self.socketClient.joinChannel(withTopic: "a_topic", dispatcher: nil)
+        XCTAssertNil(self.websocket.didWriteData)
     }
 
     func testCanJoinTwoDifferentChannels() {
-        XCTAssertNil(self.client.didWriteData)
-        self.socket.join(withTopic: "a_topic", dispatcher: nil)
-        XCTAssertNotNil(self.client.didWriteData)
-        self.client.didWriteData = nil
-        self.socket.join(withTopic: "an_other_topic", dispatcher: nil)
-        XCTAssertNotNil(self.client.didWriteData)
+        XCTAssertNil(self.websocket.didWriteData)
+        self.socketClient.joinChannel(withTopic: "a_topic", dispatcher: nil)
+        XCTAssertNotNil(self.websocket.didWriteData)
+        self.websocket.didWriteData = nil
+        self.socketClient.joinChannel(withTopic: "an_other_topic", dispatcher: nil)
+        XCTAssertNotNil(self.websocket.didWriteData)
     }
 
     func testDoesNotJoinChannelIfNotConnectedButQueueUntilConnected() {
         let expectation = self.expectation(description: "Queue message if not connected then dispatch it")
-        self.client.shouldAutoConnect = false
-        self.socket.join(withTopic: "a_topic", dispatcher: nil)
-        self.client.delegate = DummyWebSocketDelegate(expectation: expectation)
-        XCTAssertNil(self.client.didWriteData)
-        self.client.shouldAutoConnect = true
-        self.client.connect()
+        self.websocket.shouldAutoConnect = false
+        self.socketClient.joinChannel(withTopic: "a_topic", dispatcher: nil)
+        self.websocket.delegate = DummyWebSocketDelegate(expectation: expectation)
+        XCTAssertNil(self.websocket.didWriteData)
+        self.websocket.shouldAutoConnect = true
+        self.websocket.connect()
         waitForExpectations(timeout: 5, handler: nil)
-        XCTAssertNotNil(self.client.didWriteData)
+        XCTAssertNotNil(self.websocket.didWriteData)
     }
 
     func testLeaveChannelWritesLeaveData() {
-        self.socket.join(withTopic: "a_topic", dispatcher: nil)
-        self.client.didWriteData = nil
-        XCTAssertNil(self.client.didWriteData)
-        self.socket.leaveChannel(withTopic: "a_topic")
-        XCTAssertNotNil(self.client.didWriteData)
+        self.socketClient.joinChannel(withTopic: "a_topic", dispatcher: nil)
+        self.websocket.didWriteData = nil
+        XCTAssertNil(self.websocket.didWriteData)
+        self.socketClient.leaveChannel(withTopic: "a_topic")
+        XCTAssertNotNil(self.websocket.didWriteData)
     }
 
     func testDisconnectIfNotChannelActive() {
-        self.socket.join(withTopic: "a_topic", dispatcher: nil)
-        XCTAssertTrue(self.client.isConnected)
-        self.socket.leaveChannel(withTopic: "a_topic")
-        XCTAssertNotNil(self.client.didWriteData)
-        self.client.simulateReply()
-        XCTAssertFalse(self.client.isConnected)
+        self.socketClient.joinChannel(withTopic: "a_topic", dispatcher: nil)
+        XCTAssertTrue(self.websocket.isConnected)
+        self.socketClient.leaveChannel(withTopic: "a_topic")
+        XCTAssertNotNil(self.websocket.didWriteData)
+        self.websocket.simulateReply()
+        XCTAssertFalse(self.websocket.isConnected)
     }
 
     

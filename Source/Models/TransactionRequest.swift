@@ -134,7 +134,7 @@ extension TransactionRequest: Retrievable {
     ///   - params: The TransactionRequestCreateParams object describing the transaction request to be made.
     ///   - callback: The closure called when the request is completed
     /// - Returns: An optional cancellable request.
-    public static func generateTransactionRequest(using client: OMGClient,
+    public static func generateTransactionRequest(using client: OMGHTTPClient,
                                                   params: TransactionRequestCreateParams,
                                                   callback: @escaping TransactionRequest.RetrieveRequestCallback)
         -> TransactionRequest.RetrieveRequest? {
@@ -152,7 +152,7 @@ extension TransactionRequest: Retrievable {
     ///   - id: The id of the TransactionRequest to be retrived.
     ///   - callback: The closure called when the request is completed
     /// - Returns: An optional cancellable request.
-    public static func retrieveTransactionRequest(using client: OMGClient,
+    public static func retrieveTransactionRequest(using client: OMGHTTPClient,
                                                   id: String,
                                                   callback: @escaping TransactionRequest.RetrieveRequestCallback)
         -> TransactionRequest.RetrieveRequest? {

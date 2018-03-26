@@ -352,13 +352,12 @@ In order to run the live tests (bound to a working server) you need to fill the 
 
 The variables are:
 - `OMG_BASE_URL`
-- `OMG_WEBSOCKET_URL`
 - `OMG_API_KEY`
 - `OMG_AUTHENTICATION_TOKEN`
 - `OMG_MINTED_TOKEN_ID`
 
 You can then for example run the tests with the following command:
-`xcodebuild -workspace "OmiseGO.xcworkspace" -scheme "OmiseGO" -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 8' OMG_BASE_URL="https://your.base.server.url/api" OMG_API_KEY="yourAPIKey" OMG_AUTHENTICATION_TOKEN="yourTestAuthenticationToken" OMG_MINTED_TOKEN_ID="aMintedTokenId" OMG_WEBSOCKET_URL="ws://your.base.socket.url/api/socket" test`
+`xcodebuild -workspace "OmiseGO.xcworkspace" -scheme "OmiseGO" -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 8' OMG_BASE_URL="https://your.base.server.url/api" OMG_API_KEY="yourAPIKey" OMG_AUTHENTICATION_TOKEN="yourTestAuthenticationToken" OMG_MINTED_TOKEN_ID="aMintedTokenId" test`
 ---
 
 # Contributing

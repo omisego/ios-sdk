@@ -15,12 +15,8 @@ struct RequestParameters {
         self.config = config
     }
 
-    func baseHTTPURL() -> String {
+    func baseURL() -> String {
         return self.config.baseURL
-    }
-
-    func baseSocketURL() -> String {
-        return self.config.websocketsBaseUrl
     }
 
     func encodedAuthorizationHeader() throws -> String {

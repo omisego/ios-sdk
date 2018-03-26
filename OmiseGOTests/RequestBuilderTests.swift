@@ -11,16 +11,18 @@ import XCTest
 
 class RequestBuilderTests: XCTestCase {
 
-    var config = OMGConfiguration(websocketsBaseUrl: "ws://example.com",
-                                  baseURL: "https://example.com",
-                                  apiKey: "123",
-                                  authenticationToken: "123")
+    var httpConfig = OMGConfiguration(baseURL: "https://example.com",
+                                      apiKey: "123",
+                                      authenticationToken: "123")
+    var socketConfig = OMGConfiguration(baseURL: "wss://example.com",
+                                        apiKey: "123",
+                                        authenticationToken: "123")
     var requestBuilder: RequestBuilder!
 
     override func setUp() {
         super.setUp()
-        let requestParam = RequestParameters(config: self.config)
-        self.requestBuilder = RequestBuilder(requestParameters: requestParam)
+        let httpRequestParam = RequestParameters(config: self.httpConfig)
+        self.requestBuilder = RequestBuilder(requestParameters: httpRequestParam)
     }
 
     func buildHttpRequestWithParams() {
@@ -77,7 +79,9 @@ class RequestBuilderTests: XCTestCase {
 
     func testBuildWebsocketRequest() {
         do {
-            let urlRequest = try self.requestBuilder.buildWebsocketRequest()
+            let socketRequestParam = RequestParameters(config: self.socketConfig)
+            let requestBuilder = RequestBuilder(requestParameters: socketRequestParam)
+            let urlRequest = try requestBuilder.buildWebsocketRequest()
             XCTAssertEqual(urlRequest.httpMethod, "GET")
             XCTAssertEqual(urlRequest.timeoutInterval, 6.0)
             XCTAssertNotNil(urlRequest.allHTTPHeaderFields!["Authorization"])

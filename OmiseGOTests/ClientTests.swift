@@ -17,11 +17,10 @@ class ClientTests: XCTestCase {
         let socketURL: String = "invalid socket url @"
         let apiKey: String = "dummy_apikey"
         let authenticationToken: String = "dummy_authenticationtoken"
-        let config = OMGConfiguration(websocketsBaseUrl: socketURL,
-                                      baseURL: URL,
+        let config = OMGConfiguration(baseURL: URL,
                                       apiKey: apiKey,
                                       authenticationToken: authenticationToken)
-        let client = OMGClient(config: config)
+        let client = OMGHTTPClient(config: config)
         let dummyEndpoint = APIEndpoint.custom(path: "dummy_action", task: .requestPlain)
         let request: OMGRequest<DummyTestObject>? = client.request(toEndpoint: dummyEndpoint) { result in
             defer {

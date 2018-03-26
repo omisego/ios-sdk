@@ -117,7 +117,7 @@ extension TransactionConsumption: Retrievable {
     ///   - params: The TransactionConsumptionParams object describing the transaction request to be consumed.
     ///   - callback: The closure called when the request is completed
     /// - Returns: An optional cancellable request.
-    public static func consumeTransactionRequest(using client: OMGClient,
+    public static func consumeTransactionRequest(using client: OMGHTTPClient,
                                                  params: TransactionConsumptionParams,
                                                  callback: @escaping TransactionConsumption.RetrieveRequestCallback)
         -> TransactionConsumption.RetrieveRequest? {
@@ -133,7 +133,7 @@ extension TransactionConsumption: Retrievable {
     ///             This client need to be initialized with a OMGConfiguration struct before being used.
     ///   - callback: The closure called when the request is completed
     /// - Returns: An optional cancellable request.
-    public func confirm(using client: OMGClient,
+    public func confirm(using client: OMGHTTPClient,
                         callback: @escaping TransactionConsumption.RetrieveRequestCallback)
         -> TransactionConsumption.RetrieveRequest? {
             return self.retrieve(using: client, endpoint: .transactionConsumptionConfirmation, callback: callback)

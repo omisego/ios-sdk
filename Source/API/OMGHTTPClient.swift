@@ -1,29 +1,18 @@
 //
-//  OMGClient.swift
+//  OMGHTTPClient.swift
 //  OmiseGO
 //
 //  Created by Mederic Petit on 9/10/2017.
 //  Copyright © 2017-2018 Omise Go Pte. Ltd. All rights reserved.
 //
 
-/// Represents an OMGClient that should be initialized using an OMGConfiguration
-public class OMGClient {
+/// Represents an OMGHTTPClient that should be initialized using an OMGConfiguration
+public class OMGHTTPClient {
 
-    let authScheme = "OMGClient"
     let operationQueue: OperationQueue = OperationQueue()
 
     var session: URLSession!
     var config: OMGConfiguration
-
-    /// The websocket object managing the channels and connection.
-    /// You can observe its connection events using a SocketConnectionDelegate
-    /// This is a lazy initialized object that will use authentication provided in the OMGConfiguration object.
-    /// If the authentication token provided appears to be invalid, you should initialize a new OMGClient.
-    public lazy var websocket: Socket = {
-        let request = try? RequestBuilder(requestParameters: RequestParameters(config: self.config)).buildWebsocketRequest()
-        assert(request != nil, "Invalid websocket url")
-        return Socket(request: request!)
-    }()
 
     /// Initialize a client using a configuration object
     ///
@@ -35,33 +24,37 @@ public class OMGClient {
                                   delegateQueue: self.operationQueue)
     }
 
+    /// Update the configured authentication token for future requests
+    ///
+    /// - Parameter token: The updated authentication token
+    public func updateAuthenticationToken(_ token: String) {
+        self.config.authenticationToken = token
+    }
+
     @discardableResult
     func request<ResultType>(toEndpoint endpoint: APIEndpoint,
                              callback: OMGRequest<ResultType>.Callback?) -> OMGRequest<ResultType>? {
         do {
-            let request: OMGRequest<ResultType> = OMGRequest(client: self, endpoint: endpoint, callback: callback)
+            let request: OMGRequest<ResultType> = OMGRequest(client: self,
+                                                             endpoint: endpoint,
+                                                             callback: callback)
             return try request.start()
         } catch let error as OmiseGOError {
             performCallback {
                 callback?(.fail(error: error))
             }
-        } catch let error {
-            // Can't actually throw another error
-            performCallback {
-                callback?(.fail(error: .other(error: error)))
-            }
-        }
+        } catch {}
 
         return nil
     }
 
-    func performCallback(_ callback: @escaping () -> Void) {
+    private func performCallback(_ callback: @escaping () -> Void) {
         OperationQueue.main.addOperation(callback)
     }
 
 }
 
-extension OMGClient {
+extension OMGHTTPClient {
 
     /// Logout the current user (invalidate the provided authenticationToken).
     ///

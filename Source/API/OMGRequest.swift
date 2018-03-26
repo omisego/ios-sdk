@@ -11,13 +11,13 @@ public class OMGRequest<ResultType: Decodable> {
 
     public typealias Callback = (Response<ResultType>) -> Void
 
-    let client: OMGClient
+    let client: OMGHTTPClient
     let endpoint: APIEndpoint
     let callback: OMGRequest.Callback?
 
     var task: URLSessionTask?
 
-    init(client: OMGClient, endpoint: APIEndpoint, callback: Callback?) {
+    init(client: OMGHTTPClient, endpoint: APIEndpoint, callback: Callback?) {
         self.client = client
         self.endpoint = endpoint
         self.callback = callback
@@ -38,7 +38,7 @@ public class OMGRequest<ResultType: Decodable> {
         return self
     }
 
-    fileprivate func didComplete(_ data: Data?, response: URLResponse?, error: Error?) {
+    private func didComplete(_ data: Data?, response: URLResponse?, error: Error?) {
         // no one's in the forest to hear the leaf falls.
         guard callback != nil else { return }
 
@@ -59,7 +59,7 @@ public class OMGRequest<ResultType: Decodable> {
         performCallback(self.result(withData: data, statusCode: httpResponse.statusCode))
     }
 
-    fileprivate func result(withData data: Data, statusCode: Int) -> Response<ResultType> {
+    private func result(withData data: Data, statusCode: Int) -> Response<ResultType> {
         guard [200, 500].contains(statusCode) else {
             return .fail(error: .unexpected(message: "unrecognized HTTP status code: \(statusCode)"))
         }
@@ -71,7 +71,7 @@ public class OMGRequest<ResultType: Decodable> {
         }
     }
 
-    fileprivate func performCallback(_ result: Response<ResultType>) {
+    private func performCallback(_ result: Response<ResultType>) {
         guard let cb = callback else { return }
         OperationQueue.main.addOperation({ cb(result) })
     }

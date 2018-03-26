@@ -14,8 +14,8 @@ public extension Listenable {
     /// Stop listening for events
     ///
     /// - Parameter client: The client used when starting to listen
-    public func stopListening(withClient client: OMGClient) {
-        client.websocket.leaveChannel(withTopic: self.socketTopic)
+    public func stopListening(withClient client: OMGSocketClient) {
+        client.leaveChannel(withTopic: self.socketTopic)
     }
 }
 
@@ -26,8 +26,8 @@ public extension Listenable where Self == User {
     /// - Parameters:
     ///   - client: The correctly initialized client to use for the websocket connection
     ///   - eventDelegate: The delegate that will receive events
-    public func startListeningEvents(withClient client: OMGClient, eventDelegate: UserEventDelegate?) {
-        client.websocket.join(withTopic: self.socketTopic, dispatcher: SocketDispatcher.user(handler: eventDelegate))
+    public func startListeningEvents(withClient client: OMGSocketClient, eventDelegate: UserEventDelegate?) {
+        client.joinChannel(withTopic: self.socketTopic, dispatcher: SocketDispatcher.user(handler: eventDelegate))
     }
 
 }
@@ -40,8 +40,8 @@ public extension Listenable where Self == TransactionRequest {
     /// - Parameters:
     ///   - client: The correctly initialized client to use for the websocket connection
     ///   - eventDelegate: The delegate that will receive events
-    public func startListeningEvents(withClient client: OMGClient, eventDelegate: TransactionRequestEventDelegate?) {
-        client.websocket.join(withTopic: self.socketTopic, dispatcher: SocketDispatcher.transactionRequest(handler: eventDelegate))
+    public func startListeningEvents(withClient client: OMGSocketClient, eventDelegate: TransactionRequestEventDelegate?) {
+        client.joinChannel(withTopic: self.socketTopic, dispatcher: SocketDispatcher.transactionRequest(handler: eventDelegate))
     }
 
 }
@@ -54,8 +54,8 @@ public extension Listenable where Self == TransactionConsumption {
     /// - Parameters:
     ///   - client: The correctly initialized client to use for the websocket connection
     ///   - eventDelegate: The delegate that will receive events
-    public func startListeningEvents(withClient client: OMGClient, eventDelegate: TransactionConsumptionEventDelegate?) {
-        client.websocket.join(withTopic: self.socketTopic, dispatcher: SocketDispatcher.transactionConsumption(handler: eventDelegate))
+    public func startListeningEvents(withClient client: OMGSocketClient, eventDelegate: TransactionConsumptionEventDelegate?) {
+        client.joinChannel(withTopic: self.socketTopic, dispatcher: SocketDispatcher.transactionConsumption(handler: eventDelegate))
     }
 
 }

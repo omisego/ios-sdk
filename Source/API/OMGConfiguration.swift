@@ -6,15 +6,15 @@
 //  Copyright © 2017-2018 Omise Go Pte. Ltd. All rights reserved.
 //
 
-/// Represents a configuration object used to setup an OMGClient
+/// Represents a configuration object used to setup an OMGHTTPClient
 public struct OMGConfiguration {
 
     /// The current SDK version
     public let apiVersion: String = "1"
 
-    // The url for the websocket connection
-    public let websocketsBaseUrl: String
-    /// The base URL of the wallet server
+    /// The base URL of the wallet server:
+    /// When initializing the OMGHTTPClient, this needs to be an http(s) url
+    /// When initializing the OMGSocketClient, this needs to be a ws(s) url
     public let baseURL: String
     /// The API key (typically generated on the admin panel)
     public let apiKey: String
@@ -24,12 +24,12 @@ public struct OMGConfiguration {
     /// Creates the configuration required to initialize the OmiseGO SDK
     ///
     /// - Parameters:
-    ///   - websocketsBaseUrl: The url for the websocket connection
     ///   - baseURL: The base URL of the wallet server
+    ///              When initializing the OMGHTTPClient, this needs to be an http(s) url
+    ///              When initializing the OMGSocketClient, this needs to be a ws(s) url
     ///   - apiKey: The API key (typically generated on the admin panel)
     ///   - authenticationToken: The authentication token of the current user
-    public init(websocketsBaseUrl: String, baseURL: String, apiKey: String, authenticationToken: String) {
-        self.websocketsBaseUrl = websocketsBaseUrl
+    public init(baseURL: String, apiKey: String, authenticationToken: String) {
         self.baseURL = baseURL
         self.apiKey = apiKey
         self.authenticationToken = authenticationToken

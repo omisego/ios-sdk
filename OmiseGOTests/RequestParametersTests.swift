@@ -11,8 +11,7 @@ import XCTest
 
 class RequestParametersTests: XCTestCase {
 
-    var config = OMGConfiguration(websocketsBaseUrl: "ws://example.com",
-                                  baseURL: "https://example.com",
+    var config = OMGConfiguration(baseURL: "https://example.com",
                                   apiKey: "123",
                                   authenticationToken: "123")
     var requestParameters: RequestParameters!
@@ -22,12 +21,8 @@ class RequestParametersTests: XCTestCase {
         self.requestParameters = RequestParameters(config: self.config)
     }
 
-    func testBaseHTTPURLIsCorrect() {
-        XCTAssertEqual(self.requestParameters.baseHTTPURL(), self.config.baseURL)
-    }
-
-    func testSocketURLIsCorrect() {
-        XCTAssertEqual(self.requestParameters.baseSocketURL(), self.config.websocketsBaseUrl)
+    func testBaseURLIsCorrect() {
+        XCTAssertEqual(self.requestParameters.baseURL(), self.config.baseURL)
     }
 
     func testEncodeAuthorizationHeaderCorrectly() {

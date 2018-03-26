@@ -1,5 +1,5 @@
 //
-//  Socket.swift
+//  OMGSocketClient.swift
 //  OmiseGO
 //
 //  Created by Mederic Petit on 12/3/18.
@@ -8,7 +8,7 @@
 
 import Starscream
 
-public class Socket {
+public class OMGSocketClient {
 
     private var awaitingResponse: [String: SocketMessage] = [:]
     private var channels: [String: SocketChannel] = [:]
@@ -21,15 +21,37 @@ public class Socket {
     private let reconnectDelay = 5.0
     private var messageReference: UInt64 = UInt64.min
     private var shouldBeConnected: Bool = false
-    private let webSocket: WebSocketClient
-    public weak var connectionDelegate: SocketConnectionDelegate?
+    private var webSocket: WebSocketClient!
+    private var config: OMGConfiguration!
 
-    convenience init(request: URLRequest) {
-        self.init(webSocket: WebSocket(request: request))
+    public weak var delegate: SocketConnectionDelegate?
+
+    /// Initialize a websocket client using a configuration object
+    ///
+    /// - Parameter
+    ///   - config: The configuration object
+    ///   - delegate: The delegate that should receive connection events
+    /// - Note: the baseURL of the OMGConfiguration needs to be a socket url (wss://your.domain.com)
+    public init(config: OMGConfiguration, delegate: SocketConnectionDelegate?) {
+        self.config = config
+        self.delegate = delegate
+        self.initWebSocket()
     }
 
-    init(webSocket: WebSocketClient) {
-        self.webSocket = webSocket
+    // For testing purpose only
+    init(websocketClient: WebSocketClient) {
+        self.webSocket = websocketClient
+    }
+
+    /// Invalidate the current (if any) socket connection and prepare the client for a new one with the updated authentication token.
+    /// Note that the active connection will be droped and any topic currently subscribed will be unsubscribed.
+    /// You will need to start listening for events again.
+    ///
+    /// - Parameter token: The updated authentication token
+    public func updateAuthenticationToken(_ token: String) {
+        self.config.authenticationToken = token
+        self.cleanup()
+        self.initWebSocket()
     }
 
     func leaveChannel(withTopic topic: String) {
@@ -39,9 +61,15 @@ public class Socket {
         })
     }
 
-    func join(withTopic topic: String, dispatcher: SocketDispatcher?) {
+    func joinChannel(withTopic topic: String, dispatcher: SocketDispatcher?) {
         let channel = SocketChannel(topic: topic, socket: self, dispatcher: dispatcher)
         self.joinChannel(channel)
+    }
+
+    private func initWebSocket() {
+        let request = try? RequestBuilder(requestParameters: RequestParameters(config: self.config)).buildWebsocketRequest()
+        assert(request != nil, "Invalid websocket url")
+        self.webSocket = WebSocket(request: request!)
     }
 
     private func connect() {
@@ -55,6 +83,13 @@ public class Socket {
         self.shouldBeConnected = false
         self.webSocket.delegate = nil
         self.webSocket.disconnect()
+    }
+
+    private func cleanup() {
+        self.awaitingResponse.removeAll()
+        self.channels.removeAll()
+        self.sendBuffer.removeAll()
+        self.invalidateTimers()
     }
 
     @discardableResult
@@ -145,7 +180,7 @@ public class Socket {
 
 }
 
-extension Socket: SocketSendable {
+extension OMGSocketClient: SocketSendable {
 
     @discardableResult
     func send(topic: String, event: SocketEventSend) -> SocketMessage {
@@ -156,25 +191,25 @@ extension Socket: SocketSendable {
 
 }
 
-extension Socket: WebSocketDelegate {
+extension OMGSocketClient: WebSocketDelegate {
 
     public func websocketDidConnect(socket: WebSocketClient) {
-        self.connectionDelegate?.didConnect()
+        self.delegate?.didConnect()
         self.startHeartbeatTimer()
     }
 
     public func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {
         if let wsError: WSError  = error as? WSError {
             guard wsError.code != 403 else {
-                self.connectionDelegate?.didDisconnect(.socketError(message: "Authorization error"))
+                self.delegate?.didDisconnect(.socketError(message: "Authorization error"))
                 return
             }
-            self.connectionDelegate?.didDisconnect(.socketError(message: wsError.message))
+            self.delegate?.didDisconnect(.socketError(message: wsError.message))
         }
         if let error = error {
-            self.connectionDelegate?.didDisconnect(.other(error: error))
+            self.delegate?.didDisconnect(.other(error: error))
         } else {
-            self.connectionDelegate?.didDisconnect(nil)
+            self.delegate?.didDisconnect(nil)
         }
         self.handleReconnect()
     }
