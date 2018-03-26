@@ -220,7 +220,7 @@ class EncodeTests: XCTestCase {
         }
     }
 
-    func testTransactionRequestGetParamsEncodingWithAmount() {
+    func testTransactionRequestGetParamsEncoding() {
         do {
             let transactionRequestParams =
                 TransactionRequestGetParams(id: "0a8a4a98-794b-419e-b92d-514e83657e75")
@@ -391,6 +391,21 @@ class EncodeTests: XCTestCase {
                     "event":"phx_join",
                     "ref":"1"
                 }
+            """.uglifiedEncodedString())
+        } catch let thrownError {
+            XCTFail(thrownError.localizedDescription)
+        }
+    }
+
+    func testTransactionConsumptionConfirmationParamsEncoding() {
+        do {
+            let transactionConsumptionConfirmationParams = TransactionConsumptionConfirmationParams(id: "0a8a4a98-794b-419e-b92d-514e83657e75")
+            let encodedData = try self.encoder.encode(transactionConsumptionConfirmationParams)
+            let encodedPayload = try! transactionConsumptionConfirmationParams.encodedPayload()
+            XCTAssertEqual(encodedData, encodedPayload)
+            XCTAssertEqual(String(data: encodedData,
+                                  encoding: .utf8)!, """
+                {"id":"0a8a4a98-794b-419e-b92d-514e83657e75"}
             """.uglifiedEncodedString())
         } catch let thrownError {
             XCTFail(thrownError.localizedDescription)

@@ -66,12 +66,24 @@ public enum APIErrorCode: Decodable {
     case accessTokenNotFound
     case accessTokenExpired
     case missingIdempotencyToken
+    case sameAddress
     case websocketError
     case other(String)
 
+    public init(from decoder: Decoder) throws {
+        self.init(rawValue: try decoder.singleValueContainer().decode(String.self))!
+    }
+
+    public var code: String {
+        return self.rawValue
+    }
+}
+
+extension APIErrorCode: RawRepresentable {
+
     //swiftlint:disable:next cyclomatic_complexity
-    init(code: String) {
-        switch code {
+    public init?(rawValue: String) {
+        switch rawValue {
         case "client:invalid_parameter":
             self = .invalidParameters
         case "client:invalid_version":
@@ -92,6 +104,8 @@ public enum APIErrorCode: Decodable {
             self = .accessTokenExpired
         case "client:no_idempotency_token_provided":
             self = .missingIdempotencyToken
+        case "transaction:same_address":
+            self = .sameAddress
         case "websocket:connect_error":
             self = .websocketError
         case let code:
@@ -99,11 +113,7 @@ public enum APIErrorCode: Decodable {
         }
     }
 
-    public init(from decoder: Decoder) throws {
-        self.init(code: try decoder.singleValueContainer().decode(String.self))
-    }
-
-    public var code: String {
+    public var rawValue: String {
         switch self {
         case .invalidParameters:
             return "client:invalid_parameter"
@@ -125,12 +135,17 @@ public enum APIErrorCode: Decodable {
             return "user:access_token_expired"
         case .missingIdempotencyToken:
             return "client:no_idempotency_token_provided"
+        case .sameAddress:
+            return "transaction:same_address"
         case .websocketError:
             return "websocket:connect_error"
         case .other(let code):
             return code
         }
     }
+
+    public typealias RawValue = String
+
 }
 
 extension APIErrorCode: Hashable {

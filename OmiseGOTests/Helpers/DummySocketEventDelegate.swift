@@ -7,8 +7,17 @@
 //
 
 @testable import OmiseGO
+import XCTest
 
 class DummySocketEventDelegate {
+
+    let eventExpectation: XCTestExpectation?
+    let joinExpectation: XCTestExpectation?
+
+    init(eventExpectation: XCTestExpectation? = nil, joinExpectation: XCTestExpectation? = nil) {
+        self.eventExpectation = eventExpectation
+        self.joinExpectation = joinExpectation
+    }
 
     var didJoin: Bool = false
     var didLeave: Bool = false
@@ -24,10 +33,12 @@ extension DummySocketEventDelegate: UserEventDelegate {
     func didReceive(_ object: WebsocketObject, forEvent event: SocketEvent) {
         self.didReceiveObject = object
         self.didReceiveEvent = event
+        self.eventExpectation?.fulfill()
     }
 
     func didStartListening() {
         self.didJoin = true
+        self.joinExpectation?.fulfill()
     }
 
     func didStopListening() {
@@ -45,6 +56,7 @@ extension DummySocketEventDelegate: TransactionRequestEventDelegate {
     func didReceiveTransactionConsumptionRequest(_ transactionConsumption: TransactionConsumption, forEvent event: SocketEvent) {
         self.didReceiveTransactionConsumption = transactionConsumption
         self.didReceiveEvent = event
+        self.eventExpectation?.fulfill()
     }
 
 
@@ -55,6 +67,7 @@ extension DummySocketEventDelegate: TransactionConsumptionEventDelegate {
     func didReceiveTransactionConsumptionConfirmation(_ transactionConsumption: TransactionConsumption, forEvent event: SocketEvent) {
         self.didReceiveTransactionConsumption = transactionConsumption
         self.didReceiveEvent = event
+        self.eventExpectation?.fulfill()
     }
 
 }

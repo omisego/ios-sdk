@@ -126,6 +126,7 @@ extension TransactionConsumption: Retrievable {
                                  callback: callback)
     }
 
+    @discardableResult
     /// Confirms the transaction consumption
     ///
     /// - Parameters:
@@ -136,7 +137,8 @@ extension TransactionConsumption: Retrievable {
     public func confirm(using client: OMGHTTPClient,
                         callback: @escaping TransactionConsumption.RetrieveRequestCallback)
         -> TransactionConsumption.RetrieveRequest? {
-            return self.retrieve(using: client, endpoint: .transactionConsumptionConfirmation, callback: callback)
+            let params = TransactionConsumptionConfirmationParams(id: id)
+            return self.retrieve(using: client, endpoint: .transactionConsumptionConfirmation(params: params), callback: callback)
     }
 
 }

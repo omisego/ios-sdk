@@ -85,3 +85,10 @@ extension TransactionConsumptionParams: Parametrable {
     }
 
 }
+
+/// Represents a structure used to confirm a transaction consumption from its id
+struct TransactionConsumptionConfirmationParams: Parametrable {
+
+    let id: String
+
+}

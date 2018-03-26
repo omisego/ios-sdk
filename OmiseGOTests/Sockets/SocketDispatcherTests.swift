@@ -65,9 +65,9 @@ class SocketDispatcherTests: XCTestCase {
         let transactionConsumptionDispatcher = SocketDispatcher.transactionConsumption(handler: self.delegate)
         let consumption = StubGenerator.transactionConsumption()
         let payload = GenericObjectEnum.transactionConsumption(object: consumption)
-        transactionConsumptionDispatcher.dispatch(payload, event: .transactionConsumptionRequest)
+        transactionConsumptionDispatcher.dispatch(payload, event: .transactionConsumptionConfirmation)
         XCTAssertEqual(self.delegate.didReceiveTransactionConsumption, consumption)
-        XCTAssertEqual(self.delegate.didReceiveEvent!, .transactionConsumptionRequest)
+        XCTAssertEqual(self.delegate.didReceiveEvent!, .transactionConsumptionConfirmation)
         transactionConsumptionDispatcher.dispatch(.error(error: .socketError(message: "dummy_error")), event: .transactionConsumptionRequest)
         XCTAssertEqual(self.delegate.didReceiveError!.message, "socket error: dummy_error")
     }
