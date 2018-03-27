@@ -13,9 +13,9 @@ class FixtureWebsocketClient: WebSocketClient {
     var delegate: WebSocketDelegate?
     var disableSSLCertValidation: Bool = true
     var overrideTrustHostname: Bool = false
-    var desiredTrustHostname: String? = nil
-    var security: SSLTrustValidator? = nil
-    var enabledSSLCipherSuites: [SSLCipherSuite]? = nil
+    var desiredTrustHostname: String?
+    var security: SSLTrustValidator?
+    var enabledSSLCipherSuites: [SSLCipherSuite]?
     var isConnected: Bool = false
 
     var didWriteString: String?
@@ -31,22 +31,22 @@ class FixtureWebsocketClient: WebSocketClient {
         self.isConnected = false
     }
 
-    func write(string: String, completion: (() -> ())?) {
+    func write(string: String, completion: (() -> Void)?) {
         self.didWriteString = string
         completion?()
     }
 
-    func write(data: Data, completion: (() -> ())?) {
+    func write(data: Data, completion: (() -> Void)?) {
         self.didWriteData = data
         completion?()
         (self.delegate as? DummyWebSocketDelegate)?.websocketDidSendData(socket: self, data: data)
     }
 
-    func write(ping: Data, completion: (() -> ())?) {
+    func write(ping: Data, completion: (() -> Void)?) {
         completion?()
     }
 
-    func write(pong: Data, completion: (() -> ())?) {
+    func write(pong: Data, completion: (() -> Void)?) {
         completion?()
     }
 

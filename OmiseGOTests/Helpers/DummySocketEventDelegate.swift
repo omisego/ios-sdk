@@ -59,7 +59,6 @@ extension DummySocketEventDelegate: TransactionRequestEventDelegate {
         self.eventExpectation?.fulfill()
     }
 
-
 }
 
 extension DummySocketEventDelegate: TransactionConsumptionEventDelegate {

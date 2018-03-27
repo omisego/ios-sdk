@@ -308,7 +308,7 @@ class StubGenerator {
         ref: String? = nil,
         data: GenericObject? = nil,
         version: String? = nil,
-        success: Bool? = nil)-> SocketPayloadReceive {
+        success: Bool? = nil) -> SocketPayloadReceive {
         let v: SocketPayloadReceive = self.stub(forResource: "socket_response")
         return SocketPayloadReceive(topic: topic ?? v.topic,
                                     event: event ?? v.event,

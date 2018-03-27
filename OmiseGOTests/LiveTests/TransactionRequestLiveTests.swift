@@ -40,7 +40,7 @@ class TransactionRequestLiveTests: LiveTestCase {
         let consumptionDelegate = self.startToListenForConsumption(forTransactionRequest: transactionRequest)
         // 4) Try to consume the transaction request
         //    As it requires confirmation, an event should be send to listeners
-        guard let _ = self.consumeTransactionRequest(transactionRequest: transactionRequest) else { return }
+        guard self.consumeTransactionRequest(transactionRequest: transactionRequest) != nil else { return }
         // 5) Subscribe to events on this transaction consumption (listen for confirmations)
         //        let confirmationDelegate = self.startToListenForConfirmation(forConsumption: transactionConsumption)
         // 6) Wait for the consumption to be sent
@@ -191,7 +191,7 @@ extension TransactionRequestLiveTests {
         let confirmationRequest = transactionConsumption.confirm(using: self.testClient) { (result) in
             defer { confirmExpectation.fulfill() }
             switch result {
-            case .success(_):
+            case .success:
                 XCTFail("Shouldn't succeed as we're trying to transfer between the same address")
             case .fail(error: let error):
                 switch error {

@@ -12,7 +12,7 @@ import XCTest
 class SocketMessageTests: XCTestCase {
 
     var socketMessage: SocketMessage!
-    
+
     override func setUp() {
         super.setUp()
         let payload = SocketPayloadSend(topic: "a_topic", event: .join, ref: "1", data: [:])
@@ -55,5 +55,5 @@ class SocketMessageTests: XCTestCase {
         let socketMessageReceive = SocketMessage(socketPayload: payloadReceive)
         XCTAssertEqual(socketMessageReceive.topic(), "topic_b")
     }
-    
+
 }

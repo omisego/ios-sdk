@@ -15,7 +15,6 @@ class DummySendable: SocketSendable {
     var event: SocketEventSend?
     var didSend: Bool = false
 
-
     var message: SocketMessage!
 
     func send(topic: String, event: SocketEventSend) -> SocketMessage {
@@ -28,7 +27,7 @@ class DummySendable: SocketSendable {
         return message
     }
 
-    func triggerEvents(withPayload payload:SocketPayloadReceive) {
+    func triggerEvents(withPayload payload: SocketPayloadReceive) {
         self.message.handleResponse(withPayload: payload)
     }
 
@@ -39,7 +38,7 @@ class SocketChannelTests: XCTestCase {
     var socketChannel: SocketChannel!
     var sendable: DummySendable!
     var delegate: DummySocketEventDelegate!
-    
+
     override func setUp() {
         super.setUp()
         self.sendable = DummySendable()
@@ -129,5 +128,5 @@ class SocketChannelTests: XCTestCase {
     private func successPayload() -> SocketPayloadReceive {
         return StubGenerator.socketPayloadReceive()
     }
-    
+
 }

@@ -14,7 +14,7 @@ class OMGSocketClientTests: XCTestCase {
 
     var websocket: FixtureWebsocketClient!
     var socketClient: OMGSocketClient!
-    
+
     override func setUp() {
         super.setUp()
         self.websocket = FixtureWebsocketClient()

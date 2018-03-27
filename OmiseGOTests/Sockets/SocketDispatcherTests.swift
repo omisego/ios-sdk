@@ -17,7 +17,7 @@ class SocketDispatcherTests: XCTestCase {
         super.setUp()
         self.delegate = DummySocketEventDelegate()
     }
-    
+
     func testDispatchJoinCallsJoin() {
         let userDispatcher = SocketDispatcher.user(handler: self.delegate)
         userDispatcher.dispatchJoin()
@@ -71,5 +71,5 @@ class SocketDispatcherTests: XCTestCase {
         transactionConsumptionDispatcher.dispatch(.error(error: .socketError(message: "dummy_error")), event: .transactionConsumptionRequest)
         XCTAssertEqual(self.delegate.didReceiveError!.message, "socket error: dummy_error")
     }
-    
+
 }
