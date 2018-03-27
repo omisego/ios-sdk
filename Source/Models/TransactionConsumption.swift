@@ -15,6 +15,7 @@ public enum TransactionConsumptionStatus: String, Decodable {
     case pending
     case confirmed
     case failed
+    case expired
 }
 
 /// Represents a transaction consumption
