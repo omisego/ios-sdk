@@ -53,6 +53,14 @@ class APIErrorCodeTests: XCTestCase {
                        APIErrorCode.accessTokenExpired)
         XCTAssertEqual(APIErrorCode(rawValue: "client:no_idempotency_token_provided"),
                        APIErrorCode.missingIdempotencyToken)
+        XCTAssertEqual(APIErrorCode(rawValue: "transaction:same_address"),
+                       APIErrorCode.sameAddress)
+        XCTAssertEqual(APIErrorCode(rawValue: "websocket:connect_error"),
+                       APIErrorCode.websocketError)
+        XCTAssertEqual(APIErrorCode(rawValue: "request:expired"),
+                       APIErrorCode.requestExpired)
+        XCTAssertEqual(APIErrorCode(rawValue: "request:max_consumptions_reached"),
+                       APIErrorCode.maxConsumptionsReached)
         XCTAssertEqual(APIErrorCode(rawValue: "an other code"),
                        APIErrorCode.other("an other code"))
     }

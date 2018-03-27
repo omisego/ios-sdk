@@ -86,7 +86,7 @@
 		03939D8E202866E400F65F20 /* EncodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03939D8D202866E400F65F20 /* EncodeTests.swift */; };
 		03939D9020286B9E00F65F20 /* TransactionRequestFixtureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03939D8F20286B9E00F65F20 /* TransactionRequestFixtureTests.swift */; };
 		03939D922029672F00F65F20 /* OMGRequestTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03939D912029672F00F65F20 /* OMGRequestTest.swift */; };
-		039656A72064A8C40073951A /* SocketTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039656A62064A8C40073951A /* SocketTest.swift */; };
+		039656A72064A8C40073951A /* OMGSocketClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039656A62064A8C40073951A /* OMGSocketClientTests.swift */; };
 		039656A92064D3B20073951A /* DummyWebSocketDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039656A82064D3B20073951A /* DummyWebSocketDelegate.swift */; };
 		039656AB2064D3EC0073951A /* FixtureSocketClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039656AA2064D3EC0073951A /* FixtureSocketClient.swift */; };
 		0396627E203FFD6B004E5640 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0396627D203FFD6B004E5640 /* Extension.swift */; };
@@ -213,7 +213,7 @@
 		03939D8D202866E400F65F20 /* EncodeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncodeTests.swift; sourceTree = "<group>"; };
 		03939D8F20286B9E00F65F20 /* TransactionRequestFixtureTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionRequestFixtureTests.swift; sourceTree = "<group>"; };
 		03939D912029672F00F65F20 /* OMGRequestTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OMGRequestTest.swift; sourceTree = "<group>"; };
-		039656A62064A8C40073951A /* SocketTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketTest.swift; sourceTree = "<group>"; };
+		039656A62064A8C40073951A /* OMGSocketClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OMGSocketClientTests.swift; sourceTree = "<group>"; };
 		039656A82064D3B20073951A /* DummyWebSocketDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummyWebSocketDelegate.swift; sourceTree = "<group>"; };
 		039656AA2064D3EC0073951A /* FixtureSocketClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixtureSocketClient.swift; sourceTree = "<group>"; };
 		0396627D203FFD6B004E5640 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
@@ -515,7 +515,7 @@
 				03F119C320636CB600C1772C /* SocketMessageTests.swift */,
 				03F119C52063784200C1772C /* SocketChannelTests.swift */,
 				03F119C92063A2C300C1772C /* SocketDispatcherTests.swift */,
-				039656A62064A8C40073951A /* SocketTest.swift */,
+				039656A62064A8C40073951A /* OMGSocketClientTests.swift */,
 				039656AA2064D3EC0073951A /* FixtureSocketClient.swift */,
 			);
 			path = Sockets;
@@ -847,7 +847,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				039656A72064A8C40073951A /* SocketTest.swift in Sources */,
+				039656A72064A8C40073951A /* OMGSocketClientTests.swift in Sources */,
 				0313D6E32031776E003E99BA /* QRReaderTest.swift in Sources */,
 				038CB3E5202AE93900E40715 /* QRTestHelper.swift in Sources */,
 				03F119C420636CB600C1772C /* SocketMessageTests.swift in Sources */,

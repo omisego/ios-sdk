@@ -1,5 +1,5 @@
 //
-//  SocketTest.swift
+//  OMGSocketClientTests.swift
 //  OmiseGOTests
 //
 //  Created by Mederic Petit on 23/3/18.
@@ -10,7 +10,7 @@ import XCTest
 import Starscream
 @testable import OmiseGO
 
-class SocketTest: XCTestCase {
+class OMGSocketClientTests: XCTestCase {
 
     var websocket: FixtureWebsocketClient!
     var socketClient: OMGSocketClient!
@@ -80,5 +80,4 @@ class SocketTest: XCTestCase {
         XCTAssertFalse(self.websocket.isConnected)
     }
 
-    
 }

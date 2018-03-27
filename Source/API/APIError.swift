@@ -68,6 +68,8 @@ public enum APIErrorCode: Decodable {
     case missingIdempotencyToken
     case sameAddress
     case websocketError
+    case requestExpired
+    case maxConsumptionsReached
     case other(String)
 
     public init(from decoder: Decoder) throws {
@@ -108,6 +110,10 @@ extension APIErrorCode: RawRepresentable {
             self = .sameAddress
         case "websocket:connect_error":
             self = .websocketError
+        case "request:expired":
+            self = .requestExpired
+        case "request:max_consumptions_reached":
+            self = .maxConsumptionsReached
         case let code:
             self = .other(code)
         }
@@ -139,6 +145,10 @@ extension APIErrorCode: RawRepresentable {
             return "transaction:same_address"
         case .websocketError:
             return "websocket:connect_error"
+        case .requestExpired:
+            return "request:expired"
+        case .maxConsumptionsReached:
+            return "request:max_consumptions_reached"
         case .other(let code):
             return code
         }

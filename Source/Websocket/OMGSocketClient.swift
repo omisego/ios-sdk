@@ -41,6 +41,7 @@ public class OMGSocketClient {
     // For testing purpose only
     init(websocketClient: WebSocketClient) {
         self.webSocket = websocketClient
+        self.webSocket.delegate = self
     }
 
     /// Invalidate the current (if any) socket connection and prepare the client for a new one with the updated authentication token.
@@ -70,18 +71,17 @@ public class OMGSocketClient {
         let request = try? RequestBuilder(requestParameters: RequestParameters(config: self.config)).buildWebsocketRequest()
         assert(request != nil, "Invalid websocket url")
         self.webSocket = WebSocket(request: request!)
+        self.webSocket.delegate = self
     }
 
     private func connect() {
         self.shouldBeConnected = true
         resetBufferTimer()
-        self.webSocket.delegate = self
         self.webSocket.connect()
     }
 
     private func disconnect() {
         self.shouldBeConnected = false
-        self.webSocket.delegate = nil
         self.webSocket.disconnect()
     }
 
