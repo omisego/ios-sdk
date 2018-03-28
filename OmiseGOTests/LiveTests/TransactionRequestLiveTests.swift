@@ -64,7 +64,7 @@ extension TransactionRequestLiveTests {
             amount: 1,
             address: nil,
             correlationId: creationCorrelationId,
-            confirmable: true,
+            requireConfirmation: true,
             maxConsumptions: 1,
             consumptionLifetime: nil,
             expirationDate: nil,

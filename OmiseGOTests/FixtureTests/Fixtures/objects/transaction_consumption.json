@@ -32,7 +32,7 @@
     "correlation_id": "31009545-db10-4287-82f4-afb46d9741d8",
     "status": "valid",
     "socket_topic": "transaction_request:8eb0160e-1c96-481a-88e1-899399cc84dc",
-    "confirmable": true,
+    "require_confirmation": true,
     "max_consumptions": 1,
     "consumption_lifetime": 1000,
     "expiration_date": "2019-01-01T00:00:00Z",

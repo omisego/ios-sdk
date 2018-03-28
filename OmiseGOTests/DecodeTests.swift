@@ -287,7 +287,7 @@ class DecodeTests: XCTestCase {
             XCTAssertEqual(decodedData.correlationId, "31009545-db10-4287-82f4-afb46d9741d8")
             XCTAssertEqual(decodedData.status, .valid)
             XCTAssertEqual(decodedData.socketTopic, "transaction_request:8eb0160e-1c96-481a-88e1-899399cc84dc")
-            XCTAssertTrue(decodedData.confirmable)
+            XCTAssertTrue(decodedData.requireConfirmation)
             XCTAssertEqual(decodedData.maxConsumptions, 1)
             XCTAssertEqual(decodedData.consumptionLifetime, 1000)
             XCTAssertEqual(decodedData.expirationDate, "2019-01-01T00:00:00Z".toDate(withFormat: "yyyy-MM-dd'T'HH:mm:ssZ"))

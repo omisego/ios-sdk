@@ -156,7 +156,7 @@ class EncodeTests: XCTestCase {
                                                amount: nil,
                                                address: "3b7f1c68-e3bd-4f8f-9916-4af19be95d00",
                                                correlationId: "31009545-db10-4287-82f4-afb46d9741d8",
-                                               confirmable: true,
+                                               requireConfirmation: true,
                                                maxConsumptions: 1,
                                                consumptionLifetime: 1000,
                                                expirationDate: Date(timeIntervalSince1970: 0),
@@ -169,15 +169,15 @@ class EncodeTests: XCTestCase {
                 {
                     "amount":null,
                     "correlation_id":"31009545-db10-4287-82f4-afb46d9741d8",
+                    "require_confirmation":true,
                     "address":"3b7f1c68-e3bd-4f8f-9916-4af19be95d00",
-                    "metadata":{},
-                    "confirmable":true,
+                    "allow_amount_override":true,
                     "consumption_lifetime":1000,
                     "expiration_date":"1970-01-01T07:00:00+07:00",
                     "type":"receive",
-                    "token_id":"BTC:861020af-17b6-49ee-a0cb-661a4d2d1f95",
                     "max_consumtions":1,
-                    "allow_amount_override":true
+                    "token_id":"BTC:861020af-17b6-49ee-a0cb-661a4d2d1f95",
+                    "metadata":{}
                 }
             """.uglifiedEncodedString())
         } catch let thrownError {
@@ -193,7 +193,7 @@ class EncodeTests: XCTestCase {
                                                amount: 1337,
                                                address: "3b7f1c68-e3bd-4f8f-9916-4af19be95d00",
                                                correlationId: "31009545-db10-4287-82f4-afb46d9741d8",
-                                               confirmable: true,
+                                               requireConfirmation: true,
                                                maxConsumptions: 1,
                                                consumptionLifetime: 1000,
                                                expirationDate: Date(timeIntervalSince1970: 0),
@@ -204,15 +204,15 @@ class EncodeTests: XCTestCase {
                 {
                     "amount":1337,
                     "correlation_id":"31009545-db10-4287-82f4-afb46d9741d8",
+                    "require_confirmation":true,
                     "address":"3b7f1c68-e3bd-4f8f-9916-4af19be95d00",
-                    "metadata":{},
-                    "confirmable":true,
+                    "allow_amount_override":false,
                     "consumption_lifetime":1000,
                     "expiration_date":"1970-01-01T07:00:00+07:00",
                     "type":"receive",
-                    "token_id":"BTC:861020af-17b6-49ee-a0cb-661a4d2d1f95",
                     "max_consumtions":1,
-                    "allow_amount_override":false
+                    "token_id":"BTC:861020af-17b6-49ee-a0cb-661a4d2d1f95",
+                    "metadata":{}
                 }
             """.uglifiedEncodedString())
         } catch let thrownError {
@@ -246,7 +246,7 @@ class EncodeTests: XCTestCase {
                                                         correlationId: "31009545-db10-4287-82f4-afb46d9741d8",
                                                         status: .valid,
                                                         socketTopic: "transaction_request:0a8a4a98-794b-419e-b92d-514e83657e75",
-                                                        confirmable: true,
+                                                        requireConfirmation: true,
                                                         maxConsumptions: 1,
                                                         consumptionLifetime: 1000,
                                                         expirationDate: nil,

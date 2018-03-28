@@ -24,7 +24,7 @@ public struct TransactionRequestCreateParams {
     /// An id that can uniquely identify a transaction. Typically an order id from a provider.
     public let correlationId: String?
     /// A boolean indicating if the request needs a confirmation from the requester before being proceeded
-    public let confirmable: Bool
+    public let requireConfirmation: Bool
     /// The maximum number of time that this request can be consumed
     public let maxConsumptions: Int?
     /// The amount of time in millisecond during which a consumption is valid
@@ -50,7 +50,7 @@ public struct TransactionRequestCreateParams {
     ///   - address: The address from which to send or receive the minted tokens
     ///              If not specified, will use the primary address by default
     ///   - correlationId: An id that can uniquely identify a transaction. Typically an order id from a provider.
-    ///   - confirmable: A boolean indicating if the request needs a confirmation from the requester before being proceeded
+    ///   - requireConfirmation: A boolean indicating if the request needs a confirmation from the requester before being proceeded
     ///   - maxConsumptions: The maximum number of time that this request can be consumed
     ///   - consumptionLifetime: The amount of time in milisecond during which a consumption is valid
     ///   - expirationDate: The date when the request will expire and not be consumable anymore
@@ -62,7 +62,7 @@ public struct TransactionRequestCreateParams {
                  amount: Double?,
                  address: String?,
                  correlationId: String?,
-                 confirmable: Bool,
+                 requireConfirmation: Bool,
                  maxConsumptions: Int?,
                  consumptionLifetime: Int?,
                  expirationDate: Date?,
@@ -74,7 +74,7 @@ public struct TransactionRequestCreateParams {
         self.amount = amount
         self.address = address
         self.correlationId = correlationId
-        self.confirmable = confirmable
+        self.requireConfirmation = requireConfirmation
         self.maxConsumptions = maxConsumptions
         self.consumptionLifetime = consumptionLifetime
         self.expirationDate = expirationDate
@@ -92,7 +92,7 @@ extension TransactionRequestCreateParams: Parametrable {
         case amount
         case address
         case correlationId = "correlation_id"
-        case confirmable
+        case requireConfirmation = "require_confirmation"
         case maxConsumptions = "max_consumtions"
         case consumptionLifetime = "consumption_lifetime"
         case expirationDate = "expiration_date"
@@ -108,7 +108,7 @@ extension TransactionRequestCreateParams: Parametrable {
         try container.encode(amount, forKey: .amount)
         try container.encode(address, forKey: .address)
         try container.encode(correlationId, forKey: .correlationId)
-        try container.encode(confirmable, forKey: .confirmable)
+        try container.encode(requireConfirmation, forKey: .requireConfirmation)
         try container.encode(maxConsumptions, forKey: .maxConsumptions)
         try container.encode(consumptionLifetime, forKey: .consumptionLifetime)
         try container.encode(expirationDate, forKey: .expirationDate)

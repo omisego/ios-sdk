@@ -47,7 +47,7 @@ public struct TransactionRequest {
     /// The topic which can be listened in order to receive events regarding this request
     public let socketTopic: String
     /// A boolean indicating if the request needs a confirmation from the requester before being proceeded
-    public let confirmable: Bool
+    public let requireConfirmation: Bool
     /// The maximum number of time that this request can be consumed
     public let maxConsumptions: Int?
     /// The amount of time in milisecond during which a consumption is valid
@@ -78,7 +78,7 @@ extension TransactionRequest: Decodable {
         case correlationId = "correlation_id"
         case status
         case socketTopic = "socket_topic"
-        case confirmable
+        case requireConfirmation = "require_confirmation"
         case maxConsumptions = "max_consumptions"
         case consumptionLifetime = "consumption_lifetime"
         case expirationDate = "expiration_date"
@@ -98,7 +98,7 @@ extension TransactionRequest: Decodable {
         correlationId = try container.decodeIfPresent(String.self, forKey: .correlationId)
         status = try container.decode(TransactionRequestStatus.self, forKey: .status)
         socketTopic = try container.decode(String.self, forKey: .socketTopic)
-        confirmable = try container.decode(Bool.self, forKey: .confirmable)
+        requireConfirmation = try container.decode(Bool.self, forKey: .requireConfirmation)
         maxConsumptions = try container.decodeIfPresent(Int.self, forKey: .maxConsumptions)
         consumptionLifetime = try container.decodeIfPresent(Int.self, forKey: .consumptionLifetime)
         expirationDate = try container.decodeIfPresent(Date.self, forKey: .expirationDate)

@@ -276,7 +276,7 @@ let params = TransactionRequestCreateParams(type: .receive,
                                             amount: 1337,
                                             address: "an address",
                                             correlationId: "a correlation id",
-                                            confirmable: false,
+                                            requireConfirmation: false,
                                             maxConsumptions: 10,
                                             consumptionLifetime: 60000,
                                             expirationDate: nil,
@@ -300,7 +300,7 @@ Where:
   - `amount`: (optional) The amount of token to receive. This amount can be either inputted when generating or consuming a transaction request.
   - `address`: (optional) The address specifying where the transaction should be sent to. If not specified, the current user's primary address will be used.
   - `correlationId`: (optional) An id that can uniquely identify a transaction. Typically an order id from a provider.
-  - `confirmable`: (optional) A boolean indicating if the request [needs a confirmation](#transaction-request-events) from the requester before being proceeded
+  - `requireConfirmation`: (optional) A boolean indicating if the request [needs a confirmation](#transaction-request-events) from the requester before being proceeded
   - `maxConsumptions`: (optional) The maximum number of time that this request can be consumed
   - `consumptionLifetime`: (optional) The amount of time in millisecond during which a consumption is valid
   - `expirationDate`: (optional) The date when the request will expire and not be consumable anymore
