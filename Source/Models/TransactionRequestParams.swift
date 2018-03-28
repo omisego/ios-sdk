@@ -27,14 +27,14 @@ public struct TransactionRequestCreateParams {
     public let confirmable: Bool
     /// The maximum number of time that this request can be consumed
     public let maxConsumptions: Int?
-    /// The amount of time in milisecond during which a consumption is valid
+    /// The amount of time in millisecond during which a consumption is valid
     public let consumptionLifetime: Int?
     /// The date when the request will expire and not be consumable anymore
     public let expirationDate: Date?
     /// Allow or not the consumer to override the amount specified in the request
     /// This needs to be true if the amount is not specified
     public let allowAmountOverride: Bool
-    /// Additional metadata embeded with the request
+    /// Additional metadata embedded with the request
     public let metadata: [String: Any]
 
     /// Initialize the params used to generate a transaction request.
