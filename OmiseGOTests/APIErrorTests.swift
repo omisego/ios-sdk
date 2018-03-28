@@ -61,6 +61,10 @@ class APIErrorCodeTests: XCTestCase {
                        APIErrorCode.requestExpired)
         XCTAssertEqual(APIErrorCode(rawValue: "request:max_consumptions_reached"),
                        APIErrorCode.maxConsumptionsReached)
+        XCTAssertEqual(APIErrorCode(rawValue: "transaction_consumption:not_owner"),
+                       APIErrorCode.notOwnerOfTransactionConsumption)
+        XCTAssertEqual(APIErrorCode(rawValue: "transaction_consumption:invalid_minted_token"),
+                       APIErrorCode.invalidMintedTokenForTransactionConsumption)
         XCTAssertEqual(APIErrorCode(rawValue: "an other code"),
                        APIErrorCode.other("an other code"))
     }

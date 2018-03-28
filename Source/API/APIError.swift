@@ -70,6 +70,8 @@ public enum APIErrorCode: Decodable {
     case websocketError
     case requestExpired
     case maxConsumptionsReached
+    case notOwnerOfTransactionConsumption
+    case invalidMintedTokenForTransactionConsumption
     case other(String)
 
     public init(from decoder: Decoder) throws {
@@ -114,6 +116,10 @@ extension APIErrorCode: RawRepresentable {
             self = .requestExpired
         case "request:max_consumptions_reached":
             self = .maxConsumptionsReached
+        case "transaction_consumption:not_owner":
+            self = .notOwnerOfTransactionConsumption
+        case "transaction_consumption:invalid_minted_token":
+            self = .invalidMintedTokenForTransactionConsumption
         case let code:
             self = .other(code)
         }
@@ -149,6 +155,10 @@ extension APIErrorCode: RawRepresentable {
             return "request:expired"
         case .maxConsumptionsReached:
             return "request:max_consumptions_reached"
+        case .notOwnerOfTransactionConsumption:
+            return "transaction_consumption:not_owner"
+        case .invalidMintedTokenForTransactionConsumption:
+            return "transaction_consumption:invalid_minted_token"
         case .other(let code):
             return code
         }
