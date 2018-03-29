@@ -55,7 +55,7 @@ class SocketDispatcherTests: XCTestCase {
         let consumption = StubGenerator.transactionConsumption()
         let payload = GenericObjectEnum.transactionConsumption(object: consumption)
         transactionRequestDispatcher.dispatch(payload, event: .transactionConsumptionRequest)
-        XCTAssertEqual(self.delegate.didReceiveTransactionConsumption, consumption)
+        XCTAssertEqual(self.delegate.didReceiveTransactionConsumptionRequest, consumption)
         XCTAssertEqual(self.delegate.didReceiveEvent!, .transactionConsumptionRequest)
         transactionRequestDispatcher.dispatch(.error(error: .socketError(message: "dummy_error")), event: .transactionConsumptionRequest)
         XCTAssertEqual(self.delegate.didReceiveError!.message, "socket error: dummy_error")
@@ -65,11 +65,14 @@ class SocketDispatcherTests: XCTestCase {
         let transactionConsumptionDispatcher = SocketDispatcher.transactionConsumption(handler: self.delegate)
         let consumption = StubGenerator.transactionConsumption()
         let payload = GenericObjectEnum.transactionConsumption(object: consumption)
-        transactionConsumptionDispatcher.dispatch(payload, event: .transactionConsumptionConfirmation)
-        XCTAssertEqual(self.delegate.didReceiveTransactionConsumption, consumption)
-        XCTAssertEqual(self.delegate.didReceiveEvent!, .transactionConsumptionConfirmation)
+        transactionConsumptionDispatcher.dispatch(payload, event: .transactionConsumptionApproved)
+        XCTAssertEqual(self.delegate.didReceiveTransactionConsumptionApproved, consumption)
+        XCTAssertEqual(self.delegate.didReceiveEvent!, .transactionConsumptionApproved)
         transactionConsumptionDispatcher.dispatch(.error(error: .socketError(message: "dummy_error")), event: .transactionConsumptionRequest)
         XCTAssertEqual(self.delegate.didReceiveError!.message, "socket error: dummy_error")
+        transactionConsumptionDispatcher.dispatch(payload, event: .transactionConsumptionRejected)
+        XCTAssertEqual(self.delegate.didReceiveTransactionConsumptionRejected, consumption)
+        XCTAssertEqual(self.delegate.didReceiveEvent!, .transactionConsumptionRejected)
     }
 
 }

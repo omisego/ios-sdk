@@ -14,6 +14,7 @@
 public enum TransactionConsumptionStatus: String, Decodable {
     case pending
     case confirmed
+    case rejected
     case failed
     case expired
 }
@@ -128,18 +129,33 @@ extension TransactionConsumption: Retrievable {
     }
 
     @discardableResult
-    /// Confirms the transaction consumption
+    /// Approve the transaction consumption
     ///
     /// - Parameters:
     ///   - client: An API client.
     ///             This client need to be initialized with a OMGConfiguration struct before being used.
     ///   - callback: The closure called when the request is completed
     /// - Returns: An optional cancellable request.
-    public func confirm(using client: OMGHTTPClient,
+    public func approve(using client: OMGHTTPClient,
                         callback: @escaping TransactionConsumption.RetrieveRequestCallback)
         -> TransactionConsumption.RetrieveRequest? {
             let params = TransactionConsumptionConfirmationParams(id: id)
-            return self.retrieve(using: client, endpoint: .transactionConsumptionConfirmation(params: params), callback: callback)
+            return self.retrieve(using: client, endpoint: .transactionConsumptionApprove(params: params), callback: callback)
+    }
+
+    @discardableResult
+    /// Reject the transaction consumption
+    ///
+    /// - Parameters:
+    ///   - client: An API client.
+    ///             This client need to be initialized with a OMGConfiguration struct before being used.
+    ///   - callback: The closure called when the request is completed
+    /// - Returns: An optional cancellable request.
+    public func reject(using client: OMGHTTPClient,
+                       callback: @escaping TransactionConsumption.RetrieveRequestCallback)
+        -> TransactionConsumption.RetrieveRequest? {
+            let params = TransactionConsumptionConfirmationParams(id: id)
+            return self.retrieve(using: client, endpoint: .transactionConsumptionReject(params: params), callback: callback)
     }
 
 }

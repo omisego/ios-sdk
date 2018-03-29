@@ -29,7 +29,7 @@ class TransactionRequestLiveTests: LiveTestCase {
     // 6) Confirm the consumption request
     // 7) Assert a same_address error as we did all actions with the same balance
 
-    func testGenerateThenGetThenConsumeTransactionRequest() {
+    func testGenerateTransactionRequestThenConsume() {
         let creationCorrelationId = UUID().uuidString
         // FLOW:
         // 1) Generate the transaction request
@@ -41,15 +41,51 @@ class TransactionRequestLiveTests: LiveTestCase {
         // 4) Try to consume the transaction request
         //    As it requires confirmation, an event should be send to listeners
         guard self.consumeTransactionRequest(transactionRequest: transactionRequest) != nil else { return }
+        // 5) Wait for the consumption to be sent
+        let consumptionRequest = self.waitForConsumption(withDelegate: consumptionDelegate)
+        // 6) Confirm the consumption
+        self.confirmConsumption(withConsumption: consumptionRequest)
+    }
+
+    func testGenerateTransactionRequestThenRejectConsumption() {
+        let creationCorrelationId = UUID().uuidString
+        // FLOW:
+        // 1) Generate the transaction request
+        guard let transactionRequest = self.generateTransactionRequest(creationCorrelationId: creationCorrelationId) else { return }
+        // 2) Test the get method
+        self.getTransactionRequest(transactionRequestId: transactionRequest.id, creationCorrelationId: creationCorrelationId)
+        // 3) Subscribe to events on this transaction request (listen for consumptions)
+        let consumptionDelegate = self.startToListenForConsumption(forTransactionRequest: transactionRequest)
+        // 4) Try to consume the transaction request
+        //    As it requires confirmation, an event should be send to listeners
+        guard let transactionConsumption = self.consumeTransactionRequest(transactionRequest: transactionRequest) else { return }
         // 5) Subscribe to events on this transaction consumption (listen for confirmations)
-        //        let confirmationDelegate = self.startToListenForConfirmation(forConsumption: transactionConsumption)
+        let confirmationDelegate = self.startToListenForConfirmation(forConsumption: transactionConsumption)
         // 6) Wait for the consumption to be sent
         let consumptionRequest = self.waitForConsumption(withDelegate: consumptionDelegate)
-        // 7) Confirm the consumption
-        self.confirmConsumption(withConsumption: consumptionRequest)
-        // 8) Wait for the confirmation to be sent
-        //        let confirmedConsumption = self.waitForConfirmation(withDelegate: confirmationDelegate)
-        //        XCTAssertEqual(confirmedConsumption.status, .confirmed)
+        // 7) Reject the consumption
+        self.rejectConsumption(withConsumption: consumptionRequest)
+        // 8) Wait for the rejection to be sent
+        let rejectedConsumption = self.waitForRejection(withDelegate: confirmationDelegate)
+        XCTAssertEqual(rejectedConsumption.status, .rejected)
+        XCTAssertFalse(rejectedConsumption.approved)
+        XCTAssertNotNil(rejectedConsumption.finalizedAt)
+    }
+
+    func testChannelNotFound() {
+        let tc = StubGenerator.transactionConsumption(socketTopic: "transaction_consumption:123")
+        let joinExpectation = self.expectation(description: "Fail to join the channel")
+        let delegate = DummySocketEventDelegate(joinExpectation: joinExpectation)
+        tc.startListeningEvents(withClient: self.testSocketClient, eventDelegate: delegate)
+        self.wait(for: [joinExpectation], timeout: 15)
+        guard let error = delegate.didReceiveError else {
+            XCTFail("Should get an error")
+            return
+        }
+        switch error {
+        case .api(apiError: let apiError): XCTAssertEqual(apiError.code, .channelNotFound)
+        default: XCTFail("Should get an API error")
+        }
     }
 
 }
@@ -65,11 +101,11 @@ extension TransactionRequestLiveTests {
             address: nil,
             correlationId: creationCorrelationId,
             requireConfirmation: true,
-            maxConsumptions: 1,
+            maxConsumptions: 2,
             consumptionLifetime: nil,
-            expirationDate: nil,
+            expirationDate: Date().addingTimeInterval(60),
             allowAmountOverride: true,
-            metadata: [:])!
+            metadata: ["a_key": "a_value"])!
         var transactionRequestResult: TransactionRequest?
         let generateRequest = TransactionRequest.generateTransactionRequest(
             using: self.testClient,
@@ -86,7 +122,7 @@ extension TransactionRequestLiveTests {
                 }
         }
         XCTAssertNotNil(generateRequest)
-         wait(for: [generateExpectation], timeout: 15.0)
+        wait(for: [generateExpectation], timeout: 15.0)
         return transactionRequestResult
     }
 
@@ -109,7 +145,7 @@ extension TransactionRequestLiveTests {
                 }
         }
         XCTAssertNotNil(getRequest)
-         wait(for: [getExpectation], timeout: 15.0)
+        wait(for: [getExpectation], timeout: 15.0)
     }
 
     func consumeTransactionRequest(transactionRequest: TransactionRequest) -> TransactionConsumption? {
@@ -124,7 +160,7 @@ extension TransactionRequestLiveTests {
             idempotencyToken: idempotencyToken,
             correlationId: consumeCorrelationId,
             expirationDate: nil,
-            metadata: [:])
+            metadata: ["a_key": "a_value"])
         var transactionConsumptionResult: TransactionConsumption?
         let consumeRequest = TransactionConsumption.consumeTransactionRequest(
             using: self.testClient,
@@ -172,23 +208,32 @@ extension TransactionRequestLiveTests {
     func waitForConsumption(withDelegate delegate: DummySocketEventDelegate) -> TransactionConsumption {
         let expectation = delegate.eventExpectation!
         wait(for: [expectation], timeout: 15.0)
-        XCTAssertNotNil(delegate.didReceiveTransactionConsumption)
+        XCTAssertNotNil(delegate.didReceiveTransactionConsumptionRequest)
         XCTAssertEqual(delegate.didReceiveEvent!, SocketEvent.transactionConsumptionRequest)
-        return delegate.didReceiveTransactionConsumption!
+        return delegate.didReceiveTransactionConsumptionRequest!
     }
 
-    func waitForConfirmation(withDelegate delegate: DummySocketEventDelegate) -> TransactionConsumption {
+    func waitForApproval(withDelegate delegate: DummySocketEventDelegate) -> TransactionConsumption {
         let expectation = delegate.eventExpectation!
         wait(for: [expectation], timeout: 15.0)
-        XCTAssertNotNil(delegate.didReceiveTransactionConsumption)
+        XCTAssertNotNil(delegate.didReceiveTransactionConsumptionApproved)
         XCTAssertNotNil(delegate.didReceiveEvent)
-        XCTAssertEqual(delegate.didReceiveEvent!, SocketEvent.transactionConsumptionConfirmation)
-        return delegate.didReceiveTransactionConsumption!
+        XCTAssertEqual(delegate.didReceiveEvent!, SocketEvent.transactionConsumptionApproved)
+        return delegate.didReceiveTransactionConsumptionApproved!
+    }
+
+    func waitForRejection(withDelegate delegate: DummySocketEventDelegate) -> TransactionConsumption {
+        let expectation = delegate.eventExpectation!
+        wait(for: [expectation], timeout: 15.0)
+        XCTAssertNotNil(delegate.didReceiveTransactionConsumptionRejected)
+        XCTAssertNotNil(delegate.didReceiveEvent)
+        XCTAssertEqual(delegate.didReceiveEvent!, SocketEvent.transactionConsumptionRejected)
+        return delegate.didReceiveTransactionConsumptionRejected!
     }
 
     func confirmConsumption(withConsumption transactionConsumption: TransactionConsumption) {
         let confirmExpectation = self.expectation(description: "Confirm consumption request")
-        let confirmationRequest = transactionConsumption.confirm(using: self.testClient) { (result) in
+        let confirmationRequest = transactionConsumption.approve(using: self.testClient) { (result) in
             defer { confirmExpectation.fulfill() }
             switch result {
             case .success:
@@ -202,6 +247,23 @@ extension TransactionRequestLiveTests {
         }
         XCTAssertNotNil(confirmationRequest)
         wait(for: [confirmExpectation], timeout: 15.0)
+    }
+
+    func rejectConsumption(withConsumption transactionConsumption: TransactionConsumption) {
+        let rejectExpectation = self.expectation(description: "Confirm consumption request")
+        let rejectRequest = transactionConsumption.reject(using: self.testClient) { (result) in
+            defer { rejectExpectation.fulfill() }
+            switch result {
+            case .success(data: let transactionConsumption):
+                XCTAssertEqual(transactionConsumption.status, .rejected)
+                XCTAssertFalse(transactionConsumption.approved)
+            case .fail:
+                XCTFail("Shouldn't receive error")
+
+            }
+        }
+        XCTAssertNotNil(rejectRequest)
+        wait(for: [rejectExpectation], timeout: 15.0)
     }
 
 }

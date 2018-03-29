@@ -72,6 +72,8 @@ public enum APIErrorCode: Decodable {
     case maxConsumptionsReached
     case notOwnerOfTransactionConsumption
     case invalidMintedTokenForTransactionConsumption
+    case forbiddenChannel
+    case channelNotFound
     case other(String)
 
     public init(from decoder: Decoder) throws {
@@ -120,6 +122,10 @@ extension APIErrorCode: RawRepresentable {
             self = .notOwnerOfTransactionConsumption
         case "transaction_consumption:invalid_minted_token":
             self = .invalidMintedTokenForTransactionConsumption
+        case "websocket:forbidden_channel":
+            self = .forbiddenChannel
+        case "websocket:channel_not_found":
+            self = .channelNotFound
         case let code:
             self = .other(code)
         }
@@ -159,6 +165,10 @@ extension APIErrorCode: RawRepresentable {
             return "transaction_consumption:not_owner"
         case .invalidMintedTokenForTransactionConsumption:
             return "transaction_consumption:invalid_minted_token"
+        case .forbiddenChannel:
+            return "websocket:forbidden_channel"
+        case .channelNotFound:
+            return "websocket:channel_not_found"
         case .other(let code):
             return code
         }

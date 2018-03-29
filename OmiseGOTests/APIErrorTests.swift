@@ -65,6 +65,10 @@ class APIErrorCodeTests: XCTestCase {
                        APIErrorCode.notOwnerOfTransactionConsumption)
         XCTAssertEqual(APIErrorCode(rawValue: "transaction_consumption:invalid_minted_token"),
                        APIErrorCode.invalidMintedTokenForTransactionConsumption)
+        XCTAssertEqual(APIErrorCode(rawValue: "websocket:forbidden_channel"),
+                       APIErrorCode.forbiddenChannel)
+        XCTAssertEqual(APIErrorCode(rawValue: "websocket:channel_not_found"),
+                       APIErrorCode.channelNotFound)
         XCTAssertEqual(APIErrorCode(rawValue: "an other code"),
                        APIErrorCode.other("an other code"))
     }

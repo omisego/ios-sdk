@@ -35,7 +35,7 @@ func dateDecodingStrategy(decoder: Decoder) throws -> Date {
 
 func dateEncodingStrategy(date: Date, encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
-    try container.encode(date.toString())
+    try container.encode(date.toString(withFormat: "yyyy-MM-dd'T'HH:mm:ssZZZZZ", timeZone: TimeZone(secondsFromGMT: 0)))
 }
 
 extension String {

@@ -39,6 +39,10 @@ enum GenericObjectEnum {
     case error(error: OmiseGOError)
     case other(object: [String: Any])
 
+}
+
+extension GenericObjectEnum {
+
     init?(objectType: String?, decoder: Decoder) throws {
         guard let objectType = objectType else {
             self = .other(object: [:])
@@ -52,4 +56,5 @@ enum GenericObjectEnum {
         default: self = .error(error: OmiseGOError.socketError(message: "Invalid payload"))
         }
     }
+
 }

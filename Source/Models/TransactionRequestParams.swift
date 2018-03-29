@@ -93,7 +93,7 @@ extension TransactionRequestCreateParams: Parametrable {
         case address
         case correlationId = "correlation_id"
         case requireConfirmation = "require_confirmation"
-        case maxConsumptions = "max_consumtions"
+        case maxConsumptions = "max_consumptions"
         case consumptionLifetime = "consumption_lifetime"
         case expirationDate = "expiration_date"
         case allowAmountOverride = "allow_amount_override"
