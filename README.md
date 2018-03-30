@@ -21,7 +21,8 @@ The [OmiseGO](https://omisego.network) iOS SDK allows developers to easily inter
     - [Transferring tokens](#transferring-tokens)
       - [Generate a transaction request](#generate-a-transaction-request)
       - [Consume a transaction request](#consume-a-transaction-request)
-      - [Confirm a transaction consumption](#confirm-a-transaction-consumption)
+      - [Approve a transaction consumption](#confirm-a-transaction-consumption)
+      - [Reject a transaction consumption](#reject-a-transaction-consumption)
     - [QR codes](#qr-codes)
       - [Generate a QR code](#create-a-qr-code-representation-of-a-transaction-request)
       - [Scan a QR code](#scan-a-qr-code)
@@ -346,11 +347,24 @@ Where `params` is a `TransactionConsumptionParams` struct constructed using:
 - `metadata`: A dictionary of additional data to be stored for this transaction consumption.
 
 
-#### Confirm a transaction consumption
+#### Approve a transaction consumption
 
 
 ```swift
-transactionConsumption.confirm(using:client, callback: { (result) in
+transactionConsumption.approve(using:client, callback: { (result) in
+    switch result {
+    case .success(data: let transactionConsumption):
+        // Handle success
+    case .fail(error: let error):
+        // Handle error
+    }
+})
+```
+
+#### Reject a transaction consumption
+
+```swift
+transactionConsumption.reject(using:client, callback: { (result) in
     switch result {
     case .success(data: let transactionConsumption):
         // Handle success
