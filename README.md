@@ -442,7 +442,7 @@ Where:
 
 ### Listenable resources
 
-Some resources are listenable, meaning that an `OMGSocketClient` can be used establish a websocket connection and an object conforming to a subclass of the `EventDelegate` protocol can be use to listen for events incoming on this resource.
+Some resources are listenable, meaning that an `OMGSocketClient` can be used establish a websocket connection and an object conforming to a subclass of the `EventDelegate` protocol can be used to listen for events incoming on this resource.
 The `EventDelegate` protocol contains 3 common methods for all event delegates:
 
 ```swift
