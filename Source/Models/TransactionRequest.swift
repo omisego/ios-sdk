@@ -130,11 +130,11 @@ extension TransactionRequest: Retrievable {
     ///
     /// - Parameters:
     ///   - client: An API client.
-    ///             This client need to be initialized with a OMGConfiguration struct before being used.
+    ///             This client need to be initialized with a ClientConfiguration struct before being used.
     ///   - params: The TransactionRequestCreateParams object describing the transaction request to be made.
     ///   - callback: The closure called when the request is completed
     /// - Returns: An optional cancellable request.
-    public static func generateTransactionRequest(using client: OMGHTTPClient,
+    public static func generateTransactionRequest(using client: HTTPClient,
                                                   params: TransactionRequestCreateParams,
                                                   callback: @escaping TransactionRequest.RetrieveRequestCallback)
         -> TransactionRequest.RetrieveRequest? {
@@ -148,11 +148,11 @@ extension TransactionRequest: Retrievable {
     ///
     /// - Parameters:
     ///   - client: An API client.
-    ///             This client need to be initialized with a OMGConfiguration struct before being used.
+    ///             This client need to be initialized with a ClientConfiguration struct before being used.
     ///   - id: The id of the TransactionRequest to be retrived.
     ///   - callback: The closure called when the request is completed
     /// - Returns: An optional cancellable request.
-    public static func retrieveTransactionRequest(using client: OMGHTTPClient,
+    public static func retrieveTransactionRequest(using client: HTTPClient,
                                                   id: String,
                                                   callback: @escaping TransactionRequest.RetrieveRequestCallback)
         -> TransactionRequest.RetrieveRequest? {
