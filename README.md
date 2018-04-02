@@ -21,7 +21,7 @@ The [OmiseGO](https://omisego.network) iOS SDK allows developers to easily inter
     - [Transferring tokens](#transferring-tokens)
       - [Generate a transaction request](#generate-a-transaction-request)
       - [Consume a transaction request](#consume-a-transaction-request)
-      - [Approve a transaction consumption](#confirm-a-transaction-consumption)
+      - [Approve a transaction consumption](#approve-a-transaction-consumption)
       - [Reject a transaction consumption](#reject-a-transaction-consumption)
     - [QR codes](#qr-codes)
       - [Generate a QR code](#create-a-qr-code-representation-of-a-transaction-request)
