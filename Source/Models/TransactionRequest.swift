@@ -118,7 +118,7 @@ extension TransactionRequest {
     /// - Returns: A QR image if the transaction request was successfuly encoded, nil otherwise.
     public func qrImage(withSize size: CGSize = CGSize(width: 200, height: 200)) -> UIImage? {
         guard let data = self.id.data(using: .isoLatin1) else { return nil }
-        return QRCode.generateQRCode(fromData: data, outputSize: size)
+        return QRGenerator.generateQRCode(fromData: data, outputSize: size)
     }
 
 }
