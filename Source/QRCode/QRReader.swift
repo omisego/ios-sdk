@@ -21,7 +21,7 @@ class QRReader: NSObject {
     init(onFindClosure: @escaping ((String) -> Void)) {
         self.didReadCode = onFindClosure
         super.init()
-        self.sessionQueue.async {
+        self.sessionQueue.sync {
             self.configureReader()
         }
     }
@@ -41,14 +41,14 @@ class QRReader: NSObject {
     }
 
     func startScanning() {
-        self.sessionQueue.async {
+        self.sessionQueue.sync {
             guard !self.session.isRunning else { return }
             self.session.startRunning()
         }
     }
 
     func stopScanning() {
-        self.sessionQueue.async {
+        self.sessionQueue.sync {
             guard self.session.isRunning else { return }
             self.session.stopRunning()
         }
@@ -66,7 +66,7 @@ extension QRReader: AVCaptureMetadataOutputObjectsDelegate {
     func metadataOutput(_ output: AVCaptureMetadataOutput,
                         didOutput metadataObjects: [AVMetadataObject],
                         from connection: AVCaptureConnection) {
-        self.sessionQueue.async { [weak self] in
+        self.sessionQueue.sync { [weak self] in
             guard let weakSelf = self else { return }
             guard !metadataObjects.isEmpty,
                 let metadataObject = metadataObjects[0] as? AVMetadataMachineReadableCodeObject,
