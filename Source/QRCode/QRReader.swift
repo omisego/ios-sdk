@@ -16,12 +16,12 @@ class QRReader: NSObject {
     lazy var previewLayer: AVCaptureVideoPreviewLayer = {
         return AVCaptureVideoPreviewLayer(session: self.session)
     }()
-    private let sessionQueue: DispatchQueue = DispatchQueue(label: "io.omisego.qrqueue")
+    private let sessionQueue: DispatchQueue = DispatchQueue(label: "serial queue")
 
     init(onFindClosure: @escaping ((String) -> Void)) {
         self.didReadCode = onFindClosure
         super.init()
-        self.sessionQueue.sync {
+        self.sessionQueue.async {
             self.configureReader()
         }
     }
@@ -41,14 +41,14 @@ class QRReader: NSObject {
     }
 
     func startScanning() {
-        self.sessionQueue.sync {
+        self.sessionQueue.async {
             guard !self.session.isRunning else { return }
             self.session.startRunning()
         }
     }
 
     func stopScanning() {
-        self.sessionQueue.sync {
+        self.sessionQueue.async {
             guard self.session.isRunning else { return }
             self.session.stopRunning()
         }
@@ -66,7 +66,7 @@ extension QRReader: AVCaptureMetadataOutputObjectsDelegate {
     func metadataOutput(_ output: AVCaptureMetadataOutput,
                         didOutput metadataObjects: [AVMetadataObject],
                         from connection: AVCaptureConnection) {
-        self.sessionQueue.sync { [weak self] in
+        self.sessionQueue.async { [weak self] in
             guard let weakSelf = self else { return }
             guard !metadataObjects.isEmpty,
                 let metadataObject = metadataObjects[0] as? AVMetadataMachineReadableCodeObject,
