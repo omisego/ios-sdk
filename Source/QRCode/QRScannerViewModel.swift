@@ -57,7 +57,9 @@ class QRScannerViewModel: QRScannerViewModelProtocol {
             switch result {
             case .success(data: let transactionRequest):
                 self.onGetTransactionRequest?(transactionRequest)
-            case .fail(error: let error): self.onError?(error)
+            case .fail(error: let error):
+                self.startScanning()
+                self.onError?(error)
             }
         }
     }
