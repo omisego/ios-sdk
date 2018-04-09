@@ -205,8 +205,7 @@ extension SocketClient: WebSocketDelegate {
             case Int(CloseCode.normal.rawValue): self.delegate?.didDisconnect(nil)
             default: self.delegate?.didDisconnect(.socketError(message: wsError.message))
             }
-        }
-        else if let error = error {
+        } else if let error = error {
             self.delegate?.didDisconnect(.other(error: error))
         } else {
             self.delegate?.didDisconnect(nil)
