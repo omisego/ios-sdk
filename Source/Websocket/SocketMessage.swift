@@ -10,9 +10,7 @@ class SocketMessage {
 
     let dataSent: SocketPayloadSend?
     var dataReceived: SocketPayloadReceive?
-    var error: OMGError?
-    var receivedResponse: GenericObjectEnum?
-    private var errorHandler: ((OMGError) -> Void)?
+    private var errorHandler: ((APIError) -> Void)?
     private var successHandler: ((GenericObjectEnum) -> Void)?
 
     init(socketPayload: SocketPayloadSend) {
@@ -31,7 +29,7 @@ class SocketMessage {
     }
 
     @discardableResult
-    func onError(_ handler: @escaping ((OMGError) -> Void)) -> SocketMessage {
+    func onError(_ handler: @escaping ((APIError) -> Void)) -> SocketMessage {
         self.errorHandler = handler
         return self
     }
@@ -42,10 +40,6 @@ class SocketMessage {
 
     func handleResponse(withPayload payload: SocketPayloadReceive) {
         self.dataReceived = payload
-        switch payload.data.object {
-        case .error(error: let error): self.error = error
-        default: self.receivedResponse = payload.data.object
-        }
         self.fireCallbacksAndCleanup()
     }
 
@@ -54,9 +48,9 @@ class SocketMessage {
             self.errorHandler = nil
             self.successHandler = nil
         }
-        if let error = self.error, let errorHandler = self.errorHandler {
+        if let error = self.dataReceived?.error, let errorHandler = self.errorHandler {
             errorHandler(error)
-        } else if let object = self.receivedResponse, let successHandler = self.successHandler {
+        } else if let object = self.dataReceived?.data?.object, let successHandler = self.successHandler {
             successHandler(object)
         }
     }
