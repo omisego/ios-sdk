@@ -22,9 +22,9 @@ class SocketMessageTests: XCTestCase {
     func testCallsSuccessHandlerWhenSucceed() {
         let expectation = self.expectation(description: "Calls success handler when succeed")
         let payload = StubGenerator.socketPayloadReceive()
-        let handler: ((GenericObjectEnum) -> Void) = { response in
+        let handler: ((GenericObjectEnum?) -> Void) = { response in
             switch response {
-            case .transactionConsumption(object: let tc): XCTAssertNotNil(tc)
+            case .some(.transactionConsumption(object: let tc)): XCTAssertNotNil(tc)
             default: XCTFail("Unexpected response")
             }
             expectation.fulfill()
