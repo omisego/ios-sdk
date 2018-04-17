@@ -446,7 +446,7 @@ The `EventDelegate` protocol contains 3 common methods for all event delegates:
 ```swift
 func didStartListening()
 func didStopListening()
-func onError(_ error: OMGError)
+func onError(_ error: APIError)
 ```
 
 - `didStartListening` can be used to know when the socket channel has been established and is ready to receive events.
@@ -476,7 +476,7 @@ This allows the requester to [confirm](#confirm-a-transaction-consumption) or no
 
 This method will be called if a `TransactionConsumption` has been finalized successfully, and the transfer was made between the 2 addresses.
 
-- `onFailedTransactionConsumptionFinalized(_ error: OMGError)`.
+- `onFailedTransactionConsumptionFinalized(_ error: APIError)`.
 
 This method will be called if a `TransactionConsumption` fails to consume the request.
 
@@ -497,7 +497,7 @@ An object conforming to `TransactionConsumptionEventDelegate` needs to implement
 
 This method will be called if the `TransactionConsumption` has been finalized successfully, and the transfer was made between the 2 addresses.
 
-- `onFailedTransactionConsumptionFinalized(_ error: OMGError)`.
+- `onFailedTransactionConsumptionFinalized(_ error: APIError)`.
 
 This method will be called if the `TransactionConsumption` fails to consume the request.
 
