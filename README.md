@@ -54,7 +54,7 @@ The [OmiseGO](https://omisego.network) iOS SDK allows developers to easily inter
 [CocoaPods](http://cocoapods.org) is a dependency manager for Cocoa projects. You can install it with the following command:
 
 ```bash
-$ gem install cocoapods
+gem install cocoapods
 ```
 
 To integrate the `OmiseGO` SDK into your Xcode project using CocoaPods, add the following line in your `Podfile`:
