@@ -56,15 +56,15 @@ enum SocketDispatcher {
     private func handleTransactionRequestEvents(withHandler handler: TransactionRequestEventDelegate?,
                                                 payload: SocketPayloadReceive) {
         switch (payload.data?.object, payload.error, payload.event) {
-        case (.transactionConsumption(object: let transactionConsumption)?,
+        case (.some(.transactionConsumption(object: let transactionConsumption)),
               .none,
               .transactionConsumptionRequest):
             handler?.onTransactionConsumptionRequest(transactionConsumption)
-        case (.transactionConsumption(object: let transactionConsumption)?,
+        case (.some(.transactionConsumption(object: let transactionConsumption)),
               .some(let error),
               .transactionConsumptionFinalized):
             handler?.onFailedTransactionConsumptionFinalized(transactionConsumption, error: error)
-        case (.transactionConsumption(object: let transactionConsumption)?,
+        case (.some(.transactionConsumption(object: let transactionConsumption)),
               .none,
               .transactionConsumptionFinalized):
             handler?.onSuccessfulTransactionConsumptionFinalized(transactionConsumption)
@@ -77,11 +77,11 @@ enum SocketDispatcher {
     private func handleTransactionConsumptionEvents(withHandler handler: TransactionConsumptionEventDelegate?,
                                                     payload: SocketPayloadReceive) {
         switch (payload.data?.object, payload.error, payload.event) {
-        case (.transactionConsumption(object: let transactionConsumption)?,
+        case (.some(.transactionConsumption(object: let transactionConsumption)),
               .some(let error),
               .transactionConsumptionFinalized):
             handler?.onFailedTransactionConsumptionFinalized(transactionConsumption, error: error)
-        case (.transactionConsumption(object: let transactionConsumption)?,
+        case (.some(.transactionConsumption(object: let transactionConsumption)),
               .none,
               .transactionConsumptionFinalized):
             handler?.onSuccessfulTransactionConsumptionFinalized(transactionConsumption)
