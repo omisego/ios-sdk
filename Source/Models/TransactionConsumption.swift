@@ -93,7 +93,7 @@ extension TransactionConsumption: Decodable {
         case approvedAt = "approved_at"
         case rejectedAt = "rejected_at"
         case confirmedAt = "confirmed_at"
-        case failedAt = "failedAt"
+        case failedAt = "failed_at"
         case expiredAt = "expired_at"
         case createdAt = "created_at"
         case metadata
