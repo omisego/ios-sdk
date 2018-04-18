@@ -284,6 +284,9 @@ class DecodeTests: XCTestCase {
             XCTAssertEqual(decodedData.mintedToken.id, "BTC:861020af-17b6-49ee-a0cb-661a4d2d1f95")
             XCTAssertEqual(decodedData.amount, 1337)
             XCTAssertEqual(decodedData.address, "3b7f1c68-e3bd-4f8f-9916-4af19be95d00")
+            let user = decodedData.user!
+            XCTAssertEqual(user.id, "6f56efa1-caf9-4348-8e0f-f5af283f17ee")
+            XCTAssertNil(decodedData.accountId)
             XCTAssertEqual(decodedData.correlationId, "31009545-db10-4287-82f4-afb46d9741d8")
             XCTAssertEqual(decodedData.status, .valid)
             XCTAssertEqual(decodedData.socketTopic, "transaction_request:8eb0160e-1c96-481a-88e1-899399cc84dc")
@@ -314,10 +317,11 @@ class DecodeTests: XCTestCase {
             XCTAssertEqual(mintedToken.subUnitToUnit, 100000)
             XCTAssertEqual(decodedData.correlationId, "31009545-db10-4287-82f4-afb46d9741d8")
             XCTAssertEqual(decodedData.idempotencyToken, "31009545-db10-4287-82f4-afb46d9741d8")
-            XCTAssertEqual(decodedData.transactionId, "6ca40f34-6eaa-43e1-b2e1-a94ff3660988")
-            XCTAssertEqual(decodedData.userId, "6f56efa1-caf9-4348-8e0f-f5af283f17ee")
+            let transaction = decodedData.transaction!
+            XCTAssertEqual(transaction.id, "6ca40f34-6eaa-43e1-b2e1-a94ff366098")
+            let user = decodedData.user!
+            XCTAssertEqual(user.id, "6f56efa1-caf9-4348-8e0f-f5af283f17ee")
             XCTAssertNil(decodedData.accountId)
-            XCTAssertEqual(decodedData.transactionRequestId, "907056a4-fc2d-47cb-af19-5e73aade7ece")
             let transactionRequest = decodedData.transactionRequest
             XCTAssertEqual(transactionRequest.id, "907056a4-fc2d-47cb-af19-5e73aade7ece")
             XCTAssertEqual(decodedData.address, "3b7f1c68-e3bd-4f8f-9916-4af19be95d00")
