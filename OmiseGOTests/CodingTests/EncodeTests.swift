@@ -244,7 +244,7 @@ class EncodeTests: XCTestCase {
                                                         amount: 1337,
                                                         address: "3bfe0ff7-f43e-4ac6-bdf9-c4a290c40d0d",
                                                         user: StubGenerator.user(),
-                                                        accountId: nil,
+                                                        account: nil,
                                                         correlationId: "31009545-db10-4287-82f4-afb46d9741d8",
                                                         status: .valid,
                                                         socketTopic: "transaction_request:0a8a4a98-794b-419e-b92d-514e83657e75",

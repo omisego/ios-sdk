@@ -44,7 +44,7 @@ public struct TransactionConsumption {
     /// The user that initiated the consumption
     public let user: User?
     /// The account that initiated the consumption
-    public let accountId: String?
+    public let account: Account?
     /// The transaction request to be consumed
     public let transactionRequest: TransactionRequest
     /// The topic which can be listened in order to receive events regarding this consumption
@@ -105,7 +105,7 @@ extension TransactionConsumption: Decodable {
         idempotencyToken = try container.decode(String.self, forKey: .idempotencyToken)
         transaction = try container.decodeIfPresent(Transaction.self, forKey: .transaction)
         user = try container.decodeIfPresent(User.self, forKey: .user)
-        accountId = try container.decodeIfPresent(String.self, forKey: .account)
+        account = try container.decodeIfPresent(Account.self, forKey: .account)
         transactionRequest = try container.decode(TransactionRequest.self, forKey: .transactionRequest)
         address = try container.decode(String.self, forKey: .address)
         socketTopic = try container.decode(String.self, forKey: .socketTopic)
