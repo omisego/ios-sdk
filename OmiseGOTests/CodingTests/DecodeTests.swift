@@ -213,6 +213,10 @@ class DecodeTests: XCTestCase {
             XCTAssertEqual(decodedData.symbol, "OMG")
             XCTAssertEqual(decodedData.name, "OmiseGO")
             XCTAssertEqual(decodedData.subUnitToUnit, 100000000)
+            XCTAssertEqual(decodedData.metadata.count, 0)
+            XCTAssertEqual(decodedData.encryptedMetadata.count, 0)
+            XCTAssertEqual(decodedData.createdAt, try "2018-01-01T00:00:00Z".toDate())
+            XCTAssertEqual(decodedData.updatedAt, try "2018-01-01T00:00:00Z".toDate())
         } catch let thrownError {
             XCTFail(thrownError.localizedDescription)
         }
@@ -227,6 +231,10 @@ class DecodeTests: XCTestCase {
             XCTAssertEqual(decodedData.mintedTokens[0].symbol, "OMG")
             XCTAssertEqual(decodedData.mintedTokens[0].name, "OmiseGO")
             XCTAssertEqual(decodedData.mintedTokens[0].subUnitToUnit, 100000000)
+            XCTAssertEqual(decodedData.mintedTokens[0].metadata.count, 0)
+            XCTAssertEqual(decodedData.mintedTokens[0].encryptedMetadata.count, 0)
+            XCTAssertEqual(decodedData.mintedTokens[0].createdAt, try "2018-01-01T00:00:00Z".toDate())
+            XCTAssertEqual(decodedData.mintedTokens[0].updatedAt, try "2018-01-01T00:00:00Z".toDate())
         } catch let thrownError {
             XCTFail(thrownError.localizedDescription)
         }
@@ -241,6 +249,10 @@ class DecodeTests: XCTestCase {
             XCTAssertEqual(decodedData.mintedToken.symbol, "OMG")
             XCTAssertEqual(decodedData.mintedToken.name, "OmiseGO")
             XCTAssertEqual(decodedData.mintedToken.subUnitToUnit, 10000)
+            XCTAssertEqual(decodedData.mintedToken.metadata.count, 0)
+            XCTAssertEqual(decodedData.mintedToken.encryptedMetadata.count, 0)
+            XCTAssertEqual(decodedData.mintedToken.createdAt, try "2018-01-01T00:00:00Z".toDate())
+            XCTAssertEqual(decodedData.mintedToken.updatedAt, try "2018-01-01T00:00:00Z".toDate())
         } catch let thrownError {
             XCTFail(thrownError.localizedDescription)
         }
@@ -257,6 +269,10 @@ class DecodeTests: XCTestCase {
             XCTAssertEqual(decodedData.balances[0].mintedToken.symbol, "OMG")
             XCTAssertEqual(decodedData.balances[0].mintedToken.name, "OmiseGO")
             XCTAssertEqual(decodedData.balances[0].mintedToken.subUnitToUnit, 10000)
+            XCTAssertEqual(decodedData.balances[0].mintedToken.metadata.count, 0)
+            XCTAssertEqual(decodedData.balances[0].mintedToken.encryptedMetadata.count, 0)
+            XCTAssertEqual(decodedData.balances[0].mintedToken.createdAt, try "2018-01-01T00:00:00Z".toDate())
+            XCTAssertEqual(decodedData.balances[0].mintedToken.updatedAt, try "2018-01-01T00:00:00Z".toDate())
         } catch let thrownError {
             XCTFail(thrownError.localizedDescription)
         }

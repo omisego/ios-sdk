@@ -11,7 +11,11 @@
       "id": "BTC:861020af-17b6-49ee-a0cb-661a4d2d1f95",
       "symbol": "BTC",
       "name": "Bitcoin",
-      "subunit_to_unit": 100000
+      "subunit_to_unit": 100000,
+      "metadata": {},
+      "encrypted_metadata": {},
+      "created_at": "2018-01-01T00:00:00Z",
+      "updated_at": "2018-01-01T00:00:00Z"
     },
     "correlation_id": "31009545-db10-4287-82f4-afb46d9741d8",
     "idempotency_token": "31009545-db10-4287-82f4-afb46d9741d8",
@@ -27,7 +31,11 @@
           "id": "BTC:861020af-17b6-49ee-a0cb-661a4d2d1f95",
           "symbol": "BTC",
           "name": "Bitcoin",
-          "subunit_to_unit": 100000
+          "subunit_to_unit": 100000,
+          "metadata": {},
+          "encrypted_metadata": {},
+          "created_at": "2018-01-01T00:00:00Z",
+          "updated_at": "2018-01-01T00:00:00Z"
         }
       },
       "to": {
@@ -39,7 +47,11 @@
           "id": "BTC:861020af-17b6-49ee-a0cb-661a4d2d1f95",
           "symbol": "BTC",
           "name": "Bitcoin",
-          "subunit_to_unit": 100000
+          "subunit_to_unit": 100000,
+          "metadata": {},
+          "encrypted_metadata": {},
+          "created_at": "2018-01-01T00:00:00Z",
+          "updated_at": "2018-01-01T00:00:00Z"
         }
       },
       "exchange": {
@@ -60,7 +72,11 @@
         "id": "BTC:861020af-17b6-49ee-a0cb-661a4d2d1f95",
         "symbol": "BTC",
         "name": "Bitcoin",
-        "subunit_to_unit": 100000
+        "subunit_to_unit": 100000,
+        "metadata": {},
+        "encrypted_metadata": {},
+        "created_at": "2018-01-01T00:00:00Z",
+        "updated_at": "2018-01-01T00:00:00Z"
       },
       "amount": 1337,
       "address": "3b7f1c68-e3bd-4f8f-9916-4af19be95d00",

@@ -60,13 +60,21 @@ class StubGenerator {
     class func mintedToken(id: String? = nil,
                            symbol: String? = nil,
                            name: String? = nil,
-                           subUnitToUnit: Double? = nil)
+                           subUnitToUnit: Double? = nil,
+                           metadata: [String: Any]? = nil,
+                           encryptedMetadata: [String: Any]? = nil,
+                           createdAt: Date? = nil,
+                           updatedAt: Date? = nil)
         -> MintedToken {
             let v: MintedToken = self.stub(forResource: "minted_token")
             return MintedToken(id: id ?? v.id,
                                symbol: symbol ?? v.symbol,
                                name: name ?? v.name,
-                               subUnitToUnit: subUnitToUnit ?? v.subUnitToUnit)
+                               subUnitToUnit: subUnitToUnit ?? v.subUnitToUnit,
+                               metadata: metadata ?? v.metadata,
+                               encryptedMetadata: encryptedMetadata ?? v.encryptedMetadata,
+                               createdAt: createdAt ?? v.createdAt,
+                               updatedAt: updatedAt ?? v.updatedAt)
     }
 
     class func settings(mintedTokens: [MintedToken]? = nil)
