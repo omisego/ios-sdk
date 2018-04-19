@@ -29,8 +29,8 @@ class AddressFixtureTests: FixtureTestCase {
                 XCTAssertEqual(balance1.mintedToken.id, "OMG:123")
                 XCTAssertEqual(balance1.mintedToken.symbol, "OMG")
                 XCTAssertEqual(balance1.mintedToken.subUnitToUnit, 10000)
-                XCTAssertEqual(balance1.mintedToken.metadata.count, 0)
-                XCTAssertEqual(balance1.mintedToken.encryptedMetadata.count, 0)
+                XCTAssertTrue(balance1.mintedToken.metadata.isEmpty)
+                XCTAssertTrue(balance1.mintedToken.encryptedMetadata.isEmpty)
                 XCTAssertEqual(balance1.mintedToken.createdAt, "2018-01-01T00:00:00Z".toDate())
                 XCTAssertEqual(balance1.mintedToken.updatedAt, "2018-01-01T00:00:00Z".toDate())
 
@@ -38,8 +38,8 @@ class AddressFixtureTests: FixtureTestCase {
                 XCTAssertEqual(balance2.mintedToken.id, "KNC:123")
                 XCTAssertEqual(balance2.mintedToken.symbol, "KNC")
                 XCTAssertEqual(balance2.mintedToken.subUnitToUnit, 10000)
-                XCTAssertEqual(balance2.mintedToken.metadata.count, 0)
-                XCTAssertEqual(balance2.mintedToken.encryptedMetadata.count, 0)
+                XCTAssertTrue(balance2.mintedToken.metadata.isEmpty)
+                XCTAssertTrue(balance2.mintedToken.encryptedMetadata.isEmpty)
                 XCTAssertEqual(balance2.mintedToken.createdAt, "2018-01-01T00:00:00Z".toDate())
                 XCTAssertEqual(balance2.mintedToken.updatedAt, "2018-01-01T00:00:00Z".toDate())
             case .fail(error: let error):
@@ -66,8 +66,8 @@ class AddressFixtureTests: FixtureTestCase {
                 XCTAssertEqual(balance1.mintedToken.id, "OMG:123")
                 XCTAssertEqual(balance1.mintedToken.symbol, "OMG")
                 XCTAssertEqual(balance1.mintedToken.subUnitToUnit, 10000)
-                XCTAssertEqual(balance1.mintedToken.metadata.count, 0)
-                XCTAssertEqual(balance1.mintedToken.encryptedMetadata.count, 0)
+                XCTAssertTrue(balance1.mintedToken.metadata.isEmpty)
+                XCTAssertTrue(balance1.mintedToken.encryptedMetadata.isEmpty)
                 XCTAssertEqual(balance1.mintedToken.createdAt, "2018-01-01T00:00:00Z".toDate())
                 XCTAssertEqual(balance1.mintedToken.updatedAt, "2018-01-01T00:00:00Z".toDate())
 
@@ -75,8 +75,8 @@ class AddressFixtureTests: FixtureTestCase {
                 XCTAssertEqual(balance2.mintedToken.id, "KNC:123")
                 XCTAssertEqual(balance2.mintedToken.symbol, "KNC")
                 XCTAssertEqual(balance2.mintedToken.subUnitToUnit, 10000)
-                XCTAssertEqual(balance2.mintedToken.metadata.count, 0)
-                XCTAssertEqual(balance2.mintedToken.encryptedMetadata.count, 0)
+                XCTAssertTrue(balance2.mintedToken.metadata.isEmpty)
+                XCTAssertTrue(balance2.mintedToken.encryptedMetadata.isEmpty)
                 XCTAssertEqual(balance2.mintedToken.createdAt, "2018-01-01T00:00:00Z".toDate())
                 XCTAssertEqual(balance2.mintedToken.updatedAt, "2018-01-01T00:00:00Z".toDate())
             case .fail(error: let error):

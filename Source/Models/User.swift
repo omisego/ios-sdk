@@ -35,7 +35,7 @@ extension User: Decodable {
         case providerUserId = "provider_user_id"
         case username
         case metadata
-        case encryptedMetadata
+        case encryptedMetadata = "encrypted_metadata"
         case createdAt = "created_at"
         case updatedAt = "updated_at"
         case socketTopic = "socket_topic"
@@ -46,8 +46,8 @@ extension User: Decodable {
         id = try container.decode(String.self, forKey: .id)
         providerUserId = try container.decode(String.self, forKey: .providerUserId)
         username = try container.decode(String.self, forKey: .username)
-        do {metadata = try container.decode([String: Any].self, forKey: .metadata)} catch {metadata = [:]}
-        do {encryptedMetadata = try container.decode([String: Any].self, forKey: .encryptedMetadata)} catch {encryptedMetadata = [:]}
+        metadata = try container.decode([String: Any].self, forKey: .metadata)
+        encryptedMetadata = try container.decode([String: Any].self, forKey: .encryptedMetadata)
         createdAt = try container.decode(Date.self, forKey: .createdAt)
         updatedAt = try container.decode(Date.self, forKey: .updatedAt)
         socketTopic = try container.decode(String.self, forKey: .socketTopic)

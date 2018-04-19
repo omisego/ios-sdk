@@ -48,8 +48,8 @@ extension MintedToken: Decodable {
         symbol = try container.decode(String.self, forKey: .symbol)
         name = try container.decode(String.self, forKey: .name)
         subUnitToUnit = try container.decode(Double.self, forKey: .subUnitToUnit)
-        do {metadata = try container.decode([String: Any].self, forKey: .metadata)} catch {metadata = [:]}
-        do {encryptedMetadata = try container.decode([String: Any].self, forKey: .encryptedMetadata)} catch {encryptedMetadata = [:]}
+        metadata = try container.decode([String: Any].self, forKey: .metadata)
+        encryptedMetadata = try container.decode([String: Any].self, forKey: .encryptedMetadata)
         createdAt = try container.decode(Date.self, forKey: .createdAt)
         updatedAt = try container.decode(Date.self, forKey: .updatedAt)
     }

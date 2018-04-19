@@ -253,9 +253,11 @@ class EncodeTests: XCTestCase {
                                                         consumptionLifetime: 1000,
                                                         expirationDate: nil,
                                                         expirationReason: nil,
+                                                        createdAt: nil,
                                                         expiredAt: nil,
                                                         allowAmountOverride: true,
-                                                        metadata: [:])
+                                                        metadata: [:],
+                                                        encryptedMetadata: [:])
             let transactionConsumptionParams = TransactionConsumptionParams(transactionRequest: transactionRequest,
                                                                             address: "456",
                                                                             mintedTokenId: "BTC:123",

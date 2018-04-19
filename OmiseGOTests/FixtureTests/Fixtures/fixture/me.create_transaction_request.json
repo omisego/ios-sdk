@@ -36,11 +36,13 @@
     "require_confirmation": true,
     "max_consumptions": 1,
     "consumption_lifetime": 1000,
+    "created_at": "2018-01-01T00:00:00Z",
     "expiration_date": "2019-01-01T00:00:00Z",
     "expiration_reason": "Expired",
     "expired_at": "2019-01-01T00:00:00Z",
     "allow_amount_override": true,
-    "metadata": {}
+    "metadata": {},
+    "encrypted_metadata": {}
   }
 
 }
