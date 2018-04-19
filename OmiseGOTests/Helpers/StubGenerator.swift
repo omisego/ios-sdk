@@ -275,7 +275,10 @@ class StubGenerator {
         providerUserId: String? = nil,
         username: String? = nil,
         metadata: [String: Any]? = nil,
-        socketTopic: String? = nil)
+        socketTopic: String? = nil,
+        encryptedMetadata: [String: Any]? = nil,
+        createdAt: Date? = nil,
+        updatedAt: Date? = nil)
         -> User {
             let v: User = self.stub(forResource: "user")
             return User(
@@ -283,7 +286,10 @@ class StubGenerator {
                 providerUserId: providerUserId ?? v.providerUserId,
                 username: username ?? v.username,
                 metadata: metadata ?? v.metadata,
-                socketTopic: socketTopic ?? v.socketTopic
+                encryptedMetadata: encryptedMetadata ?? v.encryptedMetadata,
+                socketTopic: socketTopic ?? v.socketTopic,
+                createdAt: createdAt ?? v.createdAt,
+                updatedAt: updatedAt ?? v.updatedAt
             )
     }
 

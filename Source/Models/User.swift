@@ -17,8 +17,14 @@ public struct User: Listenable {
     public let username: String
     /// Any additional metadata that need to be stored as a dictionary
     public let metadata: [String: Any]
+    /// Any additional encrypted metadata that need to be stored as a dictionary
+    public let encryptedMetadata: [String: Any]
     /// The socket URL from where to receive from
     public let socketTopic: String
+    /// The creation date of the user
+    public let createdAt: Date
+    /// The last update date of the user
+    public let updatedAt: Date
 
 }
 
@@ -29,6 +35,9 @@ extension User: Decodable {
         case providerUserId = "provider_user_id"
         case username
         case metadata
+        case encryptedMetadata
+        case createdAt = "created_at"
+        case updatedAt = "updated_at"
         case socketTopic = "socket_topic"
     }
 
@@ -38,6 +47,9 @@ extension User: Decodable {
         providerUserId = try container.decode(String.self, forKey: .providerUserId)
         username = try container.decode(String.self, forKey: .username)
         do {metadata = try container.decode([String: Any].self, forKey: .metadata)} catch {metadata = [:]}
+        do {encryptedMetadata = try container.decode([String: Any].self, forKey: .encryptedMetadata)} catch {encryptedMetadata = [:]}
+        createdAt = try container.decode(Date.self, forKey: .createdAt)
+        updatedAt = try container.decode(Date.self, forKey: .updatedAt)
         socketTopic = try container.decode(String.self, forKey: .socketTopic)
     }
 
