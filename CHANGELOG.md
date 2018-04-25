@@ -30,3 +30,5 @@ Released on 2018-4-25. All issues associated with this milestone can be found us
   - Added by [Mederic](https://github.com/mederic-p) in Pull Request [#34](https://github.com/omisego/ios-sdk/pull/34).
 - `Equatable` conformance where missing
   - Added by [Mederic](https://github.com/mederic-p) in Pull Request [#35](https://github.com/omisego/ios-sdk/pull/35).
+- Integration with travis
+  - Added by [Mederic](https://github.com/mederic-p) in Pull Request [#38](https://github.com/omisego/ios-sdk/pull/38).
