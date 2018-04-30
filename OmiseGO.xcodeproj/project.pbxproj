@@ -592,6 +592,7 @@
 				03BCCCA61F8B311600F604DB /* Headers */,
 				03BCCCA71F8B311600F604DB /* Resources */,
 				03F5C0121F8CD7080079E073 /* ShellScript */,
+				D52268E62B853AAB049EE1CD /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -611,6 +612,7 @@
 				03BCCCAF1F8B311600F604DB /* Frameworks */,
 				03BCCCB01F8B311600F604DB /* Resources */,
 				9572BE689AFEE773A29E9FBD /* [CP] Embed Pods Frameworks */,
+				4118775DFF69F4ACD9004DF2 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -694,6 +696,21 @@
 			shellPath = /bin/sh;
 			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint lint\n    swiftlint lint --config .swiftlint-test.yml\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
 		};
+		4118775DFF69F4ACD9004DF2 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-OmiseGOTests/Pods-OmiseGOTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		66B9F6BC22AA32602097E785 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -746,6 +763,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D52268E62B853AAB049EE1CD /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-OmiseGO/Pods-OmiseGO-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
