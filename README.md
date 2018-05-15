@@ -23,7 +23,7 @@ The [OmiseGO](https://omisego.network) iOS SDK allows developers to easily inter
     - [Initialization](#initialization-of-the-http-client)
     - [Retrieving resources](#retrieving-resources)
       - [Get the current user](#get-the-current-user)
-      - [Get the addresses of the current user](#get-the-addresses-of-the-current-user)
+      - [Get the wallets of the current user](#get-the-wallets-of-the-current-user)
       - [Get the provider settings](#get-the-provider-settings)
       - [Get the current user's transactions](#get-the-current-users-transactions)
     - [Transferring tokens](#transferring-tokens)
@@ -173,26 +173,26 @@ User.getCurrent(using: client) { (userResult) in
 }
 ```
 
-#### Get the addresses of the current user:
+#### Get the wallets of the current user:
 
 ```swift
-Address.getAll(using: client) { (addressesResult) in
-    switch addressesResult {
-    case .success(data: let addresses):
-        //TODO: Do something with the addresses
+Wallet.getAll(using: client) { (walletsResult) in
+    switch walletsResult {
+    case .success(data: let wallets):
+        //TODO: Do something with the wallets
     case .fail(error: let error):
         //TODO: Handle the error
     }
 }
 ```
 
-> Note: For now a user will have only one address so for the sake of simplicity you can get this address using:
+> Note: For now a user will have only one wallet so for the sake of simplicity you can get this wallet using:
 
 ```swift
-Address.getMain(using: client) { (addressResult) in
-    switch addressResult {
-    case .success(data: let address):
-        //TODO: Do something with the address
+Wallet.getMain(using: client) { (walletResult) in
+    switch walletResult {
+    case .success(data: let wallet):
+        //TODO: Do something with the wallet
     case .fail(error: let error):
         //TODO: Handle the error
     }
