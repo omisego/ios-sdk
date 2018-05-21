@@ -300,7 +300,7 @@ Transaction.send(using: client, params: params) { (result) in
 ```
 
 Where:
-- `from`: an optional address that belongs to the user
+- `from`: an optional address that belongs to the user, use primary wallet address if not specified
 - `to`: the destination address
 - `amount`: The amount of token to send
 - `mintedTokenId`: The id of the token to send
