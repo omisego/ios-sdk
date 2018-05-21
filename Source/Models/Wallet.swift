@@ -42,11 +42,11 @@ extension Wallet: Listable {
                                callback: @escaping Wallet.RetrieveRequestCallback) -> Wallet.ListRequest? {
         return self.list(using: client, endpoint: .getWallets, callback: { (response) in
             switch response {
-            case .success(data: let addresses):
-                if addresses.isEmpty {
-                    callback(Response.fail(error: OMGError.unexpected(message: "No balance received.")))
+            case .success(data: let wallets):
+                if wallets.isEmpty {
+                    callback(Response.fail(error: OMGError.unexpected(message: "No wallet received.")))
                 } else {
-                    callback(.success(data: addresses.first!))
+                    callback(.success(data: wallets.first!))
                 }
             case .fail(error: let error):
                 callback(.fail(error: error))

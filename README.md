@@ -223,7 +223,7 @@ let params = TransactionListParams(paginationParams: paginationParams, address: 
 ```
 
 Where
-- `address` is an optional address that belongs to the current user (primary address by default)
+- `address` is an optional address that belongs to the current user (primary wallet address by default)
 - `paginationParams` is a `PaginationParams<Transaction>` object:
 
 ```swift
@@ -312,7 +312,7 @@ Where:
   - `mintedTokenId`: The id of the desired token.
   In the case of a type "send", this will be the token taken from the requester. In the case of a type "receive" this will be the token received by the requester
   - `amount`: (optional) The amount of token to receive. This amount can be either inputted when generating or consuming a transaction request.
-  - `address`: (optional) The address specifying where the transaction should be sent to. If not specified, the current user's primary address will be used.
+  - `address`: (optional) The address specifying where the transaction should be sent to. If not specified, the current user's primary wallet address will be used.
   - `correlationId`: (optional) An id that can uniquely identify a transaction. Typically an order id from a provider.
   - `requireConfirmation`: (optional) A boolean indicating if the request [needs a confirmation](#transaction-request-events) from the requester before being proceeded
   - `maxConsumptions`: (optional) The maximum number of time that this request can be consumed
@@ -351,7 +351,7 @@ TransactionConsumption.consumeTransactionRequest(using: client, params: params) 
 Where `params` is a `TransactionConsumptionParams` struct constructed using:
 
 - `transactionRequest`: The transactionRequest obtained from the QR scanner.
-- `address`: (optional) The address from which to take the funds. If not specified, the current user's primary address will be used.
+- `address`: (optional) The address from which to take the funds. If not specified, the current user's primary wallet address will be used.
 - `mintedTokenId`: (optional) The minted token id to use for the consumption.
 - `amount`: (optional) The amount of token to send. This amount can be either inputted when generating or consuming a transaction request.
 > Note that if the `amount` was not specified in the transaction request it needs to be specified here, otherwise the init will fail and return `nil`.
