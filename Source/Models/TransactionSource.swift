@@ -13,13 +13,13 @@ public struct TransactionSource: Decodable {
     public let address: String
     /// The amount of token (down to subunit to unit)
     public let amount: Double
-    /// The minted token of the source
-    public let mintedToken: MintedToken
+    /// The token of the source
+    public let token: Token
 
     private enum CodingKeys: String, CodingKey {
         case address
         case amount
-        case mintedToken = "minted_token"
+        case token = "minted_token"
     }
 
 }
