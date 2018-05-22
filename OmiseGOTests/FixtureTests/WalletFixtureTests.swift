@@ -13,7 +13,7 @@ class WalletFixtureTests: FixtureTestCase {
 
     func testGetAll() {
         let expectation = self.expectation(description: "Get all wallets for current user")
-        let request = Wallet.getAll(using: self.testCustomClient) { (result) in
+        let request = Wallet.getAll(using: self.testClient) { (result) in
             defer { expectation.fulfill() }
             switch result {
             case .success(data: let wallets):
@@ -52,7 +52,7 @@ class WalletFixtureTests: FixtureTestCase {
 
     func testGetMain() {
         let expectation = self.expectation(description: "Get the main address of the current user")
-        let request = Wallet.getMain(using: self.testCustomClient) { (result) in
+        let request = Wallet.getMain(using: self.testClient) { (result) in
             defer { expectation.fulfill() }
             switch result {
             case .success(data: let wallet):

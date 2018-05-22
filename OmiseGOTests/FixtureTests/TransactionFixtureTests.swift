@@ -23,7 +23,7 @@ class TransactionFixtureTests: FixtureTestCase {
         let params = TransactionListParams(paginationParams: paginationParams, address: nil)
 
         let request =
-            Transaction.list(using: self.testCustomClient, params: params) { (result) in
+            Transaction.list(using: self.testClient, params: params) { (result) in
                 defer { expectation.fulfill() }
                 switch result {
                 case .success(data: let paginatedList):
@@ -64,7 +64,7 @@ class TransactionFixtureTests: FixtureTestCase {
                                            to: "2e3982f5-4a27-498d-a91b-7bb2e2a8d3d1",
                                            amount: 1000,
                                            mintedTokenId: "BTC:xe3982f5-4a27-498d-a91b-7bb2e2a8d3d1")
-        let request = Transaction.send(using: self.testCustomClient, params: params) { (result) in
+        let request = Transaction.send(using: self.testClient, params: params) { (result) in
             defer { expectation.fulfill() }
             switch result {
             case .success(data: let transaction):

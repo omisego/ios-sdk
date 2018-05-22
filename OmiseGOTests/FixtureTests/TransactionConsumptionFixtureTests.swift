@@ -31,7 +31,7 @@ class TransactionConsumptionFixtureTests: FixtureTestCase {
                 correlationId: nil,
                 metadata: [:])!
         let request =
-            TransactionConsumption.consumeTransactionRequest(using: self.testCustomClient, params: params) { (result) in
+            TransactionConsumption.consumeTransactionRequest(using: self.testClient, params: params) { (result) in
                 defer { expectation.fulfill() }
                 switch result {
                 case .success(data: let transactionConsumption):
@@ -74,7 +74,7 @@ class TransactionConsumptionFixtureTests: FixtureTestCase {
         let expectation =
             self.expectation(description: "Confirm a transaction consumption")
         let transactionConsumption = StubGenerator.transactionConsumption()
-        let request = transactionConsumption.approve(using: self.testCustomClient) { (result) in
+        let request = transactionConsumption.approve(using: self.testClient) { (result) in
             defer { expectation.fulfill() }
             switch result {
             case .success(data: let transactionConsumption):
@@ -117,7 +117,7 @@ class TransactionConsumptionFixtureTests: FixtureTestCase {
         let expectation =
             self.expectation(description: "Confirm a transaction consumption")
         let transactionConsumption = StubGenerator.transactionConsumption()
-        let request = transactionConsumption.reject(using: self.testCustomClient) { (result) in
+        let request = transactionConsumption.reject(using: self.testClient) { (result) in
             defer { expectation.fulfill() }
             switch result {
             case .success(data: let transactionConsumption):

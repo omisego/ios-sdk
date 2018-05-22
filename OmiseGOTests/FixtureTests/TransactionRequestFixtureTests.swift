@@ -21,7 +21,7 @@ class TransactionRequestFixtureTests: FixtureTestCase {
                 address: "3b7f1c68-e3bd-4f8f-9916-4af19be95d00",
                 correlationId: "31009545-db10-4287-82f4-afb46d9741d8")
         let request =
-            TransactionRequest.create(using: self.testCustomClient, params: params) { (result) in
+            TransactionRequest.create(using: self.testClient, params: params) { (result) in
                 defer { expectation.fulfill() }
                 switch result {
                 case .success(data: let transactionRequest):
@@ -55,7 +55,7 @@ class TransactionRequestFixtureTests: FixtureTestCase {
             self.expectation(description: "Retrieve a transaction request corresponding to the params provided")
         let request =
             TransactionRequest.get(
-                using: self.testCustomClient,
+                using: self.testClient,
                 id: "8eb0160e-1c96-481a-88e1-899399cc84dc") { (result) in
                     defer { expectation.fulfill() }
                     switch result {

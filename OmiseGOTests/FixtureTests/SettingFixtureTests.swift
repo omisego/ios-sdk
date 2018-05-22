@@ -13,7 +13,7 @@ class SettingFixtureTests: FixtureTestCase {
 
     func testGetSettings() {
         let expectation = self.expectation(description: "Get settings for current user")
-        let request = Setting.get(using: self.testCustomClient) { (result) in
+        let request = Setting.get(using: self.testClient) { (result) in
             defer { expectation.fulfill() }
             switch result {
             case .success(let setting):
