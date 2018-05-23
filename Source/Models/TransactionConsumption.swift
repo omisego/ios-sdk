@@ -78,7 +78,7 @@ extension TransactionConsumption: Decodable {
         case id
         case status
         case amount
-        case token = "minted_token"
+        case token
         case correlationId = "correlation_id"
         case idempotencyToken = "idempotency_token"
         case user

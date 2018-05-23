@@ -16,10 +16,4 @@ public struct TransactionSource: Decodable {
     /// The token of the source
     public let token: Token
 
-    private enum CodingKeys: String, CodingKey {
-        case address
-        case amount
-        case token = "minted_token"
-    }
-
 }

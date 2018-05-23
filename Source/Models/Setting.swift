@@ -12,10 +12,6 @@ public struct Setting: Decodable {
     /// An array of tokens available for the provider
     public let tokens: [Token]
 
-    private enum CodingKeys: String, CodingKey {
-        case tokens = "minted_tokens"
-    }
-
 }
 
 extension Setting: Retrievable {

@@ -82,7 +82,7 @@ extension TransactionRequest: Decodable {
     private enum CodingKeys: String, CodingKey {
         case id
         case type
-        case token = "minted_token"
+        case token
         case amount
         case address
         case user

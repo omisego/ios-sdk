@@ -14,10 +14,6 @@ public struct Balance: Decodable {
     /// The total amount of token available
     public let amount: Double
 
-    private enum CodingKeys: String, CodingKey {
-        case token = "minted_token"
-        case amount
-    }
 }
 
 extension Balance {
