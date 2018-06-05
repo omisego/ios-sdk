@@ -94,6 +94,8 @@ public enum APIErrorCode: Decodable {
     case forbiddenChannel
     case channelNotFound
     case websocketError
+    // DB
+    case transactionCouldNotBeLoaded
     case other(String)
 
     public init(from decoder: Decoder) throws {
@@ -156,6 +158,8 @@ extension APIErrorCode: RawRepresentable {
             self = .channelNotFound
         case "websocket:connect_error":
             self = .websocketError
+        case "db:inserted_transaction_could_not_be_loaded":
+            self = .transactionCouldNotBeLoaded
         case let code:
             self = .other(code)
         }
@@ -209,6 +213,8 @@ extension APIErrorCode: RawRepresentable {
             return "websocket:channel_not_found"
         case .websocketError:
             return "websocket:connect_error"
+        case .transactionCouldNotBeLoaded:
+            return "db:inserted_transaction_could_not_be_loaded"
         case .other(let code):
             return code
         }

@@ -85,6 +85,8 @@ class APIErrorCodeTests: XCTestCase {
                        APIErrorCode.channelNotFound)
         XCTAssertEqual(APIErrorCode(rawValue: "websocket:connect_error"),
                        APIErrorCode.websocketError)
+        XCTAssertEqual(APIErrorCode(rawValue: "db:inserted_transaction_could_not_be_loaded"),
+                       APIErrorCode.transactionCouldNotBeLoaded)
         XCTAssertEqual(APIErrorCode(rawValue: "an other code"),
                        APIErrorCode.other("an other code"))
     }
