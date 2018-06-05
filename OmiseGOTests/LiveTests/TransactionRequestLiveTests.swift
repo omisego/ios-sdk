@@ -165,7 +165,7 @@ extension TransactionRequestLiveTests {
         let getExpectation = self.expectation(description: "Get transaction request")
         let getRequest = TransactionRequest.get(
             using: self.testClient,
-            id: transactionRequestId) { (result) in
+            formattedId: transactionRequestId) { (result) in
                 defer { getExpectation.fulfill() }
                 switch result {
                 case .success(data: let transactionRequest):
