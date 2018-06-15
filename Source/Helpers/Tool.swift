@@ -6,6 +6,8 @@
 //  Copyright © 2017-2018 Omise Go Pte. Ltd. All rights reserved.
 //
 
+import BigInt
+
 func omiseGOWarn(_ message: String) {
     print("[omiseGO] WARN: \(message)")
 }
@@ -91,6 +93,22 @@ private struct JSONCodingKeys: CodingKey {
 }
 
 extension KeyedDecodingContainerProtocol {
+
+    func decode(_ type: BigInt.Type, forKey key: Key) throws -> BigInt {
+        let decimalAmount = try self.decode(Decimal.self, forKey: key)
+        guard let amount = BigInt(decimalAmount.description) else {
+            throw DecodingError.dataCorruptedError(forKey: key, in: self, debugDescription: "Amount is not valid")
+        }
+        return amount
+    }
+
+    func decodeIfPresent(_ type: BigInt.Type, forKey key: Key) throws -> BigInt? {
+        guard contains(key) else {
+            return nil
+        }
+        return try decode(type, forKey: key)
+    }
+
     func decode(_ type: [String: Any].Type, forKey key: Key) throws -> [String: Any] {
         let container = try self.nestedContainer(keyedBy: JSONCodingKeys.self, forKey: key)
         return try container.decodeJSONDictionary()
