@@ -21,7 +21,7 @@ public struct APIError {
     /// Indicate if the error is an authorization error in which case you may want to refresh the authentication token
     public func isAuthorizationError() -> Bool {
         switch self.code {
-        case .accessTokenExpired, .accessTokenNotFound, .invalidAPIKey: return true
+        case .accessTokenExpired, .authenticationTokenNotFound, .invalidAPIKey: return true
         default: return false
         }
     }
@@ -74,7 +74,7 @@ public enum APIErrorCode: Decodable {
     case internalServerError
     case unknownServerError
     // User
-    case accessTokenNotFound
+    case authenticationTokenNotFound
     case accessTokenExpired
     case fromAddressNotFound
     case fromAddressMismatch
@@ -126,8 +126,8 @@ extension APIErrorCode: RawRepresentable {
             self = .internalServerError
         case "server:unknown_error":
             self = .unknownServerError
-        case "user:access_token_not_found":
-            self = .accessTokenNotFound
+        case "user:auth_token_not_found":
+            self = .authenticationTokenNotFound
         case "user:access_token_expired":
             self = .accessTokenExpired
         case "user:from_address_not_found":
@@ -181,8 +181,8 @@ extension APIErrorCode: RawRepresentable {
             return "server:internal_server_error"
         case .unknownServerError:
             return "server:unknown_error"
-        case .accessTokenNotFound:
-            return "user:access_token_not_found"
+        case .authenticationTokenNotFound:
+            return "user:auth_token_not_found"
         case .accessTokenExpired:
             return "user:access_token_expired"
         case .fromAddressNotFound:
