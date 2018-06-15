@@ -70,7 +70,6 @@ public enum APIErrorCode: Decodable {
     case permissionError
     case endPointNotFound
     case invalidAPIKey
-    case missingIdempotencyToken
     // Server
     case internalServerError
     case unknownServerError
@@ -121,8 +120,6 @@ extension APIErrorCode: RawRepresentable {
             self = .endPointNotFound
         case "client:invalid_api_key":
             self = .invalidAPIKey
-        case "client:no_idempotency_token_provided":
-            self = .missingIdempotencyToken
         case "server:internal_server_error":
             self = .internalServerError
         case "server:unknown_error":
@@ -176,8 +173,6 @@ extension APIErrorCode: RawRepresentable {
             return "client:endpoint_not_found"
         case .invalidAPIKey:
             return "client:invalid_api_key"
-        case .missingIdempotencyToken:
-            return "client:no_idempotency_token_provided"
         case .internalServerError:
             return "server:internal_server_error"
         case .unknownServerError:

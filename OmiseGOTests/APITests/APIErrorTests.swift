@@ -43,8 +43,6 @@ class APIErrorCodeTests: XCTestCase {
                        APIErrorCode.endPointNotFound)
         XCTAssertEqual(APIErrorCode(rawValue: "client:invalid_api_key"),
                        APIErrorCode.invalidAPIKey)
-        XCTAssertEqual(APIErrorCode(rawValue: "client:no_idempotency_token_provided"),
-                       APIErrorCode.missingIdempotencyToken)
 
         XCTAssertEqual(APIErrorCode(rawValue: "server:internal_server_error"),
                        APIErrorCode.internalServerError)
