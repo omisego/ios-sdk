@@ -18,7 +18,7 @@ class APIErrorTests: XCTestCase {
 
     func testIsAuthorizationError() {
         XCTAssertTrue(APIError.init(code: .accessTokenExpired, description: "").isAuthorizationError())
-        XCTAssertTrue(APIError.init(code: .accessTokenNotFound, description: "").isAuthorizationError())
+        XCTAssertTrue(APIError.init(code: .authenticationTokenNotFound, description: "").isAuthorizationError())
         XCTAssertTrue(APIError.init(code: .invalidAPIKey, description: "").isAuthorizationError())
         XCTAssertFalse(APIError.init(code: .unknownServerError, description: "").isAuthorizationError())
     }
@@ -49,8 +49,8 @@ class APIErrorCodeTests: XCTestCase {
         XCTAssertEqual(APIErrorCode(rawValue: "server:unknown_error"),
                        APIErrorCode.unknownServerError)
 
-        XCTAssertEqual(APIErrorCode(rawValue: "user:access_token_not_found"),
-                       APIErrorCode.accessTokenNotFound)
+        XCTAssertEqual(APIErrorCode(rawValue: "user:auth_token_not_found"),
+                       APIErrorCode.authenticationTokenNotFound)
         XCTAssertEqual(APIErrorCode(rawValue: "user:access_token_expired"),
                        APIErrorCode.accessTokenExpired)
         XCTAssertEqual(APIErrorCode(rawValue: "user:from_address_not_found"),
@@ -85,6 +85,8 @@ class APIErrorCodeTests: XCTestCase {
                        APIErrorCode.channelNotFound)
         XCTAssertEqual(APIErrorCode(rawValue: "websocket:connect_error"),
                        APIErrorCode.websocketError)
+        XCTAssertEqual(APIErrorCode(rawValue: "db:inserted_transaction_could_not_be_loaded"),
+                       APIErrorCode.transactionCouldNotBeLoaded)
         XCTAssertEqual(APIErrorCode(rawValue: "an other code"),
                        APIErrorCode.other("an other code"))
     }
