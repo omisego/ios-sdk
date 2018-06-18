@@ -77,7 +77,7 @@ class StubGenerator {
     class func token(id: String? = nil,
                      symbol: String? = nil,
                      name: String? = nil,
-                     subUnitToUnit: UInt64? = nil,
+                     subUnitToUnit: BigInt? = nil,
                      metadata: [String: Any]? = nil,
                      encryptedMetadata: [String: Any]? = nil,
                      createdAt: Date? = nil,

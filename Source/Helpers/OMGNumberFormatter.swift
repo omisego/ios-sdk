@@ -3,30 +3,30 @@
 //  OmiseGOTests
 //
 //  Created by Mederic Petit on 15/6/18.
-//  Copyright © 2018 Omise Go Pte. Ltd. All rights reserved.
+//  Copyright © 2017-2018 Omise Go Pte. Ltd. All rights reserved.
 //
 
 import BigInt
 
-final class OMGNumberFormatter {
+public final class OMGNumberFormatter {
 
     var minFractionDigits = 0
     var maxFractionDigits = Int.max
     var decimalSeparator = "."
     var groupingSeparator = ","
 
-    init(locale: Locale = .current, precision: Int = Int.max) {
+    public init(locale: Locale = .current, precision: Int = Int.max) {
         self.decimalSeparator = locale.decimalSeparator ?? "."
         self.groupingSeparator = locale.groupingSeparator ?? ","
         self.maxFractionDigits = precision
     }
 
-    func number(from string: String, subunitToUnit: UInt64) -> BigInt? {
+    public func number(from string: String, subunitToUnit: BigInt) -> BigInt? {
         let decimals = Int(log10(Double(subunitToUnit)))
         return number(from: string, decimals: decimals)
     }
 
-    func number(from string: String, decimals: Int) -> BigInt? {
+    public func number(from string: String, decimals: Int) -> BigInt? {
         guard let index = string.index(where: { String($0) == decimalSeparator }) else {
             return BigInt(string).flatMap({ $0 * BigInt(10).power(decimals) })
         }
@@ -45,12 +45,12 @@ final class OMGNumberFormatter {
         }
     }
 
-    func string(from number: BigInt, subunitToUnit: UInt64) -> String {
+    public func string(from number: BigInt, subunitToUnit: BigInt) -> String {
         let decimals = Int(log10(Double(subunitToUnit)))
         return string(from: number, decimals: decimals)
     }
 
-    func string(from number: BigInt, decimals: Int) -> String {
+    public func string(from number: BigInt, decimals: Int) -> String {
         precondition(minFractionDigits >= 0)
         precondition(maxFractionDigits >= 0)
 

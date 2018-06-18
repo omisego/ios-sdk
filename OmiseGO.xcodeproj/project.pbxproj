@@ -99,6 +99,7 @@
 		039DA975203FA94100CCC56A /* PaginationParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039DA974203FA94100CCC56A /* PaginationParams.swift */; };
 		039DA977203FAB0600CCC56A /* TransactionListParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039DA976203FAB0600CCC56A /* TransactionListParams.swift */; };
 		039DA979203FB53F00CCC56A /* Pagination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039DA978203FB53F00CCC56A /* Pagination.swift */; };
+		03AA99AB20D7AFE100AFF1F8 /* OMGNumberFormatterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AA99AA20D7AFE100AFF1F8 /* OMGNumberFormatterTests.swift */; };
 		03B1E7392040127600134CB4 /* DateDummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B1E7382040127600134CB4 /* DateDummy.swift */; };
 		03BCCCB31F8B311600F604DB /* OmiseGO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03BCCCA91F8B311600F604DB /* OmiseGO.framework */; };
 		03C2C07D1FB97F9C00B794AC /* RequestFixtureTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C2C07C1FB97F9C00B794AC /* RequestFixtureTest.swift */; };
@@ -233,6 +234,7 @@
 		039DA974203FA94100CCC56A /* PaginationParams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaginationParams.swift; sourceTree = "<group>"; };
 		039DA976203FAB0600CCC56A /* TransactionListParams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionListParams.swift; sourceTree = "<group>"; };
 		039DA978203FB53F00CCC56A /* Pagination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pagination.swift; sourceTree = "<group>"; };
+		03AA99AA20D7AFE100AFF1F8 /* OMGNumberFormatterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OMGNumberFormatterTests.swift; sourceTree = "<group>"; };
 		03B1E7382040127600134CB4 /* DateDummy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateDummy.swift; sourceTree = "<group>"; };
 		03BCCCA91F8B311600F604DB /* OmiseGO.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = OmiseGO.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		03BCCCB21F8B311600F604DB /* OmiseGOTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OmiseGOTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -521,6 +523,7 @@
 				031EA6892071DE7F00A34D16 /* CodingTests */,
 				031EA6852071DE7F00A34D16 /* HTTPTests */,
 				03D793B3204FA2490055D7BC /* ToolsTests.swift */,
+				03AA99AA20D7AFE100AFF1F8 /* OMGNumberFormatterTests.swift */,
 				03BCCCB91F8B311600F604DB /* Info.plist */,
 				0370519D2040756F009FD899 /* secret.plist */,
 			);
@@ -843,6 +846,7 @@
 				0396627E203FFD6B004E5640 /* Extension.swift in Sources */,
 				0345BE291F96FE8C00B4CA16 /* ResponseLiveTest.swift in Sources */,
 				034FA0441FA31C930033B8D1 /* LogoutFixtureTests.swift in Sources */,
+				03AA99AB20D7AFE100AFF1F8 /* OMGNumberFormatterTests.swift in Sources */,
 				031EA6942071DE8000A34D16 /* DecodeTests.swift in Sources */,
 				217782191FB5579F002CBCA7 /* WalletFixtureTests.swift in Sources */,
 				03317D7C20D77D7400BA60DB /* BigUIntDummy.swift in Sources */,
