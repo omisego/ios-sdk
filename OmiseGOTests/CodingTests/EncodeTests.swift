@@ -8,6 +8,7 @@
 
 import XCTest
 @testable import OmiseGO
+import BigInt
 
 extension String {
 
@@ -100,6 +101,33 @@ class EncodeTests: XCTestCase {
                 "metadata":{}
             }
         """.uglifiedEncodedString())
+    }
+
+    func testBigIntSuccessfullyEncodeWith38Digits() {
+        let encodable = BigIntDummy(value: "99999999999999999999999999999999999999")
+        do {
+            let encodedData = try self.encoder.encode(encodable)
+            XCTAssertEqual(String(data: encodedData, encoding: .utf8)!,
+            """
+                {"value": 99999999999999999999999999999999999999}
+            """.uglifiedEncodedString())
+        } catch _ {
+            XCTFail("Should not raise an error")
+        }
+    }
+
+    func testBigIntFailsToEncodeWith39Digits() {
+        let encodable = BigIntDummy(value: BigInt("999999999999999999999999999999999999991"))
+        do {
+            _ = try serialize(encodable)
+        } catch let error as EncodingError {
+            switch error {
+            case .invalidValue(_, let context):
+                XCTAssertEqual(context.debugDescription, "Value is exceeding the maximum encodable number")
+            }
+        } catch _ {
+            XCTFail("Should raise an encoding error")
+        }
     }
 
     func testInvalidJSONDictionaryEncoding() {

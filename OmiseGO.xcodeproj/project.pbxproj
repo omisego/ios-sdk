@@ -38,6 +38,8 @@
 		031EA6AE2071DEC800A34D16 /* QRScannerViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031EA6A32071DEC800A34D16 /* QRScannerViewControllerTest.swift */; };
 		031EA6AF2071DEC800A34D16 /* QRReaderTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031EA6A42071DEC800A34D16 /* QRReaderTest.swift */; };
 		031EA6B12071DF6500A34D16 /* LiveTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031EA6B02071DF6500A34D16 /* LiveTestCase.swift */; };
+		03317D7A20D77BB400BA60DB /* Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03317D7920D77BB400BA60DB /* Codable.swift */; };
+		03317D7C20D77D7400BA60DB /* BigUIntDummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03317D7B20D77D7400BA60DB /* BigUIntDummy.swift */; };
 		0334869E2036C7EC0013B37A /* StubGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0334869D2036C7EC0013B37A /* StubGenerator.swift */; };
 		033522301FB5A5BF00BCBD11 /* WalletLiveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0335222F1FB5A5BF00BCBD11 /* WalletLiveTests.swift */; };
 		033522321FB5A7D800BCBD11 /* SettingLiveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033522311FB5A7D800BCBD11 /* SettingLiveTests.swift */; };
@@ -169,6 +171,8 @@
 		031EA6A32071DEC800A34D16 /* QRScannerViewControllerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRScannerViewControllerTest.swift; sourceTree = "<group>"; };
 		031EA6A42071DEC800A34D16 /* QRReaderTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRReaderTest.swift; sourceTree = "<group>"; };
 		031EA6B02071DF6500A34D16 /* LiveTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiveTestCase.swift; sourceTree = "<group>"; };
+		03317D7920D77BB400BA60DB /* Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Codable.swift; sourceTree = "<group>"; };
+		03317D7B20D77D7400BA60DB /* BigUIntDummy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigUIntDummy.swift; sourceTree = "<group>"; };
 		0334869D2036C7EC0013B37A /* StubGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubGenerator.swift; sourceTree = "<group>"; };
 		0335222F1FB5A5BF00BCBD11 /* WalletLiveTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletLiveTests.swift; sourceTree = "<group>"; };
 		033522311FB5A7D800BCBD11 /* SettingLiveTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingLiveTests.swift; sourceTree = "<group>"; };
@@ -460,6 +464,7 @@
 			isa = PBXGroup;
 			children = (
 				037032BB1FBBE7A300DBCDDD /* Tool.swift */,
+				03317D7920D77BB400BA60DB /* Codable.swift */,
 				031DEFC720D3B2B0006CBB21 /* OMGNumberFormatter.swift */,
 			);
 			path = Helpers;
@@ -478,6 +483,7 @@
 				03D793B7204FE1D90055D7BC /* ListableDummy.swift */,
 				03F119CB2063A31E00C1772C /* DummySocketEventDelegate.swift */,
 				039656A82064D3B20073951A /* DummyWebSocketDelegate.swift */,
+				03317D7B20D77D7400BA60DB /* BigUIntDummy.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -787,6 +793,7 @@
 				037032B01FBBE6B100DBCDDD /* Listable.swift in Sources */,
 				03E8E6732060C5320036CC9E /* SocketEvent.swift in Sources */,
 				037032B51FBBE6B100DBCDDD /* APIEndpoint.swift in Sources */,
+				03317D7A20D77BB400BA60DB /* Codable.swift in Sources */,
 				1AEE963020A564E600FCC886 /* HTTPTask.swift in Sources */,
 				039DA973203FA72800CCC56A /* Transaction.swift in Sources */,
 				0313D6DB20317696003E99BA /* QRScannerLoadingView.swift in Sources */,
@@ -838,6 +845,7 @@
 				034FA0441FA31C930033B8D1 /* LogoutFixtureTests.swift in Sources */,
 				031EA6942071DE8000A34D16 /* DecodeTests.swift in Sources */,
 				217782191FB5579F002CBCA7 /* WalletFixtureTests.swift in Sources */,
+				03317D7C20D77D7400BA60DB /* BigUIntDummy.swift in Sources */,
 				03D793B4204FA2490055D7BC /* ToolsTests.swift in Sources */,
 				031EA6A62071DEC800A34D16 /* FixtureSocketClient.swift in Sources */,
 				03CEF4C11FB01CB5009B8CEB /* AuthenticationLiveTest.swift in Sources */,

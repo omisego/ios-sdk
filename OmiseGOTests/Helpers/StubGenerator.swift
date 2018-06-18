@@ -295,7 +295,7 @@ class StubGenerator {
         transactionRequest: TransactionRequest = StubGenerator.stub(forResource: "transaction_request"),
         address: String? = "3b7f1c68-e3bd-4f8f-9916-4af19be95d00",
         tokenId: String? = "BTC:861020af-17b6-49ee-a0cb-661a4d2d1f95",
-        amount: BigInt? = BigInt("1337"),
+        amount: BigInt? = 1337,
         idempotencyToken: String = "7a0ad55f-2084-4457-b871-1413142cde84",
         correlationId: String? = "45a5bce3-4e9d-4244-b3a9-64b7a4c5bdc4",
         expirationDate: Date? = Date(timeIntervalSince1970: 0),
