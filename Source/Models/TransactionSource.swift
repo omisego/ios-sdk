@@ -34,5 +34,4 @@ extension TransactionSource: Decodable {
         amount = try container.decode(BigInt.self, forKey: .amount)
         token = try container.decode(Token.self, forKey: .token)
     }
-    
 }
