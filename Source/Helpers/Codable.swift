@@ -32,9 +32,16 @@ private struct JSONCodingKeys: CodingKey {
 extension KeyedDecodingContainerProtocol {
 
     func decode(_ type: BigInt.Type, forKey key: Key) throws -> BigInt {
-        let decimalAmount = try self.decode(Decimal.self, forKey: key)
-        guard decimalAmount.description.count <= maxDecimalDigits,
-            let amount = BigInt(decimalAmount.description) else {
+        let parsedBigInt: BigInt?
+        // There is an issue currently in swift when initializing a Decimal number with an Int64 type.
+        // https://bugs.swift.org/browse/SR-7054
+        // This is a workaround where we first try to decode the number as a UInt and fallback to Decimal if it fails.
+        do {
+            parsedBigInt = BigInt((try self.decode(UInt.self, forKey: key)).description)
+        } catch _ {
+            parsedBigInt = BigInt((try self.decode(Decimal.self, forKey: key)).description)
+        }
+        guard let amount = parsedBigInt, amount.description.count <= maxDecimalDigits else {
                 let description = "Invalid number"
                 throw DecodingError.dataCorruptedError(forKey: key, in: self, debugDescription: description)
         }

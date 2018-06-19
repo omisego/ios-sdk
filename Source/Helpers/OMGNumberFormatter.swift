@@ -30,11 +30,15 @@ public final class OMGNumberFormatter {
         guard let index = string.index(where: { String($0) == decimalSeparator }) else {
             return BigInt(string).flatMap({ $0 * BigInt(10).power(decimals) })
         }
+        let nonFractionalDigits = string.distance(from: string.startIndex, to: index)
         let fractionalDigits = string.distance(from: string.index(after: index), to: string.endIndex)
-        guard fractionalDigits <= decimals else { return nil }
 
         var fullString = string
         fullString.remove(at: index)
+
+        if fractionalDigits > decimals {
+            fullString = String(fullString.prefix(nonFractionalDigits + decimals))
+        }
 
         guard let number = BigInt(fullString) else { return nil }
 

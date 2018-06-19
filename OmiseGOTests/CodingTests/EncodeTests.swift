@@ -103,13 +103,39 @@ class EncodeTests: XCTestCase {
         """.uglifiedEncodedString())
     }
 
+    func testBigIntSuccessfullyEncodeWithInt32Size() {
+        let encodable = BigIntDummy(value: "2147483647")
+        do {
+            let encodedData = try self.encoder.encode(encodable)
+            XCTAssertEqual(String(data: encodedData, encoding: .utf8)!,
+                           """
+                {"value": 2147483647}
+            """.uglifiedEncodedString())
+        } catch _ {
+            XCTFail("Should not raise an error")
+        }
+    }
+
+    func testBigIntSuccessfullyEncodeWithInt64Size() {
+        let encodable = BigIntDummy(value: "922337203685400")
+        do {
+            let encodedData = try self.encoder.encode(encodable)
+            XCTAssertEqual(String(data: encodedData, encoding: .utf8)!,
+                           """
+                {"value": 922337203685400}
+            """.uglifiedEncodedString())
+        } catch _ {
+            XCTFail("Should not raise an error")
+        }
+    }
+
     func testBigIntSuccessfullyEncodeWith38Digits() {
-        let encodable = BigIntDummy(value: "99999999999999999999999999999999999999")
+        let encodable = BigIntDummy(value: "99999999999999999999999999999999999998")
         do {
             let encodedData = try self.encoder.encode(encodable)
             XCTAssertEqual(String(data: encodedData, encoding: .utf8)!,
             """
-                {"value": 99999999999999999999999999999999999999}
+                {"value": 99999999999999999999999999999999999998}
             """.uglifiedEncodedString())
         } catch _ {
             XCTFail("Should not raise an error")
@@ -118,16 +144,14 @@ class EncodeTests: XCTestCase {
 
     func testBigIntFailsToEncodeWith39Digits() {
         let encodable = BigIntDummy(value: BigInt("999999999999999999999999999999999999991"))
-        do {
-            _ = try serialize(encodable)
-        } catch let error as EncodingError {
+        XCTAssertThrowsError(try serialize(encodable), "Failed to encode value", { error -> Void in
             switch error {
-            case .invalidValue(_, let context):
+            case EncodingError.invalidValue(_, let context):
                 XCTAssertEqual(context.debugDescription, "Value is exceeding the maximum encodable number")
+            default:
+                XCTFail("Should raise a data corrupted error")
             }
-        } catch _ {
-            XCTFail("Should raise an encoding error")
-        }
+        })
     }
 
     func testInvalidJSONDictionaryEncoding() {
@@ -139,18 +163,15 @@ class EncodeTests: XCTestCase {
                                           optionalMetadataArray: nil,
                                           unavailableMetadata: nil,
                                           unavailableMetadataArray: nil)
-        do {
-            _ = try self.encoder.encode(metadataDummy)
-        } catch let error as EncodingError {
+        XCTAssertThrowsError(try self.encoder.encode(metadataDummy), "Failed to encode dictionary", { error -> Void in
             switch error {
-            case .invalidValue(let value, let context):
+            case EncodingError.invalidValue(let value, let context):
                 XCTAssertEqual(value as? Data, data)
                 XCTAssertEqual(context.debugDescription, "Invalid JSON value")
+            default:
+                XCTFail("Unexpected error")
             }
-
-        } catch _ {
-            XCTFail("Unexpected error")
-        }
+        })
     }
 
     func testInvalidJSONArrayEncoding() {
