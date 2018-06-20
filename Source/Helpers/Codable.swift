@@ -37,7 +37,7 @@ extension KeyedDecodingContainerProtocol {
         // https://bugs.swift.org/browse/SR-7054
         // This is a workaround where we first try to decode the number as a UInt and fallback to Decimal if it fails.
         do {
-            parsedBigInt = BigInt((try self.decode(UInt.self, forKey: key)).description)
+            parsedBigInt = BigInt(String((try self.decode(UInt.self, forKey: key))))
         } catch _ {
             parsedBigInt = BigInt((try self.decode(Decimal.self, forKey: key)).description)
         }
