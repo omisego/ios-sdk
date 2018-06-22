@@ -1,6 +1,6 @@
 //
 //  OMGNumberFormatter.swift
-//  OmiseGOTests
+//  OmiseGO
 //
 //  Created by Mederic Petit on 15/6/18.
 //  Copyright © 2017-2018 Omise Go Pte. Ltd. All rights reserved.
