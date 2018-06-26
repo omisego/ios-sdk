@@ -11,7 +11,7 @@ import XCTest
 
 class DecodingFixtureTests: FixtureTestCase {
 
-    func test() {
+    func testFailToDecodeANumberWhenExpectingAString() {
         let e = self.expectation(description: "Raise a decoding error")
         let endpoint = APIEndpoint.custom(path: "dummy.decoding_error", task: .requestPlain)
         let request: Request<DummyTestObject>? = self.testClient.request(toEndpoint: endpoint) { (result) in
