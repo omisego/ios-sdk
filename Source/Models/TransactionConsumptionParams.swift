@@ -17,7 +17,7 @@ public struct TransactionConsumptionParams {
     public let amount: BigInt?
     /// The address to use for the consumption
     public let address: String?
-    /// The id of the token to use for the request
+    /// The id of the token to use for the consumption
     /// In the case of a type "send", this will be the token that the consumer will receive
     /// In the case of a type "receive" this will be the token that the consumer will send
     public let tokenId: String?

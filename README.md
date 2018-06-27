@@ -27,7 +27,7 @@ The [OmiseGO](https://omisego.network) iOS SDK allows developers to easily inter
       - [Get the provider settings](#get-the-provider-settings)
       - [Get the current user's transactions](#get-the-current-users-transactions)
     - [Transferring tokens](#transferring-tokens)
-      - [Send tokens to an address](#send-tokens-to-an-address)
+      - [Create a transaction](#create-a-transaction)
       - [Generate a transaction request](#generate-a-transaction-request)
       - [Consume a transaction request](#consume-a-transaction-request)
       - [Approve a transaction consumption](#approve-a-transaction-consumption)
@@ -281,16 +281,16 @@ The SDK offers 2 ways for transferring tokens between addresses:
 - A simple one way transfer from one of the current user's wallets to an address.
 - A highly configurable send/receive mechanism in 2 steps using transaction requests.
 
-#### Send tokens to an address
+#### Create a transaction
 
-The most basic way to transfer tokens is to use the `Transaction.send()` method, which allows the current user to send tokens from one of its wallet to a specific address.
+The most basic way to transfer tokens is to use the `Transaction.create()` method, which allows the current user to send tokens from one of its wallet to a specific address.
 
 ```swift
-let params = TransactionSendParams(from: "1e3982f5-4a27-498d-a91b-7bb2e2a8d3d1",
-                                   to: "2e3982f5-4a27-498d-a91b-7bb2e2a8d3d1",
-                                   amount: 1000,
-                                   tokenId: "BTC:xe3982f5-4a27-498d-a91b-7bb2e2a8d3d1")
-Transaction.send(using: client, params: params) { (result) in
+let params = TransactionCreateParams(from_address: "1e3982f5-4a27-498d-a91b-7bb2e2a8d3d1",
+                                     to_address: "2e3982f5-4a27-498d-a91b-7bb2e2a8d3d1",
+                                     to_amount: 1000,
+                                     from_tokenId: "BTC:xe3982f5-4a27-498d-a91b-7bb2e2a8d3d1")
+Transaction.create(using: client, params: params) { (result) in
    switch result {
    case .success(data: let transaction):
        // TODO: Do something with the transaction
@@ -300,11 +300,7 @@ Transaction.send(using: client, params: params) { (result) in
 }
 ```
 
-Where:
-- `from`: an optional address that belongs to the user, use primary wallet address if not specified
-- `to`: the destination address
-- `amount`: The amount of token to send
-- `tokenId`: The id of the token to send
+There are many ways to initialize a `TransactionCreateParams` by specifying either `address`, `userId` or `accountId`.
 
 #### Generate a transaction request
 
