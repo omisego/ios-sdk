@@ -10,14 +10,23 @@ import UIKit
 
 public struct ExchangePair {
 
+    /// The unique identifier of the exchange pair
     public let id: String
+    /// The name of the pair (ex: ETH/BTC)
     public let name: String
+    /// The 1st token id of the pair
     public let fromTokenId: String
+    /// The 1st token of the pair
     public let fromToken: Token
+    /// The 2nd token id of the pair
     public let toTokenId: String
+    /// The 2nd token of the pair
     public let toToken: Token
+    /// The rate between both token (token2/token1)
     public let rate: Double
+    /// The creation date of the pair
     public let createdAt: Date
+    /// The last update date of the pair
     public let updatedAt: Date
 
 }
@@ -47,6 +56,18 @@ extension ExchangePair: Decodable {
         rate = try container.decode(Double.self, forKey: .rate)
         createdAt = try container.decode(Date.self, forKey: .createdAt)
         updatedAt = try container.decode(Date.self, forKey: .updatedAt)
+    }
+
+}
+
+extension ExchangePair: Hashable {
+
+    public var hashValue: Int {
+        return self.id.hashValue
+    }
+
+    public static func == (lhs: ExchangePair, rhs: ExchangePair) -> Bool {
+        return lhs.id == rhs.id
     }
 
 }

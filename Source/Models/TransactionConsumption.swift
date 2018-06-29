@@ -30,7 +30,13 @@ public struct TransactionConsumption {
     /// The status of the consumption (pending, confirmed or failed)
     public let status: TransactionConsumptionStatus
     /// The amount of token to transfer (down to subunit to unit)
-    public let amount: BigInt
+    public let amount: BigInt?
+    /// The estimated amount in the request currency
+    public let estimatedRequestAmount: BigInt
+    /// The estimated amount in the consumption currency
+    public let estimatedConsumptionAmount: BigInt
+    /// The final amount to be transfered after exchange in the consumption currency
+    public let finalizedAmount: BigInt
     /// The token for the request
     /// In the case of a type "send", this will be the token that the consumer will receive
     /// In the case of a type "receive" this will be the token that the consumer will send
@@ -80,6 +86,9 @@ extension TransactionConsumption: Decodable {
         case id
         case status
         case amount
+        case estimatedRequestAmount = "estimated_request_amount"
+        case estimatedConsumptionAmount = "estimated_consumption_amount"
+        case finalizedAmount = "finalized_amount"
         case token
         case correlationId = "correlation_id"
         case idempotencyToken = "idempotency_token"
@@ -104,7 +113,10 @@ extension TransactionConsumption: Decodable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decode(String.self, forKey: .id)
         status = try container.decode(TransactionConsumptionStatus.self, forKey: .status)
-        amount = try container.decode(BigInt.self, forKey: .amount)
+        amount = try container.decodeIfPresent(BigInt.self, forKey: .amount)
+        estimatedRequestAmount = try container.decode(BigInt.self, forKey: .estimatedRequestAmount)
+        estimatedConsumptionAmount = try container.decode(BigInt.self, forKey: .estimatedConsumptionAmount)
+        finalizedAmount = try container.decode(BigInt.self, forKey: .finalizedAmount)
         token = try container.decode(Token.self, forKey: .token)
         correlationId = try container.decodeIfPresent(String.self, forKey: .correlationId)
         idempotencyToken = try container.decode(String.self, forKey: .idempotencyToken)

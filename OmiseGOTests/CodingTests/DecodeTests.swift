@@ -386,6 +386,9 @@ class DecodeTests: XCTestCase {
             XCTAssertEqual(decodedData.id, "8eb0160e-1c96-481a-88e1-899399cc84dc")
             XCTAssertEqual(decodedData.status, .confirmed)
             XCTAssertEqual(decodedData.amount, 1337)
+            XCTAssertEqual(decodedData.estimatedRequestAmount, 1337)
+            XCTAssertEqual(decodedData.estimatedConsumptionAmount, 1337)
+            XCTAssertEqual(decodedData.finalizedAmount, 1337)
             let token = decodedData.token
             XCTAssertEqual(token.id, "BTC:861020af-17b6-49ee-a0cb-661a4d2d1f95")
             XCTAssertEqual(token.symbol, "BTC")

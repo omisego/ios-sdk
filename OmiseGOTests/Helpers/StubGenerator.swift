@@ -105,6 +105,9 @@ class StubGenerator {
         status: TransactionConsumptionStatus? = nil,
         amount: BigInt? = nil,
         token: Token? = nil,
+        estimatedRequestAmount: BigInt? = nil,
+        estimatedConsumptionAmount: BigInt? = nil,
+        finalizedAmount: BigInt? = nil,
         correlationId: String? = nil,
         idempotencyToken: String? = nil,
         transaction: Transaction? = nil,
@@ -128,6 +131,9 @@ class StubGenerator {
                 id: id ?? v.id,
                 status: status ?? v.status,
                 amount: amount ?? v.amount,
+                estimatedRequestAmount: estimatedRequestAmount ?? v.estimatedRequestAmount,
+                estimatedConsumptionAmount: estimatedConsumptionAmount ?? v.estimatedConsumptionAmount,
+                finalizedAmount: finalizedAmount ?? v.finalizedAmount,
                 token: token ?? v.token,
                 correlationId: correlationId ?? v.correlationId,
                 idempotencyToken: idempotencyToken ?? v.idempotencyToken,
@@ -403,6 +409,29 @@ class StubGenerator {
             avatar: avatar ?? v.avatar,
             metadata: metadata ?? v.metadata,
             encryptedMetadata: encryptedMetadata ?? v.encryptedMetadata,
+            createdAt: createdAt ?? v.createdAt,
+            updatedAt: updatedAt ?? v.updatedAt)
+    }
+
+    class func exchangePair(
+        id: String? = nil,
+        name: String? = nil,
+        fromTokenId: String? = nil,
+        fromToken: Token? = nil,
+        toTokenId: String? = nil,
+        toToken: Token? = nil,
+        rate: Double? = nil,
+        createdAt: Date? = nil,
+        updatedAt: Date? = nil) -> ExchangePair {
+        let v: ExchangePair = self.stub(forResource: "exchange_pair")
+        return ExchangePair(
+            id: id ?? v.id,
+            name: name ?? v.name,
+            fromTokenId: fromTokenId ?? v.fromTokenId,
+            fromToken: fromToken ?? v.fromToken,
+            toTokenId: toTokenId ?? v.toTokenId,
+            toToken: toToken ?? v.toToken,
+            rate: rate ?? v.rate,
             createdAt: createdAt ?? v.createdAt,
             updatedAt: updatedAt ?? v.updatedAt)
     }
