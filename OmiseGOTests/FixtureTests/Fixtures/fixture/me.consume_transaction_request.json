@@ -56,7 +56,10 @@
       },
       "exchange": {
         "object": "exchange",
-        "rate": 1
+        "rate": 1,
+        "calculated_at": null,
+        "exchange_pair_id": null,
+        "exchange_pair": null
       },
       "metadata": {},
       "encrypted_metadata": {},

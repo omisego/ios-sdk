@@ -102,6 +102,7 @@
 		039DA979203FB53F00CCC56A /* Pagination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039DA978203FB53F00CCC56A /* Pagination.swift */; };
 		03AA99AB20D7AFE100AFF1F8 /* OMGNumberFormatterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AA99AA20D7AFE100AFF1F8 /* OMGNumberFormatterTests.swift */; };
 		03B1E7392040127600134CB4 /* DateDummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B1E7382040127600134CB4 /* DateDummy.swift */; };
+		03B294D420E6093D0053B118 /* ExchangePair.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B294D320E6093D0053B118 /* ExchangePair.swift */; };
 		03BCCCB31F8B311600F604DB /* OmiseGO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03BCCCA91F8B311600F604DB /* OmiseGO.framework */; };
 		03C2C07D1FB97F9C00B794AC /* RequestFixtureTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C2C07C1FB97F9C00B794AC /* RequestFixtureTest.swift */; };
 		03CEF4BF1FB012FB009B8CEB /* FixtureClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CEF4BE1FB012FB009B8CEB /* FixtureClient.swift */; };
@@ -238,6 +239,7 @@
 		039DA978203FB53F00CCC56A /* Pagination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pagination.swift; sourceTree = "<group>"; };
 		03AA99AA20D7AFE100AFF1F8 /* OMGNumberFormatterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OMGNumberFormatterTests.swift; sourceTree = "<group>"; };
 		03B1E7382040127600134CB4 /* DateDummy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateDummy.swift; sourceTree = "<group>"; };
+		03B294D320E6093D0053B118 /* ExchangePair.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangePair.swift; sourceTree = "<group>"; };
 		03BCCCA91F8B311600F604DB /* OmiseGO.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = OmiseGO.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		03BCCCB21F8B311600F604DB /* OmiseGOTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OmiseGOTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		03BCCCB91F8B311600F604DB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -431,6 +433,7 @@
 				039DA974203FA94100CCC56A /* PaginationParams.swift */,
 				039DA976203FAB0600CCC56A /* TransactionListParams.swift */,
 				037D6A9E20B2541700F02CC8 /* TransactionParams.swift */,
+				03B294D320E6093D0053B118 /* ExchangePair.swift */,
 				039DA972203FA72800CCC56A /* Transaction.swift */,
 				039DA978203FB53F00CCC56A /* Pagination.swift */,
 				0361289F20872E7D00E13514 /* Account.swift */,
@@ -815,6 +818,7 @@
 				037032AA1FBBE6B100DBCDDD /* User.swift in Sources */,
 				0355969920453069000E38DA /* TransactionSource.swift in Sources */,
 				037032AB1FBBE6B100DBCDDD /* Balance.swift in Sources */,
+				03B294D420E6093D0053B118 /* ExchangePair.swift in Sources */,
 				037032AD1FBBE6B100DBCDDD /* Object.swift in Sources */,
 				0313D6D920317696003E99BA /* QRScannerViewModel.swift in Sources */,
 				037032A81FBBE6B100DBCDDD /* Setting.swift in Sources */,

@@ -234,10 +234,17 @@ class StubGenerator {
     }
 
     class func transactionExchange(
-        rate: Double? = nil)
+        rate: Double? = nil,
+        calculatedAt: Date? = nil,
+        exchangePairId: String? = nil,
+        exchangePair: ExchangePair? = nil)
         -> TransactionExchange {
             let v: TransactionExchange = self.stub(forResource: "transaction_exchange")
-            return TransactionExchange(rate: rate ?? v.rate)
+            return TransactionExchange(
+                rate: rate ?? v.rate,
+                calculatedAt: calculatedAt ?? v.calculatedAt,
+                exchangePairId: exchangePairId ?? v.exchangePairId,
+                exchangePair: exchangePair ?? v.exchangePair)
     }
 
     class func pagination(

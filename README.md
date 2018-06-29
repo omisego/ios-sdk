@@ -157,6 +157,7 @@ case unexpected(message: String)
 case configuration(message: String)
 case api(apiError: APIError)
 case socketError(message: String)
+case decoding(underlyingError: DecodingError)
 case other(error: Error)
 ```
 An error returned by the OmiseGO Wallet server will be mapped to an `APIError` which contains informations about the failure.
@@ -286,10 +287,10 @@ The SDK offers 2 ways for transferring tokens between addresses:
 The most basic way to transfer tokens is to use the `Transaction.create()` method, which allows the current user to send tokens from one of its wallet to a specific address.
 
 ```swift
-let params = TransactionCreateParams(from_address: "1e3982f5-4a27-498d-a91b-7bb2e2a8d3d1",
-                                     to_address: "2e3982f5-4a27-498d-a91b-7bb2e2a8d3d1",
-                                     to_amount: 1000,
-                                     from_tokenId: "BTC:xe3982f5-4a27-498d-a91b-7bb2e2a8d3d1")
+let params = TransactionCreateParams(fromAddress: "1e3982f5-4a27-498d-a91b-7bb2e2a8d3d1",
+                                     toAddress: "2e3982f5-4a27-498d-a91b-7bb2e2a8d3d1",
+                                     amount: 1000,
+                                     tokenId: "BTC:xe3982f5-4a27-498d-a91b-7bb2e2a8d3d1")
 Transaction.create(using: client, params: params) { (result) in
    switch result {
    case .success(data: let transaction):
@@ -300,7 +301,7 @@ Transaction.create(using: client, params: params) { (result) in
 }
 ```
 
-There are many ways to initialize a `TransactionCreateParams` by specifying either `address`, `userId` or `accountId`.
+There are different ways to initialize a `TransactionCreateParams` by specifying either `address`, `userId` or `accountId`.
 
 #### Generate a transaction request
 
@@ -359,7 +360,6 @@ The previously created `transactionRequest` can then be consumed:
 ```swift
 guard let params = TransactionConsumptionParams(transactionRequest: transactionRequest,
                                                 address: "an address",
-                                                tokenId: "a token",
                                                 amount: 1337,
                                                 idempotencyToken: "an idempotency token",
                                                 correlationId: "a correlation id",
@@ -379,7 +379,6 @@ Where `params` is a `TransactionConsumptionParams` struct constructed using:
 
 - `transactionRequest`: The transactionRequest obtained from the QR scanner.
 - `address`: (optional) The address from which to take the funds. If not specified, the current user's primary wallet address will be used.
-- `tokenId`: (optional) The token id to use for the consumption.
 - `amount`: (optional) The amount of token to send. This amount can be either inputted when generating or consuming a transaction request.
 > Note that if the `amount` was not specified in the transaction request it needs to be specified here, otherwise the init will fail and return `nil`.
 
