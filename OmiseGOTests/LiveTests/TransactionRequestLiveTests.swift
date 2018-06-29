@@ -189,7 +189,6 @@ extension TransactionRequestLiveTests {
         let transactionConsumptionParams = TransactionConsumptionParams(
             transactionRequest: transactionRequest,
             address: nil,
-            tokenId: nil,
             amount: nil,
             idempotencyToken: idempotencyToken,
             correlationId: consumeCorrelationId,

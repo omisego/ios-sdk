@@ -61,10 +61,9 @@ class TransactionFixtureTests: FixtureTestCase {
     func testCreateTransaction() {
         let expectation = self.expectation(description: "Generate a transaction")
         let params = TransactionCreateParams(fromAddress: "1e3982f5-4a27-498d-a91b-7bb2e2a8d3d1",
-                                             fromAmount: 1000,
-                                             fromTokenId: "BTC:xe3982f5-4a27-498d-a91b-7bb2e2a8d3d1",
                                              toAddress: "2e3982f5-4a27-498d-a91b-7bb2e2a8d3d1",
-                                             toTokenId: "BTC:xe3982f5-4a27-498d-a91b-7bb2e2a8d3d1")
+                                             amount: 1000,
+                                             tokenId: "BTC:xe3982f5-4a27-498d-a91b-7bb2e2a8d3d1")
         let request = Transaction.create(using: self.testClient, params: params) { (result) in
             defer { expectation.fulfill() }
             switch result {

@@ -25,7 +25,6 @@ class TransactionConsumptionFixtureTests: FixtureTestCase {
         let params = TransactionConsumptionParams(
                 transactionRequest: transactionRequest,
                 address: nil,
-                tokenId: nil,
                 amount: nil,
                 idempotencyToken: "123",
                 correlationId: nil,

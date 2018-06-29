@@ -303,7 +303,6 @@ class StubGenerator {
         return TransactionConsumptionParams(
             transactionRequest: transactionRequest,
             address: address,
-            tokenId: tokenId,
             amount: amount,
             idempotencyToken: idempotencyToken,
             correlationId: correlationId,
