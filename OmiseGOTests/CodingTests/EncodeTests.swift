@@ -482,6 +482,7 @@ class EncodeTests: XCTestCase {
                                                             toAddress: "2bd75f2f-6e83-4727-a8b5-2849a9715064",
                                                             amount: 1337,
                                                             tokenId: "BTC:06b8ebc3-237b-4631-a1c7-2ecbd1d623c6",
+                                                            idempotencyToken: "123",
                                                             metadata: ["a_key": "a_value"],
                                                             encryptedMetadata: ["a_key": "a_value"])
 
@@ -491,9 +492,8 @@ class EncodeTests: XCTestCase {
             XCTAssertEqual(String(data: encodedData, encoding: .utf8)!, """
                 {
                     "amount":1337,
-                    "to_account_id":null,
                     "to_address":"2bd75f2f-6e83-4727-a8b5-2849a9715064",
-                    "to_provider_user_id":null,
+                    "idempotency_token":"123",
                     "encrypted_metadata":{"a_key":"a_value"},
                     "metadata":{"a_key":"a_value"},
                     "from_address":"86e274e2-c8dc-46cf-ac4e-d8b26b5aada3",
@@ -511,6 +511,7 @@ class EncodeTests: XCTestCase {
                                                             toAccountId: "2bd75f2f-6e83-4727-a8b5-2849a9715064",
                                                             amount: 1337,
                                                             tokenId: "BTC:06b8ebc3-237b-4631-a1c7-2ecbd1d623c6",
+                                                            idempotencyToken: "123",
                                                             metadata: ["a_key": "a_value"],
                                                             encryptedMetadata: ["a_key": "a_value"])
 
@@ -521,8 +522,7 @@ class EncodeTests: XCTestCase {
                 {
                     "amount":1337,
                     "to_account_id":"2bd75f2f-6e83-4727-a8b5-2849a9715064",
-                    "to_address":null,
-                    "to_provider_user_id":null,
+                    "idempotency_token":"123",
                     "encrypted_metadata":{"a_key":"a_value"},
                     "metadata":{"a_key":"a_value"},
                     "from_address":"86e274e2-c8dc-46cf-ac4e-d8b26b5aada3",
@@ -540,6 +540,7 @@ class EncodeTests: XCTestCase {
                                                             toProviderUserId: "2bd75f2f-6e83-4727-a8b5-2849a9715064",
                                                             amount: 1337,
                                                             tokenId: "BTC:06b8ebc3-237b-4631-a1c7-2ecbd1d623c6",
+                                                            idempotencyToken: "123",
                                                             metadata: ["a_key": "a_value"],
                                                             encryptedMetadata: ["a_key": "a_value"])
 
@@ -549,9 +550,8 @@ class EncodeTests: XCTestCase {
             XCTAssertEqual(String(data: encodedData, encoding: .utf8)!, """
                 {
                     "amount":1337,
-                    "to_account_id":null,
-                    "to_address":null,
                     "to_provider_user_id":"2bd75f2f-6e83-4727-a8b5-2849a9715064",
+                    "idempotency_token":"123",
                     "encrypted_metadata":{"a_key":"a_value"},
                     "metadata":{"a_key":"a_value"},
                     "from_address":"86e274e2-c8dc-46cf-ac4e-d8b26b5aada3",

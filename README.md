@@ -290,7 +290,8 @@ The most basic way to transfer tokens is to use the `Transaction.create()` metho
 let params = TransactionCreateParams(fromAddress: "1e3982f5-4a27-498d-a91b-7bb2e2a8d3d1",
                                      toAddress: "2e3982f5-4a27-498d-a91b-7bb2e2a8d3d1",
                                      amount: 1000,
-                                     tokenId: "BTC:xe3982f5-4a27-498d-a91b-7bb2e2a8d3d1")
+                                     tokenId: "BTC:xe3982f5-4a27-498d-a91b-7bb2e2a8d3d1",
+                                     idempotencyToken: "some token")
 Transaction.create(using: client, params: params) { (result) in
    switch result {
    case .success(data: let transaction):

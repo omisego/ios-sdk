@@ -24,6 +24,8 @@ public struct TransactionCreateParams {
     public let amount: BigInt
     /// The id of the token that will be used to send the funds
     public let tokenId: String
+    /// The idempotency token of the request
+    public let idempotencyToken: String
     /// Additional metadata for the transaction
     public let metadata: [String: Any]
     /// Additional encrypted metadata for the transaction
@@ -35,6 +37,7 @@ public struct TransactionCreateParams {
                  toAddress: String?,
                  toAccountId: String?,
                  toProviderUserId: String?,
+                 idempotencyToken: String,
                  metadata: [String: Any],
                  encryptedMetadata: [String: Any]) {
         self.fromAddress = fromAddress
@@ -43,6 +46,7 @@ public struct TransactionCreateParams {
         self.toAddress = toAddress
         self.toAccountId = toAccountId
         self.toProviderUserId = toProviderUserId
+        self.idempotencyToken = idempotencyToken
         self.metadata = metadata
         self.encryptedMetadata = encryptedMetadata
     }
@@ -51,6 +55,7 @@ public struct TransactionCreateParams {
                 toAddress: String,
                 amount: BigInt,
                 tokenId: String,
+                idempotencyToken: String,
                 metadata: [String: Any] = [:],
                 encryptedMetadata: [String: Any] = [:]) {
         self.init(fromAddress: fromAddress,
@@ -59,38 +64,45 @@ public struct TransactionCreateParams {
                   toAddress: toAddress,
                   toAccountId: nil,
                   toProviderUserId: nil,
+                  idempotencyToken: idempotencyToken,
                   metadata: metadata,
                   encryptedMetadata: encryptedMetadata)
     }
 
     public init(fromAddress: String? = nil,
                 toAccountId: String,
+                toAddress: String? = nil,
                 amount: BigInt,
                 tokenId: String,
+                idempotencyToken: String,
                 metadata: [String: Any] = [:],
                 encryptedMetadata: [String: Any] = [:]) {
         self.init(fromAddress: fromAddress,
                   amount: amount,
                   tokenId: tokenId,
-                  toAddress: nil,
+                  toAddress: toAddress,
                   toAccountId: toAccountId,
                   toProviderUserId: nil,
+                  idempotencyToken: idempotencyToken,
                   metadata: metadata,
                   encryptedMetadata: encryptedMetadata)
     }
 
     public init(fromAddress: String? = nil,
                 toProviderUserId: String,
+                toAddress: String? = nil,
                 amount: BigInt,
                 tokenId: String,
+                idempotencyToken: String,
                 metadata: [String: Any] = [:],
                 encryptedMetadata: [String: Any] = [:]) {
         self.init(fromAddress: fromAddress,
                   amount: amount,
                   tokenId: tokenId,
-                  toAddress: nil,
+                  toAddress: toAddress,
                   toAccountId: nil,
                   toProviderUserId: toProviderUserId,
+                  idempotencyToken: idempotencyToken,
                   metadata: metadata,
                   encryptedMetadata: encryptedMetadata)
     }
@@ -106,6 +118,7 @@ extension TransactionCreateParams: APIParameters {
         case toProviderUserId = "to_provider_user_id"
         case amount
         case tokenId = "token_id"
+        case idempotencyToken = "idempotency_token"
         case metadata
         case encryptedMetadata = "encrypted_metadata"
     }
@@ -113,11 +126,12 @@ extension TransactionCreateParams: APIParameters {
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(fromAddress, forKey: .fromAddress)
-        try container.encode(toAddress, forKey: .toAddress)
-        try container.encode(toAccountId, forKey: .toAccountId)
-        try container.encode(toProviderUserId, forKey: .toProviderUserId)
+        try container.encodeIfPresent(toAddress, forKey: .toAddress)
+        try container.encodeIfPresent(toAccountId, forKey: .toAccountId)
+        try container.encodeIfPresent(toProviderUserId, forKey: .toProviderUserId)
         try container.encode(amount, forKey: .amount)
         try container.encode(tokenId, forKey: .tokenId)
+        try container.encode(idempotencyToken, forKey: .idempotencyToken)
         try container.encode(metadata, forKey: .metadata)
         try container.encode(encryptedMetadata, forKey: .encryptedMetadata)
     }
