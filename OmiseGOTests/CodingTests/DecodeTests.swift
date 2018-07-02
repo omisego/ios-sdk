@@ -388,7 +388,8 @@ class DecodeTests: XCTestCase {
             XCTAssertEqual(decodedData.amount, 1337)
             XCTAssertEqual(decodedData.estimatedRequestAmount, 1337)
             XCTAssertEqual(decodedData.estimatedConsumptionAmount, 1337)
-            XCTAssertEqual(decodedData.finalizedAmount, 1337)
+            XCTAssertEqual(decodedData.finalizedRequestAmount, 1337)
+            XCTAssertEqual(decodedData.finalizedConsumptionAmount, 1337)
             let token = decodedData.token
             XCTAssertEqual(token.id, "BTC:861020af-17b6-49ee-a0cb-661a4d2d1f95")
             XCTAssertEqual(token.symbol, "BTC")
@@ -486,6 +487,10 @@ class DecodeTests: XCTestCase {
             XCTAssertEqual(decodedData.calculatedAt, "2018-01-01T00:00:00Z".toDate(withFormat: "yyyy-MM-dd'T'HH:mm:ssZ"))
             XCTAssertEqual(decodedData.exchangePairId!, "exg_01cgvppyrz2pprj6s0zmc26p2p")
             XCTAssertEqual(decodedData.exchangePair!.id, "exg_01cgvppyrz2pprj6s0zmc26p2p")
+            XCTAssertEqual(decodedData.exchangeAccountId!, "acc_01CA2P8JQANS5ATY5GJ5ETMJCF")
+            XCTAssertEqual(decodedData.exchangeAccount!.id, "acc_01CA2P8JQANS5ATY5GJ5ETMJCF")
+            XCTAssertEqual(decodedData.exchangeWalletAddress!, "2c2e0f2e-fa0f-4abe-8516-9e92cf003486")
+            XCTAssertEqual(decodedData.exchangeWallet!.address, "2c2e0f2e-fa0f-4abe-8516-9e92cf003486")
         } catch let thrownError {
             XCTFail(thrownError.localizedDescription)
         }

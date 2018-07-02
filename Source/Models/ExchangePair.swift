@@ -22,7 +22,7 @@ public struct ExchangePair {
     public let toTokenId: String
     /// The 2nd token of the pair
     public let toToken: Token
-    /// The rate between both token (token2/token1)
+    /// The rate between both tokens (token2/token1)
     public let rate: Double
     /// The creation date of the pair
     public let createdAt: Date

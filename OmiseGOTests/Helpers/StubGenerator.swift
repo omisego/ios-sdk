@@ -107,7 +107,8 @@ class StubGenerator {
         token: Token? = nil,
         estimatedRequestAmount: BigInt? = nil,
         estimatedConsumptionAmount: BigInt? = nil,
-        finalizedAmount: BigInt? = nil,
+        finalizedRequestAmount: BigInt? = nil,
+        finalizedConsumptionAmount: BigInt? = nil,
         correlationId: String? = nil,
         idempotencyToken: String? = nil,
         transaction: Transaction? = nil,
@@ -133,7 +134,8 @@ class StubGenerator {
                 amount: amount ?? v.amount,
                 estimatedRequestAmount: estimatedRequestAmount ?? v.estimatedRequestAmount,
                 estimatedConsumptionAmount: estimatedConsumptionAmount ?? v.estimatedConsumptionAmount,
-                finalizedAmount: finalizedAmount ?? v.finalizedAmount,
+                finalizedRequestAmount: finalizedRequestAmount ?? v.finalizedRequestAmount,
+                finalizedConsumptionAmount: finalizedConsumptionAmount ?? v.finalizedConsumptionAmount,
                 token: token ?? v.token,
                 correlationId: correlationId ?? v.correlationId,
                 idempotencyToken: idempotencyToken ?? v.idempotencyToken,
@@ -243,14 +245,23 @@ class StubGenerator {
         rate: Double? = nil,
         calculatedAt: Date? = nil,
         exchangePairId: String? = nil,
-        exchangePair: ExchangePair? = nil)
+        exchangePair: ExchangePair? = nil,
+        exchangeAccountId: String? = nil,
+        exchangeAccount: Account? = nil,
+        exchangeWalletAddress: String? = nil,
+        exchangeWallet: Wallet? = nil)
         -> TransactionExchange {
             let v: TransactionExchange = self.stub(forResource: "transaction_exchange")
             return TransactionExchange(
                 rate: rate ?? v.rate,
                 calculatedAt: calculatedAt ?? v.calculatedAt,
                 exchangePairId: exchangePairId ?? v.exchangePairId,
-                exchangePair: exchangePair ?? v.exchangePair)
+                exchangePair: exchangePair ?? v.exchangePair,
+                exchangeAccountId: exchangeAccountId ?? v.exchangeAccountId,
+                exchangeAccount: exchangeAccount ?? v.exchangeAccount,
+                exchangeWalletAddress: exchangeWalletAddress ?? v.exchangeWalletAddress,
+                exchangeWallet: exchangeWallet ?? v.exchangeWallet
+            )
     }
 
     class func pagination(

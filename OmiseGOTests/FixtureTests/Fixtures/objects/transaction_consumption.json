@@ -5,7 +5,8 @@
   "amount": 1337,
   "estimated_request_amount": 1337,
   "estimated_consumption_amount": 1337,
-  "finalized_amount": 1337,
+  "finalized_request_amount": 1337,
+  "finalized_consumption_amount": 1337,
   "token": {
     "object": "token",
     "id": "BTC:861020af-17b6-49ee-a0cb-661a4d2d1f95",
@@ -59,7 +60,11 @@
       "rate": 1,
       "calculated_at": null,
       "exchange_pair_id": null,
-      "exchange_pair": null
+      "exchange_pair": null,
+      "exchange_account_id": null,
+      "exchange_account": null,
+      "exchange_wallet_address": null,
+      "exchange_wallet": null
     },
     "metadata": {},
     "encrypted_metadata": {},
