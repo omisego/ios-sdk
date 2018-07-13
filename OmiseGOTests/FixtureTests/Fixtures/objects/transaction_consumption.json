@@ -137,6 +137,8 @@
   "failed_at": null,
   "expired_at": null,
   "created_at": "2018-01-01T00:00:00Z",
+  "exchange_account_id": "acc_01ca2p8jqans5aty5gj5etmjcf",
+  "exchange_wallet_address": "2ae52683-68d8-4af6-94d7-5ed4c34ecf1a",
   "metadata": {},
   "encrypted_metadata": {}
 }

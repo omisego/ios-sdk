@@ -41,6 +41,8 @@ class TransactionConsumptionParamsTest: XCTestCase {
                                                     allowAmountOverride: true,
                                                     maxConsumptionsPerUser: nil,
                                                     formattedId: "|0a8a4a98-794b-419e-b92d-514e83657e75",
+                                                    exchangeAccountId: nil,
+                                                    exchangeWalletAddress: nil,
                                                     metadata: [:],
                                                     encryptedMetadata: [:])
         XCTAssertNil(TransactionConsumptionParams(transactionRequest: transactionRequest,
@@ -72,6 +74,8 @@ class TransactionConsumptionParamsTest: XCTestCase {
                                                     allowAmountOverride: true,
                                                     maxConsumptionsPerUser: nil,
                                                     formattedId: "|0a8a4a98-794b-419e-b92d-514e83657e75",
+                                                    exchangeAccountId: nil,
+                                                    exchangeWalletAddress: nil,
                                                     metadata: [:],
                                                     encryptedMetadata: [:])
         let params = TransactionConsumptionParams(transactionRequest: transactionRequest,

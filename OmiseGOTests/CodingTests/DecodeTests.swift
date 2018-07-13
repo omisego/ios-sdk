@@ -371,6 +371,8 @@ class DecodeTests: XCTestCase {
             XCTAssertEqual(decodedData.expirationReason, "Expired")
             XCTAssertEqual(decodedData.expiredAt, "2019-01-01T00:00:00Z".toDate(withFormat: "yyyy-MM-dd'T'HH:mm:ssZ"))
             XCTAssertTrue(decodedData.allowAmountOverride)
+            XCTAssertEqual(decodedData.exchangeAccountId, "acc_01ca2p8jqans5aty5gj5etmjcf")
+            XCTAssertEqual(decodedData.exchangeWalletAddress, "2ae52683-68d8-4af6-94d7-5ed4c34ecf1a")
             XCTAssertTrue(decodedData.metadata.isEmpty)
             XCTAssertTrue(decodedData.encryptedMetadata.isEmpty)
         } catch let thrownError {
@@ -412,6 +414,8 @@ class DecodeTests: XCTestCase {
             XCTAssertEqual(decodedData.failedAt, nil)
             XCTAssertEqual(decodedData.expiredAt, nil)
             XCTAssertEqual(decodedData.createdAt, "2018-01-01T00:00:00Z".toDate(withFormat: "yyyy-MM-dd'T'HH:mm:ssZ"))
+            XCTAssertEqual(decodedData.exchangeAccountId, "acc_01ca2p8jqans5aty5gj5etmjcf")
+            XCTAssertEqual(decodedData.exchangeWalletAddress, "2ae52683-68d8-4af6-94d7-5ed4c34ecf1a")
             XCTAssertTrue(decodedData.metadata.isEmpty)
             XCTAssertTrue(decodedData.encryptedMetadata.isEmpty)
         } catch let thrownError {

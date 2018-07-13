@@ -40,6 +40,8 @@
   "allow_amount_override": true,
   "max_consumptions_per_user": null,
   "formatted_id": "|8eb0160e-1c96-481a-88e1-899399cc84dc",
+  "exchange_account_id": "acc_01ca2p8jqans5aty5gj5etmjcf",
+  "exchange_wallet_address": "2ae52683-68d8-4af6-94d7-5ed4c34ecf1a",
   "metadata": {},
   "encrypted_metadata": {}
 }

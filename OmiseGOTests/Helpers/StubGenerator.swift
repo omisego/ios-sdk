@@ -123,6 +123,8 @@ class StubGenerator {
         failedAt: Date? = nil,
         expiredAt: Date? = nil,
         createdAt: Date? = nil,
+        exchangeAccountId: String? = nil,
+        exchangeWalletAddress: String? = nil,
         metadata: [String: Any]? = nil,
         encryptedMetadata: [String: Any]? = nil)
         -> TransactionConsumption {
@@ -151,6 +153,8 @@ class StubGenerator {
             confirmedAt: confirmedAt ?? v.confirmedAt,
             failedAt: failedAt ?? v.failedAt,
             expiredAt: expiredAt ?? v.expiredAt,
+            exchangeAccountId: exchangeAccountId ?? v.exchangeAccountId,
+            exchangeWalletAddress: exchangeWalletAddress ?? v.exchangeWalletAddress,
             metadata: metadata ?? v.metadata,
             encryptedMetadata: encryptedMetadata ?? v.encryptedMetadata
         )
@@ -177,6 +181,8 @@ class StubGenerator {
         allowAmountOverride: Bool? = nil,
         maxConsumptionsPerUser: Int? = nil,
         formattedId: String? = nil,
+        exchangeAccountId: String? = nil,
+        exchangeWalletAddress: String? = nil,
         metadata: [String: Any]? = nil,
         encryptedMetadata: [String: Any]? = nil)
         -> TransactionRequest {
@@ -202,6 +208,8 @@ class StubGenerator {
             allowAmountOverride: allowAmountOverride ?? v.allowAmountOverride,
             maxConsumptionsPerUser: maxConsumptionsPerUser ?? v.maxConsumptionsPerUser,
             formattedId: formattedId ?? v.formattedId,
+            exchangeAccountId: exchangeAccountId ?? v.exchangeAccountId,
+            exchangeWalletAddress: exchangeWalletAddress ?? v.exchangeWalletAddress,
             metadata: metadata ?? v.metadata,
             encryptedMetadata: encryptedMetadata ?? v.encryptedMetadata
         )
