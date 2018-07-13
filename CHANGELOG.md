@@ -7,6 +7,10 @@ All notable changes to this project will be documented in this file.
 ## [1.0.0](https://github.com/omisego/ios-sdk/releases/tag/1.0.0)
 Released on 2018-7-6. All issues associated with this milestone can be found using this [filter](https://github.com/omisego/ios-sdk/issues?utf8=%E2%9C%93&q=milestone%3A1.0.0).
 
+#### Added
+- Exchange info for transaction requests and consumptions.
+  - Updated by [Mederic](https://github.com/mederic-p) in Pull Request [#68](https://github.com/omisego/ios-sdk/pull/68)
+
 ---
 
 #### 0.x Betas
