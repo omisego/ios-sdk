@@ -125,6 +125,8 @@ class StubGenerator {
         createdAt: Date? = nil,
         exchangeAccountId: String? = nil,
         exchangeWalletAddress: String? = nil,
+        exchangeAccount: Account? = nil,
+        exchangeWallet: Wallet? = nil,
         metadata: [String: Any]? = nil,
         encryptedMetadata: [String: Any]? = nil)
         -> TransactionConsumption {
@@ -155,6 +157,8 @@ class StubGenerator {
             expiredAt: expiredAt ?? v.expiredAt,
             exchangeAccountId: exchangeAccountId ?? v.exchangeAccountId,
             exchangeWalletAddress: exchangeWalletAddress ?? v.exchangeWalletAddress,
+            exchangeAccount: exchangeAccount ?? v.exchangeAccount,
+            exchangeWallet: exchangeWallet ?? v.exchangeWallet,
             metadata: metadata ?? v.metadata,
             encryptedMetadata: encryptedMetadata ?? v.encryptedMetadata
         )
@@ -183,6 +187,8 @@ class StubGenerator {
         formattedId: String? = nil,
         exchangeAccountId: String? = nil,
         exchangeWalletAddress: String? = nil,
+        exchangeAccount: Account? = nil,
+        exchangeWallet: Wallet? = nil,
         metadata: [String: Any]? = nil,
         encryptedMetadata: [String: Any]? = nil)
         -> TransactionRequest {
@@ -210,6 +216,8 @@ class StubGenerator {
             formattedId: formattedId ?? v.formattedId,
             exchangeAccountId: exchangeAccountId ?? v.exchangeAccountId,
             exchangeWalletAddress: exchangeWalletAddress ?? v.exchangeWalletAddress,
+            exchangeAccount: exchangeAccount ?? v.exchangeAccount,
+            exchangeWallet: exchangeWallet ?? v.exchangeWallet,
             metadata: metadata ?? v.metadata,
             encryptedMetadata: encryptedMetadata ?? v.encryptedMetadata
         )
