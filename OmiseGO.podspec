@@ -11,8 +11,20 @@ Pod::Spec.new do |s|
   s.platform = :ios, '10.0'
   s.swift_version = '4.0'
 
-  s.dependency 'Starscream', '~> 3.0'
-  s.dependency 'BigInt', '~> 3.1'
+  s.subspec 'Core' do |ss|
+    ss.source_files = "Source/Core/**/*.swift"
+    ss.dependency 'Starscream', '~> 3.0'
+    ss.dependency 'BigInt', '~> 3.1'
+  end
 
-  s.source_files = 'Source/**/*.swift'
+  s.subspec 'Client' do |ss|
+    ss.source_files = "Source/Client/**/*.swift"
+    ss.dependency 'OmiseGO/Core'
+  end
+
+  s.subspec 'Admin' do |ss|
+    ss.source_files = "Source/Admin/**/*.swift"
+    ss.dependency 'OmiseGO/Core'
+  end
+
 end
