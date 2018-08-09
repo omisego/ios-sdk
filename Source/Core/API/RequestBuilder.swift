@@ -37,7 +37,7 @@ final class RequestBuilder {
     }
 
     func buildWebsocketRequest() throws -> URLRequest {
-        guard let url = URL(string: self.configuration.baseURL) else {
+        guard let url = URL(string: self.configuration.baseURL + "/socket") else {
             throw OMGError.configuration(message: "Invalid base url")
         }
 

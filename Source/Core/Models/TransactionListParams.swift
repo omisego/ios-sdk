@@ -8,7 +8,7 @@
 
 import UIKit
 
-// Represent a structure used to query a list of transactions
+// Represents a structure used to query a list of transactions
 public struct TransactionListParams {
     public let paginationParams: PaginationParams<Transaction>
     /// An optional wallet address owned by the current user
