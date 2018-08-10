@@ -95,7 +95,6 @@
 		032CEE41211D3D5300E44445 /* ResponseLiveTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032CEDC9211D3D5300E44445 /* ResponseLiveTest.swift */; };
 		032CEE42211D3D5300E44445 /* UserLiveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032CEDCA211D3D5300E44445 /* UserLiveTests.swift */; };
 		032CEE43211D3D5300E44445 /* TransactionRequestLiveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032CEDCB211D3D5300E44445 /* TransactionRequestLiveTests.swift */; };
-		032CEE44211D3D5300E44445 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 032CEDCC211D3D5300E44445 /* Info.plist */; };
 		032CEE46211D3F2700E44445 /* core_fixtures in Resources */ = {isa = PBXBuildFile; fileRef = 032CEE45211D3F2700E44445 /* core_fixtures */; };
 		032CEE48211D3F5100E44445 /* client_fixtures in Resources */ = {isa = PBXBuildFile; fileRef = 032CEE47211D3F5100E44445 /* client_fixtures */; };
 		032CEE4A211D408800E44445 /* TestQRReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032CEE49211D408800E44445 /* TestQRReader.swift */; };
@@ -393,8 +392,10 @@
 		032CED42211D3D5300E44445 /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				032CED43211D3D5300E44445 /* ToolsTests.swift */,
+				032CEDA2211D3D5300E44445 /* secret.plist */,
 				032CED44211D3D5300E44445 /* secret copy.plist */,
+				032CED43211D3D5300E44445 /* ToolsTests.swift */,
+				032CEDA3211D3D5300E44445 /* OMGNumberFormatterTests.swift */,
 				032CED45211D3D5300E44445 /* QRCodeTests */,
 				032CED4C211D3D5300E44445 /* SocketsTests */,
 				032CED52211D3D5300E44445 /* CodingTests */,
@@ -402,8 +403,6 @@
 				032CED5B211D3D5300E44445 /* TestMocks */,
 				032CED6A211D3D5300E44445 /* ModelTests */,
 				032CED77211D3D5300E44445 /* FixtureTests */,
-				032CEDA2211D3D5300E44445 /* secret.plist */,
-				032CEDA3211D3D5300E44445 /* OMGNumberFormatterTests.swift */,
 				032CEDA4211D3D5300E44445 /* Helpers */,
 			);
 			path = Core;
@@ -893,7 +892,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				032CEE46211D3F2700E44445 /* core_fixtures in Resources */,
-				032CEE44211D3D5300E44445 /* Info.plist in Resources */,
 				032CEDCE211D3D5300E44445 /* secret copy.plist in Resources */,
 				032CEE48211D3F5100E44445 /* client_fixtures in Resources */,
 				032CEE22211D3D5300E44445 /* secret.plist in Resources */,

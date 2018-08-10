@@ -9,7 +9,7 @@
 import OmiseGO
 import XCTest
 
-class WalletLiveTests: LiveTestCase {
+class WalletLiveTests: LiveClientTestCase {
     func testGetAll() {
         let expectation = self.expectation(description: "Get the list of wallets")
         let request = Wallet.getAll(using: self.testClient) { result in

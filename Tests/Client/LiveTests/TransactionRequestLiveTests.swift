@@ -9,7 +9,7 @@
 import OmiseGO
 import XCTest
 
-class TransactionRequestLiveTests: LiveTestCase {
+class TransactionRequestLiveTests: LiveClientTestCase {
     override func setUp() {
         super.setUp()
     }

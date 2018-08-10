@@ -9,7 +9,7 @@
 import OmiseGO
 import XCTest
 
-class TransactionLiveTests: LiveTestCase {
+class TransactionLiveTests: LiveClientTestCase {
     func testGetTransactionList() {
         let expectation = self.expectation(description: "Get paginated list of transactions")
         let paginationParams = PaginationParams<Transaction>(

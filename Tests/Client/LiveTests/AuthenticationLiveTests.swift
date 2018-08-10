@@ -9,7 +9,7 @@
 import OmiseGO
 import XCTest
 
-class AuthenticationLiveTests: LiveTestCase {
+class AuthenticationLiveTests: LiveClientTestCase {
     func testInvalidAuthenticationToken() {
         let expectation = self.expectation(description: "Error token not found")
         let credential = ClientCredential(apiKey: self.validAPIKey, authenticationToken: self.invalidAuthenticationToken)

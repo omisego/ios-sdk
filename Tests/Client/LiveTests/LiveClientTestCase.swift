@@ -1,5 +1,5 @@
 //
-//  LiveTestCase.swift
+//  LiveClientTestCase.swift
 //  Tests
 //
 //  Created by Mederic Petit on 18/10/2017.
@@ -10,7 +10,7 @@ import Foundation
 import OmiseGO
 import XCTest
 
-class LiveTestCase: XCTestCase {
+class LiveClientTestCase: XCTestCase {
     private static let OMG_BASE_URL = "OMG_BASE_URL"
     private static let OMG_WEBSOCKET_URL = "OMG_WEBSOCKET_URL"
     private static let OMG_API_KEY = "OMG_API_KEY"
@@ -80,34 +80,34 @@ class LiveTestCase: XCTestCase {
     private func loadEnvKeys() {
         let plistSecrets = self.loadSecretPlistFile()
         self.validBaseURL =
-            plistSecrets?[LiveTestCase.OMG_BASE_URL] != nil &&
-            plistSecrets![LiveTestCase.OMG_BASE_URL] != "" ?
-            plistSecrets![LiveTestCase.OMG_BASE_URL]! :
-            ProcessInfo.processInfo.environment[LiveTestCase.OMG_BASE_URL]!
+            plistSecrets?[LiveClientTestCase.OMG_BASE_URL] != nil &&
+            plistSecrets![LiveClientTestCase.OMG_BASE_URL] != "" ?
+            plistSecrets![LiveClientTestCase.OMG_BASE_URL]! :
+            ProcessInfo.processInfo.environment[LiveClientTestCase.OMG_BASE_URL]!
         self.validWebsocketURL =
-            plistSecrets?[LiveTestCase.OMG_WEBSOCKET_URL] != nil &&
-            plistSecrets![LiveTestCase.OMG_WEBSOCKET_URL] != "" ?
-            plistSecrets![LiveTestCase.OMG_WEBSOCKET_URL]! :
-            ProcessInfo.processInfo.environment[LiveTestCase.OMG_WEBSOCKET_URL]!
+            plistSecrets?[LiveClientTestCase.OMG_WEBSOCKET_URL] != nil &&
+            plistSecrets![LiveClientTestCase.OMG_WEBSOCKET_URL] != "" ?
+            plistSecrets![LiveClientTestCase.OMG_WEBSOCKET_URL]! :
+            ProcessInfo.processInfo.environment[LiveClientTestCase.OMG_WEBSOCKET_URL]!
         self.validAPIKey =
-            plistSecrets?[LiveTestCase.OMG_API_KEY] != nil &&
-            plistSecrets![LiveTestCase.OMG_API_KEY] != "" ?
-            plistSecrets![LiveTestCase.OMG_API_KEY]! :
-            ProcessInfo.processInfo.environment[LiveTestCase.OMG_API_KEY]!
+            plistSecrets?[LiveClientTestCase.OMG_API_KEY] != nil &&
+            plistSecrets![LiveClientTestCase.OMG_API_KEY] != "" ?
+            plistSecrets![LiveClientTestCase.OMG_API_KEY]! :
+            ProcessInfo.processInfo.environment[LiveClientTestCase.OMG_API_KEY]!
         self.validAuthenticationToken =
-            plistSecrets?[LiveTestCase.OMG_AUTHENTICATION_TOKEN] != nil &&
-            plistSecrets![LiveTestCase.OMG_AUTHENTICATION_TOKEN] != "" ?
-            plistSecrets![LiveTestCase.OMG_AUTHENTICATION_TOKEN]! :
-            ProcessInfo.processInfo.environment[LiveTestCase.OMG_AUTHENTICATION_TOKEN]!
+            plistSecrets?[LiveClientTestCase.OMG_AUTHENTICATION_TOKEN] != nil &&
+            plistSecrets![LiveClientTestCase.OMG_AUTHENTICATION_TOKEN] != "" ?
+            plistSecrets![LiveClientTestCase.OMG_AUTHENTICATION_TOKEN]! :
+            ProcessInfo.processInfo.environment[LiveClientTestCase.OMG_AUTHENTICATION_TOKEN]!
         self.validTokenId =
-            plistSecrets?[LiveTestCase.OMG_TOKEN_ID] != nil &&
-            plistSecrets![LiveTestCase.OMG_TOKEN_ID] != "" ?
-            plistSecrets![LiveTestCase.OMG_TOKEN_ID]! :
-            ProcessInfo.processInfo.environment[LiveTestCase.OMG_TOKEN_ID]!
+            plistSecrets?[LiveClientTestCase.OMG_TOKEN_ID] != nil &&
+            plistSecrets![LiveClientTestCase.OMG_TOKEN_ID] != "" ?
+            plistSecrets![LiveClientTestCase.OMG_TOKEN_ID]! :
+            ProcessInfo.processInfo.environment[LiveClientTestCase.OMG_TOKEN_ID]!
     }
 
     private func loadSecretPlistFile() -> [String: String]? {
-        guard let path = Bundle(for: LiveTestCase.self).path(forResource: "secret", ofType: "plist") else { return nil }
+        guard let path = Bundle(for: LiveClientTestCase.self).path(forResource: "secret", ofType: "plist") else { return nil }
         return NSDictionary(contentsOfFile: path) as? [String: String]
     }
 }
