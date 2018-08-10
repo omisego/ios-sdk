@@ -331,8 +331,6 @@
 		03E565B8211AFFCA00BC9124 /* AdminConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminConfiguration.swift; sourceTree = "<group>"; };
 		16499E8AC99F7FCEE0A0FC0E /* Pods-OmiseGO.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OmiseGO.release.xcconfig"; path = "Pods/Target Support Files/Pods-OmiseGO/Pods-OmiseGO.release.xcconfig"; sourceTree = "<group>"; };
 		47235654A4C773217A4C91D9 /* Pods-OmiseGO.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OmiseGO.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OmiseGO/Pods-OmiseGO.debug.xcconfig"; sourceTree = "<group>"; };
-		6005F67DACE86CA9F979B8D1 /* Pods-OmiseGOTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OmiseGOTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OmiseGOTests/Pods-OmiseGOTests.debug.xcconfig"; sourceTree = "<group>"; };
-		C7DCB672C50C2D40925FAA04 /* Pods-OmiseGOTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OmiseGOTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-OmiseGOTests/Pods-OmiseGOTests.release.xcconfig"; sourceTree = "<group>"; };
 		D2F65698E210E4D7AEBCE81C /* Pods-Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Tests/Pods-Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		D7EDDA72A97366121D17A51E /* Pods-Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Tests/Pods-Tests.release.xcconfig"; sourceTree = "<group>"; };
 		F8F3D88392040FB15FD17E51 /* Pods_OmiseGO.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OmiseGO.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -784,8 +782,6 @@
 			children = (
 				47235654A4C773217A4C91D9 /* Pods-OmiseGO.debug.xcconfig */,
 				16499E8AC99F7FCEE0A0FC0E /* Pods-OmiseGO.release.xcconfig */,
-				6005F67DACE86CA9F979B8D1 /* Pods-OmiseGOTests.debug.xcconfig */,
-				C7DCB672C50C2D40925FAA04 /* Pods-OmiseGOTests.release.xcconfig */,
 				D2F65698E210E4D7AEBCE81C /* Pods-Tests.debug.xcconfig */,
 				D7EDDA72A97366121D17A51E /* Pods-Tests.release.xcconfig */,
 			);
