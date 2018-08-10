@@ -160,7 +160,6 @@
 		03E565B9211AFFCA00BC9124 /* AdminConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E565B8211AFFCA00BC9124 /* AdminConfiguration.swift */; };
 		0722AF18088B1D5B0C533D3A /* Pods_OmiseGO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8F3D88392040FB15FD17E51 /* Pods_OmiseGO.framework */; };
 		9AA7A03093BE5106A618E627 /* Pods_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA7D150759B05A9FDA9B003F /* Pods_Tests.framework */; };
-		BF75AB0B369A0CA5C06904BC /* Pods_OmiseGOTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 011BAF3F039E5A5B688B5C4F /* Pods_OmiseGOTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -174,7 +173,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		011BAF3F039E5A5B688B5C4F /* Pods_OmiseGOTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OmiseGOTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0320EAAE211852EB0006685C /* APIAdminEndpoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIAdminEndpoint.swift; sourceTree = "<group>"; };
 		0320EAB0211853010006685C /* APIClientEndpoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClientEndpoint.swift; sourceTree = "<group>"; };
 		0320EAB42119499B0006685C /* Setting+Client.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Setting+Client.swift"; sourceTree = "<group>"; };
@@ -351,7 +349,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				03BCCCB31F8B311600F604DB /* OmiseGO.framework in Frameworks */,
-				BF75AB0B369A0CA5C06904BC /* Pods_OmiseGOTests.framework in Frameworks */,
 				9AA7A03093BE5106A618E627 /* Pods_Tests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -792,7 +789,6 @@
 			isa = PBXGroup;
 			children = (
 				F8F3D88392040FB15FD17E51 /* Pods_OmiseGO.framework */,
-				011BAF3F039E5A5B688B5C4F /* Pods_OmiseGOTests.framework */,
 				FA7D150759B05A9FDA9B003F /* Pods_Tests.framework */,
 			);
 			name = Frameworks;
