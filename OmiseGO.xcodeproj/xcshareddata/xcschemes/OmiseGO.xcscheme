@@ -71,8 +71,8 @@
             isEnabled = "YES">
          </EnvironmentVariable>
          <EnvironmentVariable
-            key = "OMG_AUTHENTICATION_TOKEN"
-            value = "$OMG_AUTHENTICATION_TOKEN"
+            key = "OMG_CLIENT_AUTHENTICATION_TOKEN"
+            value = "$OMG_CLIENT_AUTHENTICATION_TOKEN"
             isEnabled = "YES">
          </EnvironmentVariable>
       </EnvironmentVariables>

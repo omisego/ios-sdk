@@ -23,7 +23,6 @@
 		0320EAC92119AB4F0006685C /* QRVerifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0320EAC82119AB4F0006685C /* QRVerifier.swift */; };
 		0320EACC2119AF420006685C /* QRClientVerifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0320EACB2119AF420006685C /* QRClientVerifier.swift */; };
 		032CEDCD211D3D5300E44445 /* ToolsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032CED43211D3D5300E44445 /* ToolsTests.swift */; };
-		032CEDCE211D3D5300E44445 /* secret copy.plist in Resources */ = {isa = PBXBuildFile; fileRef = 032CED44211D3D5300E44445 /* secret copy.plist */; };
 		032CEDCF211D3D5300E44445 /* QRGeneratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032CED46211D3D5300E44445 /* QRGeneratorTests.swift */; };
 		032CEDD0211D3D5300E44445 /* QRScannerViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032CED47211D3D5300E44445 /* QRScannerViewTests.swift */; };
 		032CEDD2211D3D5300E44445 /* QRScannerViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032CED49211D3D5300E44445 /* QRScannerViewModelTests.swift */; };
@@ -72,7 +71,6 @@
 		032CEE1F211D3D5300E44445 /* ListableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032CED9F211D3D5300E44445 /* ListableTests.swift */; };
 		032CEE20211D3D5300E44445 /* FixtureClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032CEDA0211D3D5300E44445 /* FixtureClient.swift */; };
 		032CEE21211D3D5300E44445 /* FixtureTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032CEDA1211D3D5300E44445 /* FixtureTestCase.swift */; };
-		032CEE22211D3D5300E44445 /* secret.plist in Resources */ = {isa = PBXBuildFile; fileRef = 032CEDA2211D3D5300E44445 /* secret.plist */; };
 		032CEE23211D3D5300E44445 /* OMGNumberFormatterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032CEDA3211D3D5300E44445 /* OMGNumberFormatterTests.swift */; };
 		032CEE24211D3D5300E44445 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032CEDA5211D3D5300E44445 /* Extension.swift */; };
 		032CEE25211D3D5300E44445 /* StubGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032CEDA6211D3D5300E44445 /* StubGenerator.swift */; };
@@ -98,6 +96,8 @@
 		032CEE46211D3F2700E44445 /* core_fixtures in Resources */ = {isa = PBXBuildFile; fileRef = 032CEE45211D3F2700E44445 /* core_fixtures */; };
 		032CEE48211D3F5100E44445 /* client_fixtures in Resources */ = {isa = PBXBuildFile; fileRef = 032CEE47211D3F5100E44445 /* client_fixtures */; };
 		032CEE4A211D408800E44445 /* TestQRReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032CEE49211D408800E44445 /* TestQRReader.swift */; };
+		032CEF24211D685600E44445 /* secret.plist in Resources */ = {isa = PBXBuildFile; fileRef = 032CEF22211D685600E44445 /* secret.plist */; };
+		032CEF2A211D783D00E44445 /* LiveTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032CEF29211D783D00E44445 /* LiveTestCase.swift */; };
 		0379E7E921184BC900E65D4F /* SocketEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0379E7AB21184BC800E65D4F /* SocketEvent.swift */; };
 		0379E7EA21184BC900E65D4F /* SocketPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0379E7AC21184BC800E65D4F /* SocketPayload.swift */; };
 		0379E7EB21184BC900E65D4F /* SocketDispatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0379E7AD21184BC800E65D4F /* SocketDispatcher.swift */; };
@@ -189,7 +189,6 @@
 		0320EAC82119AB4F0006685C /* QRVerifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRVerifier.swift; sourceTree = "<group>"; };
 		0320EACB2119AF420006685C /* QRClientVerifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRClientVerifier.swift; sourceTree = "<group>"; };
 		032CED43211D3D5300E44445 /* ToolsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToolsTests.swift; sourceTree = "<group>"; };
-		032CED44211D3D5300E44445 /* secret copy.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "secret copy.plist"; sourceTree = "<group>"; };
 		032CED46211D3D5300E44445 /* QRGeneratorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRGeneratorTests.swift; sourceTree = "<group>"; };
 		032CED47211D3D5300E44445 /* QRScannerViewTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRScannerViewTests.swift; sourceTree = "<group>"; };
 		032CED49211D3D5300E44445 /* QRScannerViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRScannerViewModelTests.swift; sourceTree = "<group>"; };
@@ -238,7 +237,6 @@
 		032CED9F211D3D5300E44445 /* ListableTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListableTests.swift; sourceTree = "<group>"; };
 		032CEDA0211D3D5300E44445 /* FixtureClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FixtureClient.swift; sourceTree = "<group>"; };
 		032CEDA1211D3D5300E44445 /* FixtureTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FixtureTestCase.swift; sourceTree = "<group>"; };
-		032CEDA2211D3D5300E44445 /* secret.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = secret.plist; sourceTree = "<group>"; };
 		032CEDA3211D3D5300E44445 /* OMGNumberFormatterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OMGNumberFormatterTests.swift; sourceTree = "<group>"; };
 		032CEDA5211D3D5300E44445 /* Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		032CEDA6211D3D5300E44445 /* StubGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StubGenerator.swift; sourceTree = "<group>"; };
@@ -265,6 +263,8 @@
 		032CEE45211D3F2700E44445 /* core_fixtures */ = {isa = PBXFileReference; lastKnownFileType = folder; path = core_fixtures; sourceTree = "<group>"; };
 		032CEE47211D3F5100E44445 /* client_fixtures */ = {isa = PBXFileReference; lastKnownFileType = folder; path = client_fixtures; sourceTree = "<group>"; };
 		032CEE49211D408800E44445 /* TestQRReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestQRReader.swift; sourceTree = "<group>"; };
+		032CEF22211D685600E44445 /* secret.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = secret.plist; sourceTree = "<group>"; };
+		032CEF29211D783D00E44445 /* LiveTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveTestCase.swift; sourceTree = "<group>"; };
 		0379E7AB21184BC800E65D4F /* SocketEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketEvent.swift; sourceTree = "<group>"; };
 		0379E7AC21184BC800E65D4F /* SocketPayload.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketPayload.swift; sourceTree = "<group>"; };
 		0379E7AD21184BC800E65D4F /* SocketDispatcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketDispatcher.swift; sourceTree = "<group>"; };
@@ -381,6 +381,7 @@
 		032CED41211D3D5300E44445 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				032CEF22211D685600E44445 /* secret.plist */,
 				032CED42211D3D5300E44445 /* Core */,
 				032CEDA7211D3D5300E44445 /* Admin */,
 				032CEDA8211D3D5300E44445 /* Client */,
@@ -392,10 +393,9 @@
 		032CED42211D3D5300E44445 /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				032CEDA2211D3D5300E44445 /* secret.plist */,
-				032CED44211D3D5300E44445 /* secret copy.plist */,
 				032CED43211D3D5300E44445 /* ToolsTests.swift */,
 				032CEDA3211D3D5300E44445 /* OMGNumberFormatterTests.swift */,
+				032CEF28211D77F400E44445 /* LiveTests */,
 				032CED45211D3D5300E44445 /* QRCodeTests */,
 				032CED4C211D3D5300E44445 /* SocketsTests */,
 				032CED52211D3D5300E44445 /* CodingTests */,
@@ -570,6 +570,14 @@
 				032CEDC9211D3D5300E44445 /* ResponseLiveTest.swift */,
 				032CEDCA211D3D5300E44445 /* UserLiveTests.swift */,
 				032CEDCB211D3D5300E44445 /* TransactionRequestLiveTests.swift */,
+			);
+			path = LiveTests;
+			sourceTree = "<group>";
+		};
+		032CEF28211D77F400E44445 /* LiveTests */ = {
+			isa = PBXGroup;
+			children = (
+				032CEF29211D783D00E44445 /* LiveTestCase.swift */,
 			);
 			path = LiveTests;
 			sourceTree = "<group>";
@@ -892,9 +900,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				032CEE46211D3F2700E44445 /* core_fixtures in Resources */,
-				032CEDCE211D3D5300E44445 /* secret copy.plist in Resources */,
+				032CEF24211D685600E44445 /* secret.plist in Resources */,
 				032CEE48211D3F5100E44445 /* client_fixtures in Resources */,
-				032CEE22211D3D5300E44445 /* secret.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1115,6 +1122,7 @@
 				032CEDD3211D3D5300E44445 /* QRScannerViewControllerTests.swift in Sources */,
 				032CEDEF211D3D5300E44445 /* TokenTests.swift in Sources */,
 				032CEE3F211D3D5300E44445 /* LiveClientTestCase.swift in Sources */,
+				032CEF2A211D783D00E44445 /* LiveTestCase.swift in Sources */,
 				032CEDEC211D3D5300E44445 /* TestMetadata.swift in Sources */,
 				032CEDD9211D3D5300E44445 /* SocketMessageTests.swift in Sources */,
 				032CEDF1211D3D5300E44445 /* TransactionConsumptionTest.swift in Sources */,
