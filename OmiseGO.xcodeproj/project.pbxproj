@@ -159,6 +159,7 @@
 		03E565B7211AFF9A00BC9124 /* HTTPClient+Admin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E565B6211AFF9A00BC9124 /* HTTPClient+Admin.swift */; };
 		03E565B9211AFFCA00BC9124 /* AdminConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E565B8211AFFCA00BC9124 /* AdminConfiguration.swift */; };
 		0722AF18088B1D5B0C533D3A /* Pods_OmiseGO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8F3D88392040FB15FD17E51 /* Pods_OmiseGO.framework */; };
+		9AA7A03093BE5106A618E627 /* Pods_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA7D150759B05A9FDA9B003F /* Pods_Tests.framework */; };
 		BF75AB0B369A0CA5C06904BC /* Pods_OmiseGOTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 011BAF3F039E5A5B688B5C4F /* Pods_OmiseGOTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -332,7 +333,10 @@
 		47235654A4C773217A4C91D9 /* Pods-OmiseGO.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OmiseGO.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OmiseGO/Pods-OmiseGO.debug.xcconfig"; sourceTree = "<group>"; };
 		6005F67DACE86CA9F979B8D1 /* Pods-OmiseGOTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OmiseGOTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OmiseGOTests/Pods-OmiseGOTests.debug.xcconfig"; sourceTree = "<group>"; };
 		C7DCB672C50C2D40925FAA04 /* Pods-OmiseGOTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OmiseGOTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-OmiseGOTests/Pods-OmiseGOTests.release.xcconfig"; sourceTree = "<group>"; };
+		D2F65698E210E4D7AEBCE81C /* Pods-Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Tests/Pods-Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		D7EDDA72A97366121D17A51E /* Pods-Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Tests/Pods-Tests.release.xcconfig"; sourceTree = "<group>"; };
 		F8F3D88392040FB15FD17E51 /* Pods_OmiseGO.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OmiseGO.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FA7D150759B05A9FDA9B003F /* Pods_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -350,6 +354,7 @@
 			files = (
 				03BCCCB31F8B311600F604DB /* OmiseGO.framework in Frameworks */,
 				BF75AB0B369A0CA5C06904BC /* Pods_OmiseGOTests.framework in Frameworks */,
+				9AA7A03093BE5106A618E627 /* Pods_Tests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -781,6 +786,8 @@
 				16499E8AC99F7FCEE0A0FC0E /* Pods-OmiseGO.release.xcconfig */,
 				6005F67DACE86CA9F979B8D1 /* Pods-OmiseGOTests.debug.xcconfig */,
 				C7DCB672C50C2D40925FAA04 /* Pods-OmiseGOTests.release.xcconfig */,
+				D2F65698E210E4D7AEBCE81C /* Pods-Tests.debug.xcconfig */,
+				D7EDDA72A97366121D17A51E /* Pods-Tests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -790,6 +797,7 @@
 			children = (
 				F8F3D88392040FB15FD17E51 /* Pods_OmiseGO.framework */,
 				011BAF3F039E5A5B688B5C4F /* Pods_OmiseGOTests.framework */,
+				FA7D150759B05A9FDA9B003F /* Pods_Tests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -945,7 +953,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-OmiseGOTests/Pods-OmiseGOTests-frameworks.sh",
+				"${SRCROOT}/Pods/Target Support Files/Pods-Tests/Pods-Tests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/BigInt/BigInt.framework",
 				"${BUILT_PRODUCTS_DIR}/SipHash/SipHash.framework",
 				"${BUILT_PRODUCTS_DIR}/Starscream/Starscream.framework",
@@ -958,7 +966,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-OmiseGOTests/Pods-OmiseGOTests-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Tests/Pods-Tests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		D088747A892AA9488AFE35A5 /* [CP] Check Pods Manifest.lock */ = {
@@ -972,7 +980,7 @@
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-OmiseGOTests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-Tests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1327,9 +1335,9 @@
 		};
 		03BCCCC11F8B311600F604DB /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6005F67DACE86CA9F979B8D1 /* Pods-OmiseGOTests.debug.xcconfig */;
+			baseConfigurationReference = D2F65698E210E4D7AEBCE81C /* Pods-Tests.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Tests/Info.plist;
@@ -1344,9 +1352,9 @@
 		};
 		03BCCCC21F8B311600F604DB /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C7DCB672C50C2D40925FAA04 /* Pods-OmiseGOTests.release.xcconfig */;
+			baseConfigurationReference = D7EDDA72A97366121D17A51E /* Pods-Tests.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Tests/Info.plist;
