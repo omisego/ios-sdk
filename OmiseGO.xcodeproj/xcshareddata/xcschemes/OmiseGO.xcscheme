@@ -34,8 +34,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "03BCCCB11F8B311600F604DB"
-               BuildableName = "OmiseGOTests.xctest"
-               BlueprintName = "OmiseGOTests"
+               BuildableName = "Tests.xctest"
+               BlueprintName = "Tests"
                ReferencedContainer = "container:OmiseGO.xcodeproj">
             </BuildableReference>
          </TestableReference>

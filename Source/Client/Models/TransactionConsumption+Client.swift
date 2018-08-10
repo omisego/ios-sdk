@@ -1,6 +1,6 @@
 //
 //  TransactionConsumption+Client.swift
-//  OmiseGOTests
+//  Tests
 //
 //  Created by Mederic Petit on 7/8/2018.
 //  Copyright © 2017-2018 Omise Go Pte. Ltd. All rights reserved.
