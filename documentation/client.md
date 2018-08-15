@@ -20,7 +20,7 @@ The client iOS SDK allows developers to easily interact with the OmiseGO client 
   - [QR codes](#qr-codes)
     - [Generate a QR code](#create-a-qr-code-representation-of-a-transaction-request)
     - [Scan a QR code](#scan-a-qr-code)
-- [Websockets Requests](#websockets-requests)
+- [Websockets](#websockets)
   - [Initialization](#initialization-of-the-websocket-client)
   - [Listenable resources](#listenable-resources)
     - [Transaction request events](#transaction-request-events)
@@ -384,7 +384,7 @@ When the scanner successfully decodes a `TransactionRequest` it will call its de
 You should use this `TransactionRequest` to generate a `TransactionConsumptionParams` in order to [consume the request](#consume-a-transaction-request).
 
 
-## Websockets Requests
+## Websockets
 
 This section describes the use of the socket client in order to listen for events for a resource.
 

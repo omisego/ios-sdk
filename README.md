@@ -49,14 +49,15 @@ The Client and Admin modules contain specific logic to respectively access the c
 gem install cocoapods
 ```
 
-If you are using Cocoapods to integrate the SDK, you can take advantage of the subspecs. They allow the integration of specific parts of the SDK separately.
-If you only need to integrate and support the `Client` API then you can add only the `Client` subscpec by addmin the following line in your `Podfile`:
+If you are using Cocoapods to integrate the SDK, you can take advantage of the subspecs that allows the integration of specific parts of the SDK separately.
+
+If you only need to integrate and support the `Client` API then you can add only the `Client` subscpec by adding the following line in your `Podfile`:
 
 ```ruby
 pod 'OmiseGO/Client'
 ```
 
-Or if you only want to support the `Admin` API, then you can use:
+Or if you only want to support the `Admin` API, you can use:
 
 ```ruby
 pod 'OmiseGO/Admin'
@@ -107,6 +108,7 @@ Drag the built `OmiseGO.framework` into your Xcode project.
 # Usage
 
 [Client API usage](documentation/client.md)
+
 [Admin API usage](documentation/admin.md)
 
 # Tests
@@ -124,7 +126,7 @@ The variables are:
 
 You can then for example run the tests with the following command:
 
-`xcodebuild -workspace "OmiseGO.xcworkspace" -scheme "OmiseGO" -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 8' OMG_BASE_URL="https://your.base.server.url/api/client" OMG_API_KEY="yourAPIKey" OMG_AUTHENTICATION_TOKEN="yourTestAuthenticationToken" OMG_TOKEN_ID="aTokenId" OMG_WEBSOCKET_URL="wss://your.base.socket.url/api/client/socket" test`
+`xcodebuild -workspace "OmiseGO.xcworkspace" -scheme "OmiseGO" -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 8' OMG_BASE_URL="https://your.base.server.url" OMG_API_KEY="yourAPIKey" OMG_AUTHENTICATION_TOKEN="yourTestAuthenticationToken" OMG_TOKEN_ID="aTokenId" OMG_WEBSOCKET_URL="wss://your.base.socket.url" test`
 
 
 ---
