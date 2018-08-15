@@ -44,9 +44,10 @@ Before using the SDK to retrieve a resource, you need to initialize an `HTTPClie
 You should do this as soon as you obtain a valid authentication token corresponding to the current user from the eWallet API.
 
 ```swift
-let configuration = ClientConfiguration(baseURL: "https://your.base.url/api/client",
-                                        apiKey: "apiKey",
-                                        authenticationToken: "authenticationToken",
+let credentials = ClientCredential(apiKey: "your-api-key",
+                                   authenticationToken: "your-authentication-token")
+let configuration = ClientConfiguration(baseURL: "https://your.base.url",
+                                        credentials: credentials,
                                         debugLog: false)
 let client = HTTPClient(config: configuration)
 ```
@@ -354,7 +355,8 @@ You can then use the integrated `QRScannerViewController` to scan the generated 
 Initialize the view controller using:
 
 ```swift
-if let vc = QRScannerViewController(delegate: self, client: client, cancelButtonTitle: "Cancel") {
+let verifier = QRClientVerifier(client: client)
+if let vc = QRScannerViewController(delegate: self, verifier: verifier, cancelButtonTitle: "Cancel") {
   self.present(vc, animated: true, completion: nil)
 }
 ```
@@ -392,11 +394,12 @@ This section describes the use of the socket client in order to listen for event
 Similarly to the HTTP client, the `SocketClient` needs to be first initialized  with a `ClientConfiguration` before using it. The initializer takes an optional `SocketConnectionDelegate` delegate which can be used to listen for connection change events (connection and disconnection).
 
 ```swift
-let configuration = ClientConfiguration(baseURL: "wss://your.base.url/api/client/socket",
-                                        apiKey: "apiKey",
-                                        authenticationToken: "authenticationToken",
+let credentials = ClientCredential(apiKey: "your-api-key",
+                                   authenticationToken: "your-authentication-token")
+let configuration = ClientConfiguration(baseURL: "wss://your.base.url",
+                                        credentials: credentials,
                                         debugLog: false)
-let socketClient = SocketClient(config: configuration, delegate: self)
+let socketClient = SocketClient(config: configuration, delegate: nil)
 ```
 
 Where:
