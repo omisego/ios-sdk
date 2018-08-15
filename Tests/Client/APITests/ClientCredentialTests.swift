@@ -6,7 +6,7 @@
 //  Copyright © 2017-2018 Omise Go Pte. Ltd. All rights reserved.
 //
 
-import OmiseGO
+@testable import OmiseGO
 import XCTest
 
 class ClientCredentialTests: XCTestCase {

@@ -9,14 +9,14 @@
 /// Represents a configuration object used to setup an HTTPClient
 public struct AdminConfiguration: Configuration {
     /// The current SDK version
-    public let apiVersion: String = "1"
+    let apiVersion: String = "1"
 
     /// The base URL of the wallet server:
     /// When initializing the HTTPClient, this needs to be an http(s) url
     /// When initializing the SocketClient, this needs to be a ws(s) url
-    public let baseURL: String
-    public var credentials: Credential
-    public let debugLog: Bool
+    let baseURL: String
+    var credentials: Credential
+    let debugLog: Bool
 
     /// Creates the configuration required to initialize the OmiseGO SDK
     ///

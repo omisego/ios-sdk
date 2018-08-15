@@ -31,6 +31,7 @@ public protocol QRScannerViewControllerDelegate: class {
 }
 
 /// The view controller managing the scanner
+/// This scanner can be used to scan QRCode containing a formatted id from a transaction request
 public class QRScannerViewController: UIViewController {
     weak var delegate: QRScannerViewControllerDelegate?
     var viewModel: QRScannerViewModelProtocol!

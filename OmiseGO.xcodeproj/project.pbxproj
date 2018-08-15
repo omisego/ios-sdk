@@ -588,8 +588,8 @@
 				0379E82C2118527C00E65D4F /* Info.plist */,
 				0379E82B2118527C00E65D4F /* OmiseGO.h */,
 				0379E7A821184BC800E65D4F /* Core */,
-				0379E7E621184BC800E65D4F /* Admin */,
 				0379E7E721184BC800E65D4F /* Client */,
+				0379E7E621184BC800E65D4F /* Admin */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -597,11 +597,11 @@
 		0379E7A821184BC800E65D4F /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				0379E7AA21184BC800E65D4F /* Websocket */,
 				0379E7B321184BC800E65D4F /* Models */,
+				0379E7D921184BC800E65D4F /* API */,
+				0379E7AA21184BC800E65D4F /* Websocket */,
 				0379E7CC21184BC800E65D4F /* Operations */,
 				0379E7D121184BC800E65D4F /* QRCode */,
-				0379E7D921184BC800E65D4F /* API */,
 				0379E7E121184BC800E65D4F /* Helpers */,
 			);
 			path = Core;
@@ -625,29 +625,29 @@
 		0379E7B321184BC800E65D4F /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				0379E7B421184BC800E65D4F /* PaginationParams.swift */,
-				0379E7B521184BC800E65D4F /* TransactionRequest.swift */,
-				0379E7B621184BC800E65D4F /* Setting.swift */,
+				0379E7C921184BC800E65D4F /* Account.swift */,
+				0379E7C121184BC800E65D4F /* Avatar.swift */,
+				0379E7BE21184BC800E65D4F /* Balance.swift */,
+				0379E7C721184BC800E65D4F /* EmptyResponse.swift */,
 				0379E7B721184BC800E65D4F /* ExchangePair.swift */,
+				0379E7C621184BC800E65D4F /* JSONListResponse.swift */,
+				0379E7C321184BC800E65D4F /* JSONResponse.swift */,
+				0379E7C021184BC800E65D4F /* OMGError.swift */,
+				0379E7BF21184BC800E65D4F /* Pagination.swift */,
+				0379E7B421184BC800E65D4F /* PaginationParams.swift */,
+				0379E7C221184BC800E65D4F /* Reponse.swift */,
+				0379E7B621184BC800E65D4F /* Setting.swift */,
+				0379E7CA21184BC800E65D4F /* Token.swift */,
+				0379E7C421184BC800E65D4F /* Transaction.swift */,
 				0379E7B821184BC800E65D4F /* TransactionSource.swift */,
 				0379E7B921184BC800E65D4F /* TransactionExchange.swift */,
 				0379E7BA21184BC800E65D4F /* TransactionParams.swift */,
-				0379E7BB21184BC800E65D4F /* TransactionRequestParams.swift */,
-				0379E7BC21184BC800E65D4F /* User.swift */,
-				0379E7BD21184BC800E65D4F /* TransactionConsumptionParams.swift */,
-				0379E7BE21184BC800E65D4F /* Balance.swift */,
-				0379E7BF21184BC800E65D4F /* Pagination.swift */,
-				0379E7C021184BC800E65D4F /* OMGError.swift */,
-				0379E7C121184BC800E65D4F /* Avatar.swift */,
-				0379E7C221184BC800E65D4F /* Reponse.swift */,
-				0379E7C321184BC800E65D4F /* JSONResponse.swift */,
-				0379E7C421184BC800E65D4F /* Transaction.swift */,
-				0379E7C521184BC800E65D4F /* TransactionConsumption.swift */,
-				0379E7C621184BC800E65D4F /* JSONListResponse.swift */,
-				0379E7C721184BC800E65D4F /* EmptyResponse.swift */,
 				0379E7C821184BC800E65D4F /* TransactionListParams.swift */,
-				0379E7C921184BC800E65D4F /* Account.swift */,
-				0379E7CA21184BC800E65D4F /* Token.swift */,
+				0379E7B521184BC800E65D4F /* TransactionRequest.swift */,
+				0379E7BB21184BC800E65D4F /* TransactionRequestParams.swift */,
+				0379E7C521184BC800E65D4F /* TransactionConsumption.swift */,
+				0379E7BD21184BC800E65D4F /* TransactionConsumptionParams.swift */,
+				0379E7BC21184BC800E65D4F /* User.swift */,
 				0379E7CB21184BC800E65D4F /* Wallet.swift */,
 			);
 			path = Models;
@@ -682,15 +682,15 @@
 		0379E7D921184BC800E65D4F /* API */ = {
 			isa = PBXGroup;
 			children = (
+				0379E7E021184BC800E65D4F /* APIEndpoint.swift */,
 				0379E7DA21184BC800E65D4F /* APIError.swift */,
+				0379E7DE21184BC800E65D4F /* HTTPClient.swift */,
+				0379E7DC21184BC800E65D4F /* HTTPTask.swift */,
+				0379E7DB21184BC800E65D4F /* Configuration.swift */,
 				0379E81F21184CE000E65D4F /* Credential.swift */,
 				0379E82121184CE900E65D4F /* CredentialEncoder.swift */,
-				0379E7DB21184BC800E65D4F /* Configuration.swift */,
-				0379E7DC21184BC800E65D4F /* HTTPTask.swift */,
-				0379E7DD21184BC800E65D4F /* RequestBuilder.swift */,
-				0379E7DE21184BC800E65D4F /* HTTPClient.swift */,
 				0379E7DF21184BC800E65D4F /* Request.swift */,
-				0379E7E021184BC800E65D4F /* APIEndpoint.swift */,
+				0379E7DD21184BC800E65D4F /* RequestBuilder.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -716,10 +716,10 @@
 		0379E7E721184BC800E65D4F /* Client */ = {
 			isa = PBXGroup;
 			children = (
-				03E565B1211AC85B00BC9124 /* Websocket */,
-				0320EACA2119AF370006685C /* QRCode */,
 				0320EAB32119499B0006685C /* Models */,
 				0379E82521184FA600E65D4F /* API */,
+				03E565B1211AC85B00BC9124 /* Websocket */,
+				0320EACA2119AF370006685C /* QRCode */,
 			);
 			path = Client;
 			sourceTree = "<group>";
@@ -749,8 +749,8 @@
 		03BCCC9F1F8B311600F604DB = {
 			isa = PBXGroup;
 			children = (
-				032CED41211D3D5300E44445 /* Tests */,
 				0379E7A721184BC800E65D4F /* Source */,
+				032CED41211D3D5300E44445 /* Tests */,
 				03BCCCAA1F8B311600F604DB /* Products */,
 				649C021CF591BDE2E21A5A3A /* Pods */,
 				94103946F5B0996795C54D8B /* Frameworks */,

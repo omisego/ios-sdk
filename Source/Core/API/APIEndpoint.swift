@@ -6,7 +6,7 @@
 //  Copyright © 2017-2018 Omise Go Pte. Ltd. All rights reserved.
 //
 
-/// Protocol with the required f
+/// Protocol with the required variable to build an enpoint
 protocol APIEndpoint {
     var path: String { get }
     var task: HTTPTask { get }

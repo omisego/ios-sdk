@@ -6,7 +6,8 @@
 //  Copyright © 2017-2018 Omise Go Pte. Ltd. All rights reserved.
 //
 
-public protocol Credential {
+/// Contains the required functions that a configuration object would need to authenticate an API call if needed
+protocol Credential {
     func authentication() throws -> String?
     mutating func invalidate()
 }

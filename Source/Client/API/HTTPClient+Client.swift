@@ -17,7 +17,7 @@ extension HTTPClient {
 
     /// Logout the current user (invalidate the provided authenticationToken).
     ///
-    /// - callback: The closure called when the request is completed
+    /// - Parameter callback: The closure called when the request is completed
     /// - Returns: An optional cancellable request.
     @discardableResult
     public func logoutClient(withCallback callback: @escaping Request<EmptyResponse>.Callback)

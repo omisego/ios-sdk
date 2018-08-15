@@ -9,8 +9,8 @@
 extension SocketClient {
     /// Initialize a websocket client using a configuration object
     ///
-    /// - Parameter
-    ///   - config: The configuration object
+    /// - Parameters:
+    ///   - config: The configuration object containing the client configuration
     ///   - delegate: The delegate that should receive connection events
     /// - Note: the baseURL of the Configuration needs to be a socket url (wss://your.domain.com)
     public convenience init(config: ClientConfiguration, delegate: SocketConnectionDelegate?) {
