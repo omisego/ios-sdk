@@ -7,8 +7,8 @@
     "user_id": "usr_01cc02x0v98qcctvycfx4vsk8x",
     "user": {
       "id": "usr_01cc02x0v98qcctvycfx4vsk8x",
-      "provider_user_id": "wijf-fbancomw-dqwjudb",
-      "username": "john.doe@example.com",
+      "provider_user_id": null,
+      "username": null,
       "socket_topic": "user:usr_01cc02x0v98qcctvycfx4vsk8x",
       "metadata": {},
       "encrypted_metadata": {},
