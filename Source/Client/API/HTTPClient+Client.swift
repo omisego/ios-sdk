@@ -46,9 +46,9 @@ extension HTTPClient {
         -> Request<AuthenticationToken>? {
         let request: Request<AuthenticationToken>? = self.request(toEndpoint: APIClientEndpoint.login(params: params)) { result in
             switch result {
-            case let .success(data: data):
-                self.config.credentials.update(withAuthenticationToken: data)
-                callback(.success(data: data))
+            case let .success(data: authenticationToken):
+                self.config.credentials.update(withAuthenticationToken: authenticationToken)
+                callback(.success(data: authenticationToken))
             case let .fail(error):
                 callback(.fail(error: error))
             }
