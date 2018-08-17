@@ -22,6 +22,9 @@ public class HTTPAPI {
         self.config = config
     }
 
+    /// A boolean indicating if the client is authenticated and allowed to make authenticated requests
+    public var isAuthenticated: Bool { return self.config.credentials.isAuthenticated() }
+
     @discardableResult
     func request<ResultType>(toEndpoint endpoint: APIEndpoint,
                              callback: Request<ResultType>.Callback?) -> Request<ResultType>? {
