@@ -1,5 +1,5 @@
 //
-//  HTTPClient+Test.swift
+//  HTTPAPI+Test.swift
 //  Tests
 //
 //  Created by Mederic Petit on 9/8/18.
@@ -8,7 +8,7 @@
 
 @testable import OmiseGO
 
-extension HTTPClient {
+extension HTTPAPI {
     convenience init(config: TestConfiguration) {
         self.init()
         self.config = config

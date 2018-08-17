@@ -13,7 +13,7 @@ class HTTPClientTests: XCTestCase {
     func testInvalidURL() {
         let expectation = self.expectation(description: "Invalid url")
         let config = TestConfiguration(baseURL: "invalid url @")
-        let client = HTTPClient(config: config)
+        let client = HTTPAPI(config: config)
         let dummyEndpoint = TestAPIEndpoint()
         let request: Request<TestObject>? = client.request(toEndpoint: dummyEndpoint) { result in
             defer {

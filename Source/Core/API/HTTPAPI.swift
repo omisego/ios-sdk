@@ -1,13 +1,13 @@
 //
-//  HTTPClient.swift
+//  HTTPAPI.swift
 //  OmiseGO
 //
 //  Created by Mederic Petit on 9/10/2017.
 //  Copyright © 2017-2018 Omise Go Pte. Ltd. All rights reserved.
 //
 
-/// Represents an HTTPClient that should be initialized using a Configuration
-public class HTTPClient {
+/// Represents an HTTPAPI that should be initialized using a Configuration
+public class HTTPAPI {
     let operationQueue: OperationQueue = OperationQueue()
 
     lazy var session: URLSession! = {

@@ -9,7 +9,7 @@
 import Foundation
 @testable import OmiseGO
 
-class FixtureClient: HTTPClient {
+class FixtureCoreAPI: HTTPAPI {
     let fixturesDirectoryURL: URL
 
     init(fixturesDirectoryURL: URL, config: Configuration) {
@@ -22,7 +22,8 @@ class FixtureClient: HTTPClient {
     override func request<ResultType>(toEndpoint endpoint: APIEndpoint,
                                       callback: Request<ResultType>.Callback?) -> Request<ResultType>? {
         do {
-            let request: FixtureRequest<ResultType> = FixtureRequest(client: self,
+            let request: FixtureRequest<ResultType> = FixtureRequest(fixturesDirectoryURL: self.fixturesDirectoryURL,
+                                                                     client: self,
                                                                      endpoint: endpoint,
                                                                      callback: callback)
             return try request.start()
@@ -37,16 +38,16 @@ class FixtureClient: HTTPClient {
 }
 
 class FixtureRequest<ResultType: Decodable>: Request<ResultType> {
-    var fixtureClient: FixtureClient? {
-        return client as? FixtureClient
+    let fixturesDirectoryURL: URL
+
+    init(fixturesDirectoryURL: URL, client: HTTPAPI, endpoint: APIEndpoint, callback: Callback?) {
+        self.fixturesDirectoryURL = fixturesDirectoryURL
+        super.init(client: client, endpoint: endpoint, callback: callback)
     }
 
     override func start() throws -> Self {
-        guard let client = self.client as? FixtureClient else {
-            return self
-        }
         let fixtureFilePath = endpoint.fixtureFilePath
-        let fixtureFileURL = client.fixturesDirectoryURL.appendingPathComponent(fixtureFilePath)
+        let fixtureFileURL = self.fixturesDirectoryURL.appendingPathComponent(fixtureFilePath)
         DispatchQueue.global().async {
             let data: Data?
             let error: Error?
