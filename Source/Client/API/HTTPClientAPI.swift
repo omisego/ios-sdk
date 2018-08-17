@@ -11,8 +11,7 @@ public class HTTPClientAPI: HTTPAPI {
     ///
     /// - Parameter config: The ClientConfiguration object
     public init(config: ClientConfiguration) {
-        super.init()
-        self.config = config
+        super.init(config: config)
     }
 }
 

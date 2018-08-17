@@ -42,7 +42,6 @@
 		032CEDDE211D3D5300E44445 /* RequestBuilderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032CED58211D3D5300E44445 /* RequestBuilderTests.swift */; };
 		032CEDDF211D3D5300E44445 /* CredentialEncoderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032CED59211D3D5300E44445 /* CredentialEncoderTests.swift */; };
 		032CEDE0211D3D5300E44445 /* HTTPClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032CED5A211D3D5300E44445 /* HTTPClientTests.swift */; };
-		032CEDE1211D3D5300E44445 /* HTTPAPI+Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032CED5C211D3D5300E44445 /* HTTPAPI+Test.swift */; };
 		032CEDE2211D3D5300E44445 /* TestAPIEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032CED5D211D3D5300E44445 /* TestAPIEndpoint.swift */; };
 		032CEDE3211D3D5300E44445 /* TestWebSocketDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032CED5E211D3D5300E44445 /* TestWebSocketDelegate.swift */; };
 		032CEDE4211D3D5300E44445 /* TestConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032CED5F211D3D5300E44445 /* TestConfiguration.swift */; };
@@ -212,7 +211,6 @@
 		032CED58211D3D5300E44445 /* RequestBuilderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestBuilderTests.swift; sourceTree = "<group>"; };
 		032CED59211D3D5300E44445 /* CredentialEncoderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CredentialEncoderTests.swift; sourceTree = "<group>"; };
 		032CED5A211D3D5300E44445 /* HTTPClientTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPClientTests.swift; sourceTree = "<group>"; };
-		032CED5C211D3D5300E44445 /* HTTPAPI+Test.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HTTPAPI+Test.swift"; sourceTree = "<group>"; };
 		032CED5D211D3D5300E44445 /* TestAPIEndpoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestAPIEndpoint.swift; sourceTree = "<group>"; };
 		032CED5E211D3D5300E44445 /* TestWebSocketDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestWebSocketDelegate.swift; sourceTree = "<group>"; };
 		032CED5F211D3D5300E44445 /* TestConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestConfiguration.swift; sourceTree = "<group>"; };
@@ -467,7 +465,6 @@
 			isa = PBXGroup;
 			children = (
 				032CEE49211D408800E44445 /* TestQRReader.swift */,
-				032CED5C211D3D5300E44445 /* HTTPAPI+Test.swift */,
 				032CED5D211D3D5300E44445 /* TestAPIEndpoint.swift */,
 				032CED5E211D3D5300E44445 /* TestWebSocketDelegate.swift */,
 				032CED5F211D3D5300E44445 /* TestConfiguration.swift */,
@@ -1153,7 +1150,6 @@
 				032CEE27211D3D5300E44445 /* APIClientEndpointTest.swift in Sources */,
 				032CEDDF211D3D5300E44445 /* CredentialEncoderTests.swift in Sources */,
 				032CEDCD211D3D5300E44445 /* ToolsTests.swift in Sources */,
-				032CEDE1211D3D5300E44445 /* HTTPAPI+Test.swift in Sources */,
 				032CEDEA211D3D5300E44445 /* TestSortable.swift in Sources */,
 				032CEE38211D3D5300E44445 /* TransactionConsumptionFixtureTests.swift in Sources */,
 				032CEE25211D3D5300E44445 /* StubGenerator.swift in Sources */,

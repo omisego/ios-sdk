@@ -11,7 +11,6 @@ public class HTTPAdminAPI: HTTPAPI {
     ///
     /// - Parameter config: The ClientConfiguration object
     public convenience init(config: AdminConfiguration) {
-        self.init()
-        self.config = config
+        self.init(config: config)
     }
 }

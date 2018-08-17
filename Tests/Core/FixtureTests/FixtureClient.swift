@@ -14,8 +14,7 @@ class FixtureCoreAPI: HTTPAPI {
 
     init(fixturesDirectoryURL: URL, config: Configuration) {
         self.fixturesDirectoryURL = fixturesDirectoryURL
-        super.init()
-        self.config = config
+        super.init(config: config)
     }
 
     @discardableResult

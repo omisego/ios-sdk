@@ -10,13 +10,17 @@
 public class HTTPAPI {
     let operationQueue: OperationQueue = OperationQueue()
 
-    lazy var session: URLSession! = {
+    lazy var session: URLSession = {
         URLSession(configuration: URLSessionConfiguration.ephemeral,
                    delegate: nil,
                    delegateQueue: self.operationQueue)
     }()
 
-    var config: Configuration!
+    var config: Configuration
+
+    init(config: Configuration) {
+        self.config = config
+    }
 
     @discardableResult
     func request<ResultType>(toEndpoint endpoint: APIEndpoint,
