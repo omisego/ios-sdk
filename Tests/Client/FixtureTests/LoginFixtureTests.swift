@@ -30,7 +30,7 @@ class LoginFixtureTests: XCTestCase {
                 XCTFail(error.message)
             case let .success(data: authenticationToken):
                 XCTAssertEqual(authenticationToken.token, "azJRj09l7jvR8KhTqUs3")
-                XCTAssertEqual(authenticationToken.user!.id, "usr_01cc02x0v98qcctvycfx4vsk8x")
+                XCTAssertEqual(authenticationToken.user.id, "usr_01cc02x0v98qcctvycfx4vsk8x")
                 XCTAssertNotNil(try! client.config.credentials.authentication())
             }
         })

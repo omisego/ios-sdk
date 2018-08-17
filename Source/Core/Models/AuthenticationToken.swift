@@ -10,7 +10,7 @@ public struct AuthenticationToken {
     /// The unique authentication token corresponding to the provided credentials
     public let token: String
     /// The user corresponding to the token
-    public let user: User?
+    public let user: User
 }
 
 extension AuthenticationToken: Decodable {
@@ -22,7 +22,7 @@ extension AuthenticationToken: Decodable {
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         token = try container.decode(String.self, forKey: .token)
-        user = try container.decodeIfPresent(User.self, forKey: .user)
+        user = try container.decode(User.self, forKey: .user)
     }
 }
 

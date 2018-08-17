@@ -615,7 +615,7 @@ class DecodeTests: XCTestCase {
             let jsonData = try self.jsonData(withFileName: "authentication_token")
             let decodedData = try self.jsonDecoder.decode(AuthenticationToken.self, from: jsonData)
             XCTAssertEqual(decodedData.token, "azJRj09l7jvR8KhTqUs3")
-            XCTAssertEqual(decodedData.user!.id, "usr_01cc02x0v98qcctvycfx4vsk8x")
+            XCTAssertEqual(decodedData.user.id, "usr_01cc02x0v98qcctvycfx4vsk8x")
         } catch let thrownError {
             XCTFail(thrownError.localizedDescription)
         }
