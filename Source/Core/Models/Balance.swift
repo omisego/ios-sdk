@@ -33,6 +33,6 @@ extension Balance: Hashable {
     }
 
     public static func == (lhs: Balance, rhs: Balance) -> Bool {
-        return lhs.token == rhs.token && lhs.amount == rhs.amount
+        return lhs.token == rhs.token
     }
 }

@@ -244,6 +244,7 @@ class DecodeTests: XCTestCase {
             XCTAssertEqual(decodedData.id, "cec34607-0761-4a59-8357-18963e42a1aa")
             XCTAssertEqual(decodedData.providerUserId, "wijf-fbancomw-dqwjudb")
             XCTAssertEqual(decodedData.username, "john.doe@example.com")
+            XCTAssertEqual(decodedData.email, "john.doe@example.com")
             XCTAssertEqual(decodedData.socketTopic, "user:cec34607-0761-4a59-8357-18963e42a1aa")
             XCTAssertTrue(decodedData.metadata.isEmpty)
             XCTAssertTrue(decodedData.encryptedMetadata.isEmpty)
