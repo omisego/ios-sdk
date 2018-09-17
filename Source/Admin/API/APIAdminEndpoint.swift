@@ -14,8 +14,6 @@ enum APIAdminEndpoint: APIEndpoint {
         switch self {
         case .login:
             return "/admin.login"
-        default:
-            return ""
         }
     }
 
@@ -23,8 +21,6 @@ enum APIAdminEndpoint: APIEndpoint {
         switch self {
         case let .login(parameters):
             return .requestParameters(parameters: parameters)
-        default:
-            return .requestPlain
         }
     }
 }
