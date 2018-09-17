@@ -6,7 +6,7 @@
 //  Copyright © 2017-2018 Omise Go Pte. Ltd. All rights reserved.
 //
 
-extension Wallet: Retrievable {
+extension Wallet {
     @discardableResult
     /// Get a wallet from its address
     ///

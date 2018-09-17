@@ -7,7 +7,7 @@
 //
 
 /// Represents a wallet containing a list of balances
-public struct Wallet {
+public struct Wallet: Retrievable {
     /// The address of the wallet
     public let address: String
     /// The list of balances associated with that address
