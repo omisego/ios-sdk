@@ -1,9 +1,8 @@
 # Pagination & Filtering
 
-## Parameters
-
 This documentation describes how to retrieve paginated filtrable collections using the SDK.
 
+## Parameters
 
 When a collection you want to retrieve is paginated, you will need to instantiate a generic `PaginatedListParams<T>` object that contains the pagination query informations as well as the sort and search parameters.
 
