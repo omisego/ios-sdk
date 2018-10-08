@@ -6,7 +6,7 @@
 //  Copyright © 2017-2018 Omise Go Pte. Ltd. All rights reserved.
 //
 
-extension TransactionConsumption: Retrievable {
+extension TransactionConsumption {
     @discardableResult
     /// Consume a transaction request from the given TransactionConsumptionParams object
     ///

@@ -17,6 +17,8 @@ enum APIAdminEndpoint: APIEndpoint {
     case getAccounts(params: PaginatedListParams<Account>)
     case getTransactions(params: PaginatedListParams<Transaction>)
     case createTransaction(params: TransactionCreateParams)
+    case transactionRequestCreate(params: TransactionRequestCreateParams)
+    case transactionRequestConsume(params: TransactionConsumptionParams)
 
     var path: String {
         switch self {
@@ -38,6 +40,10 @@ enum APIAdminEndpoint: APIEndpoint {
             return "/transaction.all"
         case .createTransaction:
             return "/transaction.create"
+        case .transactionRequestCreate:
+            return "/transaction_request.create"
+        case .transactionRequestConsume:
+            return "/transaction_request.consume"
         }
     }
 
@@ -58,6 +64,10 @@ enum APIAdminEndpoint: APIEndpoint {
         case let .getTransactions(parameters):
             return .requestParameters(parameters: parameters)
         case let .createTransaction(parameters):
+            return .requestParameters(parameters: parameters)
+        case let .transactionRequestCreate(parameters):
+            return .requestParameters(parameters: parameters)
+        case let .transactionRequestConsume(parameters):
             return .requestParameters(parameters: parameters)
         default:
             return .requestPlain

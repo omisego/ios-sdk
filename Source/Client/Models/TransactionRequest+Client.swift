@@ -6,7 +6,7 @@
 //  Copyright © 2017-2018 Omise Go Pte. Ltd. All rights reserved.
 //
 
-extension TransactionRequest: Retrievable {
+extension TransactionRequest {
     @discardableResult
     /// Generate a transaction request from the given TransactionRequestParams object
     ///
