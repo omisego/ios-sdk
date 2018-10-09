@@ -24,4 +24,23 @@ extension TransactionRequest {
                              endpoint: APIAdminEndpoint.transactionRequestCreate(params: params),
                              callback: callback)
     }
+
+    @discardableResult
+    /// Retreive a transaction request from its formatted id
+    ///
+    /// - Parameters:
+    ///   - client: An API client.
+    ///             This client need to be initialized with a AdminConfiguration struct before being used.
+    ///   - formattedId: The formatted id of the TransactionRequest to be retrived.
+    ///   - callback: The closure called when the request is completed
+    /// - Returns: An optional cancellable request.
+    public static func get(using client: HTTPAdminAPI,
+                           formattedId: String,
+                           callback: @escaping TransactionRequest.RetrieveRequestCallback)
+        -> TransactionRequest.RetrieveRequest? {
+        let params = TransactionRequestGetParams(formattedId: formattedId)
+        return self.retrieve(using: client,
+                             endpoint: APIAdminEndpoint.transactionRequestGet(params: params),
+                             callback: callback)
+    }
 }
