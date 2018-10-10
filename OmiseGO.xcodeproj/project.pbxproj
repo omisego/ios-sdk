@@ -107,6 +107,7 @@
 		0341BCAC216B4316001928FE /* TransactionRequest+Admin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0341BCAA216B4281001928FE /* TransactionRequest+Admin.swift */; };
 		0341BCAE216B435D001928FE /* TransactionConsumption+Admin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0341BCAD216B435D001928FE /* TransactionConsumption+Admin.swift */; };
 		0341BCB0216B4A30001928FE /* TransactionConsumptionAdminFixtureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0341BCAF216B4A30001928FE /* TransactionConsumptionAdminFixtureTests.swift */; };
+		0341BCB3216DC43A001928FE /* SocketClient+Admin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0341BCB2216DC43A001928FE /* SocketClient+Admin.swift */; };
 		034F1513214F562D002BB513 /* LogoutAdminFixtureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034F1512214F562D002BB513 /* LogoutAdminFixtureTests.swift */; };
 		034F1516214F6617002BB513 /* Wallet+Admin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034F1515214F6617002BB513 /* Wallet+Admin.swift */; };
 		034F1518214F6713002BB513 /* WalletGetParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034F1517214F6713002BB513 /* WalletGetParams.swift */; };
@@ -308,6 +309,7 @@
 		0341BCAA216B4281001928FE /* TransactionRequest+Admin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TransactionRequest+Admin.swift"; sourceTree = "<group>"; };
 		0341BCAD216B435D001928FE /* TransactionConsumption+Admin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TransactionConsumption+Admin.swift"; sourceTree = "<group>"; };
 		0341BCAF216B4A30001928FE /* TransactionConsumptionAdminFixtureTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionConsumptionAdminFixtureTests.swift; sourceTree = "<group>"; };
+		0341BCB2216DC43A001928FE /* SocketClient+Admin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SocketClient+Admin.swift"; sourceTree = "<group>"; };
 		034F1512214F562D002BB513 /* LogoutAdminFixtureTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutAdminFixtureTests.swift; sourceTree = "<group>"; };
 		034F1515214F6617002BB513 /* Wallet+Admin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Wallet+Admin.swift"; sourceTree = "<group>"; };
 		034F1517214F6713002BB513 /* WalletGetParams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletGetParams.swift; sourceTree = "<group>"; };
@@ -670,6 +672,14 @@
 			path = CondingTests;
 			sourceTree = "<group>";
 		};
+		0341BCB1216DC42A001928FE /* Websocket */ = {
+			isa = PBXGroup;
+			children = (
+				0341BCB2216DC43A001928FE /* SocketClient+Admin.swift */,
+			);
+			path = Websocket;
+			sourceTree = "<group>";
+		};
 		034F1514214F660A002BB513 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -827,6 +837,7 @@
 		0379E7E621184BC800E65D4F /* Admin */ = {
 			isa = PBXGroup;
 			children = (
+				0341BCB1216DC42A001928FE /* Websocket */,
 				034F1514214F660A002BB513 /* Models */,
 				0379E82821184FED00E65D4F /* API */,
 			);
@@ -1151,6 +1162,7 @@
 				0379E7F421184BC900E65D4F /* ExchangePair.swift in Sources */,
 				0379E7F221184BC900E65D4F /* TransactionRequest.swift in Sources */,
 				0379E7E921184BC900E65D4F /* SocketEvent.swift in Sources */,
+				0341BCB3216DC43A001928FE /* SocketClient+Admin.swift in Sources */,
 				0379E7EA21184BC900E65D4F /* SocketPayload.swift in Sources */,
 				03F8275221525F1E00BD05D6 /* TransactionCreateParams+Admin.swift in Sources */,
 				03E565B3211AC87500BC9124 /* SocketClient+Client.swift in Sources */,
