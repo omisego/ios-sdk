@@ -24,4 +24,34 @@ extension TransactionConsumption {
                              endpoint: APIAdminEndpoint.transactionRequestConsume(params: params),
                              callback: callback)
     }
+
+    @discardableResult
+    /// Approve the transaction consumption
+    ///
+    /// - Parameters:
+    ///   - client: An API client.
+    ///             This client need to be initialized with a AdminConfiguration struct before being used.
+    ///   - callback: The closure called when the request is completed
+    /// - Returns: An optional cancellable request.
+    public func approve(using client: HTTPAdminAPI,
+                        callback: @escaping TransactionConsumption.RetrieveRequestCallback)
+        -> TransactionConsumption.RetrieveRequest? {
+        let params = TransactionConsumptionConfirmationParams(id: id)
+        return self.retrieve(using: client, endpoint: APIAdminEndpoint.transactionConsumptionApprove(params: params), callback: callback)
+    }
+
+    @discardableResult
+    /// Reject the transaction consumption
+    ///
+    /// - Parameters:
+    ///   - client: An API client.
+    ///             This client need to be initialized with a AdminConfiguration struct before being used.
+    ///   - callback: The closure called when the request is completed
+    /// - Returns: An optional cancellable request.
+    public func reject(using client: HTTPAdminAPI,
+                       callback: @escaping TransactionConsumption.RetrieveRequestCallback)
+        -> TransactionConsumption.RetrieveRequest? {
+        let params = TransactionConsumptionConfirmationParams(id: id)
+        return self.retrieve(using: client, endpoint: APIAdminEndpoint.transactionConsumptionReject(params: params), callback: callback)
+    }
 }

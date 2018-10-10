@@ -20,6 +20,8 @@ enum APIAdminEndpoint: APIEndpoint {
     case transactionRequestCreate(params: TransactionRequestCreateParams)
     case transactionRequestGet(params: TransactionRequestGetParams)
     case transactionRequestConsume(params: TransactionConsumptionParams)
+    case transactionConsumptionApprove(params: TransactionConsumptionConfirmationParams)
+    case transactionConsumptionReject(params: TransactionConsumptionConfirmationParams)
 
     var path: String {
         switch self {
@@ -47,6 +49,10 @@ enum APIAdminEndpoint: APIEndpoint {
             return "/transaction_request.get"
         case .transactionRequestConsume:
             return "/transaction_request.consume"
+        case .transactionConsumptionApprove:
+            return "/transaction_consumption.approve"
+        case .transactionConsumptionReject:
+            return "/transaction_consumption.reject"
         }
     }
 
@@ -73,6 +79,10 @@ enum APIAdminEndpoint: APIEndpoint {
         case let .transactionRequestGet(parameters):
             return .requestParameters(parameters: parameters)
         case let .transactionRequestConsume(parameters):
+            return .requestParameters(parameters: parameters)
+        case let .transactionConsumptionApprove(parameters):
+            return .requestParameters(parameters: parameters)
+        case let .transactionConsumptionReject(parameters):
             return .requestParameters(parameters: parameters)
         default:
             return .requestPlain
