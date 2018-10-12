@@ -29,5 +29,5 @@ script:
   elif [ "$TEST_TYPE" = Lint ]; then
     swiftlint lint --config .swiftlint.yml
   elif [ "$TEST_TYPE" = CocoaPods ]; then
-    pod lib lint
+    pod lib lint --verbose
   fi
