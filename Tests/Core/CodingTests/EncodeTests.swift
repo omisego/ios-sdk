@@ -349,22 +349,30 @@ class EncodeTests: XCTestCase {
         }
     }
 
-    func testPaginationParamsEncoding() {
+    func testPaginationParamsEncodingWithFilters() {
         do {
+            let f1 = TestPaginatedListable.filter(field: .aFilterableAttribute, comparator: .equal, value: true)
+            let f2 = TestPaginatedListable.filter(field: .aFilterableAttribute, comparator: .contains, value: "a_string")
+            let f3 = TestPaginatedListable.filter(field: .aFilterableAttribute, comparator: .greaterThan, value: 123)
+            let filters = FilterParams(matchAll: [f1, f2], matchAny: [f3])
             let paginationParams = PaginatedListParams<TestPaginatedListable>(
                 page: 1,
                 perPage: 20,
-                searchTerm: "test",
+                filters: filters,
                 sortBy: .aSortableAttribute,
                 sortDirection: .ascending)
             let encodedData = try self.encoder.encode(paginationParams)
-            let encodedPayload = try! paginationParams.encodedPayload()
-            XCTAssertEqual(encodedData, encodedPayload)
             XCTAssertEqual(String(data: encodedData, encoding: .utf8)!, """
                 {
+                    "match_all":[
+                        {"comparator":"eq","field":"a_searchable_attribute","value":true},
+                        {"comparator":"contains","field":"a_searchable_attribute","value":"a_string"}
+                    ],
+                    "match_any":[
+                        {"comparator":"gt","field":"a_searchable_attribute","value":123}
+                    ],
                     "page":1,
                     "per_page":20,
-                    "search_term":"test",
                     "sort_by":"a_sortable_attribute",
                     "sort_dir":"asc"
                 }
@@ -374,30 +382,7 @@ class EncodeTests: XCTestCase {
         }
     }
 
-    func testPaginationParamsEncodingWithSearchTerms() {
-        do {
-            let paginationParams = PaginatedListParams<TestPaginatedListable>(
-                page: 1,
-                perPage: 20,
-                searchTerms: [.aSearchableAttribute: "test"],
-                sortBy: .aSortableAttribute,
-                sortDirection: .ascending)
-            let encodedData = try self.encoder.encode(paginationParams)
-            XCTAssertEqual(String(data: encodedData, encoding: .utf8)!, """
-                {
-                    "page":1,
-                    "per_page":20,
-                    "search_terms":{"a_searchable_attribute":"test"},
-                    "sort_by":"a_sortable_attribute",
-                    "sort_dir":"asc"
-                }
-            """.uglifiedEncodedString())
-        } catch let thrownError {
-            XCTFail(thrownError.localizedDescription)
-        }
-    }
-
-    func testPaginationParamsEncodingWithoutSearch() {
+    func testPaginationParamsEncodingWithoutFilter() {
         do {
             let paginationParams = PaginatedListParams<TestPaginatedListable>(
                 page: 1,
@@ -422,7 +407,6 @@ class EncodeTests: XCTestCase {
         do {
             let transactionParams = TransactionListParams(
                 paginatedListParams: StubGenerator.paginatedListParams(
-                    searchTerm: "test",
                     sortBy: .createdAt,
                     sortDirection: .descending),
                 address: "123")
@@ -434,7 +418,6 @@ class EncodeTests: XCTestCase {
                     "address":"123",
                     "page":1,
                     "per_page":20,
-                    "search_term":"test",
                     "sort_by":"created_at",
                     "sort_dir":"desc"
                 }
