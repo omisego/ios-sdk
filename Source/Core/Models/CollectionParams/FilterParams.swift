@@ -12,18 +12,18 @@ public protocol Filterable {
     associatedtype FilterableFields: RawEnumerable where FilterableFields.RawValue == String
 }
 
-enum BooleanFilterComparator: String, Encodable {
+public enum BooleanFilterComparator: String, Encodable {
     case equal = "eq"
     case notEqual = "neq"
 }
 
-enum StringFilterComparator: String, Encodable {
+public enum StringFilterComparator: String, Encodable {
     case equal = "eq"
     case contains
     case startsWith = "starts_with"
 }
 
-enum NumericFilterComparator: String, Encodable {
+public enum NumericFilterComparator: String, Encodable {
     case equal = "eq"
     case notEqual = "neq"
     case lessThan = "lt"
@@ -58,27 +58,27 @@ public struct Filter<F: Filterable>: APIParameters {
 }
 
 extension Filterable {
-    static func filter(field: FilterableFields, comparator: StringFilterComparator, value: String) -> Filter<Self> {
+    public static func filter(field: FilterableFields, comparator: StringFilterComparator, value: String) -> Filter<Self> {
         return Filter(field: field.rawValue, comparator: comparator.rawValue, value: value)
     }
 
-    static func filter(field: FilterableFields, comparator: BooleanFilterComparator, value: Bool) -> Filter<Self> {
+    public static func filter(field: FilterableFields, comparator: BooleanFilterComparator, value: Bool) -> Filter<Self> {
         return Filter(field: field.rawValue, comparator: comparator.rawValue, value: value)
     }
 
-    static func filter(field: FilterableFields, comparator: NumericFilterComparator, value: BigInt) -> Filter<Self> {
+    public static func filter(field: FilterableFields, comparator: NumericFilterComparator, value: BigInt) -> Filter<Self> {
         return Filter(field: field.rawValue, comparator: comparator.rawValue, value: value)
     }
 
-    static func filter(field: String, comparator: StringFilterComparator, value: String) -> Filter<Self> {
+    public static func filter(field: String, comparator: StringFilterComparator, value: String) -> Filter<Self> {
         return Filter(field: field, comparator: comparator.rawValue, value: value)
     }
 
-    static func filter(field: String, comparator: BooleanFilterComparator, value: Bool) -> Filter<Self> {
+    public static func filter(field: String, comparator: BooleanFilterComparator, value: Bool) -> Filter<Self> {
         return Filter(field: field, comparator: comparator.rawValue, value: value)
     }
 
-    static func filter(field: String, comparator: NumericFilterComparator, value: BigInt) -> Filter<Self> {
+    public static func filter(field: String, comparator: NumericFilterComparator, value: BigInt) -> Filter<Self> {
         return Filter(field: field, comparator: comparator.rawValue, value: value)
     }
 }
