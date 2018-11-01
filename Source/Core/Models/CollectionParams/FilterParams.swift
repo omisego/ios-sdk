@@ -8,21 +8,41 @@
 
 import BigInt
 
+/// A type that represents a filterable ressource
 public protocol Filterable {
     associatedtype FilterableFields: RawEnumerable where FilterableFields.RawValue == String
 }
 
+/// A comparator for boolean value
+///
+/// - equal: The value must match exactly fhe field
+/// - notEqual: The value must be different from the field
+///
+/// Note: equal with a true value is the same as notEqual with a false value
 public enum BooleanFilterComparator: String, Encodable {
     case equal = "eq"
     case notEqual = "neq"
 }
 
+/// A comparator for string values
+///
+/// - equal: The value must match exactly fhe field
+/// - contains: The value must be a substring of the field
+/// - startsWith: The field must start with the value
 public enum StringFilterComparator: String, Encodable {
     case equal = "eq"
     case contains
     case startsWith = "starts_with"
 }
 
+/// A comparator for numeric values (BigInts)
+///
+/// - equal: The value must match exactly the field
+/// - notEqual: The value must be different from the field
+/// - lessThan: The value must be inferior to the field
+/// - lessThanOrEqual: The value must be inferior or equal to the field
+/// - greaterThan: The value must be superior to the field
+/// - greaterThanOrEqual: The value must me superior or equal to the field
 public enum NumericFilterComparator: String, Encodable {
     case equal = "eq"
     case notEqual = "neq"
@@ -32,6 +52,7 @@ public enum NumericFilterComparator: String, Encodable {
     case greaterThanOrEqual = "gte"
 }
 
+/// Represents a filter that can be used in filtrable queries
 public struct Filter<F: Filterable>: APIParameters {
     var field: String
     var comparator: String
@@ -58,26 +79,68 @@ public struct Filter<F: Filterable>: APIParameters {
 }
 
 extension Filterable {
+    /// Initialize a new Filter object with a String value
+    ///
+    /// - Parameters:
+    ///   - field: The field to filter
+    ///   - comparator: The String comparator to use
+    ///   - value: The value to use to filter
+    /// - Returns: A Filter object initialized with the specified properties
     public static func filter(field: FilterableFields, comparator: StringFilterComparator, value: String) -> Filter<Self> {
         return Filter(field: field.rawValue, comparator: comparator.rawValue, value: value)
     }
 
+    /// Initialize a new Filter object with a Bool value
+    ///
+    /// - Parameters:
+    ///   - field: The field to filter
+    ///   - comparator: The Boolean comparator to use
+    ///   - value: The value to use to filter
+    /// - Returns: A Filter object initialized with the specified properties
     public static func filter(field: FilterableFields, comparator: BooleanFilterComparator, value: Bool) -> Filter<Self> {
         return Filter(field: field.rawValue, comparator: comparator.rawValue, value: value)
     }
 
+    /// Initialize a new Filter object with a BigInt value
+    ///
+    /// - Parameters:
+    ///   - field: The field to filter
+    ///   - comparator: The Numeric comparator to use
+    ///   - value: The value to use to filter
+    /// - Returns: A Filter object initialized with the specified properties
     public static func filter(field: FilterableFields, comparator: NumericFilterComparator, value: BigInt) -> Filter<Self> {
         return Filter(field: field.rawValue, comparator: comparator.rawValue, value: value)
     }
 
+    /// Initialize an advanced new Filter object with a String value
+    ///
+    /// - Parameters:
+    ///   - field: The field to filter. Can contain nested relations snake_cased.
+    ///   - comparator: The String comparator to use
+    ///   - value: The value to use to filter
+    /// - Returns: A Filter object initialized with the specified properties
     public static func filter(field: String, comparator: StringFilterComparator, value: String) -> Filter<Self> {
         return Filter(field: field, comparator: comparator.rawValue, value: value)
     }
 
+    /// Initialize an advanced new Filter object with a Bool value
+    ///
+    /// - Parameters:
+    ///   - field: The field to filter. Can contain nested relations snake_cased.
+    ///   - comparator: The Boolean comparator to use
+    ///   - value: The value to use to filter
+    /// - Returns: A Filter object initialized with the specified properties
     public static func filter(field: String, comparator: BooleanFilterComparator, value: Bool) -> Filter<Self> {
         return Filter(field: field, comparator: comparator.rawValue, value: value)
     }
 
+    /// Initialize an advanced new Filter object with a BigInt value
+    ///
+    /// - Parameters:
+    ///   - field: The field to filter. Can contain nested relations snake_cased.
+    ///   - comparator: The Numeric comparator to use
+    ///   - value: The value to use to filter
+    /// - Returns: A Filter object initialized with the specified properties
     public static func filter(field: String, comparator: NumericFilterComparator, value: BigInt) -> Filter<Self> {
         return Filter(field: field, comparator: comparator.rawValue, value: value)
     }

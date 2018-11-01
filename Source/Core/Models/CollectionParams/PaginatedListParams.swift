@@ -42,7 +42,7 @@ extension PaginatedListParams: APIParameters {
     }
 }
 
-extension PaginatedListable  {
+extension PaginatedListable {
     public static func paginatedListParams(page: Int,
                                            perPage: Int,
                                            filters: FilterParams<Self>? = nil,
