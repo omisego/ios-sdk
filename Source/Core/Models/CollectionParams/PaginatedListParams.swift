@@ -41,3 +41,17 @@ extension PaginatedListParams: APIParameters {
         try self.paginationParams.encode(to: encoder)
     }
 }
+
+extension PaginatedListable  {
+    public static func paginatedListParams(page: Int,
+                                           perPage: Int,
+                                           filters: FilterParams<Self>? = nil,
+                                           sortBy: SortableFields,
+                                           sortDirection: SortDirection) -> PaginatedListParams<Self> {
+        return PaginatedListParams(page: page,
+                                   perPage: perPage,
+                                   filters: filters,
+                                   sortBy: sortBy,
+                                   sortDirection: sortDirection)
+    }
+}
