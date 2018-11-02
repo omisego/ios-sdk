@@ -354,7 +354,8 @@ class EncodeTests: XCTestCase {
             let f1 = TestPaginatedListable.filter(field: .aFilterableAttribute, comparator: .equal, value: true)
             let f2 = TestPaginatedListable.filter(field: .aFilterableAttribute, comparator: .contains, value: "a_string")
             let f3 = TestPaginatedListable.filter(field: .aFilterableAttribute, comparator: .greaterThan, value: 123)
-            let filters = FilterParams(matchAll: [f1, f2], matchAny: [f3])
+            let f4 = TestPaginatedListable.filter(field: "some_custom.field", comparator: .contains, value: "a_string")
+            let filters = FilterParams(matchAll: [f1, f2], matchAny: [f3, f4])
             let paginationParams = PaginatedListParams<TestPaginatedListable>(
                 page: 1,
                 perPage: 20,
@@ -369,7 +370,8 @@ class EncodeTests: XCTestCase {
                         {"comparator":"contains","field":"a_searchable_attribute","value":"a_string"}
                     ],
                     "match_any":[
-                        {"comparator":"gt","field":"a_searchable_attribute","value":123}
+                        {"comparator":"gt","field":"a_searchable_attribute","value":123},
+                        {"comparator":"contains","field":"some_custom.field","value":"a_string"}
                     ],
                     "page":1,
                     "per_page":20,
