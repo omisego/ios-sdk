@@ -27,10 +27,12 @@ public enum BooleanFilterComparator: String, Encodable {
 /// A comparator for string values
 ///
 /// - equal: The value must match exactly fhe field
+/// - notEqual: The value must be different from the field
 /// - contains: The value must be a substring of the field
 /// - startsWith: The field must start with the value
 public enum StringFilterComparator: String, Encodable {
     case equal = "eq"
+    case notEqual = "neq"
     case contains
     case startsWith = "starts_with"
 }
@@ -52,11 +54,20 @@ public enum NumericFilterComparator: String, Encodable {
     case greaterThanOrEqual = "gte"
 }
 
+/// A comparator for nil values
+///
+/// - nil: The value must be nil
+/// - notNil: The value must not be nil
+public enum NilComparator: String, Encodable {
+    case `nil` = "eq"
+    case notNil = "neq"
+}
+
 /// Represents a filter that can be used in filtrable queries
 public struct Filter<F: Filterable>: APIParameters {
     var field: String
     var comparator: String
-    var value: Any
+    var value: Any?
 
     enum CodingKeys: String, CodingKey {
         case field
@@ -69,6 +80,7 @@ public struct Filter<F: Filterable>: APIParameters {
         try container.encode(field, forKey: .field)
         try container.encode(comparator, forKey: .comparator)
         switch self.value {
+        case .none: try container.encodeNil(forKey: .value)
         case let value as String: try container.encode(value, forKey: .value)
         case let value as Bool: try container.encode(value, forKey: .value)
         case let value as BigInt: try container.encode(value, forKey: .value)
@@ -112,6 +124,16 @@ extension Filterable {
         return Filter(field: field.rawValue, comparator: comparator.rawValue, value: value)
     }
 
+    /// Initialize a new Filter object for a nil comparison
+    ///
+    /// - Parameters:
+    ///   - field: The field to filter
+    ///   - comparator: The Nil comparator to use
+    /// - Returns: A Filter object initialized with the specified properties
+    public static func filter(field: FilterableFields, comparator: NilComparator) -> Filter<Self> {
+        return Filter(field: field.rawValue, comparator: comparator.rawValue, value: nil)
+    }
+
     /// Initialize an advanced new Filter object with a String value
     ///
     /// - Parameters:
@@ -119,7 +141,7 @@ extension Filterable {
     ///   - comparator: The String comparator to use
     ///   - value: The value to use to filter
     /// - Returns: A Filter object initialized with the specified properties
-    public static func filter(field: String, comparator: StringFilterComparator, value: String) -> Filter<Self> {
+    public static func filter(field: String, comparator: StringFilterComparator, value: String?) -> Filter<Self> {
         return Filter(field: field, comparator: comparator.rawValue, value: value)
     }
 
@@ -141,8 +163,18 @@ extension Filterable {
     ///   - comparator: The Numeric comparator to use
     ///   - value: The value to use to filter
     /// - Returns: A Filter object initialized with the specified properties
-    public static func filter(field: String, comparator: NumericFilterComparator, value: BigInt) -> Filter<Self> {
+    public static func filter(field: String, comparator: NumericFilterComparator, value: BigInt?) -> Filter<Self> {
         return Filter(field: field, comparator: comparator.rawValue, value: value)
+    }
+
+    /// Initialize a new Filter object for a nil comparison
+    ///
+    /// - Parameters:
+    ///   - field: The field to filter. Can contain nested relations snake_cased.
+    ///   - comparator: The Nil comparator to use
+    /// - Returns: A Filter object initialized with the specified properties
+    public static func filter(field: String, comparator: NilComparator) -> Filter<Self> {
+        return Filter(field: field, comparator: comparator.rawValue, value: nil)
     }
 }
 
