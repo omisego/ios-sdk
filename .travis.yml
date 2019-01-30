@@ -17,7 +17,7 @@ install:
   fi
   if [ "$TEST_TYPE" = iOS ]; then
     bundle install --path vendor/bundle
-    pod install
+    bundle exec pod install
   fi
 script:
 - |
@@ -27,5 +27,5 @@ script:
   elif [ "$TEST_TYPE" = Lint ]; then
     swiftlint lint --config .swiftlint.yml
   elif [ "$TEST_TYPE" = CocoaPods ]; then
-    pod lib lint
+    bundle exec pod lib lint
   fi
