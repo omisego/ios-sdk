@@ -13,7 +13,8 @@ install:
   if [ "$TEST_TYPE" = Lint ]; then
     brew install swiftlint || brew upgrade swiftlint
   elif [ "$TEST_TYPE" = CocoaPods ] || [ "$TEST_TYPE" = iOS ]; then
-    pod repo update --silent
+    bundle install --path vendor/bundle
+    bundle exec pod repo update --silent
   fi
   if [ "$TEST_TYPE" = iOS ]; then
     bundle install --path vendor/bundle
