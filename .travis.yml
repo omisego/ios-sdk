@@ -16,7 +16,7 @@ install:
     pod repo update --silent
   fi
   if [ "$TEST_TYPE" = iOS ]; then
-    bundle install
+    bundle install --path vendor/bundle
     pod install
   fi
 script:
