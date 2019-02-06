@@ -59,6 +59,7 @@ class QRScannerViewModel: QRScannerViewModelProtocol {
             switch result {
             case let .success(data: transactionRequest):
                 self.onGetTransactionRequest?(transactionRequest)
+                self.loadedIds = self.loadedIds.filter({ $0 != formattedId })
             case let .fail(error: error):
                 self.startScanning()
                 self.onError?(error)
