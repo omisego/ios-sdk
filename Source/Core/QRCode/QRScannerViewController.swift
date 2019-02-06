@@ -93,6 +93,18 @@ public class QRScannerViewController: UIViewController {
         show ? self.loadingView.showLoading() : self.loadingView.hideLoading()
     }
 
+    /// Manually start the capture.
+    /// Use this method if you want to restart the capture after it has been stoped
+    public func startCapture() {
+        self.viewModel.startScanning()
+    }
+
+    /// Manually stop the capture.
+    /// Use this method if you want to stop the camera capture
+    public func stopCapture() {
+        self.viewModel.stopScanning()
+    }
+
     private func setupUIWithCancelButtonTitle(_ cancelButtonTitle: String) {
         self.view.backgroundColor = .black
         let qrScannerView = QRScannerView(frame: self.view.frame,
