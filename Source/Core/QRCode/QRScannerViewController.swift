@@ -76,11 +76,11 @@ public class QRScannerViewController: UIViewController {
 
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.viewModel.startScanning()
+        self.viewModel.startScanning(onStart: nil)
     }
 
     public override func viewWillDisappear(_ animated: Bool) {
-        self.viewModel.stopScanning()
+        self.viewModel.stopScanning(onStop: nil)
         super.viewWillDisappear(animated)
     }
 
@@ -95,14 +95,20 @@ public class QRScannerViewController: UIViewController {
 
     /// Manually start the capture.
     /// Use this method if you want to restart the capture after it has been stoped
-    public func startCapture() {
-        self.viewModel.startScanning()
+    /// This is asynchronous and a completion closure can be provided
+    ///
+    /// - Parameter onStart: A completion closure that will be called when the scanner is started
+    public func startCapture(onStart: (() -> Void)? = nil) {
+        self.viewModel.startScanning(onStart: onStart)
     }
 
     /// Manually stop the capture.
     /// Use this method if you want to stop the camera capture
-    public func stopCapture() {
-        self.viewModel.stopScanning()
+    /// This is asynchronous and a completion closure can be provided
+    ///
+    /// - Parameter onStart: A completion closure that will be called when the scanner is stoped
+    public func stopCapture(onStop: (() -> Void)? = nil) {
+        self.viewModel.stopScanning(onStop: onStop)
     }
 
     private func setupUIWithCancelButtonTitle(_ cancelButtonTitle: String) {

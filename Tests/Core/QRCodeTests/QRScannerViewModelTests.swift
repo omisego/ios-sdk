@@ -50,14 +50,20 @@ class QRScannerViewModelTest: FixtureTestCase {
     }
 
     func testCanDecodeAValidIdMultipleTimes() {
+        let exp = expectation(description: "Can decode a valid Id multiple times")
+        exp.expectedFulfillmentCount = 2
         let verifier = TestQRVerifier(success: true)
         let sut = QRScannerViewModel(verifier: verifier)
         var counter = 0
         sut.onGetTransactionRequest = { _ in
             counter += 1
+            exp.fulfill()
+            if counter < 2 {
+                sut.loadTransactionRequest(withFormattedId: "|123")
+            }
         }
-        sut.loadTransactionRequest(withFormattedId: "123")
-        sut.loadTransactionRequest(withFormattedId: "123")
+        sut.loadTransactionRequest(withFormattedId: "|123")
+        waitForExpectations(timeout: 5, handler: nil)
         XCTAssertEqual(counter, 2)
     }
 

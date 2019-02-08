@@ -16,8 +16,8 @@ protocol QRScannerViewModelProtocol {
     var onLoadingStateChange: LoadingClosure? { get set }
     var onGetTransactionRequest: OnGetTransactionRequestClosure? { get set }
     var onError: OnErrorClosure? { get set }
-    func startScanning()
-    func stopScanning()
+    func startScanning(onStart: (() -> Void)?)
+    func stopScanning(onStop: (() -> Void)?)
     func readerPreviewLayer() -> AVCaptureVideoPreviewLayer
     func updateQRReaderPreviewLayer(withFrame frame: CGRect)
     func isQRCodeAvailable() -> Bool
@@ -51,28 +51,30 @@ class QRScannerViewModel: QRScannerViewModelProtocol {
         let generator = UIImpactFeedbackGenerator(style: .heavy)
         generator.impactOccurred()
         self.loadedIds.append(formattedId)
-        self.stopScanning()
         self.onLoadingStateChange?(true)
-        self.verifier.onData(data: formattedId) { [weak self] result in
+        self.stopScanning { [weak self] in
             guard let self = self else { return }
-            self.onLoadingStateChange?(false)
-            switch result {
-            case let .success(data: transactionRequest):
-                self.onGetTransactionRequest?(transactionRequest)
-                self.loadedIds = self.loadedIds.filter({ $0 != formattedId })
-            case let .fail(error: error):
-                self.startScanning()
-                self.onError?(error)
+            self.verifier.onData(data: formattedId) { [weak self] result in
+                guard let self = self else { return }
+                self.onLoadingStateChange?(false)
+                switch result {
+                case let .success(data: transactionRequest):
+                    self.loadedIds = self.loadedIds.filter({ $0 != formattedId })
+                    self.onGetTransactionRequest?(transactionRequest)
+                case let .fail(error: error):
+                    self.startScanning()
+                    self.onError?(error)
+                }
             }
         }
     }
 
-    func startScanning() {
-        self.reader.startScanning()
+    func startScanning(onStart: (() -> Void)? = nil) {
+        self.reader.startScanning(onStart: onStart)
     }
 
-    func stopScanning() {
-        self.reader.stopScanning()
+    func stopScanning(onStop: (() -> Void)? = nil) {
+        self.reader.stopScanning(onStop: onStop)
     }
 
     func readerPreviewLayer() -> AVCaptureVideoPreviewLayer {

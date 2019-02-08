@@ -40,17 +40,25 @@ class QRReader: NSObject {
         self.session.commitConfiguration()
     }
 
-    func startScanning() {
+    func startScanning(onStart: (() -> Void)? = nil) {
         self.sessionQueue.async {
-            guard !self.session.isRunning else { return }
+            guard !self.session.isRunning else {
+                onStart?()
+                return
+            }
             self.session.startRunning()
+            onStart?()
         }
     }
 
-    func stopScanning() {
+    func stopScanning(onStop: (() -> Void)? = nil) {
         self.sessionQueue.async {
-            guard self.session.isRunning else { return }
+            guard self.session.isRunning else {
+                onStop?()
+                return
+            }
             self.session.stopRunning()
+            onStop?()
         }
     }
 

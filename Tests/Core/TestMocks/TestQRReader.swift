@@ -56,11 +56,11 @@ class TestQRViewModel: QRScannerViewModelProtocol {
 
     var onError: OnErrorClosure?
 
-    func startScanning() {
+    func startScanning(onStart _: (() -> Void)?) {
         self.didStartScanning = true
     }
 
-    func stopScanning() {
+    func stopScanning(onStop _: (() -> Void)?) {
         self.didStopScanning = true
     }
 
