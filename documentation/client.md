@@ -391,7 +391,7 @@ The `QRScannerViewControllerDelegate` offers the following interface:
 
 ```swift
 func userDidChoosePermission(granted: Bool) {
-    // Handle wether the user allowed the app to access the camera or not
+    // Handle whether the user allowed the app to access the camera or not
 }
 
 func scannerDidCancel(scanner: QRScannerViewController) {
