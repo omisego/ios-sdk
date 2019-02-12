@@ -15,6 +15,7 @@ typealias OnErrorClosure = ((OMGError) -> Void)
 protocol QRScannerViewModelProtocol {
     var onLoadingStateChange: LoadingClosure? { get set }
     var onGetTransactionRequest: OnGetTransactionRequestClosure? { get set }
+    var onUserPermissionChoice: ((Bool) -> Void)? { get set }
     var onError: OnErrorClosure? { get set }
     func startScanning(onStart: (() -> Void)?)
     func stopScanning(onStop: (() -> Void)?)
@@ -27,16 +28,12 @@ protocol QRScannerViewModelProtocol {
 class QRScannerViewModel: QRScannerViewModelProtocol {
     var onLoadingStateChange: LoadingClosure?
     var onGetTransactionRequest: OnGetTransactionRequestClosure?
+    var onUserPermissionChoice: ((Bool) -> Void)?
     var onError: OnErrorClosure?
     var loadedIds: [String] = []
 
     private lazy var reader: QRReader = {
-        QRReader(onFindClosure: { [weak self] value in
-            guard let self = self else { return }
-            DispatchQueue.main.async {
-                self.loadTransactionRequest(withFormattedId: value)
-            }
-        })
+        QRReader(delegate: self)
     }()
 
     private let verifier: QRVerifier
@@ -86,6 +83,16 @@ class QRScannerViewModel: QRScannerViewModelProtocol {
     }
 
     func isQRCodeAvailable() -> Bool {
-        return QRReader.isAvailable()
+        return self.reader.isAvailable()
+    }
+}
+
+extension QRScannerViewModel: QRReaderDelegate {
+    func onDecodedData(decodedData: String) {
+        self.loadTransactionRequest(withFormattedId: decodedData)
+    }
+
+    func onUserPermissionChoice(granted: Bool) {
+        self.onUserPermissionChoice?(granted)
     }
 }

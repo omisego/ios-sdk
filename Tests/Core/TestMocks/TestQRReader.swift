@@ -11,7 +11,7 @@ import XCTest
 
 class TestQRReader: QRReader {
     func mockValueFound(value: String) {
-        self.didReadCode(value)
+        self.delegate?.onDecodedData(decodedData: value)
     }
 }
 
@@ -40,6 +40,8 @@ class TestQRVCDelegate: QRScannerViewControllerDelegate {
         self.error = error
         self.asyncExpectation?.fulfill()
     }
+
+    func userDidChoosePermission(granted _: Bool) {}
 }
 
 import AVFoundation
@@ -53,6 +55,8 @@ class TestQRViewModel: QRScannerViewModelProtocol {
     var onLoadingStateChange: LoadingClosure?
 
     var onGetTransactionRequest: OnGetTransactionRequestClosure?
+
+    var onUserPermissionChoice: ((Bool) -> Void)?
 
     var onError: OnErrorClosure?
 

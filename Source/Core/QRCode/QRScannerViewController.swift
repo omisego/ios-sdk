@@ -10,6 +10,10 @@ import UIKit
 
 /// The delegate that will receive events from the QRScannerViewController
 public protocol QRScannerViewControllerDelegate: class {
+    /// This is called upon the decision of user to either accept or decline the camera permissions.
+    ///
+    /// - Parameter granted: True if the user allowed the app to use the camera, false otherwise.
+    func userDidChoosePermission(granted: Bool)
     /// Called when the user tap on the cancel button.
     /// Note that the view controller is not automatically dismissed when the user tap on cancel.
     ///
@@ -58,14 +62,19 @@ public class QRScannerViewController: UIViewController {
     }
 
     func configureViewModel() {
-        self.viewModel.onLoadingStateChange = { isLoading in
-            self.toggleLoadingOverlay(show: isLoading)
+        self.viewModel.onLoadingStateChange = { [weak self] isLoading in
+            self?.toggleLoadingOverlay(show: isLoading)
         }
-        self.viewModel.onGetTransactionRequest = { transactionRequest in
+        self.viewModel.onGetTransactionRequest = { [weak self] transactionRequest in
+            guard let self = self else { return }
             self.delegate?.scannerDidDecode(scanner: self, transactionRequest: transactionRequest)
         }
-        self.viewModel.onError = { error in
+        self.viewModel.onError = { [weak self] error in
+            guard let self = self else { return }
             self.delegate?.scannerDidFailToDecode(scanner: self, withError: error)
+        }
+        self.viewModel.onUserPermissionChoice = { [weak self] granted in
+            self?.delegate?.userDidChoosePermission(granted: granted)
         }
     }
 
