@@ -18,6 +18,7 @@ public enum TransactionConsumptionStatus: String, Decodable {
     case confirmed
     case approved
     case rejected
+    case cancelled
     case failed
     case expired
 }
