@@ -197,6 +197,9 @@ class StubGenerator {
         exchangeWalletAddress: String? = nil,
         exchangeAccount: Account? = nil,
         exchangeWallet: Wallet? = nil,
+        consumptionIntervalDuration: Int? = nil,
+        maxConsumptionsPerInterval: Int? = nil,
+        maxConsumptionsPerIntervalPerUser: Int? = nil,
         metadata: [String: Any]? = nil,
         encryptedMetadata: [String: Any]? = nil)
         -> TransactionRequest {
@@ -226,6 +229,9 @@ class StubGenerator {
             exchangeWalletAddress: exchangeWalletAddress ?? v.exchangeWalletAddress,
             exchangeAccount: exchangeAccount ?? v.exchangeAccount,
             exchangeWallet: exchangeWallet ?? v.exchangeWallet,
+            consumptionIntervalDuration: consumptionIntervalDuration ?? v.consumptionIntervalDuration,
+            maxConsumptionsPerInterval: maxConsumptionsPerInterval ?? v.maxConsumptionsPerInterval,
+            maxConsumptionsPerIntervalPerUser: maxConsumptionsPerIntervalPerUser ?? v.maxConsumptionsPerIntervalPerUser,
             metadata: metadata ?? v.metadata,
             encryptedMetadata: encryptedMetadata ?? v.encryptedMetadata
         )
@@ -318,6 +324,9 @@ class StubGenerator {
         expirationDate: Date? = Date(timeIntervalSince1970: 0),
         allowAmountOverride: Bool = true,
         maxConsumptionsPerUser: Int? = nil,
+        consumptionIntervalDuration: Int? = nil,
+        maxConsumptionsPerInterval: Int? = nil,
+        maxConsumptionsPerIntervalPerUser: Int? = nil,
         metadata: [String: Any] = [:],
         encryptedMetadata: [String: Any] = [:])
         -> TransactionRequestCreateParams {
@@ -333,6 +342,9 @@ class StubGenerator {
             expirationDate: expirationDate,
             allowAmountOverride: allowAmountOverride,
             maxConsumptionsPerUser: maxConsumptionsPerUser,
+            consumptionIntervalDuration: consumptionIntervalDuration,
+            maxConsumptionsPerInterval: maxConsumptionsPerInterval,
+            maxConsumptionsPerIntervalPerUser: maxConsumptionsPerIntervalPerUser,
             metadata: metadata,
             encryptedMetadata: encryptedMetadata
         )!
