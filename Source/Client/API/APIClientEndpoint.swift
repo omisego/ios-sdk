@@ -50,13 +50,13 @@ enum APIClientEndpoint: APIEndpoint {
         case .transactionConsumptionReject:
             return "/me.reject_transaction_consumption"
         case .resetPassword:
-            return "user.reset_password"
+            return "/user.reset_password"
         case .updatePassword:
-            return "user.update_password"
+            return "/user.update_password"
         case .signup:
-            return "user.signup"
+            return "/user.signup"
         case .login:
-            return "user.login"
+            return "/user.login"
         case .logout:
             return "/me.logout"
         }
