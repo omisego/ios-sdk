@@ -35,7 +35,7 @@ public struct TransactionRequestCreateParams {
     public let allowAmountOverride: Bool
     /// The maximum number of consumptions allowed per unique user
     public let maxConsumptionsPerUser: Int?
-    /// The duration (in milliseconds) during which the consumptionIntervalDuration and maxConsumptionsPerInterval attributes take effect.
+    /// The duration (in milliseconds) during which the maxConsumptionsPerInterval and maxConsumptionsPerIntervalPerUser attributes take effect.
     public let consumptionIntervalDuration: Int?
     /// The total number of times the request can be consumed in the defined interval (like 3 times every 24 hours)
     public let maxConsumptionsPerInterval: Int?
@@ -76,8 +76,8 @@ public struct TransactionRequestCreateParams {
     ///   - allowAmountOverride: Allow or not the consumer to override the amount specified in the request
     ///                          This needs to be true if the amount is not specified
     ///   - maxConsumptionsPerUser: The maximum number of consumptions allowed per unique user
-    ///   - consumptionIntervalDuration: The duration (in milliseconds) during which the consumptionIntervalDuration and
-    ///     maxConsumptionsPerInterval attributes take effect.
+    ///   - consumptionIntervalDuration: The duration (in milliseconds) during which the maxConsumptionsPerInterval and
+    ///     maxConsumptionsPerIntervalPerUser attributes take effect.
     ///   - maxConsumptionsPerInterval: The total number of times the request can be consumed in the defined interval
     ///     (like 3 times every 24 hours)
     ///   - maxConsumptionsPerIntervalPerUser: The total number of times one unique user can consume the request
