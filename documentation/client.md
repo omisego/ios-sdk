@@ -464,6 +464,8 @@ Where `params` is a `UserResetPasswordParams` struct constructed using:
 For example, if you provide this url: `my-app-scheme-uri://user/reset_password?email={email}&token={token}`, the user will receive a link by email that will look like this: `my-app-scheme-uri://user/reset_password?email=email@example.com&token=XXXXXXXXXXXXXXXXXXXXXX`.
 You can then handle the params passed to your application upon launch from this deep link and pass them to the `User.updatePassword` method.
 
+> This url needs to be whitelisted on the eWallet configuration page using the `Redirect URL Prefixes` config before being used.
+
 #### Update password
 
 To update the user with a new password, you can call:
