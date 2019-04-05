@@ -3,7 +3,7 @@
 //  Tests
 //
 //  Created by Mederic Petit on 8/10/18.
-//  Copyright © 2017-2018 Omise Go Pte. Ltd. All rights reserved.
+//  Copyright © 2017-2019 Omise Go Pte. Ltd. All rights reserved.
 //
 
 import OmiseGO
@@ -48,7 +48,7 @@ class TransactionRequestAdminFixtureTests: FixtureAdminTestCase {
                     XCTAssertNil(transactionRequest.consumptionIntervalDuration)
                     XCTAssertNil(transactionRequest.maxConsumptionsPerInterval)
                     XCTAssertNil(transactionRequest.maxConsumptionsPerIntervalPerUser)
-                case let .fail(error: error):
+                case let .failure(error):
                     XCTFail("\(error)")
                 }
             }
@@ -85,7 +85,7 @@ class TransactionRequestAdminFixtureTests: FixtureAdminTestCase {
                     XCTAssertEqual(transactionRequest.maxConsumptionsPerIntervalPerUser, 1)
                     XCTAssertTrue(transactionRequest.metadata.isEmpty)
                     XCTAssertTrue(transactionRequest.encryptedMetadata.isEmpty)
-                case let .fail(error: error):
+                case let .failure(error):
                     XCTFail("\(error)")
                 }
             }

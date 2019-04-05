@@ -3,7 +3,7 @@
 //  Tests
 //
 //  Created by Mederic Petit on 13/11/2017.
-//  Copyright © 2017-2018 Omise Go Pte. Ltd. All rights reserved.
+//  Copyright © 2017-2019 Omise Go Pte. Ltd. All rights reserved.
 //
 
 @testable import OmiseGO
@@ -182,7 +182,7 @@ class DecodeTests: XCTestCase {
             switch decodedData.data {
             case let .success(data: content):
                 XCTAssertEqual(content["a_key"], "a_value")
-            case let .fail(error: error):
+            case let .failure(error):
                 XCTFail(error.localizedDescription)
             }
         } catch let thrownError {
@@ -203,7 +203,7 @@ class DecodeTests: XCTestCase {
                 XCTAssertTrue(list.count == 2)
                 XCTAssertEqual(list[0], "value_1")
                 XCTAssertEqual(list[1], "value_2")
-            case let .fail(error: error):
+            case let .failure(error):
                 XCTFail(error.localizedDescription)
             }
         } catch let thrownError {
@@ -229,7 +229,7 @@ class DecodeTests: XCTestCase {
                 XCTAssertEqual(pagination.perPage, 10)
                 XCTAssertEqual(pagination.isFirstPage, true)
                 XCTAssertEqual(pagination.isLastPage, true)
-            case let .fail(error: error):
+            case let .failure(error):
                 XCTFail(error.localizedDescription)
             }
         } catch let thrownError {

@@ -3,7 +3,7 @@
 //  Tests
 //
 //  Created by Mederic Petit on 23/2/18.
-//  Copyright © 2017-2018 Omise Go Pte. Ltd. All rights reserved.
+//  Copyright © 2017-2019 Omise Go Pte. Ltd. All rights reserved.
 //
 
 import OmiseGO
@@ -28,7 +28,7 @@ class TransactionLiveTests: LiveClientTestCase {
             case let .success(paginatedList):
                 XCTAssertEqual(paginatedList.pagination.currentPage, 1)
                 XCTAssertTrue(paginatedList.pagination.isFirstPage)
-            case let .fail(error):
+            case let .failure(error):
                 XCTFail("\(error)")
             }
         }
