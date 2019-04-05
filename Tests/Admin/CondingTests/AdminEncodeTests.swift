@@ -16,7 +16,7 @@ class AdminEncodeTests: XCTestCase {
     override func setUp() {
         super.setUp()
         let jsonEncoder = JSONEncoder()
-        jsonEncoder.dateEncodingStrategy = .custom({ try dateEncodingStrategy(date: $0, encoder: $1) })
+        jsonEncoder.dateEncodingStrategy = .custom { try dateEncodingStrategy(date: $0, encoder: $1) }
         if #available(iOS 11.0, *) {
             jsonEncoder.outputFormatting = .sortedKeys
         }
@@ -44,8 +44,10 @@ class AdminEncodeTests: XCTestCase {
             let walletParams = WalletListForUserParams(
                 paginatedListParams: StubGenerator.paginatedListParams(
                     sortBy: .address,
-                    sortDirection: .ascending),
-                userId: "123")
+                    sortDirection: .ascending
+                ),
+                userId: "123"
+            )
             let encodedData = try self.encoder.encode(walletParams)
             let encodedPayload = try! walletParams.encodedPayload()
             XCTAssertEqual(encodedData, encodedPayload)
@@ -68,9 +70,11 @@ class AdminEncodeTests: XCTestCase {
             let walletParams = WalletListForAccountParams(
                 paginatedListParams: StubGenerator.paginatedListParams(
                     sortBy: .address,
-                    sortDirection: .ascending),
+                    sortDirection: .ascending
+                ),
                 accountId: "123",
-                owned: true)
+                owned: true
+            )
             let encodedData = try self.encoder.encode(walletParams)
             let encodedPayload = try! walletParams.encodedPayload()
             XCTAssertEqual(encodedData, encodedPayload)

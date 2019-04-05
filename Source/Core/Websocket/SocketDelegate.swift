@@ -7,13 +7,13 @@
 //
 
 /// A protocol containing the websocket connection events
-public protocol SocketConnectionDelegate: class {
+public protocol SocketConnectionDelegate: AnyObject {
     func didConnect()
     func didDisconnect(_ error: OMGError?)
 }
 
 /// The root protocol of all events that are available when listening any topic
-public protocol EventDelegate: class {
+public protocol EventDelegate: AnyObject {
     func didStartListening()
     func didStopListening()
     func onError(_ error: APIError)

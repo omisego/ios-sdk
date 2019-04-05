@@ -10,8 +10,8 @@
 public protocol Retrievable {}
 
 public extension Retrievable where Self: Decodable {
-    public typealias RetrieveRequest = Request<Self>
-    public typealias RetrieveRequestCallback = RetrieveRequest.Callback
+    typealias RetrieveRequest = Request<Self>
+    typealias RetrieveRequestCallback = RetrieveRequest.Callback
 
     @discardableResult
     internal static func retrieve<T: APIEndpoint>(using client: HTTPAPI,

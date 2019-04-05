@@ -21,7 +21,8 @@ class TransactionRequestAdminFixtureTests: FixtureAdminTestCase {
             correlationId: "wjkehfwjjwbgb",
             requireConfirmation: false,
             maxConsumptions: nil,
-            consumptionLifetime: nil)
+            consumptionLifetime: nil
+        )
         let request =
             TransactionRequest.create(using: self.testClient, params: params) { result in
                 defer { expectation.fulfill() }

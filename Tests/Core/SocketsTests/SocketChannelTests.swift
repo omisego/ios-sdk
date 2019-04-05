@@ -122,7 +122,7 @@ class SocketChannelTests: XCTestCase {
         return SocketPayloadReceive(topic: "",
                                     event: .reply,
                                     ref: "1",
-                                    data: (object != nil ? GenericObject(object: object!) : nil),
+                                    data: object != nil ? GenericObject(object: object!) : nil,
                                     version: "1", success: false,
                                     error: .init(code: code, description: "dummy_error"))
     }

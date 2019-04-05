@@ -16,7 +16,7 @@ public extension QREncodable where Self == TransactionRequest {
     ///
     /// - Parameter size: the desired image size
     /// - Returns: A QR image if the transaction request was successfuly encoded, nil otherwise.
-    public func qrImage(withSize size: CGSize = CGSize(width: 200, height: 200)) -> UIImage? {
+    func qrImage(withSize size: CGSize = CGSize(width: 200, height: 200)) -> UIImage? {
         guard let data = self.formattedId.data(using: .isoLatin1) else { return nil }
         return QRGenerator.generateQRCode(fromData: data, outputSize: size)
     }

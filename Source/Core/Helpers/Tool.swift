@@ -16,7 +16,7 @@ func omiseGOInfo(_ message: String) {
 
 func deserializeData<ObjectType: Decodable>(_ data: Data) throws -> ObjectType {
     let jsonDecoder = JSONDecoder()
-    jsonDecoder.dateDecodingStrategy = .custom({ try dateDecodingStrategy(decoder: $0) })
+    jsonDecoder.dateDecodingStrategy = .custom { try dateDecodingStrategy(decoder: $0) }
     return try jsonDecoder.decode(ObjectType.self, from: data)
 }
 

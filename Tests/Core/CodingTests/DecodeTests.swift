@@ -12,7 +12,7 @@ import XCTest
 class DecodeTests: XCTestCase {
     let jsonDecoder: JSONDecoder = {
         let jsonDecoder = JSONDecoder()
-        jsonDecoder.dateDecodingStrategy = .custom({ try dateDecodingStrategy(decoder: $0) })
+        jsonDecoder.dateDecodingStrategy = .custom { try dateDecodingStrategy(decoder: $0) }
         return jsonDecoder
     }()
 
@@ -57,14 +57,14 @@ class DecodeTests: XCTestCase {
     func testFailsToDecodeANumberWith39Digits() {
         do {
             let jsonData = try self.jsonData(withFileName: "bigint_invalid")
-            XCTAssertThrowsError(try self.jsonDecoder.decode(TestBigUInt.self, from: jsonData), "Failed to decode value", { error -> Void in
+            XCTAssertThrowsError(try self.jsonDecoder.decode(TestBigUInt.self, from: jsonData), "Failed to decode value") { error -> Void in
                 switch error {
                 case let DecodingError.dataCorrupted(context):
                     XCTAssertEqual(context.debugDescription, "Invalid number")
                 default:
                     XCTFail("Should raise a data corrupted error")
                 }
-            })
+            }
         } catch _ {
             XCTFail("Should raise a decoding error")
         }
@@ -72,7 +72,7 @@ class DecodeTests: XCTestCase {
 
     func testCustomDateDecodingStrategy() {
         let jsonDecoder = JSONDecoder()
-        jsonDecoder.dateDecodingStrategy = .custom({ try dateDecodingStrategy(decoder: $0) })
+        jsonDecoder.dateDecodingStrategy = .custom { try dateDecodingStrategy(decoder: $0) }
         do {
             let jsonData = try self.jsonData(withFileName: "dates")
             let decodedData = try self.jsonDecoder.decode(TestDate.self, from: jsonData)
@@ -89,7 +89,7 @@ class DecodeTests: XCTestCase {
 
     func testCustomInvalidDateDecodingStrategy() {
         let jsonDecoder = JSONDecoder()
-        jsonDecoder.dateDecodingStrategy = .custom({ try dateDecodingStrategy(decoder: $0) })
+        jsonDecoder.dateDecodingStrategy = .custom { try dateDecodingStrategy(decoder: $0) }
         do {
             let jsonData = try self.jsonData(withFileName: "dates_invalid")
             _ = try self.jsonDecoder.decode(TestDateInvalid.self, from: jsonData)

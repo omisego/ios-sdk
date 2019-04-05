@@ -135,11 +135,13 @@ extension TransactionRequestLiveTests {
             expirationDate: Date().addingTimeInterval(60),
             allowAmountOverride: true,
             maxConsumptionsPerUser: 5,
-            metadata: ["a_key": "a_value"])!
+            metadata: ["a_key": "a_value"]
+        )!
         var transactionRequestResult: TransactionRequest?
         let generateRequest = TransactionRequest.create(
             using: self.testClient,
-            params: transactionRequestParams) { result in
+            params: transactionRequestParams
+        ) { result in
             defer { generateExpectation.fulfill() }
             switch result {
             case let .success(data: transactionRequest):
@@ -162,7 +164,8 @@ extension TransactionRequestLiveTests {
         let getExpectation = self.expectation(description: "Get transaction request")
         let getRequest = TransactionRequest.get(
             using: self.testClient,
-            formattedId: formattedId) { result in
+            formattedId: formattedId
+        ) { result in
             defer { getExpectation.fulfill() }
             switch result {
             case let .success(data: transactionRequest):
@@ -189,11 +192,13 @@ extension TransactionRequestLiveTests {
             amount: nil,
             idempotencyToken: idempotencyToken,
             correlationId: consumeCorrelationId,
-            metadata: ["a_key": "a_value"])
+            metadata: ["a_key": "a_value"]
+        )
         var transactionConsumptionResult: TransactionConsumption?
         let consumeRequest = TransactionConsumption.consumeTransactionRequest(
             using: self.testClient,
-            params: transactionConsumptionParams!) { result in
+            params: transactionConsumptionParams!
+        ) { result in
             defer { consumeExpectation.fulfill() }
             switch result {
             case let .success(data: transactionConsumption):

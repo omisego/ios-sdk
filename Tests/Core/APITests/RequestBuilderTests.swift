@@ -31,7 +31,7 @@ class RequestBuilderTests: XCTestCase {
             XCTAssertNotNil(urlRequest.allHTTPHeaderFields!["Authorization"])
             XCTAssertNotNil(urlRequest.allHTTPHeaderFields!["Accept"])
             XCTAssertNotNil(urlRequest.allHTTPHeaderFields!["Content-Type"])
-        } catch let error {
+        } catch {
             XCTFail(error.localizedDescription)
         }
     }
@@ -46,7 +46,7 @@ class RequestBuilderTests: XCTestCase {
             XCTAssertNotNil(urlRequest.allHTTPHeaderFields!["Authorization"])
             XCTAssertNotNil(urlRequest.allHTTPHeaderFields!["Accept"])
             XCTAssertNotNil(urlRequest.allHTTPHeaderFields!["Content-Type"])
-        } catch let error {
+        } catch {
             XCTFail(error.localizedDescription)
         }
     }
@@ -60,7 +60,7 @@ class RequestBuilderTests: XCTestCase {
             XCTAssertNotNil(urlRequest.allHTTPHeaderFields!["Authorization"])
             XCTAssertNotNil(urlRequest.allHTTPHeaderFields!["Accept"])
             XCTAssertNotNil(urlRequest.allHTTPHeaderFields!["Content-Type"])
-        } catch let error {
+        } catch {
             XCTFail(error.localizedDescription)
         }
     }

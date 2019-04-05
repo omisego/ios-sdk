@@ -58,8 +58,8 @@ extension ExchangePair: Decodable {
 }
 
 extension ExchangePair: Hashable {
-    public var hashValue: Int {
-        return self.id.hashValue
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(self.id)
     }
 
     public static func == (lhs: ExchangePair, rhs: ExchangePair) -> Bool {

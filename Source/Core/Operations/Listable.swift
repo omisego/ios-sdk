@@ -10,8 +10,8 @@
 public protocol Listable {}
 
 public extension Listable where Self: Decodable {
-    public typealias ListRequest = Request<JSONListResponse<Self>>
-    public typealias ListRequestCallback = (Response<[Self]>) -> Void
+    typealias ListRequest = Request<JSONListResponse<Self>>
+    typealias ListRequestCallback = (Response<[Self]>) -> Void
 
     @discardableResult
     internal static func list(using client: HTTPAPI,
@@ -32,8 +32,8 @@ public extension Listable where Self: Decodable {
 public protocol PaginatedListable: Filterable, Sortable {}
 
 public extension PaginatedListable where Self: Decodable {
-    public typealias PaginatedListRequest = Request<JSONPaginatedListResponse<Self>>
-    public typealias PaginatedListRequestCallback = (Response<JSONPaginatedListResponse<Self>>) -> Void
+    typealias PaginatedListRequest = Request<JSONPaginatedListResponse<Self>>
+    typealias PaginatedListRequestCallback = (Response<JSONPaginatedListResponse<Self>>) -> Void
 
     @discardableResult
     internal static func list(using client: HTTPAPI,

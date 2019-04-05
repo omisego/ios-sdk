@@ -16,11 +16,13 @@ class TransactionLiveTests: LiveClientTestCase {
             page: 1,
             perPage: 10,
             sortBy: .createdAt,
-            sortDirection: .descending)
+            sortDirection: .descending
+        )
         let params = TransactionListParams(paginatedListParams: paginationParams, address: nil)
         let request = Transaction.list(
             using: self.testClient,
-            params: params) { result in
+            params: params
+        ) { result in
             defer { expectation.fulfill() }
             switch result {
             case let .success(paginatedList):

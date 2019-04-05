@@ -19,7 +19,7 @@ class RequestTest: XCTestCase {
             XCTAssertNil(request.task)
             _ = try request.start()
             XCTAssertNotNil(request.task)
-        } catch let error {
+        } catch {
             XCTFail(error.localizedDescription)
         }
     }
@@ -44,7 +44,7 @@ class RequestTest: XCTestCase {
             request.cancel()
             self.wait(for: [expectation], timeout: 10)
             XCTAssertEqual(request.task!.state, .completed)
-        } catch let error {
+        } catch {
             XCTFail(error.localizedDescription)
         }
     }

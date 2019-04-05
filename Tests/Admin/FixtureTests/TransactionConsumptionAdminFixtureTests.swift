@@ -20,14 +20,16 @@ class TransactionConsumptionAdminFixtureTests: FixtureAdminTestCase {
             amount: 100,
             address: "ykql631634124896",
             correlationId: "wjkehfwjjwbgb",
-            status: .valid)
+            status: .valid
+        )
         let params = TransactionConsumptionParams(
             transactionRequest: transactionRequest,
             address: "pgjz791619968896",
             amount: nil,
             idempotencyToken: "wkjnfejwkqdwedqwngkjwneg",
             correlationId: "lkwmelkgmwwlekg",
-            metadata: [:])!
+            metadata: [:]
+        )!
         let request =
             TransactionConsumption.consumeTransactionRequest(using: self.testClient, params: params) { result in
                 defer { expectation.fulfill() }

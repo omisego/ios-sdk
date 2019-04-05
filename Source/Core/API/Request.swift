@@ -69,7 +69,7 @@ public class Request<ResultType: Decodable> {
             return response.data
         } catch let error as DecodingError {
             return .fail(error: .decoding(underlyingError: error))
-        } catch let error {
+        } catch {
             return .fail(error: .other(error: error))
         }
     }

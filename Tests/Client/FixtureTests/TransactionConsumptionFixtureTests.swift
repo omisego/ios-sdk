@@ -20,14 +20,16 @@ class TransactionConsumptionFixtureTests: FixtureClientTestCase {
             amount: 1337,
             address: "3bfe0ff7-f43e-4ac6-bdf9-c4a290c40d0d",
             correlationId: "31009545-db10-4287-82f4-afb46d9741d8",
-            status: .valid)
+            status: .valid
+        )
         let params = TransactionConsumptionParams(
             transactionRequest: transactionRequest,
             address: nil,
             amount: nil,
             idempotencyToken: "123",
             correlationId: nil,
-            metadata: [:])!
+            metadata: [:]
+        )!
         let request =
             TransactionConsumption.consumeTransactionRequest(using: self.testClient, params: params) { result in
                 defer { expectation.fulfill() }

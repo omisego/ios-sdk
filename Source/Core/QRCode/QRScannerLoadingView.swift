@@ -14,7 +14,7 @@ class QRScannerLoadingView: UIView {
         spinner.hidesWhenStopped = true
         spinner.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(spinner)
-        [NSLayoutConstraint.Attribute.centerX, NSLayoutConstraint.Attribute.centerY].forEach({ attribute in
+        [NSLayoutConstraint.Attribute.centerX, NSLayoutConstraint.Attribute.centerY].forEach { attribute in
             self.addConstraint(NSLayoutConstraint(item: spinner,
                                                   attribute: attribute,
                                                   relatedBy: .equal,
@@ -22,7 +22,7 @@ class QRScannerLoadingView: UIView {
                                                   attribute: attribute,
                                                   multiplier: 1,
                                                   constant: 0))
-        })
+        }
         return spinner
     }()
 

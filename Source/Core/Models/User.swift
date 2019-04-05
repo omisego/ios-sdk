@@ -56,8 +56,8 @@ extension User: Decodable {
 }
 
 extension User: Hashable {
-    public var hashValue: Int {
-        return self.id.hashValue
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(self.id)
     }
 
     public static func == (lhs: User, rhs: User) -> Bool {

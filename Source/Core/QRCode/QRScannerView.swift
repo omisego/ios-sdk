@@ -69,7 +69,7 @@ class QRScannerView: UIView {
                                               attribute: .bottom,
                                               multiplier: 1,
                                               constant: -16))
-        [.leading, .trailing].forEach({ attribute in
+        [.leading, .trailing].forEach { attribute in
             self.addConstraint(NSLayoutConstraint(item: self.cancelButton,
                                                   attribute: attribute,
                                                   relatedBy: .equal,
@@ -77,8 +77,8 @@ class QRScannerView: UIView {
                                                   attribute: attribute,
                                                   multiplier: 1,
                                                   constant: 0))
-        })
-        [.left, .top, .right, .bottom].forEach({ attribute in
+        }
+        [.left, .top, .right, .bottom].forEach { attribute in
             self.addConstraint(NSLayoutConstraint(item: self.cameraView,
                                                   attribute: attribute,
                                                   relatedBy: .equal,
@@ -86,8 +86,8 @@ class QRScannerView: UIView {
                                                   attribute: attribute,
                                                   multiplier: 1,
                                                   constant: 0))
-        })
-        [.left, .top, .right, .bottom].forEach({ attribute in
+        }
+        [.left, .top, .right, .bottom].forEach { attribute in
             self.addConstraint(NSLayoutConstraint(item: self.overlayView,
                                                   attribute: attribute,
                                                   relatedBy: .equal,
@@ -95,6 +95,6 @@ class QRScannerView: UIView {
                                                   attribute: attribute,
                                                   multiplier: 1,
                                                   constant: 0))
-        })
+        }
     }
 }

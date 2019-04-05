@@ -43,6 +43,10 @@ public class HTTPAPI {
                 performCallback {
                     callback?(.fail(error: OMGError.unexpected(message: context.debugDescription)))
                 }
+            @unknown default:
+                performCallback {
+                    callback?(.fail(error: OMGError.other(error: error)))
+                }
             }
         } catch _ {
             self.performCallback {

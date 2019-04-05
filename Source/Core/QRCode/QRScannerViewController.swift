@@ -9,7 +9,7 @@
 import UIKit
 
 /// The delegate that will receive events from the QRScannerViewController
-public protocol QRScannerViewControllerDelegate: class {
+public protocol QRScannerViewControllerDelegate: AnyObject {
     /// This is called upon the decision of user to either accept or decline the camera permissions.
     ///
     /// - Parameter granted: True if the user allowed the app to use the camera, false otherwise.
@@ -129,7 +129,7 @@ public class QRScannerViewController: UIViewController {
         qrScannerView.cancelButton.addTarget(self, action: #selector(self.didTapCancel), for: .touchUpInside)
         self.view.addSubview(qrScannerView)
         self.view.addSubview(self.loadingView)
-        [NSLayoutConstraint.Attribute.left, .top, .right, .bottom].forEach({
+        [NSLayoutConstraint.Attribute.left, .top, .right, .bottom].forEach {
             self.view.addConstraint(NSLayoutConstraint(item: qrScannerView,
                                                        attribute: $0,
                                                        relatedBy: .equal,
@@ -144,7 +144,7 @@ public class QRScannerViewController: UIViewController {
                                                        attribute: $0,
                                                        multiplier: 1,
                                                        constant: 0))
-        })
+        }
     }
 
     @objc func didTapCancel(_: UIButton) {

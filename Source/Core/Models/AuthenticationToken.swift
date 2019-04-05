@@ -27,8 +27,8 @@ extension AuthenticationToken: Decodable {
 }
 
 extension AuthenticationToken: Hashable {
-    public var hashValue: Int {
-        return self.token.hashValue
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(self.token)
     }
 
     public static func == (lhs: AuthenticationToken, rhs: AuthenticationToken) -> Bool {

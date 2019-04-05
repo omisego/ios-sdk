@@ -40,6 +40,8 @@ public enum OMGError: Error {
                 return "decoding error: \(context.debugDescription)"
             case let .valueNotFound(_, context):
                 return "decoding error: \(context.debugDescription)"
+            @unknown default:
+                return "unexpected decoding error"
             }
 
         case let .api(error):

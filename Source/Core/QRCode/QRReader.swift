@@ -9,7 +9,7 @@
 import AVFoundation
 import UIKit
 
-protocol QRReaderDelegate: class {
+protocol QRReaderDelegate: AnyObject {
     func onDecodedData(decodedData: String)
     func onUserPermissionChoice(granted: Bool)
 }
@@ -83,6 +83,8 @@ class QRReader: NSObject {
                 }
             })
             return true
+        @unknown default:
+            return false
         }
     }
 }

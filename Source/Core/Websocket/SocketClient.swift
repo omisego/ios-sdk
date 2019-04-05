@@ -159,7 +159,7 @@ public class SocketClient {
     }
 
     private func flushSendBuffer() {
-        guard self.webSocket.isConnected && !self.sendBuffer.isEmpty else { return }
+        guard self.webSocket.isConnected, !self.sendBuffer.isEmpty else { return }
         for data in self.sendBuffer {
             self.send(message: data)
         }

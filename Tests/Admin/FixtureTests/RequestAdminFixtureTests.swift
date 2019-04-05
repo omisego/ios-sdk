@@ -28,7 +28,7 @@ class RequestAdminFixtureTests: FixtureAdminTestCase {
             XCTAssertNil(urlRequest.httpBody)
             XCTAssertEqual(urlRequest.httpMethod, "POST")
             XCTAssertEqual(urlRequest.timeoutInterval, 6)
-        } catch let error {
+        } catch {
             XCTFail(error.localizedDescription)
         }
     }

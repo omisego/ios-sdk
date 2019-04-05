@@ -60,8 +60,8 @@ extension Account: Decodable {
 }
 
 extension Account: Hashable {
-    public var hashValue: Int {
-        return self.id.hashValue
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(self.id)
     }
 
     public static func == (lhs: Account, rhs: Account) -> Bool {

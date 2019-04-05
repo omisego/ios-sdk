@@ -18,6 +18,5 @@ class ToolsTests: XCTestCase {
         XCTAssertEqual(customFormat, "1970 01 01 00:00:00")
     }
 
-    func testDecodingContainerProtocol() {
-    }
+    func testDecodingContainerProtocol() {}
 }

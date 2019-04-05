@@ -66,8 +66,8 @@ extension Wallet: Decodable {
 }
 
 extension Wallet: Hashable {
-    public var hashValue: Int {
-        return self.address.hashValue
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(self.address)
     }
 
     public static func == (lhs: Wallet, rhs: Wallet) -> Bool {
