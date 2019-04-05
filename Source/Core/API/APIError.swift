@@ -219,8 +219,8 @@ extension APIErrorCode: RawRepresentable {
 }
 
 extension APIErrorCode: Hashable {
-    public var hashValue: Int {
-        return self.code.hashValue
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(self.code)
     }
 
     public static func == (lhs: APIErrorCode, rhs: APIErrorCode) -> Bool {
