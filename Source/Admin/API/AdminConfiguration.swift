@@ -11,7 +11,7 @@ public struct AdminConfiguration: Configuration {
     /// The current SDK version
     let apiVersion: String = "1"
 
-    /// The base URL for the wallet api endpoints:
+    /// The base URL for the eWallet APIs:
     /// When initializing the HTTPAPI, this needs to be an http(s) url
     /// When initializing the SocketClient, this needs to be a ws(s) url
     let baseAPIURL: String
