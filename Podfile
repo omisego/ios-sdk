@@ -6,7 +6,7 @@ def shared_pods
   use_frameworks!
   # websocket library
   pod 'Starscream', '~> 3.1'
-  pod 'BigInt', '~> 3.1'
+  pod 'BigInt', '~> 4.0'
 end
 
 target 'OmiseGO' do
